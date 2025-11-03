@@ -1,0 +1,9 @@
+newmtl mat_ruinssatyrtop07
+illum 1
+map_Kd ruinssatyrtop07.png
+newmtl mat_ruinssatyrpillar08
+illum 1
+map_Kd ruinssatyrpillar08.png
+newmtl mat_ruinssatyrcrumbledrock04
+illum 1
+map_Kd ruinssatyrcrumbledrock04.png

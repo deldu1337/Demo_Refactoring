@@ -1,0 +1,37 @@
+{
+  "warrior": [
+    {
+      "id": "slash",
+      "name": "일격",
+      "cooldown": 2.0,
+      "damage": 4,
+      "mpCost": 5,
+      "range": 4.5,
+      "impactDelay": 0.5,
+      "type": "ActiveSkill",
+      "animation": "Attack2H (ID 18 variation 1)"
+    },
+    {
+      "id": "smash",
+      "name": "분쇄",
+      "cooldown": 7.0,
+      "damage": 1,
+      "mpCost": 10,
+      "range": 5,
+      "impactDelay": 0.6,
+      "type": "ProjectileSkill",
+      "animation": "Attack2HL (ID 19 variation 1)"
+    },
+    {
+      "id": "charge",
+      "name": "돌진",
+      "cooldown": 5.0,
+      "damage": 2,
+      "mpCost": 15,
+      "range": 20,
+      "impactDelay": 0.15,
+      "type": "ChargeSkill",
+      "animation": "AttackOffPierce (ID 88 variation 0)"
+    }
+  ]
+}

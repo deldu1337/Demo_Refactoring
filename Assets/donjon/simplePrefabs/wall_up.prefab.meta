@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6e2bff0fc600e4a439abf12141f76842
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/simplePrefabs/wall_up.prefab
+  uploadId: 66170

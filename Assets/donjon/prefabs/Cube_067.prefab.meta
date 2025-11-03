@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0db649b9d6271c246b1518f7c52a5c2c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/prefabs/Cube_067.prefab
+  uploadId: 66170

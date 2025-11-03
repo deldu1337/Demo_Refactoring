@@ -1,0 +1,722 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "helm_leather_pvpdruid_g_01_huf_helm_leather_pvpdruid_g_01brown",
+			"children": [
+				1,
+				14,
+				15
+			]
+		},
+		{
+			"name": "helm_leather_pvpdruid_g_01_huf_helm_leather_pvpdruid_g_01brown",
+			"children": [
+				2,
+				4,
+				6,
+				8,
+				10,
+				12
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				0.0988883301615715,
+				-0.06431654840707779,
+				0.00774722034111619
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0"
+		},
+		{
+			"name": "bone_1_p",
+			"translation": [
+				0.0988883301615715,
+				-0.06431690603494644,
+				0.0077472273260355
+			],
+			"children": [
+				5
+			]
+		},
+		{
+			"name": "bone_1"
+		},
+		{
+			"name": "bone_2_p",
+			"translation": [
+				-0.02863011136651039,
+				-0.16683551669120789,
+				0.007747226394712925
+			],
+			"children": [
+				7
+			]
+		},
+		{
+			"name": "bone_2"
+		},
+		{
+			"name": "bone_3_p",
+			"translation": [
+				-0.02863011695444584,
+				-0.17268942296504974,
+				0.007747226394712925
+			],
+			"children": [
+				9
+			]
+		},
+		{
+			"name": "bone_3"
+		},
+		{
+			"name": "bone_4_p",
+			"translation": [
+				0.05137797072529793,
+				0.005744752008467913,
+				-0.11426053196191788
+			],
+			"children": [
+				11
+			]
+		},
+		{
+			"name": "bone_4"
+		},
+		{
+			"name": "bone_5_p",
+			"translation": [
+				0.05137797072529793,
+				0.005744752008467913,
+				0.12975499033927917
+			],
+			"children": [
+				13
+			]
+		},
+		{
+			"name": "bone_5"
+		},
+		{
+			"name": "helm_leather_pvpdruid_g_01_huf_helm_leather_pvpdruid_g_01brown_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		},
+		{
+			"name": "helm_leather_pvpdruid_g_01_huf_helm_leather_pvpdruid_g_01brown_Geoset1",
+			"mesh": 1,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "helm_leather_pvpdruid_g_01_huf_helm_leather_pvpdruid_g_01brown_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "helm_leather_pvpdruid_g_01_huf_helm_leather_pvpdruid_g_01brown.bin",
+			"byteLength": 71976
+		},
+		{
+			"uri": "helm_leather_pvpdruid_g_01_huf_helm_leather_pvpdruid_g_01brown_anim0-0.bin",
+			"byteLength": 80
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 16056,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 16056,
+			"byteOffset": 16056,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 5352,
+			"byteOffset": 32112,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 5352,
+			"byteOffset": 37464,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 384,
+			"byteOffset": 42816
+		},
+		{
+			"buffer": 1,
+			"byteLength": 4,
+			"byteOffset": 0,
+			"name": "ROT_TIMESTAMPS_2_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 16,
+			"byteOffset": 4,
+			"name": "ROT_VALUES_2_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 4,
+			"byteOffset": 20,
+			"name": "ROT_TIMESTAMPS_3_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 16,
+			"byteOffset": 24,
+			"name": "ROT_VALUES_3_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 4,
+			"byteOffset": 40,
+			"name": "ROT_TIMESTAMPS_4_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 16,
+			"byteOffset": 44,
+			"name": "ROT_VALUES_4_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 4,
+			"byteOffset": 60,
+			"name": "ROT_TIMESTAMPS_5_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 16,
+			"byteOffset": 64,
+			"name": "ROT_VALUES_5_0"
+		},
+		{
+			"buffer": 0,
+			"byteLength": 10704,
+			"byteOffset": 43200,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 10704,
+			"byteOffset": 53904,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 6024,
+			"byteOffset": 64608,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1344,
+			"byteOffset": 70632,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1338,
+			"type": "VEC3",
+			"min": [
+				-0.24680304527282715,
+				-0.3270958960056305,
+				-0.3265257775783539
+			],
+			"max": [
+				0.14487610757350922,
+				0.21412846446037292,
+				0.3420202136039734
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1338,
+			"type": "VEC3",
+			"min": [
+				-0.9996032118797302,
+				-0.9992635250091553,
+				-0.9985817074775696
+			],
+			"max": [
+				0.997516930103302,
+				0.9996083974838257,
+				0.9985817074775696
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 1338,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 1338,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 6,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				-0.0988883301615715,
+				-0.005744752008467913,
+				-0.12975499033927917,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.02863011695444584,
+				0.17268942296504974,
+				0.11426053196191788,
+				1
+			]
+		},
+		{
+			"name": "ROT_TIMESTAMPS_2_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				0
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_VALUES_2_0",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"type": "VEC4",
+			"componentType": 5126,
+			"min": [
+				-0.018860438856166267,
+				0.08508560441908017,
+				-0.21561326944792017,
+				0.9725943784905545
+			],
+			"max": [
+				-0.018860438856166267,
+				0.08508560441908017,
+				-0.21561326944792017,
+				0.9725943784905545
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_TIMESTAMPS_3_0",
+			"bufferView": 7,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				0
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_VALUES_3_0",
+			"bufferView": 8,
+			"byteOffset": 0,
+			"type": "VEC4",
+			"componentType": 5126,
+			"min": [
+				-0.022553178502761926,
+				0.08420056764427625,
+				-0.2578508865627003,
+				0.9622791222876674
+			],
+			"max": [
+				-0.022553178502761926,
+				0.08420056764427625,
+				-0.2578508865627003,
+				0.9622791222876674
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_TIMESTAMPS_4_0",
+			"bufferView": 9,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				0
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_VALUES_4_0",
+			"bufferView": 10,
+			"byteOffset": 0,
+			"type": "VEC4",
+			"componentType": 5126,
+			"min": [
+				0.6123844111453597,
+				0.35355693227942747,
+				0.6123844111453597,
+				0.35355693227942747
+			],
+			"max": [
+				0.6123844111453597,
+				0.35355693227942747,
+				0.6123844111453597,
+				0.35355693227942747
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_TIMESTAMPS_5_0",
+			"bufferView": 11,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				0
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_VALUES_5_0",
+			"bufferView": 12,
+			"byteOffset": 0,
+			"type": "VEC4",
+			"componentType": 5126,
+			"min": [
+				0.35355693227942747,
+				-0.6123844111453597,
+				-0.35355693227942747,
+				0.6123844111453597
+			],
+			"max": [
+				0.35355693227942747,
+				-0.6123844111453597,
+				-0.35355693227942747,
+				0.6123844111453597
+			],
+			"count": 1
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 13,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1338,
+			"type": "VEC2",
+			"min": [
+				0.010553687810897827,
+				0.0031626224517822266
+			],
+			"max": [
+				0.9897966384887695,
+				0.9852669835090637
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 14,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1338,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 15,
+			"byteOffset": 0,
+			"componentType": 5123,
+			"count": 3012,
+			"type": "SCALAR"
+		},
+		{
+			"bufferView": 16,
+			"byteOffset": 0,
+			"componentType": 5123,
+			"count": 672,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 13,
+						"TEXCOORD_1": 14
+					},
+					"indices": 15,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		},
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 13,
+						"TEXCOORD_1": 14
+					},
+					"indices": 16,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "helm_leather_pvpdruid_g_01_huf_helm_leather_pvpdruid_g_01brown_Armature",
+			"joints": [
+				3,
+				5,
+				7,
+				9,
+				11,
+				13
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [
+				{
+					"input": 5,
+					"interpolation": "LINEAR",
+					"output": 6
+				},
+				{
+					"input": 7,
+					"interpolation": "LINEAR",
+					"output": 8
+				},
+				{
+					"input": 9,
+					"interpolation": "LINEAR",
+					"output": 10
+				},
+				{
+					"input": 11,
+					"interpolation": "LINEAR",
+					"output": 12
+				}
+			],
+			"channels": [
+				{
+					"sampler": 0,
+					"target": {
+						"node": 7,
+						"path": "rotation"
+					}
+				},
+				{
+					"sampler": 1,
+					"target": {
+						"node": 9,
+						"path": "rotation"
+					}
+				},
+				{
+					"sampler": 2,
+					"target": {
+						"node": 11,
+						"path": "rotation"
+					}
+				},
+				{
+					"sampler": 3,
+					"target": {
+						"node": 13,
+						"path": "rotation"
+					}
+				}
+			],
+			"name": "Stand (ID 0 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "helm_leather_pvpdruid_g_01brown.png"
+		},
+		{
+			"uri": "..\\shield\\armorreflect4.png"
+		},
+		{
+			"uri": "..\\weapon\\pvpweapon_effect_01.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		},
+		{
+			"source": 2
+		}
+	],
+	"materials": [
+		{
+			"name": "helm_leather_pvpdruid_g_01brown",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "armorreflect4",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "pvpweapon_effect_01",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 2
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

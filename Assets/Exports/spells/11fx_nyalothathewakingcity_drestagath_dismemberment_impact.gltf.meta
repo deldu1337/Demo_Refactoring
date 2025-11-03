@@ -1,0 +1,58 @@
+fileFormatVersion: 2
+guid: 7fce160eab545764c9bc9b2277ad309b
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\spells\11fx_nyalothathewakingcity_drestagath_dismemberment_impact.bin
+    assetPath: Assets\Exports\spells\11fx_nyalothathewakingcity_drestagath_dismemberment_impact.bin
+  - type: 0
+    originalUri: Assets\Exports\spells\11fx_nyalothathewakingcity_drestagath_dismemberment_impact_anim0-0.bin
+    assetPath: Assets\Exports\spells\11fx_nyalothathewakingcity_drestagath_dismemberment_impact_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\spells\11fx_nyalothathewakingcity_drestagath_dismemberment_impact_anim159-0.bin
+    assetPath: Assets\Exports\spells\11fx_nyalothathewakingcity_drestagath_dismemberment_impact_anim159-0.bin
+  - type: 1
+    originalUri: Assets\Exports\spells\fb_shadoweataway_void1_ba.png
+    assetPath: Assets\Exports\spells\fb_shadoweataway_void1_ba.png
+  - type: 1
+    originalUri: Assets\Exports\spells\fx_darkglare_channel_3051709.png
+    assetPath: Assets\Exports\spells\fx_darkglare_channel_3051709.png
+  - type: 1
+    originalUri: Assets\Exports\spells\11fx_voidmissile02_3056107.png
+    assetPath: Assets\Exports\spells\11fx_voidmissile02_3056107.png
+  - type: 1
+    originalUri: Assets\Exports\spells\ember_chunky_blankmorerotation_a.png
+    assetPath: Assets\Exports\spells\ember_chunky_blankmorerotation_a.png
+  - type: 1
+    originalUri: Assets\Exports\spells\white8x8.png
+    assetPath: Assets\Exports\spells\white8x8.png
+  - type: 1
+    originalUri: Assets\Exports\spells\7fx_alphamask_glow_blue3.png
+    assetPath: Assets\Exports\spells\7fx_alphamask_glow_blue3.png
+  - type: 1
+    originalUri: Assets\Exports\spells\glass_shard_a_desat_2.png
+    assetPath: Assets\Exports\spells\glass_shard_a_desat_2.png
+  reportItems: []

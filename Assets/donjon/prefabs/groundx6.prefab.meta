@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d7312eca90325d747b4624b7b179ed4c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/prefabs/groundx6.prefab
+  uploadId: 66170

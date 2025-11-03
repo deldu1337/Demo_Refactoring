@@ -1,0 +1,482 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "jewelcraft_gemcut_02",
+			"children": [
+				1,
+				4
+			]
+		},
+		{
+			"name": "jewelcraft_gemcut_02",
+			"children": [
+				2
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				-0.0010819834424182773,
+				0.061683204025030136,
+				0.0010010666446760297
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0"
+		},
+		{
+			"name": "jewelcraft_gemcut_02_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "jewelcraft_gemcut_02_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "jewelcraft_gemcut_02.bin",
+			"byteLength": 3220
+		},
+		{
+			"uri": "jewelcraft_gemcut_02_anim153-0.bin",
+			"byteLength": 48
+		},
+		{
+			"uri": "jewelcraft_gemcut_02_anim157-0.bin",
+			"byteLength": 48
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 768,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 768,
+			"byteOffset": 768,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 256,
+			"byteOffset": 1536,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 256,
+			"byteOffset": 1792,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 64,
+			"byteOffset": 2048
+		},
+		{
+			"buffer": 1,
+			"byteLength": 12,
+			"byteOffset": 0,
+			"name": "SCALE_TIMESTAMPS_0_1"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 36,
+			"byteOffset": 12,
+			"name": "SCALE_VALUES_0_1"
+		},
+		{
+			"buffer": 2,
+			"byteLength": 12,
+			"byteOffset": 0,
+			"name": "SCALE_TIMESTAMPS_0_2"
+		},
+		{
+			"buffer": 2,
+			"byteLength": 36,
+			"byteOffset": 12,
+			"name": "SCALE_VALUES_0_2"
+		},
+		{
+			"buffer": 0,
+			"byteLength": 512,
+			"byteOffset": 2112,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 512,
+			"byteOffset": 2624,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 84,
+			"byteOffset": 3136,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 64,
+			"type": "VEC3",
+			"min": [
+				-0.21421955525875092,
+				0.0008780049975030124,
+				-0.11896625906229019
+			],
+			"max": [
+				0.20779819786548615,
+				0.12374518066644669,
+				0.11984925717115402
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 64,
+			"type": "VEC3",
+			"min": [
+				-0.6862173080444336,
+				-1,
+				-0.8783156275749207
+			],
+			"max": [
+				0.6862169504165649,
+				1,
+				0.8783156275749207
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 64,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				0,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 64,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.0010819834424182773,
+				-0.061683204025030136,
+				-0.0010010666446760297,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.0010819834424182773,
+				-0.061683204025030136,
+				-0.0010010666446760297,
+				1
+			]
+		},
+		{
+			"name": "SCALE_TIMESTAMPS_0_1",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				1.733
+			],
+			"count": 3
+		},
+		{
+			"name": "SCALE_VALUES_0_1",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"type": "VEC3",
+			"componentType": 5126,
+			"min": [
+				0.10741139203310013,
+				0.10741139203310013,
+				0.10741138458251953
+			],
+			"max": [
+				1,
+				1,
+				1
+			],
+			"count": 3
+		},
+		{
+			"name": "SCALE_TIMESTAMPS_0_2",
+			"bufferView": 7,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				1.733
+			],
+			"count": 3
+		},
+		{
+			"name": "SCALE_VALUES_0_2",
+			"bufferView": 8,
+			"byteOffset": 0,
+			"type": "VEC3",
+			"componentType": 5126,
+			"min": [
+				0.10741139203310013,
+				0.10741139203310013,
+				0.10741138458251953
+			],
+			"max": [
+				1,
+				1,
+				1
+			],
+			"count": 3
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 9,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 64,
+			"type": "VEC2",
+			"min": [
+				0.0004994869232177734,
+				0.0004994869232177734
+			],
+			"max": [
+				0.9995005130767822,
+				0.9995005130767822
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 10,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 64,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 11,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 84,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 9,
+						"TEXCOORD_1": 10
+					},
+					"indices": 11,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "jewelcraft_gemcut_02_Armature",
+			"joints": [
+				3
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 0)"
+		},
+		{
+			"samplers": [
+				{
+					"input": 5,
+					"interpolation": "LINEAR",
+					"output": 6
+				}
+			],
+			"channels": [
+				{
+					"sampler": 0,
+					"target": {
+						"node": 3,
+						"path": "scale"
+					}
+				}
+			],
+			"name": "Custom0 (ID 153 variation 0)"
+		},
+		{
+			"samplers": [
+				{
+					"input": 7,
+					"interpolation": "LINEAR",
+					"output": 8
+				}
+			],
+			"channels": [
+				{
+					"sampler": 0,
+					"target": {
+						"node": 3,
+						"path": "scale"
+					}
+				}
+			],
+			"name": "Despawn (ID 157 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "g_jewelblue01.png"
+		},
+		{
+			"uri": "..\\..\\..\\..\\..\\..\\item\\objectcomponents\\shield\\armorreflect4.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		}
+	],
+	"materials": [
+		{
+			"name": "g_jewelblue01",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "armorreflect4",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

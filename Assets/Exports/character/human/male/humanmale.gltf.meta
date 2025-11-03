@@ -1,0 +1,469 @@
+fileFormatVersion: 2
+guid: d2d2a5cf00380324491950ac6d5797ae
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale.bin
+    assetPath: Assets\Exports\character\human\male\humanmale.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim0-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim4-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim4-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim5-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim5-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim26-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim26-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim27-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim27-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim28-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim28-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim25-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim25-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim1-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim1-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim8-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim8-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim14-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim14-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim137-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim137-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim15-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim15-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim16-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim16-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim118-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim118-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim20-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim20-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim37-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim37-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim39-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim39-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim40-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim40-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim42-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim42-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim50-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim50-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim105-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim105-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim29-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim29-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim0-1.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim0-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim0-2.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim0-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim49-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim49-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim48-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim48-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim107-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim107-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim111-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim111-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim51-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim51-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim52-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim52-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim56-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim56-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim38-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim38-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim89-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim89-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim16-1.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim16-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim66-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim66-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim67-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim67-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim68-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim68-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim60-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim60-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim11-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim11-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim12-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim12-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim84-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim84-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim83-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim83-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim82-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim82-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim81-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim81-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim80-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim80-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim3-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim3-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim79-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim79-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim78-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim78-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim77-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim77-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim76-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim76-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim75-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim75-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim74-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim74-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim73-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim73-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim96-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim96-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim98-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim98-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim65-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim65-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim64-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim64-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim128-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim128-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim123-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim123-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim63-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim63-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim138-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim138-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim129-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim129-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim70-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim70-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim62-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim62-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim136-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim136-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim90-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim90-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim45-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim45-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim43-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim43-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim44-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim44-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim97-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim97-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim102-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim102-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim103-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim103-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim104-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim104-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim46-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim46-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim106-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim106-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim54-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim54-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim53-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim53-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim110-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim110-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim109-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim109-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim108-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim108-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim112-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim112-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim95-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim95-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim17-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim17-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim17-1.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim17-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim57-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim57-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim87-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim87-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim88-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim88-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim9-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim9-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim10-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim10-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim21-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim21-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim30-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim30-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim24-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim24-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim59-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim59-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim19-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim19-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim19-1.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim19-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim23-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim23-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim18-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim18-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim18-1.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim18-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim58-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim58-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim22-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim22-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim85-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim85-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim113-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim113-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim114-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim114-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim140-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim140-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim115-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim115-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim141-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim141-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim116-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim116-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim142-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim142-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim121-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim121-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim119-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim119-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim120-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim120-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim61-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim61-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim199-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim199-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim55-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim55-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim124-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim124-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim126-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim126-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim19-2.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim19-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim125-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim125-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim41-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim41-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim131-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim131-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim99-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim99-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim139-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim139-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim101-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim101-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim133-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim133-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim134-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim134-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim100-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim100-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim132-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim132-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim69-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim69-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim69-1.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim69-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim69-2.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim69-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim69-3.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim69-3.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim69-4.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim69-4.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim13-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim13-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim91-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim91-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim91-1.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim91-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim91-2.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim91-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim0-3.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim0-3.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim143-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim143-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim187-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim187-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim195-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim195-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim185-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim185-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim186-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim186-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\human\male\humanmale_anim181-0.bin
+    assetPath: Assets\Exports\character\human\male\humanmale_anim181-0.bin
+  - type: 1
+    originalUri: Assets\Exports\character\human\male\data-1.png
+    assetPath: Assets\Exports\character\human\male\data-1.png
+  - type: 1
+    originalUri: Assets\Exports\character\human\male\data-6.png
+    assetPath: Assets\Exports\character\human\male\data-6.png
+  reportItems:
+  - type: 2
+    code: 3
+    messages: []

@@ -1,0 +1,58 @@
+fileFormatVersion: 2
+guid: 628113811e6742840a3f521ab4af88da
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 2
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\world\goober\g_jewelblue.bin
+    assetPath: Assets\Exports\world\goober\g_jewelblue.bin
+  - type: 0
+    originalUri: Assets\Exports\world\goober\g_jewelblue_anim0-0.bin
+    assetPath: Assets\Exports\world\goober\g_jewelblue_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\world\goober\g_jewelblue_anim153-0.bin
+    assetPath: Assets\Exports\world\goober\g_jewelblue_anim153-0.bin
+  - type: 0
+    originalUri: Assets\Exports\world\goober\g_jewelblue_anim157-0.bin
+    assetPath: Assets\Exports\world\goober\g_jewelblue_anim157-0.bin
+  - type: 1
+    originalUri: Assets\Exports\item\objectcomponents\ammo\blue_glow2.png
+    assetPath: Assets\Exports\item\objectcomponents\ammo\blue_glow2.png
+  - type: 1
+    originalUri: Assets\Exports\spells\blue_star2.png
+    assetPath: Assets\Exports\spells\blue_star2.png
+  - type: 1
+    originalUri: Assets\Exports\spells\star7b.png
+    assetPath: Assets\Exports\spells\star7b.png
+  - type: 1
+    originalUri: Assets\Exports\world\goober\g_jewelblue01.png
+    assetPath: Assets\Exports\world\goober\g_jewelblue01.png
+  - type: 1
+    originalUri: Assets\Exports\world\generic\goblin\passivedoodads\goblinmachinery\armorreflect01.png
+    assetPath: Assets\Exports\world\generic\goblin\passivedoodads\goblinmachinery\armorreflect01.png
+  reportItems:
+  - type: 2
+    code: 3
+    messages: []

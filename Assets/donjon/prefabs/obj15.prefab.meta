@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a0b1ff184e9b59340809972e18f9e00d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/prefabs/obj15.prefab
+  uploadId: 66170

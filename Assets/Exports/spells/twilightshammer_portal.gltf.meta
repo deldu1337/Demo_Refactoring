@@ -1,0 +1,46 @@
+fileFormatVersion: 2
+guid: d333afc439f14864fb2e58edc5d1cfa9
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\spells\twilightshammer_portal.bin
+    assetPath: Assets\Exports\spells\twilightshammer_portal.bin
+  - type: 1
+    originalUri: Assets\Exports\world\expansion03\doodads\twilighthammer\elementalgates\twilightshammer_portalswirl.png
+    assetPath: Assets\Exports\world\expansion03\doodads\twilighthammer\elementalgates\twilightshammer_portalswirl.png
+  - type: 1
+    originalUri: Assets\Exports\world\kalimdor\orgrimmar\passivedoodads\orgrimmarbonfire\genericglow_alpha_128.png
+    assetPath: Assets\Exports\world\kalimdor\orgrimmar\passivedoodads\orgrimmarbonfire\genericglow_alpha_128.png
+  - type: 1
+    originalUri: Assets\Exports\spells\t_vfx_aura01.png
+    assetPath: Assets\Exports\spells\t_vfx_aura01.png
+  - type: 1
+    originalUri: Assets\Exports\spells\t_vfx_smoke_creepy.png
+    assetPath: Assets\Exports\spells\t_vfx_smoke_creepy.png
+  reportItems:
+  - type: 2
+    code: 3
+    messages: []

@@ -1,0 +1,631 @@
+fileFormatVersion: 2
+guid: 665632e8098d9cb46ad29fd038dcd0e1
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim0-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim4-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim4-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim5-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim5-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim26-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim26-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim17-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim17-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim21-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim21-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim9-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim9-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim1-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim1-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim27-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim27-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim8-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim8-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim17-1.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim17-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim10-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim10-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim14-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim14-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim18-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim18-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim18-1.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim18-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim22-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim22-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim13-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim13-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim25-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim25-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim118-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim118-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim516-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim516-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim16-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim16-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim508-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim508-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim28-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim28-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim19-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim19-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim19-1.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim19-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim23-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim23-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim29-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim29-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim105-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim105-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim48-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim48-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim49-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim49-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim108-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim108-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim42-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim42-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim41-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim41-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim50-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim50-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim40-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim40-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim24-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim24-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim30-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim30-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim0-1.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim0-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim51-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim51-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim53-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim53-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim56-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim56-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim59-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim59-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim57-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim57-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim58-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim58-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim0-2.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim0-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim37-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim37-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim39-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim39-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim38-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim38-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim20-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim20-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim512-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim512-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim15-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim15-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim85-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim85-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim88-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim88-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim87-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim87-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim67-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim67-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim68-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim68-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim66-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim66-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim16-1.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim16-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim510-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim510-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim91-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim91-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim89-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim89-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim11-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim11-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim12-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim12-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim3-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim3-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim95-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim95-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim90-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim90-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim46-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim46-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim106-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim106-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim62-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim62-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim136-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim136-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim128-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim128-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim123-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim123-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim63-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim63-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim138-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim138-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim129-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim129-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim102-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim102-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim103-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim103-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim104-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim104-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim97-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim97-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim96-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim96-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim98-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim98-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim100-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim100-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim99-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim99-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim101-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim101-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim109-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim109-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim110-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim110-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim111-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim111-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim112-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim112-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim107-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim107-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim80-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim80-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim79-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim79-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim78-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim78-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim77-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim77-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim82-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim82-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim76-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim76-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim114-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim114-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim116-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim116-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim142-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim142-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim70-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim70-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim84-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim84-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim74-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim74-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim73-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim73-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim81-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim81-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim83-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim83-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim64-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim64-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim65-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim65-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim113-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim113-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim210-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim210-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim119-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim119-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim120-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim120-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim45-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim45-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim115-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim115-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim121-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim121-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim60-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim60-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim52-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim52-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim54-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim54-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim124-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim124-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim61-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim61-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim199-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim199-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim55-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim55-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim75-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim75-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim43-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim43-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim44-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim44-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim125-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim125-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim126-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim126-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim131-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim131-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim132-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim132-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim133-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim133-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim134-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim134-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim69-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim69-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim69-1.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim69-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim69-2.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim69-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim69-3.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim69-3.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim69-4.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim69-4.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim143-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim143-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim187-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim187-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim195-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim195-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim185-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim185-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim186-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim186-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim181-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim181-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim193-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim193-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim135-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim135-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim223-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim223-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim212-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim212-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim225-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim225-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim484-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim484-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim500-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim500-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim650-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim650-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim478-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim478-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim477-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim477-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim476-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim476-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim474-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim474-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim482-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim482-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim503-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim503-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim502-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim502-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim524-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim524-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim526-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim526-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim514-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim514-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim522-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim522-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim520-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim520-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim518-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim518-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim656-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim656-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim654-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim654-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim706-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim706-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim702-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim702-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim704-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim704-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim688-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim688-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim692-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim692-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim698-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim698-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim718-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim718-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim720-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim720-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim674-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim674-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim678-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim678-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim680-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim680-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim730-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim730-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim660-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim660-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim716-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim716-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim732-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim732-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim726-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim726-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim722-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim722-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim686-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim686-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim676-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim676-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim672-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim672-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim670-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim670-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim666-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim666-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim668-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim668-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim664-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim664-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim662-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim662-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim734-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim734-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim682-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim682-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim684-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim684-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim690-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim690-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim728-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim728-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim724-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim724-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim736-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim736-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim774-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim774-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\orc\male\orcmale_anim215-0.bin
+    assetPath: Assets\Exports\character\orc\male\orcmale_anim215-0.bin
+  - type: 1
+    originalUri: Assets\Exports\character\orc\male\data-1.png
+    assetPath: Assets\Exports\character\orc\male\data-1.png
+  - type: 1
+    originalUri: Assets\Exports\character\orc\male\data-6.png
+    assetPath: Assets\Exports\character\orc\male\data-6.png
+  reportItems:
+  - type: 2
+    code: 3
+    messages: []

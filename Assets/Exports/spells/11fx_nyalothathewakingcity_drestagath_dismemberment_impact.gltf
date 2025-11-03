@@ -1,0 +1,698 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "11fx_nyalothathewakingcity_drestagath_dismemberment_impact",
+			"children": [
+				1
+			]
+		},
+		{
+			"name": "11fx_nyalothathewakingcity_drestagath_dismemberment_impact",
+			"children": [
+				2,
+				4,
+				6,
+				8,
+				10,
+				12,
+				14
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				0,
+				0,
+				0
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0"
+		},
+		{
+			"name": "bone_1_p",
+			"translation": [
+				0,
+				0,
+				0
+			],
+			"children": [
+				5
+			]
+		},
+		{
+			"name": "bone_1"
+		},
+		{
+			"name": "bone_2_p",
+			"translation": [
+				0,
+				0,
+				0
+			],
+			"children": [
+				7
+			]
+		},
+		{
+			"name": "bone_2"
+		},
+		{
+			"name": "bone_3_p",
+			"translation": [
+				0,
+				0,
+				0
+			],
+			"children": [
+				9
+			]
+		},
+		{
+			"name": "bone_3"
+		},
+		{
+			"name": "bone_4_p",
+			"translation": [
+				0,
+				0,
+				0
+			],
+			"children": [
+				11
+			]
+		},
+		{
+			"name": "bone_4"
+		},
+		{
+			"name": "bone_5_p",
+			"translation": [
+				0,
+				0,
+				0
+			],
+			"children": [
+				13
+			]
+		},
+		{
+			"name": "bone_5"
+		},
+		{
+			"name": "bone_6_p",
+			"translation": [
+				0,
+				0,
+				0
+			],
+			"children": [
+				15
+			]
+		},
+		{
+			"name": "bone_6"
+		}
+	],
+	"scenes": [
+		{
+			"name": "11fx_nyalothathewakingcity_drestagath_dismemberment_impact_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "11fx_nyalothathewakingcity_drestagath_dismemberment_impact.bin",
+			"byteLength": 448
+		},
+		{
+			"uri": "11fx_nyalothathewakingcity_drestagath_dismemberment_impact_anim0-0.bin",
+			"byteLength": 40
+		},
+		{
+			"uri": "11fx_nyalothathewakingcity_drestagath_dismemberment_impact_anim159-0.bin",
+			"byteLength": 20
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 0,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 0,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 0,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 0,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 448,
+			"byteOffset": 0
+		},
+		{
+			"buffer": 1,
+			"byteLength": 4,
+			"byteOffset": 0,
+			"name": "ROT_TIMESTAMPS_2_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 16,
+			"byteOffset": 4,
+			"name": "ROT_VALUES_2_0"
+		},
+		{
+			"buffer": 2,
+			"byteLength": 4,
+			"byteOffset": 0,
+			"name": "ROT_TIMESTAMPS_2_1"
+		},
+		{
+			"buffer": 2,
+			"byteLength": 16,
+			"byteOffset": 4,
+			"name": "ROT_VALUES_2_1"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 4,
+			"byteOffset": 20,
+			"name": "ROT_TIMESTAMPS_5_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 16,
+			"byteOffset": 24,
+			"name": "ROT_VALUES_5_0"
+		},
+		{
+			"buffer": 0,
+			"byteLength": 0,
+			"byteOffset": 448,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 0,
+			"byteOffset": 448,
+			"target": 34962
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 0,
+			"type": "VEC3",
+			"min": [
+				null,
+				null,
+				null
+			],
+			"max": [
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 0,
+			"type": "VEC3",
+			"min": [
+				null,
+				null,
+				null
+			],
+			"max": [
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 0,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				null,
+				null,
+				null,
+				null
+			],
+			"max": [
+				null,
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 0,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				null,
+				null,
+				null,
+				null
+			],
+			"max": [
+				null,
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 7,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1
+			]
+		},
+		{
+			"name": "ROT_TIMESTAMPS_2_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				0
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_VALUES_2_0",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"type": "VEC4",
+			"componentType": 5126,
+			"min": [
+				0,
+				0,
+				-0.7071138645588549,
+				0.7071138645588549
+			],
+			"max": [
+				0,
+				0,
+				-0.7071138645588549,
+				0.7071138645588549
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_TIMESTAMPS_2_1",
+			"bufferView": 7,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				0
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_VALUES_2_1",
+			"bufferView": 8,
+			"byteOffset": 0,
+			"type": "VEC4",
+			"componentType": 5126,
+			"min": [
+				0,
+				0,
+				-0.7071138645588549,
+				0.7071138645588549
+			],
+			"max": [
+				0,
+				0,
+				-0.7071138645588549,
+				0.7071138645588549
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_TIMESTAMPS_5_0",
+			"bufferView": 9,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				0
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_VALUES_5_0",
+			"bufferView": 10,
+			"byteOffset": 0,
+			"type": "VEC4",
+			"componentType": 5126,
+			"min": [
+				0,
+				0,
+				-0.7071138645588549,
+				0.7071138645588549
+			],
+			"max": [
+				0,
+				0,
+				-0.7071138645588549,
+				0.7071138645588549
+			],
+			"count": 1
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 11,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 0,
+			"type": "VEC2",
+			"min": [
+				null,
+				null
+			],
+			"max": [
+				null,
+				null
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 12,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 0,
+			"type": "VEC2",
+			"min": [
+				null,
+				null
+			],
+			"max": [
+				null,
+				null
+			]
+		}
+	],
+	"meshes": [],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "11fx_nyalothathewakingcity_drestagath_dismemberment_impact_Armature",
+			"joints": [
+				3,
+				5,
+				7,
+				9,
+				11,
+				13,
+				15
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [
+				{
+					"input": 5,
+					"interpolation": "LINEAR",
+					"output": 6
+				},
+				{
+					"input": 9,
+					"interpolation": "LINEAR",
+					"output": 10
+				}
+			],
+			"channels": [
+				{
+					"sampler": 0,
+					"target": {
+						"node": 7,
+						"path": "rotation"
+					}
+				},
+				{
+					"sampler": 1,
+					"target": {
+						"node": 13,
+						"path": "rotation"
+					}
+				}
+			],
+			"name": "Stand (ID 0 variation 0)"
+		},
+		{
+			"samplers": [
+				{
+					"input": 7,
+					"interpolation": "LINEAR",
+					"output": 8
+				}
+			],
+			"channels": [
+				{
+					"sampler": 0,
+					"target": {
+						"node": 7,
+						"path": "rotation"
+					}
+				}
+			],
+			"name": "Decay (ID 159 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "fb_shadoweataway_void1_ba.png"
+		},
+		{
+			"uri": "fx_darkglare_channel_3051709.png"
+		},
+		{
+			"uri": "11fx_voidmissile02_3056107.png"
+		},
+		{
+			"uri": "ember_chunky_blankmorerotation_a.png"
+		},
+		{
+			"uri": "white8x8.png"
+		},
+		{
+			"uri": "7fx_alphamask_glow_blue3.png"
+		},
+		{
+			"uri": "glass_shard_a_desat_2.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		},
+		{
+			"source": 2
+		},
+		{
+			"source": 3
+		},
+		{
+			"source": 4
+		},
+		{
+			"source": 5
+		},
+		{
+			"source": 6
+		}
+	],
+	"materials": [
+		{
+			"name": "fb_shadoweataway_void1_ba",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "fx_darkglare_channel_3051709",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "11fx_voidmissile02_3056107",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 2
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "ember_chunky_blankmorerotation_a",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 3
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "white8x8",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 4
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "7fx_alphamask_glow_blue3",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 5
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "glass_shard_a_desat_2",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 6
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

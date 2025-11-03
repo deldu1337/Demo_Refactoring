@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f6b0b0c062784ee4c8e543ea4b7c869d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/prefabs/pillar_1-3.prefab
+  uploadId: 66170

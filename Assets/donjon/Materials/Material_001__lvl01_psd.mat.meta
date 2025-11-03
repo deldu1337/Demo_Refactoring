@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: df49ba95fa855a34fbe5e5570130496c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/Materials/Material_001__lvl01_psd.mat
+  uploadId: 66170

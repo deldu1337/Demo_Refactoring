@@ -1,0 +1,622 @@
+fileFormatVersion: 2
+guid: 407f170e683ce1841978ec5e41e3c41f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim4-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim4-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim0-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim0-1.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim0-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim26-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim26-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim9-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim9-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim8-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim8-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim10-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim10-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim17-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim17-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim17-1.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim17-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim21-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim21-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim57-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim57-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim15-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim15-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim85-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim85-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim87-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim87-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim88-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim88-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim27-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim27-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim18-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim18-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim18-1.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim18-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim22-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim22-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim0-2.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim0-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim5-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim5-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim58-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim58-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim37-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim37-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim38-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim38-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim39-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim39-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim40-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim40-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim25-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim25-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim16-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim16-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim510-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim510-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim16-1.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim16-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim508-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim508-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim20-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim20-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim512-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim512-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim118-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim118-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim516-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim516-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim50-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim50-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim11-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim11-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim12-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim12-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim3-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim3-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim42-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim42-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim89-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim89-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim90-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim90-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim28-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim28-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim19-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim19-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim19-1.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim19-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim23-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim23-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim41-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim41-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim30-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim30-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim24-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim24-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim59-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim59-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim29-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim29-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim105-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim105-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim46-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim46-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim108-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim108-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim107-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim107-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim48-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim48-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim49-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim49-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim106-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim106-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim51-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim51-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim53-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim53-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim52-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim52-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim54-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim54-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim95-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim95-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim14-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim14-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim137-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim137-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim1-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim1-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim62-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim62-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim136-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim136-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim13-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim13-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim128-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim128-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim123-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim123-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim63-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim63-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim138-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim138-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim129-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim129-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim102-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim102-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim103-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim103-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim104-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim104-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim97-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim97-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim96-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim96-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim98-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim98-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim109-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim109-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim110-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim110-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim111-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim111-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim112-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim112-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim113-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim113-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim119-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim119-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim120-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim120-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim121-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim121-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim114-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim114-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim140-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim140-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim115-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim115-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim116-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim116-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim142-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim142-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim68-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim68-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim61-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim61-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim55-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim55-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim43-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim43-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim44-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim44-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim45-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim45-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim99-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim99-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim139-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim139-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim100-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim100-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim101-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim101-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim67-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim67-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim60-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim60-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim84-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim84-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim82-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim82-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim80-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim80-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim76-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim76-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim73-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim73-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim74-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim74-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim124-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim124-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim79-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim79-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim81-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim81-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim78-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim78-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim70-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim70-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim77-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim77-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim83-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim83-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim69-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim69-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim125-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim125-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim126-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim126-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim19-2.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim19-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim131-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim131-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim132-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim132-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim133-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim133-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim134-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim134-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim134-1.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim134-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim65-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim65-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim64-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim64-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim75-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim75-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim66-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim66-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim91-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim91-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim91-1.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim91-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim143-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim143-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim187-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim187-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim185-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim185-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim186-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim186-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim195-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim195-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim203-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim203-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim181-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim181-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim193-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim193-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim212-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim212-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim223-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim223-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim225-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim225-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim484-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim484-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim500-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim500-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim478-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim478-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim477-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim477-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim476-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim476-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim474-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim474-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim482-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim482-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim514-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim514-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim524-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim524-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim526-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim526-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim522-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim522-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim520-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim520-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim518-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim518-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim656-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim656-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim654-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim654-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim650-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim650-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim706-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim706-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim702-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim702-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim704-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim704-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim688-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim688-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim692-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim692-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim698-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim698-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim718-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim718-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim720-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim720-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim674-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim674-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim678-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim678-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim680-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim680-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim730-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim730-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim660-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim660-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim716-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim716-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim732-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim732-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim726-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim726-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim722-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim722-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim686-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim686-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim676-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim676-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim672-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim672-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim670-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim670-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim666-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim666-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim668-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim668-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim664-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim664-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim734-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim734-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim682-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim682-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim684-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim684-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim690-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim690-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim728-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim728-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim724-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim724-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim736-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim736-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim662-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim662-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\scourge\female\scourgefemale_anim774-0.bin
+    assetPath: Assets\Exports\character\scourge\female\scourgefemale_anim774-0.bin
+  - type: 1
+    originalUri: Assets\Exports\character\scourge\female\data-1.png
+    assetPath: Assets\Exports\character\scourge\female\data-1.png
+  - type: 1
+    originalUri: Assets\Exports\character\scourge\female\data-6.png
+    assetPath: Assets\Exports\character\scourge\female\data-6.png
+  - type: 1
+    originalUri: Assets\Exports\character\scourge\male\nightelfmaleeyeglow.png
+    assetPath: Assets\Exports\character\scourge\male\nightelfmaleeyeglow.png
+  reportItems:
+  - type: 2
+    code: 3
+    messages: []

@@ -1,0 +1,601 @@
+fileFormatVersion: 2
+guid: 9e6fe27a31827414182b90a5e7b2cfe4
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim17-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim17-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim17-1.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim17-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim19-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim19-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim19-1.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim19-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim19-2.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim19-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim46-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim46-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim87-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim87-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim49-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim49-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim10-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim10-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim9-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim9-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim225-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim225-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim484-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim484-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim1-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim1-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim30-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim30-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim131-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim131-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim132-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim132-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim15-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim15-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim90-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim90-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim109-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim109-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim110-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim110-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim193-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim193-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim38-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim38-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim40-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim40-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim39-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim39-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim187-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim187-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim37-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim37-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim121-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim121-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim105-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim105-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim106-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim106-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim50-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim50-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim91-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim91-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim21-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim21-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim23-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim23-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim26-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim26-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim27-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim27-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim28-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim28-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim29-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim29-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim48-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim48-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim25-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim25-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim5-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim5-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim89-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim89-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim59-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim59-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim11-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim11-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim12-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim12-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim57-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim57-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim58-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim58-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim143-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim143-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim8-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim8-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim0-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim120-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim120-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim119-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim119-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim3-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim3-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim14-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim14-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim137-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim137-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim42-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim42-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim45-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim45-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim41-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim41-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim43-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim43-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim44-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim44-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim4-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim4-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim13-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim13-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim126-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim126-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim16-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim16-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim508-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim508-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim22-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim22-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim123-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim123-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim63-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim63-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim138-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim138-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim129-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim129-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim128-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim128-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim111-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim111-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim20-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim20-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim512-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim512-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim108-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim108-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim61-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim61-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim199-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim199-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim107-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim107-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim97-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim97-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim62-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim62-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim136-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim136-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim24-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim24-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim118-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim118-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim516-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim516-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim0-1.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim0-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim18-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim18-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim124-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim124-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim51-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim51-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim96-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim96-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim98-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim98-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim53-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim53-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim85-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim85-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim87-1.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim87-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim88-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim88-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim16-1.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim16-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim510-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim510-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim79-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim79-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim181-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim181-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim212-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim212-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim104-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim104-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim102-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim102-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim103-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim103-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim77-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim77-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim18-1.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim18-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim125-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim125-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim75-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim75-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim60-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim60-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim116-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim116-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim142-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim142-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim115-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim115-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim141-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim141-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim114-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim114-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim140-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim140-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim52-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim52-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim54-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim54-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim474-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim474-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim66-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim66-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim76-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim76-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim74-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim74-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim80-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim80-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim68-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim68-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim84-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim84-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim64-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim64-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim185-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim185-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim95-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim95-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim650-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim650-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim186-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim186-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim113-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim113-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim210-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim210-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim81-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim81-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim482-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim482-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim65-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim65-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim195-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim195-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim67-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim67-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim133-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim133-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim478-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim478-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim477-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim477-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim476-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim476-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim70-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim70-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim134-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim134-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim55-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim55-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim500-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim500-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim78-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim78-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim82-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim82-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim73-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim73-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim83-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim83-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim91-1.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim91-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim100-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim100-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim99-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim99-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim101-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim101-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim215-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim215-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim0-2.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim0-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim69-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim69-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim69-1.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim69-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim69-2.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim69-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim514-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim514-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim524-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim524-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim526-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim526-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim522-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim522-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim520-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim520-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim518-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim518-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim223-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim223-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim656-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim656-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim654-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim654-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim706-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim706-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim702-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim702-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim704-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim704-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim688-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim688-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim692-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim692-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim698-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim698-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim718-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim718-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim720-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim720-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim674-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim674-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim678-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim678-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim680-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim680-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim730-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim730-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim716-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim716-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim732-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim732-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim726-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim726-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim722-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim722-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim660-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim660-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim676-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim676-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim672-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim672-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim670-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim670-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim666-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim666-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim668-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim668-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\goblin\male\goblinmale_anim664-0.bin
+    assetPath: Assets\Exports\character\goblin\male\goblinmale_anim664-0.bin
+  - type: 1
+    originalUri: Assets\Exports\character\goblin\male\data-1.png
+    assetPath: Assets\Exports\character\goblin\male\data-1.png
+  - type: 1
+    originalUri: Assets\Exports\character\goblin\male\data-6.png
+    assetPath: Assets\Exports\character\goblin\male\data-6.png
+  - type: 1
+    originalUri: Assets\Exports\world\generic\human\passivedoodads\cups\rag_01.png
+    assetPath: Assets\Exports\world\generic\human\passivedoodads\cups\rag_01.png
+  reportItems:
+  - type: 2
+    code: 3
+    messages: []

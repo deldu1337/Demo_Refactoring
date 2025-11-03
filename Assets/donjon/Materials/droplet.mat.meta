@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 925414c9f6e514f40a20c00b6fa0ea31
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/Materials/droplet.mat
+  uploadId: 66170

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 87c4ec32112ac8441bc4bc0208a91dd2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/Materials/light.mat
+  uploadId: 66170

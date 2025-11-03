@@ -1,0 +1,416 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "potion_black01_spellobject",
+			"children": [
+				1,
+				8,
+				9
+			]
+		},
+		{
+			"name": "potion_black01_spellobject",
+			"children": [
+				2,
+				4,
+				6
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				-0.25361981987953186,
+				-0.041138503700494766,
+				-0.00009140493057202548
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0"
+		},
+		{
+			"name": "bone_1_p",
+			"translation": [
+				0.11508043855428696,
+				0.025530047714710236,
+				0
+			],
+			"children": [
+				5
+			]
+		},
+		{
+			"name": "bone_1"
+		},
+		{
+			"name": "bone_2_p",
+			"translation": [
+				-0.07244184613227844,
+				-0.010673976503312588,
+				0
+			],
+			"children": [
+				7
+			]
+		},
+		{
+			"name": "bone_2"
+		},
+		{
+			"name": "potion_black01_spellobject_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		},
+		{
+			"name": "potion_black01_spellobject_Geoset1",
+			"mesh": 1,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "potion_black01_spellobject_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "potion_black01_spellobject.bin",
+			"byteLength": 7098
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 1596,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1596,
+			"byteOffset": 1596,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 532,
+			"byteOffset": 3192,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 532,
+			"byteOffset": 3724,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 192,
+			"byteOffset": 4256
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1064,
+			"byteOffset": 4448,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1064,
+			"byteOffset": 5512,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 348,
+			"byteOffset": 6576,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 174,
+			"byteOffset": 6924,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 133,
+			"type": "VEC3",
+			"min": [
+				-0.2798490822315216,
+				-0.17325054109096527,
+				-0.17179365456104279
+			],
+			"max": [
+				0.17612086236476898,
+				0.11962837725877762,
+				0.17161086201667786
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 133,
+			"type": "VEC3",
+			"min": [
+				-0.9848077297210693,
+				-0.8855672478675842,
+				-0.9997790455818176
+			],
+			"max": [
+				0.9848790764808655,
+				0.8863821029663086,
+				0.9997790455818176
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 133,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				0,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 133,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 3,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				-0.11508043855428696,
+				-0.025530047714710236,
+				0,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.25361981987953186,
+				0.041138503700494766,
+				0.00009140493057202548,
+				1
+			]
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 133,
+			"type": "VEC2",
+			"min": [
+				0.14300508797168732,
+				0.0011491179466247559
+			],
+			"max": [
+				0.9899676442146301,
+				0.7480160593986511
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 133,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 7,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 348,
+			"type": "SCALAR"
+		},
+		{
+			"bufferView": 8,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 174,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 7,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		},
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 8,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "potion_black01_spellobject_Armature",
+			"joints": [
+				3,
+				5,
+				7
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "..\\world\\expansion02\\doodads\\generic\\inscription\\inscription_bottles01.png"
+		},
+		{
+			"uri": "..\\world\\expansion02\\doodads\\generic\\oracle\\orbreflectdark.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		}
+	],
+	"materials": [
+		{
+			"name": "inscription_bottles01",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "orbreflectdark",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

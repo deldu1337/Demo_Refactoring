@@ -1,0 +1,436 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "jewelcraft_gemcut_03",
+			"children": [
+				1,
+				6
+			]
+		},
+		{
+			"name": "jewelcraft_gemcut_03",
+			"children": [
+				2,
+				4
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				-0.015653356909751892,
+				0.07974545657634735,
+				0.0013920996570959687
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0"
+		},
+		{
+			"name": "bone__Name_p",
+			"translation": [
+				-0.01565335877239704,
+				0.5402911305427551,
+				-0.004390888847410679
+			],
+			"children": [
+				5
+			]
+		},
+		{
+			"name": "bone__Name"
+		},
+		{
+			"name": "jewelcraft_gemcut_03_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "jewelcraft_gemcut_03_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "jewelcraft_gemcut_03.bin",
+			"byteLength": 2156
+		},
+		{
+			"uri": "jewelcraft_gemcut_03_anim153-0.bin",
+			"byteLength": 48
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 480,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 480,
+			"byteOffset": 480,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 160,
+			"byteOffset": 960,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 160,
+			"byteOffset": 1120,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 128,
+			"byteOffset": 1280
+		},
+		{
+			"buffer": 1,
+			"byteLength": 12,
+			"byteOffset": 0,
+			"name": "SCALE_TIMESTAMPS_0_1"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 36,
+			"byteOffset": 12,
+			"name": "SCALE_VALUES_0_1"
+		},
+		{
+			"buffer": 0,
+			"byteLength": 320,
+			"byteOffset": 1408,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 320,
+			"byteOffset": 1728,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 108,
+			"byteOffset": 2048,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 40,
+			"type": "VEC3",
+			"min": [
+				-0.13326199352741241,
+				-0.0052139777690172195,
+				-0.304473340511322
+			],
+			"max": [
+				0.10195527225732803,
+				0.19771499931812286,
+				0.295691579580307
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 40,
+			"type": "VEC3",
+			"min": [
+				-0.9755973219871521,
+				-0.9999907612800598,
+				-0.9974817037582397
+			],
+			"max": [
+				0.9755973219871521,
+				0.976357102394104,
+				0.9974817037582397
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 40,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				0,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 40,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 2,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.015653356909751892,
+				-0.5402911305427551,
+				-0.0013920996570959687,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.01565335877239704,
+				-0.07974545657634735,
+				0.004390888847410679,
+				1
+			]
+		},
+		{
+			"name": "SCALE_TIMESTAMPS_0_1",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				1.733
+			],
+			"count": 3
+		},
+		{
+			"name": "SCALE_VALUES_0_1",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"type": "VEC3",
+			"componentType": 5126,
+			"min": [
+				0.10741138458251953,
+				0.10741139203310013,
+				0.10741138458251953
+			],
+			"max": [
+				1,
+				1,
+				1
+			],
+			"count": 3
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 7,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 40,
+			"type": "VEC2",
+			"min": [
+				0.007713895756751299,
+				0.0004994869232177734
+			],
+			"max": [
+				0.992285966873169,
+				0.9927536249160767
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 8,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 40,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 9,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 108,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 7,
+						"TEXCOORD_1": 8
+					},
+					"indices": 9,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "jewelcraft_gemcut_03_Armature",
+			"joints": [
+				3,
+				5
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 0)"
+		},
+		{
+			"samplers": [
+				{
+					"input": 5,
+					"interpolation": "LINEAR",
+					"output": 6
+				}
+			],
+			"channels": [
+				{
+					"sampler": 0,
+					"target": {
+						"node": 3,
+						"path": "scale"
+					}
+				}
+			],
+			"name": "Custom0 (ID 153 variation 0)"
+		},
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Despawn (ID 157 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "g_jewelred.png"
+		},
+		{
+			"uri": "..\\..\\..\\..\\..\\..\\item\\objectcomponents\\weapon\\armorreflect_rainbow.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		}
+	],
+	"materials": [
+		{
+			"name": "g_jewelred",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "armorreflect_rainbow",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

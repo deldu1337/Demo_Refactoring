@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2f81e31c09ea4634d9d91e096805212f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/simplePrefabs/wall_down.002.prefab
+  uploadId: 66170

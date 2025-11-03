@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4ce10f034d4f5ee428883740bc7b6c7f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/prefabs/corner_1-2.prefab
+  uploadId: 66170

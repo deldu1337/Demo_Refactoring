@@ -1,0 +1,364 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "helm_leather_pvprogue_e_01_trf_helm_leather_pvprogue_e_01black",
+			"children": [
+				1,
+				4,
+				5
+			]
+		},
+		{
+			"name": "helm_leather_pvprogue_e_01_trf_helm_leather_pvprogue_e_01black",
+			"children": [
+				2
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				-0.01887642778456211,
+				0.1402943879365921,
+				0
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0"
+		},
+		{
+			"name": "helm_leather_pvprogue_e_01_trf_helm_leather_pvprogue_e_01black_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		},
+		{
+			"name": "helm_leather_pvprogue_e_01_trf_helm_leather_pvprogue_e_01black_Geoset1",
+			"mesh": 1,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "helm_leather_pvprogue_e_01_trf_helm_leather_pvprogue_e_01black_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "helm_leather_pvprogue_e_01_trf_helm_leather_pvprogue_e_01black.bin",
+			"byteLength": 87868
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 19356,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 19356,
+			"byteOffset": 19356,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 6452,
+			"byteOffset": 38712,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 6452,
+			"byteOffset": 45164,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 64,
+			"byteOffset": 51616
+		},
+		{
+			"buffer": 0,
+			"byteLength": 12904,
+			"byteOffset": 51680,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 12904,
+			"byteOffset": 64584,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 10140,
+			"byteOffset": 77488,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 240,
+			"byteOffset": 87628,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1613,
+			"type": "VEC3",
+			"min": [
+				-0.2690744400024414,
+				-0.14757323265075684,
+				-0.1448422223329544
+			],
+			"max": [
+				0.1589459329843521,
+				0.21540582180023193,
+				0.1448422372341156
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1613,
+			"type": "VEC3",
+			"min": [
+				-0.9999056458473206,
+				-0.9972042441368103,
+				-0.9993677139282227
+			],
+			"max": [
+				0.9999834895133972,
+				0.999210000038147,
+				0.9993678331375122
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 1613,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				0,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 1613,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.01887642778456211,
+				-0.1402943879365921,
+				0,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.01887642778456211,
+				-0.1402943879365921,
+				0,
+				1
+			]
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1613,
+			"type": "VEC2",
+			"min": [
+				0.0049397824332118034,
+				0.0026799440383911133
+			],
+			"max": [
+				0.9983569383621216,
+				0.992877721786499
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1613,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 7,
+			"byteOffset": 0,
+			"componentType": 5123,
+			"count": 5070,
+			"type": "SCALAR"
+		},
+		{
+			"bufferView": 8,
+			"byteOffset": 0,
+			"componentType": 5123,
+			"count": 120,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 7,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		},
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 8,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "helm_leather_pvprogue_e_01_trf_helm_leather_pvprogue_e_01black_Armature",
+			"joints": [
+				3
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "helm_leather_pvprogue_e_01black.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		}
+	],
+	"materials": [
+		{
+			"name": "helm_leather_pvprogue_e_01black",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

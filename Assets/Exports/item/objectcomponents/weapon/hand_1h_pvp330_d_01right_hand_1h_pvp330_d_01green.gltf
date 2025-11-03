@@ -1,0 +1,480 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "hand_1h_pvp330_d_01right_hand_1h_pvp330_d_01green",
+			"children": [
+				1,
+				18
+			]
+		},
+		{
+			"name": "hand_1h_pvp330_d_01right_hand_1h_pvp330_d_01green",
+			"children": [
+				2,
+				4,
+				6,
+				8,
+				10,
+				12,
+				14,
+				16
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				-0.043034084141254425,
+				0.20464900135993958,
+				0.09861504286527634
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0"
+		},
+		{
+			"name": "bone_1_p",
+			"translation": [
+				0.014844600111246109,
+				-0.18649201095104218,
+				0.0880303606390953
+			],
+			"children": [
+				5
+			]
+		},
+		{
+			"name": "bone_1"
+		},
+		{
+			"name": "bone_2_p",
+			"translation": [
+				0.023217732086777687,
+				-0.27188822627067566,
+				0.05048402026295662
+			],
+			"children": [
+				7
+			]
+		},
+		{
+			"name": "bone_2"
+		},
+		{
+			"name": "bone_3_p",
+			"translation": [
+				0.03401258960366249,
+				-0.3664485514163971,
+				-0.0012238638009876013
+			],
+			"children": [
+				9
+			]
+		},
+		{
+			"name": "bone_3"
+		},
+		{
+			"name": "bone_4_p",
+			"translation": [
+				0.04695495218038559,
+				-0.4624130427837372,
+				-0.04164310172200203
+			],
+			"children": [
+				11
+			]
+		},
+		{
+			"name": "bone_4"
+		},
+		{
+			"name": "bone_5_p",
+			"translation": [
+				0.061738524585962296,
+				-0.553479790687561,
+				-0.08868388086557388
+			],
+			"children": [
+				13
+			]
+		},
+		{
+			"name": "bone_5"
+		},
+		{
+			"name": "bone_6_p",
+			"translation": [
+				0.07386777549982071,
+				-0.6580257415771484,
+				-0.13961923122406006
+			],
+			"children": [
+				15
+			]
+		},
+		{
+			"name": "bone_6"
+		},
+		{
+			"name": "bone_7_p",
+			"translation": [
+				0.23623786866664886,
+				-0.09803152829408646,
+				-0.010749544017016888
+			],
+			"children": [
+				17
+			]
+		},
+		{
+			"name": "bone_7"
+		},
+		{
+			"name": "hand_1h_pvp330_d_01right_hand_1h_pvp330_d_01green_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "hand_1h_pvp330_d_01right_hand_1h_pvp330_d_01green_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "hand_1h_pvp330_d_01right_hand_1h_pvp330_d_01green.bin",
+			"byteLength": 21968
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 4812,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 4812,
+			"byteOffset": 4812,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1604,
+			"byteOffset": 9624,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1604,
+			"byteOffset": 11228,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 512,
+			"byteOffset": 12832
+		},
+		{
+			"buffer": 0,
+			"byteLength": 3208,
+			"byteOffset": 13344,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 3208,
+			"byteOffset": 16552,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 2208,
+			"byteOffset": 19760,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 401,
+			"type": "VEC3",
+			"min": [
+				-0.26305049657821655,
+				-0.6633479595184326,
+				-0.14311634004116058
+			],
+			"max": [
+				0.26840415596961975,
+				0.32892218232154846,
+				0.3197594881057739
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 401,
+			"type": "VEC3",
+			"min": [
+				-0.9993315935134888,
+				-0.9409822225570679,
+				-0.9933503270149231
+			],
+			"max": [
+				0.9859914779663086,
+				0.9968434572219849,
+				0.9996864199638367
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 401,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				0,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 401,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 8,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				-0.23623786866664886,
+				-0.20464900135993958,
+				-0.09861504286527634,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.043034084141254425,
+				0.6580257415771484,
+				0.13961923122406006,
+				1
+			]
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 401,
+			"type": "VEC2",
+			"min": [
+				0.010753425769507885,
+				0.011951208114624023
+			],
+			"max": [
+				0.9919797778129578,
+				0.9844590425491333
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 401,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 7,
+			"byteOffset": 0,
+			"componentType": 5123,
+			"count": 1104,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 7,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "hand_1h_pvp330_d_01right_hand_1h_pvp330_d_01green_Armature",
+			"joints": [
+				3,
+				5,
+				7,
+				9,
+				11,
+				13,
+				15,
+				17
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "hand_1h_pvp330_d_01green.png"
+		},
+		{
+			"uri": "..\\..\\..\\creature\\protodragon\\orbreflect.png"
+		},
+		{
+			"uri": "hand_1h_pvp330_d_01_glow.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		},
+		{
+			"source": 2
+		}
+	],
+	"materials": [
+		{
+			"name": "hand_1h_pvp330_d_01green",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "orbreflect",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "hand_1h_pvp330_d_01_glow",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 2
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

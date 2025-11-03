@@ -1,0 +1,109 @@
+fileFormatVersion: 2
+guid: 08f8ddc57a8261842bf50b717f6a0c0b
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim0-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim25-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim25-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim16-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim16-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim53-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim53-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim118-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim118-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim51-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim51-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim52-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim52-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim127-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim127-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim224-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim224-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim1-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim1-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim54-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim54-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim201-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim201-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim202-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim202-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim16-1.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim16-1.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim213-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim213-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim214-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim214-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim215-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim215-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim216-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim216-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim217-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim217-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm_03_anim218-0.bin
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm_03_anim218-0.bin
+  - type: 1
+    originalUri: Assets\Exports\spells\t_vfx_lava2.png
+    assetPath: Assets\Exports\spells\t_vfx_lava2.png
+  - type: 1
+    originalUri: Assets\Exports\creature\lavaworm\dust3alpha.png
+    assetPath: Assets\Exports\creature\lavaworm\dust3alpha.png
+  - type: 1
+    originalUri: Assets\Exports\item\objectcomponents\weapon\dust1.png
+    assetPath: Assets\Exports\item\objectcomponents\weapon\dust1.png
+  - type: 1
+    originalUri: Assets\Exports\creature\lavaworm\lavaworm.png
+    assetPath: Assets\Exports\creature\lavaworm\lavaworm.png
+  - type: 1
+    originalUri: Assets\Exports\creature\lavaworm\lavawormglow.png
+    assetPath: Assets\Exports\creature\lavaworm\lavawormglow.png
+  - type: 1
+    originalUri: Assets\Exports\world\azeroth\karazahn\passivedoodads\burningbooks\flamelicksmallnoisy.png
+    assetPath: Assets\Exports\world\azeroth\karazahn\passivedoodads\burningbooks\flamelicksmallnoisy.png
+  reportItems: []

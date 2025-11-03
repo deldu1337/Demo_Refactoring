@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a99b24a9a56bea247a6bd1cc709f75b7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/Particles/water.prefab
+  uploadId: 66170

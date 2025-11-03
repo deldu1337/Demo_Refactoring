@@ -1,0 +1,563 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "twilightshammer_portal",
+			"children": [
+				1,
+				16,
+				17,
+				18
+			]
+		},
+		{
+			"name": "twilightshammer_portal",
+			"children": [
+				2,
+				10,
+				12,
+				14
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				0,
+				5.804468631744385,
+				0
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0",
+			"children": [
+				4,
+				6,
+				8
+			]
+		},
+		{
+			"name": "bone_1_p",
+			"translation": [
+				-1.2002748250961304,
+				0,
+				0
+			],
+			"children": [
+				5
+			]
+		},
+		{
+			"name": "bone_1"
+		},
+		{
+			"name": "bone_2_p",
+			"translation": [
+				-1.0837962627410889,
+				0,
+				0
+			],
+			"children": [
+				7
+			]
+		},
+		{
+			"name": "bone_2"
+		},
+		{
+			"name": "bone_3_p",
+			"translation": [
+				-1.100400686264038,
+				0,
+				0
+			],
+			"children": [
+				9
+			]
+		},
+		{
+			"name": "bone_3"
+		},
+		{
+			"name": "bone_4_p",
+			"translation": [
+				-0.005498032085597515,
+				6.065231800079346,
+				-0.031176064163446426
+			],
+			"children": [
+				11
+			]
+		},
+		{
+			"name": "bone_4"
+		},
+		{
+			"name": "bone_5_p",
+			"translation": [
+				-0.005498198326677084,
+				4.964539527893066,
+				-0.031176064163446426
+			],
+			"children": [
+				13
+			]
+		},
+		{
+			"name": "bone_5"
+		},
+		{
+			"name": "bone_6_p",
+			"translation": [
+				-0.012027435004711151,
+				5.818373203277588,
+				-0.035674385726451874
+			],
+			"children": [
+				15
+			]
+		},
+		{
+			"name": "bone_6"
+		},
+		{
+			"name": "twilightshammer_portal_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		},
+		{
+			"name": "twilightshammer_portal_Geoset1",
+			"mesh": 1,
+			"skin": 0
+		},
+		{
+			"name": "twilightshammer_portal_Geoset2",
+			"mesh": 2,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "twilightshammer_portal_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "twilightshammer_portal.bin",
+			"byteLength": 5668
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 1188,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1188,
+			"byteOffset": 1188,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 396,
+			"byteOffset": 2376,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 396,
+			"byteOffset": 2772,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 448,
+			"byteOffset": 3168
+		},
+		{
+			"buffer": 0,
+			"byteLength": 792,
+			"byteOffset": 3616,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 792,
+			"byteOffset": 4408,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 108,
+			"byteOffset": 5200,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 180,
+			"byteOffset": 5308,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 180,
+			"byteOffset": 5488,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 99,
+			"type": "VEC3",
+			"min": [
+				-0.2692248523235321,
+				0.5596976280212402,
+				-5.2447710037231445
+			],
+			"max": [
+				0.24875858426094055,
+				11.049239158630371,
+				5.244771480560303
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 99,
+			"type": "VEC3",
+			"min": [
+				0.9830264449119568,
+				-0.17803806066513062,
+				-0.13624799251556396
+			],
+			"max": [
+				0.9999184012413025,
+				0.14409193396568298,
+				0.13472911715507507
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 99,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				1,
+				0,
+				0,
+				0
+			],
+			"max": [
+				3,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 99,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 7,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				-6.065231800079346,
+				0,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				1.2002748250961304,
+				-4.964539527893066,
+				0.035674385726451874,
+				1
+			]
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 99,
+			"type": "VEC2",
+			"min": [
+				0.0004995465278625488,
+				0.0004995465278625488
+			],
+			"max": [
+				0.9995004534721375,
+				0.9995004534721375
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 99,
+			"type": "VEC2",
+			"min": [
+				0.08484801650047302,
+				0.08484798669815063
+			],
+			"max": [
+				0.9151519536972046,
+				0.9151520133018494
+			]
+		},
+		{
+			"bufferView": 7,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 108,
+			"type": "SCALAR"
+		},
+		{
+			"bufferView": 8,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 180,
+			"type": "SCALAR"
+		},
+		{
+			"bufferView": 9,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 180,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 7,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		},
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 8,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		},
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 9,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "twilightshammer_portal_Armature",
+			"joints": [
+				3,
+				5,
+				7,
+				9,
+				11,
+				13,
+				15
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 0)"
+		},
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 1)"
+		}
+	],
+	"images": [
+		{
+			"uri": "..\\world\\expansion03\\doodads\\twilighthammer\\elementalgates\\twilightshammer_portalswirl.png"
+		},
+		{
+			"uri": "..\\world\\kalimdor\\orgrimmar\\passivedoodads\\orgrimmarbonfire\\genericglow_alpha_128.png"
+		},
+		{
+			"uri": "t_vfx_aura01.png"
+		},
+		{
+			"uri": "t_vfx_smoke_creepy.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		},
+		{
+			"source": 2
+		},
+		{
+			"source": 3
+		}
+	],
+	"materials": [
+		{
+			"name": "twilightshammer_portalswirl",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "genericglow_alpha_128",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "t_vfx_aura01",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 2
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "t_vfx_smoke_creepy",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 3
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

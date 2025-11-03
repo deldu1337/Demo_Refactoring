@@ -1,0 +1,456 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "zuldrak_gem_green_02",
+			"children": [
+				1,
+				6,
+				7,
+				8
+			]
+		},
+		{
+			"name": "zuldrak_gem_green_02",
+			"children": [
+				2,
+				4
+			]
+		},
+		{
+			"name": "bone_0_p",
+			"translation": [
+				-0.013055695220828056,
+				0.07755409181118011,
+				0.24136458337306976
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_0"
+		},
+		{
+			"name": "bone_Plane01_p",
+			"translation": [
+				0.010874271392822266,
+				0.08698729425668716,
+				0.013512187637388706
+			],
+			"children": [
+				5
+			]
+		},
+		{
+			"name": "bone_Plane01"
+		},
+		{
+			"name": "zuldrak_gem_green_02_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		},
+		{
+			"name": "zuldrak_gem_green_02_Geoset1",
+			"mesh": 1,
+			"skin": 0
+		},
+		{
+			"name": "zuldrak_gem_green_02_Geoset2",
+			"mesh": 2,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "zuldrak_gem_green_02_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "zuldrak_gem_green_02.bin",
+			"byteLength": 2702
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 624,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 624,
+			"byteOffset": 624,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 208,
+			"byteOffset": 1248,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 208,
+			"byteOffset": 1456,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 128,
+			"byteOffset": 1664
+		},
+		{
+			"buffer": 0,
+			"byteLength": 416,
+			"byteOffset": 1792,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 416,
+			"byteOffset": 2208,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 36,
+			"byteOffset": 2624,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 6,
+			"byteOffset": 2660,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 36,
+			"byteOffset": 2666,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 52,
+			"type": "VEC3",
+			"min": [
+				-0.40310138463974,
+				-0.7091071605682373,
+				-0.9745386838912964
+			],
+			"max": [
+				0.415890634059906,
+				0.8830817341804504,
+				1.0015630722045898
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 52,
+			"type": "VEC3",
+			"min": [
+				-0.998988687992096,
+				-0.4767199456691742,
+				-0.4491972029209137
+			],
+			"max": [
+				0.9974979162216187,
+				0.5025327801704407,
+				0.4519420862197876
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 52,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 52,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 2,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				-0.010874271392822266,
+				-0.08698729425668716,
+				-0.24136458337306976,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.013055695220828056,
+				-0.07755409181118011,
+				-0.013512187637388706,
+				1
+			]
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 52,
+			"type": "VEC2",
+			"min": [
+				0.02825985476374626,
+				0.134330153465271
+			],
+			"max": [
+				0.9025511741638184,
+				0.9772772192955017
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 52,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 7,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 36,
+			"type": "SCALAR"
+		},
+		{
+			"bufferView": 8,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 6,
+			"type": "SCALAR"
+		},
+		{
+			"bufferView": 9,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 36,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 7,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		},
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 8,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		},
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 9,
+					"mode": 4,
+					"material": 2
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "zuldrak_gem_green_02_Armature",
+			"joints": [
+				3,
+				5
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "zuldrak_gem_01.png"
+		},
+		{
+			"uri": "zuldrak_gemreflect_01.png"
+		},
+		{
+			"uri": "zuldrak_gem_02.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		},
+		{
+			"source": 2
+		}
+	],
+	"materials": [
+		{
+			"name": "zuldrak_gem_01",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "zuldrak_gemreflect_01",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "zuldrak_gem_02",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 2
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

@@ -1,0 +1,328 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "rshoulder_cloth_cataclysm_b_01_shoulder_cloth_cataclysm_b_01blue",
+			"children": [
+				1,
+				4
+			]
+		},
+		{
+			"name": "rshoulder_cloth_cataclysm_b_01_shoulder_cloth_cataclysm_b_01blue",
+			"children": [
+				2
+			]
+		},
+		{
+			"name": "bone_Plane03_p",
+			"translation": [
+				-0.015633920207619667,
+				0,
+				0
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_Plane03"
+		},
+		{
+			"name": "rshoulder_cloth_cataclysm_b_01_shoulder_cloth_cataclysm_b_01blue_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "rshoulder_cloth_cataclysm_b_01_shoulder_cloth_cataclysm_b_01blue_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "rshoulder_cloth_cataclysm_b_01_shoulder_cloth_cataclysm_b_01blue.bin",
+			"byteLength": 16492
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 3372,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 3372,
+			"byteOffset": 3372,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1124,
+			"byteOffset": 6744,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 1124,
+			"byteOffset": 7868,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 64,
+			"byteOffset": 8992
+		},
+		{
+			"buffer": 0,
+			"byteLength": 2248,
+			"byteOffset": 9056,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 2248,
+			"byteOffset": 11304,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 2940,
+			"byteOffset": 13552,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 281,
+			"type": "VEC3",
+			"min": [
+				-0.225595161318779,
+				-0.3330893814563751,
+				-0.15214529633522034
+			],
+			"max": [
+				0.24749308824539185,
+				0.19441790878772736,
+				0.29730337858200073
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 281,
+			"type": "VEC3",
+			"min": [
+				-0.996394693851471,
+				-0.9912096261978149,
+				-0.9904724955558777
+			],
+			"max": [
+				0.9973667860031128,
+				0.9999798536300659,
+				0.990311861038208
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 281,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				0,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 281,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 1,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.015633920207619667,
+				0,
+				0,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0.015633920207619667,
+				0,
+				0,
+				1
+			]
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 281,
+			"type": "VEC2",
+			"min": [
+				0.021533073857426643,
+				0.010876953601837158
+			],
+			"max": [
+				0.9875718951225281,
+				0.9834622144699097
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 281,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 7,
+			"byteOffset": 0,
+			"componentType": 5123,
+			"count": 1470,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 5,
+						"TEXCOORD_1": 6
+					},
+					"indices": 7,
+					"mode": 4,
+					"material": 0
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "rshoulder_cloth_cataclysm_b_01_shoulder_cloth_cataclysm_b_01blue_Armature",
+			"joints": [
+				3
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [],
+			"channels": [],
+			"name": "Stand (ID 0 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "shoulder_cloth_cataclysm_b_01blue.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		}
+	],
+	"materials": [
+		{
+			"name": "shoulder_cloth_cataclysm_b_01blue",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

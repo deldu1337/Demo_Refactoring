@@ -1,0 +1,73 @@
+fileFormatVersion: 2
+guid: c619acc89912eff4cbaeace912c9056f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing.bin
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim0-0.bin
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim5-0.bin
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim5-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim4-0.bin
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim4-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim9-0.bin
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim9-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim16-0.bin
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim16-0.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim16-1.bin
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim16-1.bin
+  - type: 0
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim1-0.bin
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing_anim1-0.bin
+  - type: 1
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimedeathwing.png
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimedeathwing.png
+  - type: 1
+    originalUri: Assets\Exports\world\expansion02\doodads\rubysanctum\smoke_04.png
+    assetPath: Assets\Exports\world\expansion02\doodads\rubysanctum\smoke_04.png
+  - type: 1
+    originalUri: Assets\Exports\creature\greaterslime\greaterslimetraildeathwing.png
+    assetPath: Assets\Exports\creature\greaterslime\greaterslimetraildeathwing.png
+  - type: 1
+    originalUri: Assets\Exports\creature\greaterslime\t_vfx_borderslime.png
+    assetPath: Assets\Exports\creature\greaterslime\t_vfx_borderslime.png
+  - type: 1
+    originalUri: Assets\Exports\creature\greaterslime\acidsplash_grey.png
+    assetPath: Assets\Exports\creature\greaterslime\acidsplash_grey.png
+  - type: 1
+    originalUri: Assets\Exports\creature\ridingphoenix\ember.png
+    assetPath: Assets\Exports\creature\ridingphoenix\ember.png
+  reportItems:
+  - type: 2
+    code: 3
+    messages: []

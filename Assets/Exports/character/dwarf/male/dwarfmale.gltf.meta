@@ -1,0 +1,622 @@
+fileFormatVersion: 2
+guid: badf0efd73bc51949a67bc64948a88e5
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 1
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim0-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim0-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim26-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim26-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim4-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim4-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim5-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim5-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim17-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim17-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim21-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim21-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim9-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim9-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim1-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim1-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim17-1.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim17-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim8-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim8-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim10-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim10-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim14-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim14-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim137-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim137-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim13-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim13-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim27-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim27-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim28-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim28-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim19-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim19-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim19-1.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim19-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim23-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim23-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim18-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim18-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim18-1.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim18-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim22-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim22-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim25-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim25-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim16-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim16-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim508-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim508-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim16-1.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim16-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim510-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim510-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim20-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim20-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim512-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim512-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim1-1.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim1-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim48-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim48-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim49-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim49-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim108-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim108-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim107-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim107-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim29-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim29-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim105-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim105-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim30-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim30-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim24-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim24-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim40-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim40-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim50-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim50-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim42-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim42-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim41-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim41-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim0-1.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim0-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim0-2.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim0-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim51-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim51-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim53-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim53-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim57-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim57-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim56-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim56-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim58-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim58-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim59-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim59-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim37-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim37-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim39-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim39-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim38-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim38-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim15-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim15-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim67-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim67-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim66-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim66-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim68-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim68-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim118-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim118-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim516-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim516-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim87-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim87-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim88-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim88-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim85-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim85-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim91-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim91-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim89-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim89-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim11-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim11-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim12-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim12-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim3-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim3-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim90-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim90-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim106-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim106-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim46-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim46-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim128-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim128-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim123-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim123-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim63-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim63-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim138-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim138-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim129-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim129-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim62-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim62-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim136-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim136-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim97-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim97-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim96-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim96-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim98-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim98-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim100-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim100-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim99-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim99-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim101-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim101-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim102-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim102-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim103-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim103-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim104-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim104-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim109-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim109-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim110-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim110-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim112-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim112-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim111-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim111-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim80-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim80-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim79-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim79-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim78-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim78-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim77-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim77-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim82-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim82-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim76-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim76-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim114-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim114-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim116-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim116-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim142-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim142-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim70-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim70-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim84-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim84-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim74-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim74-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim73-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim73-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim81-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim81-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim83-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim83-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim64-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim64-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim65-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim65-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim95-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim95-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim113-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim113-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim210-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim210-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim119-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim119-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim120-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim120-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim121-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim121-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim44-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim44-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim43-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim43-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim45-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim45-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim115-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim115-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim52-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim52-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim54-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim54-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim61-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim61-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim199-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim199-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim55-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim55-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim124-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim124-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim75-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim75-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim126-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim126-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim125-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim125-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim19-2.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim19-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim60-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim60-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim131-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim131-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim132-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim132-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim69-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim69-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim69-1.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim69-1.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim69-2.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim69-2.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim69-3.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim69-3.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim133-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim133-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim134-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim134-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim143-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim143-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim187-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim187-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim186-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim186-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim185-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim185-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim195-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim195-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim181-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim181-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim193-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim193-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim223-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim223-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim212-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim212-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim225-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim225-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim484-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim484-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim500-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim500-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim650-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim650-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim478-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim478-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim477-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim477-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim476-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim476-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim474-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim474-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim482-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim482-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim514-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim514-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim524-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim524-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim526-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim526-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim522-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim522-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim520-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim520-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim518-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim518-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim656-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim656-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim654-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim654-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim706-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim706-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim702-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim702-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim704-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim704-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim688-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim688-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim692-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim692-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim698-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim698-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim718-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim718-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim720-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim720-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim674-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim674-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim678-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim678-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim680-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim680-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim730-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim730-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim660-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim660-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim716-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim716-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim726-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim726-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim732-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim732-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim722-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim722-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim676-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim676-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim672-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim672-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim670-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim670-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim666-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim666-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim668-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim668-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim664-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim664-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim662-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim662-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim734-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim734-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim682-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim682-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim684-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim684-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim690-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim690-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim728-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim728-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim724-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim724-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim736-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim736-0.bin
+  - type: 0
+    originalUri: Assets\Exports\character\dwarf\male\dwarfmale_anim774-0.bin
+    assetPath: Assets\Exports\character\dwarf\male\dwarfmale_anim774-0.bin
+  - type: 1
+    originalUri: Assets\Exports\character\dwarf\male\data-1.png
+    assetPath: Assets\Exports\character\dwarf\male\data-1.png
+  - type: 1
+    originalUri: Assets\Exports\character\dwarf\male\data-6.png
+    assetPath: Assets\Exports\character\dwarf\male\data-6.png
+  reportItems:
+  - type: 2
+    code: 3
+    messages: []

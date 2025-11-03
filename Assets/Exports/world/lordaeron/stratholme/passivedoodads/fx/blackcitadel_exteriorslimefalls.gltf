@@ -1,0 +1,428 @@
+{
+	"asset": {
+		"version": "2.0",
+		"generator": "wow.export v0.1.65 win-x64 [d1c6caee-c9d0-469b-8ef3-69abea558672]"
+	},
+	"nodes": [
+		{
+			"name": "blackcitadel_exteriorslimefalls",
+			"children": [
+				1,
+				6
+			]
+		},
+		{
+			"name": "blackcitadel_exteriorslimefalls",
+			"children": [
+				2,
+				4
+			]
+		},
+		{
+			"name": "bone_Plane01_p",
+			"translation": [
+				0,
+				-0.0296469796448946,
+				0.011017905548214912
+			],
+			"children": [
+				3
+			]
+		},
+		{
+			"name": "bone_Plane01"
+		},
+		{
+			"name": "bone_1_p",
+			"translation": [
+				0,
+				0,
+				0
+			],
+			"children": [
+				5
+			]
+		},
+		{
+			"name": "bone_1"
+		},
+		{
+			"name": "blackcitadel_exteriorslimefalls_Geoset0",
+			"mesh": 0,
+			"skin": 0
+		}
+	],
+	"scenes": [
+		{
+			"name": "blackcitadel_exteriorslimefalls_Scene",
+			"nodes": [
+				0
+			]
+		}
+	],
+	"buffers": [
+		{
+			"uri": "blackcitadel_exteriorslimefalls.bin",
+			"byteLength": 326
+		},
+		{
+			"uri": "blackcitadel_exteriorslimefalls_anim0-0.bin",
+			"byteLength": 20
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 48,
+			"byteOffset": 0,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 48,
+			"byteOffset": 48,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 16,
+			"byteOffset": 96,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 16,
+			"byteOffset": 112,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 128,
+			"byteOffset": 128
+		},
+		{
+			"buffer": 1,
+			"byteLength": 4,
+			"byteOffset": 0,
+			"name": "ROT_TIMESTAMPS_1_0"
+		},
+		{
+			"buffer": 1,
+			"byteLength": 16,
+			"byteOffset": 4,
+			"name": "ROT_VALUES_1_0"
+		},
+		{
+			"buffer": 0,
+			"byteLength": 32,
+			"byteOffset": 256,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 32,
+			"byteOffset": 288,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 6,
+			"byteOffset": 320,
+			"target": 34963
+		}
+	],
+	"accessors": [
+		{
+			"name": "POSITION",
+			"bufferView": 0,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 4,
+			"type": "VEC3",
+			"min": [
+				-0.0000010622765103107668,
+				-4.1767754554748535,
+				-4.127799987792969
+			],
+			"max": [
+				0.0000010596846777843894,
+				4.117481708526611,
+				4.14983606338501
+			]
+		},
+		{
+			"name": "NORMAL",
+			"bufferView": 1,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 4,
+			"type": "VEC3",
+			"min": [
+				-1,
+				1.7881393432617188e-7,
+				8.742277657347586e-8
+			],
+			"max": [
+				-1,
+				1.7881393432617188e-7,
+				8.742277657347586e-8
+			]
+		},
+		{
+			"name": "JOINTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 4,
+			"type": "VEC4",
+			"bufferView": 2,
+			"min": [
+				0,
+				0,
+				0,
+				0
+			],
+			"max": [
+				0,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "WEIGHTS_0",
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 4,
+			"normalized": true,
+			"type": "VEC4",
+			"bufferView": 3,
+			"min": [
+				255,
+				0,
+				0,
+				0
+			],
+			"max": [
+				255,
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"name": "INV_BIND_MATRICES",
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 2,
+			"type": "MAT4",
+			"bufferView": 4,
+			"min": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				-0.011017905548214912,
+				1
+			],
+			"max": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0.0296469796448946,
+				0,
+				1
+			]
+		},
+		{
+			"name": "ROT_TIMESTAMPS_1_0",
+			"bufferView": 5,
+			"byteOffset": 0,
+			"type": "SCALAR",
+			"componentType": 5126,
+			"min": [
+				0
+			],
+			"max": [
+				0
+			],
+			"count": 1
+		},
+		{
+			"name": "ROT_VALUES_1_0",
+			"bufferView": 6,
+			"byteOffset": 0,
+			"type": "VEC4",
+			"componentType": 5126,
+			"min": [
+				0,
+				-0.7071138645588549,
+				0,
+				0.7071138645588549
+			],
+			"max": [
+				0,
+				-0.7071138645588549,
+				0,
+				0.7071138645588549
+			],
+			"count": 1
+		},
+		{
+			"name": "TEXCOORD_0",
+			"bufferView": 7,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 4,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				1,
+				1
+			]
+		},
+		{
+			"name": "TEXCOORD_1",
+			"bufferView": 8,
+			"byteOffset": 0,
+			"componentType": 5126,
+			"count": 4,
+			"type": "VEC2",
+			"min": [
+				0,
+				0
+			],
+			"max": [
+				0,
+				0
+			]
+		},
+		{
+			"bufferView": 9,
+			"byteOffset": 0,
+			"componentType": 5121,
+			"count": 6,
+			"type": "SCALAR"
+		}
+	],
+	"meshes": [
+		{
+			"primitives": [
+				{
+					"attributes": {
+						"POSITION": 0,
+						"NORMAL": 1,
+						"JOINTS_0": 2,
+						"WEIGHTS_0": 3,
+						"TEXCOORD_0": 7,
+						"TEXCOORD_1": 8
+					},
+					"indices": 9,
+					"mode": 4,
+					"material": 1
+				}
+			]
+		}
+	],
+	"scene": 0,
+	"skins": [
+		{
+			"name": "blackcitadel_exteriorslimefalls_Armature",
+			"joints": [
+				3,
+				5
+			],
+			"inverseBindMatrices": 4,
+			"skeleton": 0
+		}
+	],
+	"animations": [
+		{
+			"samplers": [
+				{
+					"input": 5,
+					"interpolation": "LINEAR",
+					"output": 6
+				}
+			],
+			"channels": [
+				{
+					"sampler": 0,
+					"target": {
+						"node": 5,
+						"path": "rotation"
+					}
+				}
+			],
+			"name": "Stand (ID 0 variation 0)"
+		}
+	],
+	"images": [
+		{
+			"uri": "..\\..\\..\\..\\..\\spells\\slimeblob.png"
+		},
+		{
+			"uri": "..\\..\\..\\..\\..\\dungeons\\textures\\floor\\jlo_udercity_ground_01.png"
+		}
+	],
+	"textures": [
+		{
+			"source": 0
+		},
+		{
+			"source": 1
+		}
+	],
+	"materials": [
+		{
+			"name": "slimeblob",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicFactor": 0
+			}
+		},
+		{
+			"name": "jlo_udercity_ground_01",
+			"emissiveFactor": [
+				0,
+				0,
+				0
+			],
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 1
+				},
+				"metallicFactor": 0
+			}
+		}
+	]
+}

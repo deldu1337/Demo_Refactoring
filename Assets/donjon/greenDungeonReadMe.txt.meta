@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d73c5a4ba6e600b45a03ae7a5235a455
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33935
+  packageName: Green Dungeon
+  packageVersion: 1.5
+  assetPath: Assets/donjon/greenDungeonReadMe.txt
+  uploadId: 66170
