@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -12,6 +12,11 @@ public static class ItemStatCompare
     private const string MAX = "#49DDDF";
     private const float EPS = 0.0001f;
 
+    /// <summary>
+    /// 스탯 키에 맞는 표시 라벨을 반환합니다.
+    /// </summary>
+    /// <param name="key">라벨을 확인할 스탯 키입니다.</param>
+    /// <returns>UI에 사용할 라벨 문자열입니다.</returns>
     private static string LabelFor(string key) => key switch
     {
         "hp" => "HP",
@@ -25,23 +30,44 @@ public static class ItemStatCompare
         _ => key.ToUpper()
     };
 
+    /// <summary>
+    /// 스탯 값에 맞는 문자열을 생성합니다.
+    /// </summary>
+    /// <param name="key">스탯 키입니다.</param>
+    /// <param name="v">표시할 값입니다.</param>
+    /// <returns>형식화된 값 문자열입니다.</returns>
     private static string FormatValue(string key, float v)
     {
         if (key == "cc") return $"{v * 100f:0.##}%";
-        if (key == "cd") return $"x{v:0.##}";   // ★ cd는 x 접두사
+        if (key == "cd") return $"x{v:0.##}";
         return $"{v:0.##}";
     }
 
+    /// <summary>
+    /// 차이를 색상 태그와 함께 표시할 문자열로 변환합니다.
+    /// </summary>
+    /// <param name="diff">인벤토리와 장착 아이템의 차이 값입니다.</param>
+    /// <returns>색상이 적용된 차이 문자열입니다.</returns>
     private static string ColorizeDiff(float diff)
     {
         string color = diff > EPS ? POS : (diff < -EPS ? NEG : ZERO);
-        string val = diff.ToString(diff == Mathf.RoundToInt(diff) ? "+0;-#;0" : "+0.##;-0.##;0");
+        string val = diff.ToString(diff == Mathf.RoundToInt(diff) ? "+0;-0;0" : "+0.##;-0.##;0");
         return $"<color={color}>{val}</color>";
     }
 
+    /// <summary>
+    /// 굴려진 옵션 여부에 따라 사용할 값을 결정합니다.
+    /// </summary>
+    /// <param name="baseVal">기본 스탯 값입니다.</param>
+    /// <param name="hasRolled">해당 스탯이 무작위로 설정되었는지 여부입니다.</param>
+    /// <param name="rolledVal">무작위로 설정된 값입니다.</param>
+    /// <returns>표시 및 비교에 사용할 최종 값입니다.</returns>
     private static float Eff(float baseVal, bool hasRolled, float rolledVal)
         => hasRolled ? rolledVal : baseVal;
 
+    /// <summary>
+    /// 인벤토리 아이템에서 각 스탯 값을 추출합니다.
+    /// </summary>
     private static void Take(InventoryItem item,
         out float hp, out float mp, out float atk, out float def, out float dex, out float AS, out float cc, out float cd)
     {
@@ -63,7 +89,11 @@ public static class ItemStatCompare
         }
     }
 
-    // ★ 아이템이 실제로 가지고 있는(0이 아닌) 옵션만 딕셔너리로 수집
+    /// <summary>
+    /// 실제로 값이 존재하는 스탯만 모아 딕셔너리로 반환합니다.
+    /// </summary>
+    /// <param name="item">대상 인벤토리 아이템입니다.</param>
+    /// <returns>값이 0이 아닌 스탯과 값을 담은 사전입니다.</returns>
     private static Dictionary<string, float> GatherNonZeroStats(InventoryItem item)
     {
         Take(item, out var hp, out var mp, out var atk, out var def, out var dex, out var AS, out var cc, out var cd);
@@ -79,6 +109,13 @@ public static class ItemStatCompare
         return d;
     }
 
+    /// <summary>
+    /// 인벤토리 아이템과 장착 아이템의 스탯을 비교하여 설명 문자열을 생성합니다.
+    /// </summary>
+    /// <param name="inv">비교할 인벤토리 아이템입니다.</param>
+    /// <param name="eq">현재 장착 중인 아이템입니다.</param>
+    /// <param name="showEquippedValues">장착 값을 기준으로 표시할지 여부입니다.</param>
+    /// <returns>비교 결과가 포함된 문자열입니다.</returns>
     public static string BuildCompareLines(InventoryItem inv, InventoryItem eq, bool showEquippedValues)
     {
         bool invGem = inv?.data?.type != null && inv.data.type.Equals("gem", StringComparison.OrdinalIgnoreCase);
@@ -88,29 +125,27 @@ public static class ItemStatCompare
         var invStats = GatherNonZeroStats(inv);
         var eqStats = GatherNonZeroStats(eq);
 
-        // 키 정렬(보기 좋게 고정 순서)
         string[] ORDER = { "hp", "mp", "atk", "def", "dex", "As", "cc", "cd" };
-        System.Func<string, int> idx = k => {
-            int i = System.Array.IndexOf(ORDER, k);
+        Func<string, int> idx = k =>
+        {
+            int i = Array.IndexOf(ORDER, k);
             return i < 0 ? 999 : i;
         };
 
-        var keySet = isGemMode
-            ? new System.Collections.Generic.HashSet<string>(invStats.Keys)
-            : new System.Collections.Generic.HashSet<string>(invStats.Keys);
+        var keySet = new HashSet<string>(invStats.Keys);
         if (isGemMode) foreach (var k in eqStats.Keys) keySet.Add(k);
 
-        var keys = new System.Collections.Generic.List<string>(keySet);
-        keys.Sort((a, b) => {
+        var keys = new List<string>(keySet);
+        keys.Sort((a, b) =>
+        {
             int ia = idx(a), ib = idx(b);
             if (ia != ib) return ia.CompareTo(ib);
-            return string.Compare(a, b, System.StringComparison.Ordinal);
+            return string.Compare(a, b, StringComparison.Ordinal);
         });
 
-        // 라인 버킷
-        var bothLines = new System.Collections.Generic.List<string>(); // 둘 다 옵션 O
-        var removedLines = new System.Collections.Generic.List<string>(); // 장착만 O → (사라짐)
-        var newLines = new System.Collections.Generic.List<string>(); // 인벤만 O → (새 옵션)
+        var bothLines = new List<string>();
+        var removedLines = new List<string>();
+        var newLines = new List<string>();
 
         foreach (var key in keys)
         {
@@ -119,18 +154,16 @@ public static class ItemStatCompare
             bool invHas = invStats.ContainsKey(key);
             bool eqHas = eqStats.ContainsKey(key);
 
-            // 표기값: 한쪽만 있을 때도 0이 아니라 가진 쪽의 값으로
             float shown = showEquippedValues
                 ? (eqHas ? eqV : invV)
                 : (invHas ? invV : eqV);
 
-            // 극옵 하이라이트는 표기 주체가 해당 키를 실제로 가질 때만
             bool isMax = false;
             if (inv != null && eq != null)
             {
-                var shownItem = (showEquippedValues ? (eqHas ? eq : inv) : (invHas ? inv : eq));
+                var shownItem = showEquippedValues ? (eqHas ? eq : inv) : (invHas ? inv : eq);
                 if (shownItem != null && shownItem.data != null &&
-                    !string.Equals(shownItem.data.type, "potion", System.StringComparison.OrdinalIgnoreCase))
+                    !string.Equals(shownItem.data.type, "potion", StringComparison.OrdinalIgnoreCase))
                 {
                     isMax = ItemRoller.IsMaxRoll(shownItem.id, key, shown);
                 }
@@ -142,45 +175,34 @@ public static class ItemStatCompare
             string line;
             if (invHas && eqHas)
             {
-                // 정상 ± 비교
                 string diffStr = ColorizeDiff(invV - eqV);
                 line = $"<color={LABEL}>{LabelFor(key)}</color>  {valueStr}  ({diffStr})";
                 bothLines.Add(line);
             }
             else if (!invHas && eqHas)
             {
-                // 사라짐 (장착에만 있던 옵션)
                 string baseVal = FormatValue(key, eqV);
-
-                // cd는 - 붙이지 않고 x표기 그대로, 그 외는 - 접두사
                 string shownRemoved = (key == "cd") ? baseVal : "-" + baseVal;
-
                 string diffStr = $"<color={NEG}>{shownRemoved}</color> <size=11><color={ZERO}>(기존 옵션)</color></size>";
                 line = $"<color={LABEL}>{LabelFor(key)}</color>  {diffStr}";
                 removedLines.Add(line);
             }
-            else // invHas && !eqHas
+            else
             {
-                // 새 옵션 (인벤에만 있는 옵션)
                 string addVal = FormatValue(key, invV);
-
-                // cd는 + 붙이지 않고 x표기 그대로, 그 외는 + 접두사
                 string shownAdded = (key == "cd") ? addVal : "+" + addVal;
-
                 string diffStr = $"<color={POS}>{shownAdded}</color> <size=11><color={ZERO}>(새 옵션)</color></size>";
                 line = $"<color={LABEL}>{LabelFor(key)}</color>  {diffStr}";
                 newLines.Add(line);
             }
-
         }
 
-        // 출력 순서: 기존 공통 → ★사라짐 → 새 옵션 (요청사항)
         var sb = new StringBuilder();
         foreach (var l in bothLines) sb.AppendLine(l);
-        foreach (var l in removedLines) sb.AppendLine(l);  // ← 사라짐을 새 옵션보다 위로
+        foreach (var l in removedLines) sb.AppendLine(l);
         foreach (var l in newLines) sb.AppendLine(l);
 
-        if (sb.Length == 0) sb.Append("표시할 옵션 없음");
+        if (sb.Length == 0) sb.Append("표시할 옵션이 없습니다");
         return sb.ToString();
     }
 }

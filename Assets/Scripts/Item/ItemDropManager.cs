@@ -11,16 +11,19 @@ public class DropItem
 
 public class ItemDropManager : MonoBehaviour
 {
-    [Header("µå·Ó ¼³Á¤")]
+    [Header("ë“œë¡­ ì„¤ì •")]
     public DropItem[] dropTable;
     public Transform dropPoint;
     public float dropRadius = 1f;
 
+    /// <summary>
+    /// ë“œë¡­ í…Œì´ë¸”ì„ í™•ì¸í•˜ì—¬ í™•ë¥ ì— ë”°ë¼ ì•„ì´í…œì„ ìƒì„±í•©ë‹ˆë‹¤.
+    /// </summary>
     public void DropItems()
     {
         if (dropTable == null || dropTable.Length == 0)
         {
-            Debug.LogWarning("µå·Ó Å×ÀÌºíÀÌ ºñ¾î ÀÖ½À´Ï´Ù!");
+            Debug.LogWarning("ë“œë¡­í•  í•­ëª©ì´ ì—†ìŠµë‹ˆë‹¤");
             return;
         }
 
@@ -28,21 +31,21 @@ public class ItemDropManager : MonoBehaviour
         {
             if (drop.itemPrefab == null)
             {
-                Debug.LogWarning("DropItemÀÇ itemPrefabÀÌ ºñ¾î ÀÖÀ½!");
+                Debug.LogWarning("ë“œë¡­í•  í”„ë¦¬íŒ¹ì´ ì§€ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
                 continue;
             }
 
             float randomValue = Random.value * 100f;
-            Debug.Log($"[{drop.itemPrefab.name}] µå·Ó È®·ü Ã¼Å©: {randomValue} <= {drop.dropChance}");
+            Debug.Log($"[{drop.itemPrefab.name}] í™•ë¥  ê²€ì‚¬ ê°’: {randomValue} <= {drop.dropChance}");
 
             if (randomValue > drop.dropChance)
             {
-                Debug.Log($"[{drop.itemPrefab.name}] µå·Ó ½ÇÆĞ (È®·ü ¹Ì´Ş)");
+                Debug.Log($"[{drop.itemPrefab.name}] ë“œë¡­ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
                 continue;
             }
 
             int amount = Random.Range(drop.minAmount, drop.maxAmount + 1);
-            Debug.Log($"[{drop.itemPrefab.name}] µå·Ó È®Á¤! ¼ö·®: {amount}");
+            Debug.Log($"[{drop.itemPrefab.name}] ë“œë¡­ ê°œìˆ˜: {amount}");
 
             for (int i = 0; i < amount; i++)
             {
@@ -51,10 +54,9 @@ public class ItemDropManager : MonoBehaviour
                 offset.y = 0;
                 Vector3 dropPos = basePos + offset;
 
-                // XÃàÀ¸·Î 90µµ È¸Àü
                 Quaternion rot = Quaternion.Euler(90f, 0f, 0f);
                 GameObject instance = Instantiate(drop.itemPrefab, dropPos, rot, transform.parent);
-                Debug.Log($"[{drop.itemPrefab.name}] »ı¼º ¿Ï·á at {dropPos}");
+                Debug.Log($"[{drop.itemPrefab.name}] ë“œë¡­ ì™„ë£Œ ìœ„ì¹˜ {dropPos}");
             }
         }
     }
