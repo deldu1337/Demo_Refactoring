@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 적의 능력치와 체력을 관리하고 피해 및 회복 처리를 담당한다.
+/// 적의 능력치와 체력을 관리하고 피해 및 회복 처리를 담당합니다.
 /// </summary>
 public class EnemyStatsManager : MonoBehaviour, IHealth
 {
@@ -15,7 +15,7 @@ public class EnemyStatsManager : MonoBehaviour, IHealth
     private ItemDropManager dropManager;
 
     /// <summary>
-    /// 아이템 드랍 매니저를 찾고 적 데이터를 불러온다.
+    /// 아이템 드랍 매니저를 찾고 적 데이터를 불러옵니다.
     /// </summary>
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class EnemyStatsManager : MonoBehaviour, IHealth
     }
 
     /// <summary>
-    /// 리소스에서 적 데이터를 로드하고 현재 체력을 초기화한다.
+    /// 리소스에서 적 데이터를 로드하고 현재 체력을 초기화합니다.
     /// </summary>
     private void LoadEnemyData()
     {
@@ -39,7 +39,7 @@ public class EnemyStatsManager : MonoBehaviour, IHealth
     }
 
     /// <summary>
-    /// 받은 피해량을 계산해 체력을 감소시키고 사망 여부를 확인한다.
+    /// 받은 피해량을 계산해 체력을 감소시키고 사망 여부를 확인합니다.
     /// </summary>
     public void TakeDamage(float damage)
     {
@@ -52,7 +52,7 @@ public class EnemyStatsManager : MonoBehaviour, IHealth
     }
 
     /// <summary>
-    /// 적 사망 처리와 경험치 지급, 드랍을 수행한다.
+    /// 적 사망 처리와 경험치 지급, 드랍을 수행합니다.
     /// </summary>
     private void Die()
     {
@@ -70,7 +70,7 @@ public class EnemyStatsManager : MonoBehaviour, IHealth
     }
 
     /// <summary>
-    /// 체력을 회복하되 최대 체력을 초과하지 않도록 제한한다.
+    /// 체력을 회복하되 최대 체력을 초과하지 않도록 제한합니다.
     /// </summary>
     public void Heal(float amount)
     {

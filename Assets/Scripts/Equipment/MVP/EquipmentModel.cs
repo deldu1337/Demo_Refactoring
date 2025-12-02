@@ -17,13 +17,13 @@ public class EquipmentData
 
 public class EquipmentModel
 {
-    private readonly string race;   // 플레이어 종족 이름
+    private readonly string race;   // 플레이어 종족 이름입니다.
     private EquipmentData data;
 
     public IReadOnlyList<EquipmentSlot> Slots => data.slots;
 
     /// <summary>
-    /// 종족 정보를 받아 기본 장비 슬롯을 초기화한다.
+    /// 종족 정보를 받아 기본 장비 슬롯을 초기화합니다.
     /// </summary>
     public EquipmentModel(string race)
     {
@@ -44,7 +44,7 @@ public class EquipmentModel
     }
 
     /// <summary>
-    /// 슬롯 유형에 맞춰 아이템을 장착하고 저장한다.
+    /// 슬롯 유형에 맞춰 아이템을 장착하고 저장합니다.
     /// </summary>
     public void EquipItem(string slotType, InventoryItem item)
     {
@@ -62,7 +62,7 @@ public class EquipmentModel
     }
 
     /// <summary>
-    /// 슬롯 유형에 맞춰 장착된 아이템을 해제한다.
+    /// 슬롯 유형에 맞춰 장착된 아이템을 해제합니다.
     /// </summary>
     public void UnequipItem(string slotType)
     {
@@ -80,7 +80,7 @@ public class EquipmentModel
     }
 
     /// <summary>
-    /// 인덱스로 장비 슬롯을 찾아 아이템을 해제한다.
+    /// 인덱스로 장비 슬롯을 찾아 아이템을 해제합니다.
     /// </summary>
     public void Unequip(int index)
     {
@@ -92,12 +92,12 @@ public class EquipmentModel
     }
 
     /// <summary>
-    /// 슬롯 유형으로 슬롯 정보를 가져온다.
+    /// 슬롯 유형으로 슬롯 정보를 가져옵니다.
     /// </summary>
     public EquipmentSlot GetSlot(string slotType) => data.slots.Find(s => s.slotType == slotType);
 
     /// <summary>
-    /// 저장소에서 현재 종족의 장비 데이터를 불러온다.
+    /// 저장소에서 현재 종족의 장비 데이터를 불러옵니다.
     /// </summary>
     public void Load()
     {
@@ -105,7 +105,7 @@ public class EquipmentModel
     }
 
     /// <summary>
-    /// 현재 장비 데이터를 저장한다.
+    /// 현재 장비 데이터를 저장합니다.
     /// </summary>
     public void Save()
     {
