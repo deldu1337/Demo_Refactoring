@@ -1,5 +1,3 @@
-// SkillQuickBar.cs
-// SkillQuickBar.cs (추가/수정)
 using System;
 using System.Collections.Generic;
 using UnityEngine;

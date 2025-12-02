@@ -35,28 +35,6 @@ public class CharacterManager : MonoBehaviour
         ApplySelection(currentIndex); // 기본 선택 반영
     }
 
-    //public void ChangeCharacter(int ButtonNum)
-    //{
-    //    for(int i = 0; i < 8;i++)
-    //    {
-    //        if (i == ButtonNum)
-    //        {
-    //            CharacterObject.transform.GetChild(i).gameObject.SetActive(true);
-    //            image.sprite = CharacterImages[i].sprite;
-    //        }
-    //        else
-    //        {
-    //            CharacterObject.transform.GetChild(i).gameObject.SetActive(false);
-    //        }
-    //    }
-    //    Debug.Log(CharacterObject.transform.GetChild(ButtonNum).gameObject.name);
-    //}
-
-    //private void GameStart()
-    //{
-    //    SceneManager.LoadScene("DungeonScene");
-    //}
-
     public void ChangeCharacter(int ButtonNum)
     {
         for (int i = 0; i < 8; i++)
@@ -75,14 +53,6 @@ public class CharacterManager : MonoBehaviour
         Debug.Log($"선택된 종족: {GameContext.SelectedRace}");
     }
 
-    //private void GameStart()
-    //{
-    //    if (string.IsNullOrEmpty(GameContext.SelectedRace))
-    //        GameContext.SelectedRace = CharacterObject.transform.GetChild(0).gameObject.name;
-
-    //    GameContext.IsNewGame = true;                     // 새 게임 시작
-    //    SceneManager.LoadScene("DungeonScene");
-    //}
     private void GameStart()
     {
         var race = string.IsNullOrEmpty(GameContext.SelectedRace)
@@ -98,5 +68,4 @@ public class CharacterManager : MonoBehaviour
 
         SceneManager.LoadScene("DungeonScene");
     }
-
 }

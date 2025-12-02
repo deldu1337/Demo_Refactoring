@@ -30,31 +30,6 @@ public class PotionSlotUI : MonoBehaviour, IDropHandler
         }
     }
 
-    //public void Clear()
-    //{
-    //    boundUniqueId = null;
-
-    //    if (icon)
-    //    {
-    //        icon.sprite = null;
-    //        icon.enabled = false; // ¡ç ºó Ä­: ÀÌ¹ÌÁö ²û
-    //    }
-
-    //    if (emptyOverlay) emptyOverlay.SetActive(true);
-    //}
-
-    //public void Set(InventoryItem item, Sprite s)
-    //{
-    //    boundUniqueId = item.uniqueId;
-
-    //    if (icon)
-    //    {
-    //        icon.sprite = s;
-    //        icon.enabled = s != null; // ¡ç ¾ÆÀÌÄÜ ÀÖÀ» ¶§¸¸ ÄÔ
-    //    }
-
-    //    if (emptyOverlay) emptyOverlay.SetActive(string.IsNullOrEmpty(boundUniqueId));
-    //}
     public void Clear()
     {
         boundUniqueId = null;
@@ -183,11 +158,4 @@ public class PotionSlotUI : MonoBehaviour, IDropHandler
             emptyOverlay.SetActive(string.IsNullOrEmpty(boundUniqueId));
         if (icon) icon.enabled = !string.IsNullOrEmpty(boundUniqueId) && icon.sprite != null;
     }
-
-    //public void SetBySave(string uniqueId, Sprite s)
-    //{
-    //    boundUniqueId = uniqueId;
-    //    if (icon) { icon.sprite = s; icon.enabled = (s != null); }
-    //    if (emptyOverlay) emptyOverlay.SetActive(string.IsNullOrEmpty(boundUniqueId));
-    //}
 }

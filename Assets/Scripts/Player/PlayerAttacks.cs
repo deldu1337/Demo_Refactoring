@@ -225,119 +225,11 @@ public class PlayerAttacks : MonoBehaviour
             }
         }
 
-        // 3) 최후 보정: 플레이어 주변에서 가장 가까운 Enemy
-        //Collider[] near = Physics.OverlapSphere(transform.position, 1.5f, mask, QueryTriggerInteraction.Collide);
-        //float best = float.MaxValue;
-        //foreach (var c in near)
-        //{
-        //    var esm = c.GetComponentInParent<EnemyStatsManager>();
-        //    if (esm == null || esm.CurrentHP <= 0) continue;
-
-        //    // 콜라이더까지의 최단거리 기준(겹침/초근접 보정)
-        //    Vector3 origin = transform.position + Vector3.up * 1f;
-        //    float d = Vector3.Distance(origin, c.ClosestPoint(origin));
-        //    if (d < best)
-        //    {
-        //        best = d;
-        //        enemy = esm;
-        //    }
-        //}
         return enemy != null;
     }
 
     // PlayerAttacks.cs 내부 교체
     private static readonly Collider[] _overlapCache = new Collider[16];
-
-    //public bool TryPickEnemyUnderMouse(out EnemyStatsManager enemy)
-    //{
-    //    enemy = null;
-
-    //    // 0) UI 위 클릭이면 무시
-    //    if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-    //        return false;
-
-    //    var cam = Camera.main;
-    //    if (!cam) return false;
-
-    //    int mask = enemyLayer;
-    //    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-    //    // === 1) 1차: 일반 Raycast (가장 빠르고 정확)
-    //    if (Physics.Raycast(ray, out RaycastHit hit, 200f, mask, QueryTriggerInteraction.Collide))
-    //    {
-    //        var esm = hit.collider.GetComponentInParent<EnemyStatsManager>();
-    //        if (esm != null && esm.CurrentHP > 0) { enemy = esm; return true; }
-    //    }
-
-    //    // === 2) 2차: 적응형 SphereCast (근접일수록 반경 크게)
-    //    float distCamToPlayer = Vector3.Distance(cam.transform.position, transform.position);
-    //    float nearFactor = Mathf.Clamp01(1f - (distCamToPlayer - 2f) / 6f); // 카메라-플레이어 2~8m 사이 가중
-    //    float sphereRadius = Mathf.Lerp(0.25f, 0.6f, nearFactor);           // 0.25~0.6 가변
-
-    //    if (Physics.SphereCast(ray, sphereRadius, out hit, 200f, mask, QueryTriggerInteraction.Collide))
-    //    {
-    //        var esm = hit.collider.GetComponentInParent<EnemyStatsManager>();
-    //        if (esm != null && esm.CurrentHP > 0) { enemy = esm; return true; }
-    //    }
-
-    //    // === 3) 3차: 플레이어 기점의 전방 보정 캐스트 (초근접 겹침 대비)
-    //    Vector3 playerOrigin = transform.position + Vector3.up * raycastYOffset;
-    //    Vector3 toRay = ray.origin - playerOrigin;
-    //    Vector3 dirFromPlayerToRay = Vector3.Project(toRay, ray.direction).normalized;
-    //    if (dirFromPlayerToRay.sqrMagnitude < 0.01f) dirFromPlayerToRay = (ray.direction + transform.forward).normalized;
-
-    //    if (Physics.SphereCast(playerOrigin, sphereRadius, dirFromPlayerToRay,
-    //                           out hit, 2.5f, mask, QueryTriggerInteraction.Collide))
-    //    {
-    //        var esm = hit.collider.GetComponentInParent<EnemyStatsManager>();
-    //        if (esm != null && esm.CurrentHP > 0) { enemy = esm; return true; }
-    //    }
-
-    //    // === 4) 4차: 화면상 커서 부근의 공간을 넓게 긁기 (마우스 포인터가 적 근처인데 콜라이더 모서리일 때)
-    //    // 레이를 따라 1.5m 지점 근방을 중심으로 OverlapSphere
-    //    Vector3 probe = ray.GetPoint(1.5f);
-    //    int count = Physics.OverlapSphereNonAlloc(probe, 0.9f, _overlapCache, mask, QueryTriggerInteraction.Collide);
-    //    if (count > 0)
-    //    {
-    //        float best = float.MaxValue;
-    //        EnemyStatsManager bestEsm = null;
-    //        for (int i = 0; i < count; i++)
-    //        {
-    //            var col = _overlapCache[i];
-    //            if (!col) continue;
-    //            var esm = col.GetComponentInParent<EnemyStatsManager>();
-    //            if (esm == null || esm.CurrentHP <= 0) continue;
-
-    //            // 화면에서 커서와의 거리로 가장 "가깝게 느껴지는" 타겟 선택
-    //            Vector3 screen = cam.WorldToScreenPoint(esm.transform.position);
-    //            float screenDist = (new Vector2(screen.x, screen.y) - (Vector2)Input.mousePosition).sqrMagnitude;
-    //            if (screenDist < best) { best = screenDist; bestEsm = esm; }
-    //        }
-    //        if (bestEsm != null) { enemy = bestEsm; return true; }
-    //    }
-
-    //    // === 5) 5차: 플레이어 주변 최근접 (초근접 완전 겹침 최후 보정)
-    //    count = Physics.OverlapSphereNonAlloc(transform.position, 1.8f, _overlapCache, mask, QueryTriggerInteraction.Collide);
-    //    if (count > 0)
-    //    {
-    //        float best = float.MaxValue;
-    //        EnemyStatsManager bestEsm = null;
-    //        Vector3 origin = transform.position + Vector3.up * 1f;
-    //        for (int i = 0; i < count; i++)
-    //        {
-    //            var col = _overlapCache[i];
-    //            if (!col) continue;
-    //            var esm = col.GetComponentInParent<EnemyStatsManager>();
-    //            if (esm == null || esm.CurrentHP <= 0) continue;
-
-    //            float d = Vector3.Distance(origin, col.ClosestPoint(origin));
-    //            if (d < best) { best = d; bestEsm = esm; }
-    //        }
-    //        if (bestEsm != null) { enemy = bestEsm; return true; }
-    //    }
-
-    //    return false;
-    //}
 
 
     public void PerformAttack()

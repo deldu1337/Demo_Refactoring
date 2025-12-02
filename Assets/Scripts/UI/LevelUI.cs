@@ -97,8 +97,5 @@ public class LevelUI : MonoBehaviour
             onesPlace.sprite = numberSprites[ones];
             onesPlace.enabled = true;
         }
-
-        // 디버그
-        // Debug.Log($"[LevelUI] 업데이트 -> Level={level}");
     }
 }

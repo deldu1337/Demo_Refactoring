@@ -73,59 +73,6 @@ public class PotionQuickBar : MonoBehaviour
         if (Input.GetKeyDown(key4)) Use(3);
     }
 
-    //public void Assign(int index, InventoryItem item, Sprite icon)
-    //{
-    //    if (!ValidIndex(index) || item == null || item.data == null) return;
-    //    if (!string.Equals(item.data.type, "potion", StringComparison.OrdinalIgnoreCase)) return;
-
-    //    // 덮어쓰기 전 기존 포션 인벤토리로 복귀
-    //    if (!string.IsNullOrEmpty(slotUID[index]))
-    //        ReturnToInventory(index, refreshUI: false);
-
-    //    // 슬롯/캐시 갱신
-    //    slots[index].Set(item, icon);
-    //    slotUID[index] = item.uniqueId;
-    //    slotItemId[index] = item.id;
-    //    slotIconPath[index] = item.iconPath;
-    //    slotPrefabPath[index] = item.prefabPath;
-    //    cachedHP[index] = item.data.hp;
-    //    cachedMP[index] = item.data.mp;
-
-    //    // 인벤에서 제거
-    //    if (!inventoryPresenter)
-    //        inventoryPresenter = FindAnyObjectByType<InventoryPresenter>();
-    //    inventoryPresenter?.RemoveItemFromInventory(item.uniqueId);
-
-    //    // ★ 종족별 저장
-    //    PotionQuickBarPersistence.SaveForRace(CurrentRace(), ToSaveData());
-    //    OnChanged?.Invoke();
-    //}
-    //public void Assign(int index, InventoryItem item, Sprite icon)
-    //{
-    //    if (!ValidIndex(index) || item == null || item.data == null) return;
-    //    if (!string.Equals(item.data.type, "potion", StringComparison.OrdinalIgnoreCase)) return;
-
-    //    // 덮어쓰기 전 기존 포션 인벤토리로 복귀
-    //    if (!string.IsNullOrEmpty(slotUID[index]))
-    //        ReturnToInventory(index, refreshUI: false);
-
-    //    // 슬롯/캐시 갱신 (★ 수량 저장)
-    //    slots[index].Set(item, icon, Mathf.Max(1, item.quantity));
-    //    slotUID[index] = item.uniqueId;
-    //    slotItemId[index] = item.id;
-    //    slotIconPath[index] = item.iconPath;
-    //    slotPrefabPath[index] = item.prefabPath;
-    //    cachedHP[index] = item.data.hp;
-    //    cachedMP[index] = item.data.mp;
-    //    slotQty[index] = Mathf.Max(1, item.quantity);
-
-    //    // 인벤에서 제거
-    //    if (!inventoryPresenter) inventoryPresenter = FindAnyObjectByType<InventoryPresenter>();
-    //    inventoryPresenter?.RemoveItemFromInventory(item.uniqueId);
-
-    //    PotionQuickBarPersistence.SaveForRace(CurrentRace(), ToSaveData());
-    //    OnChanged?.Invoke();
-    //}
     public void Assign(int index, InventoryItem item, Sprite icon)
     {
         if (!ValidIndex(index) || item == null || item.data == null) return;

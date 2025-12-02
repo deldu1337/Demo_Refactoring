@@ -51,21 +51,6 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
 
     private float eqHP, eqMP, eqAtk, eqDef, eqDex, eqAS, eqCC, eqCD;
 
-    //void Awake()
-    //{
-    //    // --- 싱글톤 보장: 새로 스폰된 플레이어가 항상 최신 Instance가 되도록 ---
-    //    if (Instance != null && Instance != this)
-    //    {
-    //        Destroy(Instance.gameObject); // 이전 플레이어 제거
-    //    }
-    //    Instance = this;
-
-    //    levelUpStrategy = new DefaultLevelUpStrategy();
-
-    //    // 저장 로드
-    //    PlayerData loaded = SaveLoadService.LoadPlayerDataOrNull();
-    //    LoadData(loaded);
-    //}
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -75,20 +60,6 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         Instance = this;
 
         levelUpStrategy = new DefaultLevelUpStrategy();
-
-        // (중요) 여기서는 바로 SaveLoad를 읽지 않고,
-        // PlayerSpawn에서 프리팹 인스턴스 후 InitializeForSelectedRace()를 호출해 초기화한다.
-        // 만약 PlayerSpawn이 호출 안 되는 특별 케이스를 대비해 아래 가드 추가:
-        //if (Data == null)
-        //{
-        //    // 이어하기(씬 진입 직후) 등에서 PlayerSpawn 호출 전에
-        //    // Instance가 먼저 살아날 수도 있으니, 세이브 있으면 임시로드
-        //    var loaded = SaveLoadService.LoadPlayerDataForRaceOrNull(Data.Race);
-        //    if (loaded != null)
-        //    {
-        //        LoadData(loaded);
-        //    }
-        //}
     }
 
     void OnDestroy()
@@ -107,43 +78,6 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
     /// - 새 게임(캐릭터 선택 후)이라면 선택한 종족의 기본값을 리소스에서 로드
     /// - 이어하기(세이브 존재)라면 세이브를 우선, 단 세이브 종족 != 선택종족이면 선택종족 기본값으로 신규시작
     /// </summary>
-    //public void InitializeForSelectedRace()
-    //{
-    //    string race = string.IsNullOrEmpty(GameContext.SelectedRace) ? "humanmale" : GameContext.SelectedRace;
-
-    //    var saved = SaveLoadService.LoadPlayerDataOrNull();
-    //    bool hasSave = (saved != null);
-
-    //    if (GameContext.IsNewGame)
-    //    {
-    //        // 캐릭터 선택 직후 새게임: 선택한 종족의 기본값으로 시작
-    //        LoadRaceData_FromSingleFile(race);
-    //        GameContext.IsNewGame = false; // 초기화 완료
-    //        SaveLoadService.SavePlayerData(Data); // 첫 저장
-    //        return;
-    //    }
-
-    //    if (hasSave)
-    //    {
-    //        // 이어하기: 세이브가 있고, 세이브된 종족과 선택종족이 다르면 선택종족으로 새시작
-    //        if (!string.IsNullOrEmpty(saved.Race) &&
-    //            saved.Race.Equals(race, StringComparison.OrdinalIgnoreCase))
-    //        {
-    //            LoadData(saved);
-    //        }
-    //        else
-    //        {
-    //            LoadRaceData_FromSingleFile(race);
-    //            SaveLoadService.SavePlayerData(Data);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        // 세이브가 없으면 선택종족 기본값
-    //        LoadRaceData_FromSingleFile(race);
-    //        SaveLoadService.SavePlayerData(Data);
-    //    }
-    //}
     public void InitializeForSelectedRace()
     {
         string race = string.IsNullOrEmpty(GameContext.SelectedRace) ? "humanmale" : GameContext.SelectedRace;

@@ -196,13 +196,6 @@ public class ItemTooltipUI : MonoBehaviour
         transform.SetAsLastSibling();
     }
 
-
-    //public void Hide(ItemHoverTooltip requester = null)
-    //{
-    //    if (requester != null && requester != currentOwner) return;
-    //    gameObject.SetActive(false);
-    //    currentOwner = null;
-    //}
     public void Hide(ItemHoverTooltip requester = null)
     {
         if (requester != null && requester != currentOwner) return;
