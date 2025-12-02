@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using static DamageTextManager;
 
+/// <summary>
+/// 단일 대상에게 즉시 피해를 주는 액티브 스킬 구현입니다.
+/// </summary>
 public class ActiveSkill : ISkill
 {
     public string Id { get; private set; }
@@ -14,6 +17,9 @@ public class ActiveSkill : ISkill
     private float damage;
     private string animationName;
 
+    /// <summary>
+    /// 스킬 데이터로 액티브 스킬을 초기화합니다.
+    /// </summary>
     public ActiveSkill(SkillData data)
     {
         Id = data.id;
@@ -26,16 +32,17 @@ public class ActiveSkill : ISkill
         animationName = data.animation;
     }
 
+    /// <summary>
+    /// 지정된 사용자와 능력치로 스킬을 시전합니다.
+    /// </summary>
     public bool Execute(GameObject user, PlayerStatsManager stats)
     {
         var anim = user.GetComponent<Animation>();
         var attackComp = user.GetComponent<PlayerAttacks>();
         var moveComp = user.GetComponent<PlayerMove>();
 
-        // === 1) 유효 타겟 확보 ===
+        // 현재 타겟이 없으면 마우스 아래 적을 찾아서 설정합니다.
         EnemyStatsManager target = attackComp != null ? attackComp.targetEnemy : null;
-
-        // 타겟 없거나 죽었으면 마우스 아래 적 찾기 (근접 보정 포함)
         if (target == null || target.CurrentHP <= 0)
         {
             if (attackComp != null && attackComp.TryPickEnemyUnderMouse(out var picked))
@@ -44,14 +51,14 @@ public class ActiveSkill : ISkill
             }
         }
 
-        // === 2) 타겟 최종 검증 ===
+        // 유효한 대상이 없으면 시전을 중단합니다.
         if (target == null || target.CurrentHP <= 0)
         {
             Debug.LogWarning($"{Name} 실패: 유효한 타겟이 없습니다.");
             return false;
         }
 
-        // === 3) 사거리 체크 ===
+        // 사거리 안에 있는지 확인합니다.
         float dist = Vector3.Distance(user.transform.position, target.transform.position);
         if (dist > Range)
         {
@@ -59,7 +66,7 @@ public class ActiveSkill : ISkill
             return false;
         }
 
-        // === 4) 마나 차감 ===
+        // 마나를 소모하고 부족하면 시전을 중단합니다.
         if (!stats.UseMana(MpCost))
         {
             Debug.LogWarning($"{Name} 실패: MP 부족");
@@ -68,15 +75,15 @@ public class ActiveSkill : ISkill
 
         if (attackComp != null)
         {
-            attackComp.ForceStopAttack(); // 일반 공격 즉시 중단
-            attackComp.isCastingSkill = true; // 스킬 우선 모드
+            attackComp.ForceStopAttack();
+            attackComp.isCastingSkill = true;
         }
 
-        // === 5) 스킬 시작 시 타겟 방향으로 회전 ===
+        // 시전 시작 시 대상 방향으로 회전합니다.
         FaceTargetInstant(user.transform, target.transform.position);
 
-        // === 6) 애니메이션 재생 + 시전 잠금 ===
-        float animDuration = 0.5f; // 기본값
+        // 애니메이션을 재생하고 시전 시간을 계산합니다.
+        float animDuration = 0.5f;
         if (anim && !string.IsNullOrEmpty(animationName))
         {
             anim.CrossFade(animationName, 0.1f);
@@ -88,20 +95,22 @@ public class ActiveSkill : ISkill
         if (attackComp != null) attackComp.isAttacking = true;
         if (moveComp != null) moveComp.SetMovementLocked(true);
 
-        // === 7) 임팩트 타이밍 (애니메이션 비율 기반) ===
+        // 애니메이션 비율에 맞춰 피해 적용 지연 시간을 계산합니다.
         float impactDelay = animDuration * ImpactDelay;
 
         user.GetComponent<MonoBehaviour>()
             .StartCoroutine(DealDamageAfterDelay(user.transform, target, stats, impactDelay));
 
-        // === 8) 시전 종료 후 잠금 해제 ===
+        // 시전이 끝나면 이동과 공격 잠금을 해제합니다.
         user.GetComponent<MonoBehaviour>()
             .StartCoroutine(UnlockAfterDelay(attackComp, moveComp, animDuration));
 
         return true;
     }
 
-    // 즉시 목표를 바라보게 (y축 고정)
+    /// <summary>
+    /// 즉시 목표를 바라보도록 회전합니다.
+    /// </summary>
     private void FaceTargetInstant(Transform self, Vector3 targetPos)
     {
         Vector3 dir = targetPos - self.position;
@@ -110,27 +119,28 @@ public class ActiveSkill : ISkill
             self.rotation = Quaternion.LookRotation(dir);
     }
 
+    /// <summary>
+    /// 지연 후 대상에게 피해를 적용합니다.
+    /// </summary>
     private IEnumerator DealDamageAfterDelay(Transform userTf, EnemyStatsManager target, PlayerStatsManager stats, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // 임팩트 직전 회전 보정
+        // 임팩트 직전에 다시 대상 방향을 향하도록 보정합니다.
         if (target != null) FaceTargetInstant(userTf, target.transform.position);
 
-        // 타겟 생존 + 사거리 체크
+        // 대상이 살아 있고 사거리 안에 있으면 피해를 가합니다.
         if (target != null && target.CurrentHP > 0)
         {
             float dist = Vector3.Distance(userTf.position, target.transform.position);
             if (dist <= Range)
             {
-                // 치명타 여부 포함 계산
                 bool isCrit;
                 float baseDmg = stats.CalculateDamage(out isCrit);
                 float finalDamage = baseDmg * damage;
 
                 target.TakeDamage(finalDamage);
 
-                // 적 Transform에 고정 + 색상(치명타=빨강, 평타=흰색)
                 DamageTextManager.Instance.ShowDamage(
                     target.transform,
                     Mathf.RoundToInt(finalDamage),
@@ -143,13 +153,16 @@ public class ActiveSkill : ISkill
         }
     }
 
+    /// <summary>
+    /// 지연 후 공격과 이동 잠금을 해제합니다.
+    /// </summary>
     private IEnumerator UnlockAfterDelay(PlayerAttacks attack, PlayerMove move, float delay)
     {
         yield return new WaitForSeconds(delay);
 
         if (attack != null)
         {
-            attack.isCastingSkill = false;  // 스킬 종료
+            attack.isCastingSkill = false;
             attack.isAttacking = false;
             if (attack.targetEnemy != null && attack.targetEnemy.CurrentHP > 0)
                 attack.ChangeState(new AttackingStates());

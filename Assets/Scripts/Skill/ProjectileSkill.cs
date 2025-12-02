@@ -3,6 +3,9 @@ using UnityEngine;
 using static DamageTextManager;
 using static UnityEngine.GraphicsBuffer;
 
+/// <summary>
+/// ë²”ìœ„ í”¼í•´ë¥¼ ì£¼ëŠ” íˆ¬ì‚¬ì²´í˜• ìŠ¤í‚¬ì…ë‹ˆë‹¤.
+/// </summary>
 public class ProjectileSkill : ISkill
 {
     public string Id { get; private set; }
@@ -15,6 +18,9 @@ public class ProjectileSkill : ISkill
     private float damage;
     private string animationName;
 
+    /// <summary>
+    /// ìŠ¤í‚¬ ë°ì´í„°ë¡œ íˆ¬ì‚¬ì²´ ìŠ¤í‚¬ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     public ProjectileSkill(SkillData data)
     {
         Id = data.id;
@@ -27,11 +33,14 @@ public class ProjectileSkill : ISkill
         animationName = data.animation;
     }
 
+    /// <summary>
+    /// ì‹œì „ì ì£¼ë³€ì— ë²”ìœ„ í”¼í•´ë¥¼ ë°œìƒì‹œí‚µë‹ˆë‹¤.
+    /// </summary>
     public bool Execute(GameObject user, PlayerStatsManager stats)
     {
         if (!stats.UseMana(MpCost))
         {
-            Debug.LogWarning($"{Name} »ç¿ë ½ÇÆĞ: MP ºÎÁ·");
+            Debug.LogWarning($"{Name} ì‹¤íŒ¨: MPê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
             return false;
         }
 
@@ -41,11 +50,11 @@ public class ProjectileSkill : ISkill
 
         if (attackComp != null)
         {
-            attackComp.ForceStopAttack(); // ÀÏ¹İ °ø°İ Áï½Ã Áß´Ü
-            attackComp.isCastingSkill = true; // ½ºÅ³ ¿ì¼± ¸ğµå
+            attackComp.ForceStopAttack();
+            attackComp.isCastingSkill = true;
         }
 
-        float animDuration = 0.5f; // ±âº»°ª (¾Ö´Ï ¾øÀ½ ´ëºñ)
+        float animDuration = 0.5f;
         if (anim && !string.IsNullOrEmpty(animationName))
         {
             anim.CrossFade(animationName, 0.1f);
@@ -54,15 +63,11 @@ public class ProjectileSkill : ISkill
                 animDuration = state.length / Mathf.Max(state.speed, 0.0001f);
         }
 
-        // ÀÌµ¿/°ø°İ Àá±İ
         if (attackComp != null) attackComp.isAttacking = true;
         if (moveComp != null) moveComp.SetMovementLocked(true);
 
-        // ÀÓÆÑÆ® Å¸ÀÌ¹Ö: ActiveSkill°ú µ¿ÀÏÇÏ°Ô °íÁ¤°ª »ç¿ë
         float impactDelay = animDuration * 0.5f;
-        // Âü°í) ¾Ö´Ï ±âÁØ ºñÀ²·Î ¾²°í ½Í´Ù¸é ¾Æ·¡·Î ±³Ã¼:
 
-        // ÀÓÆÑÆ® ½ÃÁ¡¿¡ AoE Àû¿ë
         var host = user.GetComponent<MonoBehaviour>();
         if (host != null)
         {
@@ -72,25 +77,25 @@ public class ProjectileSkill : ISkill
         return true;
     }
 
+    /// <summary>
+    /// ì§€ì—° í›„ ë²”ìœ„ ë‚´ ì ì—ê²Œ í”¼í•´ë¥¼ ì ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
     private IEnumerator ApplyAoEAfterDelay(Transform userTf, PlayerStatsManager stats, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // ÀÓÆÑÆ® ¼ø°£ÀÇ ÇöÀç À§Ä¡¸¦ ±âÁØÀ¸·Î ¹üÀ§ ³» Àû Å½Áö
         Collider[] hits = Physics.OverlapSphere(userTf.position, Range, LayerMask.GetMask("Enemy"));
         foreach (var hit in hits)
         {
             EnemyStatsManager enemy = hit.GetComponent<EnemyStatsManager>();
             if (enemy != null && enemy.CurrentHP > 0)
             {
-                // °¢ Àû¸¶´Ù µ¶¸³ÀûÀ¸·Î Ä¡¸íÅ¸ ÆÇÁ¤
                 bool isCrit;
                 float baseDmg = stats.CalculateDamage(out isCrit);
                 float finalDamage = baseDmg * damage;
 
                 enemy.TakeDamage(finalDamage);
 
-                // Àû Transform¿¡ °íÁ¤ + »ö»ó(Ä¡¸íÅ¸=»¡°­, ÆòÅ¸=Èò»ö)
                 DamageTextManager.Instance.ShowDamage(
                     enemy.transform,
                     Mathf.RoundToInt(finalDamage),
@@ -98,18 +103,21 @@ public class ProjectileSkill : ISkill
                     DamageTextTarget.Enemy
                 );
 
-                Debug.Log($"{enemy.name}¿¡°Ô {finalDamage} ÇÇÇØ! (±¤¿ª, Crit={isCrit})");
+                Debug.Log($"{enemy.name}ì—ê²Œ {finalDamage} í”¼í•´ë¥¼ ì£¼ì—ˆìŠµë‹ˆë‹¤. (Crit={isCrit})");
             }
         }
     }
 
+    /// <summary>
+    /// ì§€ì—° í›„ ê³µê²©ê³¼ ì´ë™ ì ê¸ˆì„ í•´ì œí•©ë‹ˆë‹¤.
+    /// </summary>
     private IEnumerator UnlockAfterDelay(PlayerAttacks attack, PlayerMove move, float delay)
     {
         yield return new WaitForSeconds(delay);
 
         if (attack != null)
         {
-            attack.isCastingSkill = false;  // ½ºÅ³ Á¾·á
+            attack.isCastingSkill = false;
             attack.isAttacking = false;
             if (attack.targetEnemy != null && attack.targetEnemy.CurrentHP > 0)
                 attack.ChangeState(new AttackingStates());

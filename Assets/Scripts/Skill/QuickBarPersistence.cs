@@ -1,6 +1,9 @@
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// í€µë°” ë°°ì¹˜ ì •ë³´ë¥¼ íŒŒì¼ë¡œ ì €ì¥í•˜ê³  ë¶ˆëŸ¬ì˜µë‹ˆë‹¤.
+/// </summary>
 public static class QuickBarPersistence
 {
     private const string LegacyFileName = "quickbar.json";
@@ -11,11 +14,12 @@ public static class QuickBarPersistence
     private static string FileNameFor(string race)
     {
         if (string.IsNullOrEmpty(race)) race = "humanmale";
-        // ¿¹: quickbar_humanmale.json
         return $"quickbar_{race}.json";
     }
 
-    // ===== Á¾Á·º° ÀúÀå =====
+    /// <summary>
+    /// ì¢…ì¡±ë³„ íŒŒì¼ë¡œ í€µë°” ì •ë³´ë¥¼ ì €ì¥í•©ë‹ˆë‹¤.
+    /// </summary>
     public static void SaveForRace(string race, QuickBarSave data)
     {
         try
@@ -32,7 +36,9 @@ public static class QuickBarPersistence
         }
     }
 
-    // ===== Á¾Á·º° ·Îµå (¾øÀ¸¸é ·¹°Å½Ã¿¡¼­ 1È¸ ¸¶ÀÌ±×·¹ÀÌ¼Ç) =====
+    /// <summary>
+    /// ì¢…ì¡±ë³„ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¤ê³  ì—†ìœ¼ë©´ ë ˆê±°ì‹œ íŒŒì¼ì„ ì‹œë„í•©ë‹ˆë‹¤.
+    /// </summary>
     public static QuickBarSave LoadForRaceOrNull(string race)
     {
         string perRacePath = PathOf(FileNameFor(race));
@@ -50,7 +56,6 @@ public static class QuickBarPersistence
             }
         }
 
-        // ·¹°Å½Ã quickbar.json ¡æ Á¾Á· ÆÄÀÏ·Î ¸¶ÀÌ±×·¹ÀÌ¼Ç
         string legacyPath = PathOf(LegacyFileName);
         if (File.Exists(legacyPath))
         {
@@ -62,7 +67,7 @@ public static class QuickBarPersistence
                 {
                     SaveForRace(race, data);
 #if UNITY_EDITOR
-                    Debug.Log($"[QuickBarPersistence] Migrated {LegacyFileName} ¡æ {FileNameFor(race)}");
+                    Debug.Log($"[QuickBarPersistence] Migrated {LegacyFileName} ë¥¼ {FileNameFor(race)}ë¡œ ë³€í™˜í–ˆìŠµë‹ˆë‹¤.");
 #endif
                     return data;
                 }
@@ -76,12 +81,17 @@ public static class QuickBarPersistence
         return null;
     }
 
+    /// <summary>
+    /// íŒŒì¼ì´ ì—†ì„ ë•Œ ìƒˆ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public static QuickBarSave LoadForRaceOrNew(string race)
         => LoadForRaceOrNull(race) ?? new QuickBarSave();
 
-    // ====== (·¹°Å½Ã API À¯Áö: ÇÊ¿ä½Ã ±âÁ¸ ÄÚµå È£È¯) ======
     private static string LegacyFilePath => PathOf(LegacyFileName);
 
+    /// <summary>
+    /// ë ˆê±°ì‹œ íŒŒì¼ ê²½ë¡œì— ì €ì¥í•©ë‹ˆë‹¤.
+    /// </summary>
     public static void Save(QuickBarSave data)
     {
         try
@@ -95,6 +105,9 @@ public static class QuickBarPersistence
         }
     }
 
+    /// <summary>
+    /// ë ˆê±°ì‹œ íŒŒì¼ì—ì„œ ë°ì´í„°ë¥¼ ì½ì–´ì˜µë‹ˆë‹¤.
+    /// </summary>
     public static QuickBarSave Load()
     {
         try

@@ -2,26 +2,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// ìŠ¤í‚¬ í€µìŠ¬ë¡¯ í•˜ë‚˜ë¥¼ í‘œí˜„í•˜ë©° ë“œë˜ê·¸ ì•¤ ë“œë¡­ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+/// </summary>
 public class SkillSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     [Header("Refs")]
-    public Image icon;                    // ½½·Ô ¾ÆÀÌÄÜ ÀÌ¹ÌÁö
-    public SkillCooldownUI cooldownUI;    // ÀÌ¹Ì ¾²°í ÀÖ´Â Äğ´Ù¿î UI ÄÄÆ÷³ÍÆ® (ÇÊ¿äÇÏ¸é ¿¬°á)
-    public int index;                     // Äü½½·Ô ÀÎµ¦½º (0~8)
+    public Image icon;
+    public SkillCooldownUI cooldownUI;
+    public int index;
 
     [Header("Runtime")]
     public string SkillId { get; private set; }
-    private Transform dragParent;         // µå·¡±× Áß ÀÓ½Ã ºÎ¸ğ
+    private Transform dragParent;
     private Canvas rootCanvas;
-    private Image ghost;                  // µå·¡±× ¹Ì¸®º¸±â(°í½ºÆ®)
+    private Image ghost;
     private Sprite currentIcon;
 
+    /// <summary>
+    /// ê¸°ë³¸ ì°¸ì¡°ë¥¼ ì¤€ë¹„í•˜ê³  ì•„ì´ì½˜ì„ ìˆ¨ê¹ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         rootCanvas = GetComponentInParent<Canvas>();
         if (icon != null) icon.enabled = false;
     }
 
+    /// <summary>
+    /// ìŠ¬ë¡¯ì— ìŠ¤í‚¬ ì•„ì´ë””ì™€ ì•„ì´ì½˜ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public void SetSkill(string id, Sprite sp)
     {
         SkillId = id;
@@ -33,10 +42,19 @@ public class SkillSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
     }
 
+    /// <summary>
+    /// í˜„ì¬ ìŠ¬ë¡¯ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public (string id, Sprite sprite) GetData() => (SkillId, currentIcon);
+
+    /// <summary>
+    /// ì „ë‹¬ëœ ë°ì´í„°ë¥¼ ìŠ¬ë¡¯ì— ì ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
     public void ApplyData((string id, Sprite sprite) data) => SetSkill(data.id, data.sprite);
 
-    // ============ Drag ============
+    /// <summary>
+    /// ë“œë˜ê·¸ ì‹œì‘ ì‹œ ê³ ìŠ¤íŠ¸ ì•„ì´ì½˜ì„ ìƒì„±í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnBeginDrag(PointerEventData e)
     {
         if (string.IsNullOrEmpty(SkillId) || icon == null) return;
@@ -51,17 +69,26 @@ public class SkillSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         UpdateGhostPosition(e);
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ ì¤‘ ê³ ìŠ¤íŠ¸ ìœ„ì¹˜ë¥¼ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnDrag(PointerEventData e)
     {
         if (ghost) UpdateGhostPosition(e);
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ ì¢…ë£Œ ì‹œ ê³ ìŠ¤íŠ¸ë¥¼ ì œê±°í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnEndDrag(PointerEventData e)
     {
         if (ghost) Destroy(ghost.gameObject);
         ghost = null;
     }
 
+    /// <summary>
+    /// ê³ ìŠ¤íŠ¸ ì´ë¯¸ì§€ë¥¼ í˜„ì¬ í¬ì¸í„° ìœ„ì¹˜ë¡œ ì´ë™í•©ë‹ˆë‹¤.
+    /// </summary>
     void UpdateGhostPosition(PointerEventData e)
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -69,12 +96,14 @@ public class SkillSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         ghost.rectTransform.anchoredPosition = local;
     }
 
-    // SkillSlotUI.cs (OnDrop ºÎºĞ¸¸ ¼öÁ¤)
+    /// <summary>
+    /// ë‹¤ë¥¸ ìŠ¬ë¡¯ì´ë‚˜ ìŠ¤í‚¬ë¶ ì•„ì´í…œì„ ë“œë¡­í–ˆì„ ë•Œ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnDrop(PointerEventData e)
     {
         if (e.pointerDrag == null) return;
 
-        var quickBar = GetComponentInParent<SkillQuickBar>(); // ÀúÀå Æ®¸®°Å À§ÇØ °æÀ¯
+        var quickBar = GetComponentInParent<SkillQuickBar>();
         var fromSlot = e.pointerDrag.GetComponent<SkillSlotUI>();
         if (fromSlot != null && fromSlot != this)
         {
@@ -85,9 +114,8 @@ public class SkillSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         var bookItem = e.pointerDrag.GetComponent<SkillBookItemDraggable>();
         if (bookItem != null && bookItem.Unlocked)
         {
-            quickBar?.Assign(index, bookItem.SkillId, bookItem.IconSprite); // ¡ç Á÷Á¢ SetSkill ´ë½Å
+            quickBar?.Assign(index, bookItem.SkillId, bookItem.IconSprite);
             return;
         }
     }
-
 }
