@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 스킬 북 아이템을 드래그하여 퀵슬롯에 배치하는 UI 요소입니다.
+/// </summary>
 public class SkillBookItemDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Refs")]
-    public Image icon;                 // 자식 "Icon"
-    public GameObject lockOverlay;     // 자식 "LockOverlay"
-    [SerializeField] private Image bg; // 자식 "Bg" (선택)
+    public Image icon;
+    public GameObject lockOverlay;
+    [SerializeField] private Image bg;
 
     [Header("Runtime")]
     public string SkillId { get; private set; }
@@ -18,6 +21,9 @@ public class SkillBookItemDraggable : MonoBehaviour, IBeginDragHandler, IDragHan
     private Canvas rootCanvas;
     private Image ghost;
 
+    /// <summary>
+    /// 캔버스와 아이콘 렌더링 설정을 초기화합니다.
+    /// </summary>
     void Awake()
     {
         rootCanvas = GetComponentInParent<Canvas>(true);
@@ -27,18 +33,26 @@ public class SkillBookItemDraggable : MonoBehaviour, IBeginDragHandler, IDragHan
         if (icon)
         {
             icon.preserveAspect = true;
-            icon.raycastTarget = false; // 드래그시 마우스 픽 차단
+            icon.raycastTarget = false;
         }
     }
 
+    /// <summary>
+    /// 활성화될 때 아이콘 표시 상태를 보정합니다.
+    /// </summary>
     void OnEnable() => EnsureIconVisibility();
 
-    // 🔹 패널/아이템이 꺼질 때 떠 있는 고스트 정리
+    /// <summary>
+    /// 비활성화 시 남아 있는 고스트 아이콘을 제거합니다.
+    /// </summary>
     void OnDisable()
     {
         ForceEndDrag();
     }
 
+    /// <summary>
+    /// 드래그 중 생성된 고스트를 강제로 제거합니다.
+    /// </summary>
     public void ForceEndDrag()
     {
         if (ghost)
@@ -48,6 +62,9 @@ public class SkillBookItemDraggable : MonoBehaviour, IBeginDragHandler, IDragHan
         }
     }
 
+    /// <summary>
+    /// 스킬 정보를 아이템에 반영합니다.
+    /// </summary>
     public void Setup(string id, Sprite sp, int unlockLv, bool unlocked)
     {
         SkillId = id;
@@ -61,6 +78,9 @@ public class SkillBookItemDraggable : MonoBehaviour, IBeginDragHandler, IDragHan
         EnsureIconVisibility();
     }
 
+    /// <summary>
+    /// 잠금 여부를 갱신합니다.
+    /// </summary>
     public void SetUnlocked(bool unlocked)
     {
         Unlocked = unlocked;
@@ -68,16 +88,18 @@ public class SkillBookItemDraggable : MonoBehaviour, IBeginDragHandler, IDragHan
         EnsureIconVisibility();
     }
 
+    /// <summary>
+    /// 아이콘과 잠금 표시의 노출 상태를 조정합니다.
+    /// </summary>
     private void EnsureIconVisibility()
     {
-        // 아이콘 스프라이트가 있으면 항상 보이게
         if (icon)
             icon.enabled = (IconSprite != null || icon.sprite != null);
-        // 잠금 상태라면 약간의 알파를 줄 수도 있음 (원하면 주석 해제)
-        // if (icon) icon.color = Unlocked ? Color.white : new Color(1, 1, 1, 0.7f);
     }
 
-    // ===== Drag =====
+    /// <summary>
+    /// 드래그를 시작할 때 고스트 이미지를 생성합니다.
+    /// </summary>
     public void OnBeginDrag(PointerEventData e)
     {
         if (!Unlocked || icon == null || icon.sprite == null) return;
@@ -90,24 +112,32 @@ public class SkillBookItemDraggable : MonoBehaviour, IBeginDragHandler, IDragHan
         ghost.sprite = icon.sprite;
         ghost.color = new Color(1, 1, 1, 0.85f);
 
-        // 아이콘 크기에 맞춰 사이즈
         var size = icon.rectTransform.rect.size;
         ghost.rectTransform.sizeDelta = size;
 
         UpdateGhost(e);
     }
 
+    /// <summary>
+    /// 드래그 중 고스트 위치를 갱신합니다.
+    /// </summary>
     public void OnDrag(PointerEventData e)
     {
         if (ghost) UpdateGhost(e);
     }
 
+    /// <summary>
+    /// 드래그가 끝나면 고스트를 제거합니다.
+    /// </summary>
     public void OnEndDrag(PointerEventData e)
     {
         if (ghost) Destroy(ghost.gameObject);
         ghost = null;
     }
 
+    /// <summary>
+    /// 포인터 위치를 캔버스 좌표로 변환하여 고스트를 이동합니다.
+    /// </summary>
     private void UpdateGhost(PointerEventData e)
     {
         if (!rootCanvas || !ghost) return;

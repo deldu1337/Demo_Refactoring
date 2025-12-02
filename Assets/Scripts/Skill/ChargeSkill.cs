@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using static DamageTextManager;
 
+/// <summary>
+/// ëŒ€ìƒì—ê²Œ ëŒì§„í•œ ë’¤ í”¼í•´ë¥¼ ì£¼ëŠ” ì°¨ì§€ ìŠ¤í‚¬ì…ë‹ˆë‹¤.
+/// </summary>
 public class ChargeSkill : ISkill
 {
     public string Id { get; private set; }
@@ -9,16 +12,19 @@ public class ChargeSkill : ISkill
     public float Cooldown { get; private set; }
     public float MpCost { get; private set; }
     public float Range { get; private set; }
-    public float ImpactDelay { get; private set; } // µµÂø ÈÄ ÀÓÆÑÆ® ¿¬Ãâ¿ë(¿øÇÏ¸é »ç¿ë)
+    public float ImpactDelay { get; private set; }
+
     private float damageMul;
     private string animationName;
 
-    // Æ©´× ÆÄ¶ó¹ÌÅÍ
-    private const float DashSpeed = 70f;             // µ¹Áø ¼Óµµ(À¯´Ö/ÃÊ)
-    private const float MinStopPadding = 0.25f;      // Àû ¾Õ¿¡ ¸ØÃâ ¿©À¯ °Å¸®
-    private const float MaxDashTimePerMeter = 0.12f; // ¾ÈÀü Å¸ÀÓ¾Æ¿ô(Àå¾Ö¹° µî)
-    private const float fallbackHitWindup = 0.1f;   // ¾Ö´Ï ±æÀÌ¸¦ ¾Ë ¼ö ¾øÀ» ¶§ ´ë±â
+    private const float DashSpeed = 70f;             // ëŒì§„ ì´ë™ ì†ë„ì…ë‹ˆë‹¤.
+    private const float MinStopPadding = 0.25f;      // ëŒ€ìƒê³¼ì˜ ìµœì†Œ ì—¬ìœ  ê±°ë¦¬ì…ë‹ˆë‹¤.
+    private const float MaxDashTimePerMeter = 0.12f; // ì´ë™ ê±°ë¦¬ë‹¹ ìµœëŒ€ ëŒì§„ ì‹œê°„ì…ë‹ˆë‹¤.
+    private const float fallbackHitWindup = 0.1f;    // ì• ë‹ˆë©”ì´ì…˜ ì •ë³´ê°€ ì—†ì„ ë•Œ ëŒ€ê¸° ì‹œê°„ì…ë‹ˆë‹¤.
 
+    /// <summary>
+    /// ìŠ¤í‚¬ ë°ì´í„°ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ì°¨ì§€ ìŠ¤í‚¬ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     public ChargeSkill(SkillData data)
     {
         Id = data.id;
@@ -31,6 +37,9 @@ public class ChargeSkill : ISkill
         animationName = data.animation;
     }
 
+    /// <summary>
+    /// ì§€ì •ëœ ëŒ€ìƒì—ê²Œ ëŒì§„í•˜ê³  í”¼í•´ë¥¼ ì ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool Execute(GameObject user, PlayerStatsManager stats)
     {
         var anim = user.GetComponent<Animation>();
@@ -38,27 +47,29 @@ public class ChargeSkill : ISkill
         var mover = user.GetComponent<PlayerMove>();
         var rb = user.GetComponent<Rigidbody>();
 
-        // 1) Å¸°Ù È®º¸
+        // í˜„ì¬ íƒ€ê²Ÿì´ ì—†ìœ¼ë©´ ë§ˆìš°ìŠ¤ ì•„ë˜ ì ì„ ì„ íƒí•©ë‹ˆë‹¤.
         EnemyStatsManager target = attack != null ? attack.targetEnemy : null;
         if (target == null || target.CurrentHP <= 0)
+        {
             if (attack != null && attack.TryPickEnemyUnderMouse(out var picked)) target = picked;
+        }
 
+        // ìœ íš¨í•œ ëŒ€ìƒì´ ì—†ìœ¼ë©´ ì‹œì „ì„ ì¤‘ë‹¨í•©ë‹ˆë‹¤.
         if (target == null || target.CurrentHP <= 0)
         {
-            Debug.LogWarning($"{Name} ½ÇÆĞ: À¯È¿ÇÑ Å¸°Ù ¾øÀ½");
+            Debug.LogWarning($"{Name} ì‹¤íŒ¨: ëŒ€ìƒì´ ì—†ìŠµë‹ˆë‹¤.");
             return false;
         }
 
-        // 2) »ç°Å¸® Ã¼Å©
+        // ì‚¬ê±°ë¦¬ ì•ˆì— ìˆëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
         float dist = Vector3.Distance(user.transform.position, target.transform.position);
         if (dist > Range)
         {
-            Debug.LogWarning($"{Name} ½ÇÆĞ: »ç°Å¸®({Range}) ¹Û (ÇöÀç {dist:F2})");
+            Debug.LogWarning($"{Name} ì‹¤íŒ¨: ì‚¬ê±°ë¦¬({Range})ë¥¼ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤. (í˜„ì¬ {dist:F2})");
             return false;
         }
 
-        // 2.5) ½ÃÀü Àü °æ·Î Àå¾Ö¹° Ã¼Å©
-        // Àû ¾Õ¿¡ ¼³ ¸ñÇ¥ ÁöÁ¡(desired) ¹Ì¸® °è»êÇØ¼­, ±× ÁöÁ¡±îÁö ±¸Ã¼ Ä³½ºÆ®·Î ¸·Èû È®ÀÎ
+        // ëŒì§„ ëª©í‘œ ì§€ì ì„ ê³„ì‚°í•˜ê³  ì¶©ëŒ ì—¬ë¶€ë¥¼ ì ê²€í•©ë‹ˆë‹¤.
         Vector3 startPos = user.transform.position;
         Vector3 targetPos = target.transform.position;
 
@@ -70,22 +81,21 @@ public class ChargeSkill : ISkill
         float stopDist = Mathf.Max(enemyR + selfR + MinStopPadding, 0.25f);
         Vector3 desired = targetPos - dir * stopDist;
 
-        // º® ·¹ÀÌ¾î°¡ ÀÖ´Ù¸é ¿©±â¿¡ ÁöÁ¤ (¾øÀ¸¸é Default·Îµµ µ¿ÀÛ)
-        int wallMask = LayerMask.GetMask("Wall", "Obstacle"); // ÇÁ·ÎÁ§Æ®¿¡ ¸Â°Ô
+        int wallMask = LayerMask.GetMask("Wall", "Obstacle");
         if (PathBlocked(startPos, desired, selfR * 0.9f, wallMask))
         {
-            Debug.LogWarning($"{Name} ½ÇÆĞ: Àü¹æ¿¡ Àå¾Ö¹°·Î ÀÎÇØ µ¹Áø ºÒ°¡");
+            Debug.LogWarning($"{Name} ì‹¤íŒ¨: ëŒì§„ ê²½ë¡œê°€ ë§‰í˜€ ìˆìŠµë‹ˆë‹¤.");
             return false;
         }
 
-        // 3) MP Â÷°¨ (Àå¾Ö¹° Åë°úÇßÀ» ¶§¸¸)
+        // ë§ˆë‚˜ë¥¼ ì†Œëª¨í•˜ê³  ë¶€ì¡±í•˜ë©´ ì‹œì „ì„ ì¤‘ë‹¨í•©ë‹ˆë‹¤.
         if (!stats.UseMana(MpCost))
         {
-            Debug.LogWarning($"{Name} ½ÇÆĞ: MP ºÎÁ·");
+            Debug.LogWarning($"{Name} ì‹¤íŒ¨: MPê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
             return false;
         }
 
-        // 4) ¶ô/»óÅÂ ¼³Á¤
+        // ê³µê²©ê³¼ ì´ë™ì„ ì ì‹œ ì ê¸‰ë‹ˆë‹¤.
         if (attack != null)
         {
             attack.ForceStopAttack();
@@ -94,13 +104,11 @@ public class ChargeSkill : ISkill
         }
         if (mover != null) mover.SetMovementLocked(true);
 
-        // 5) ¾Ö´Ï¸ŞÀÌ¼ÇÀº µµÂø ÈÄ Àç»ı
-
-        // 6) ÄÚ·çÆ¾ ½ÃÀÛ
+        // ì½”ë£¨í‹´ ì‹¤í–‰ ì£¼ì²´ë¥¼ ì°¾ìŠµë‹ˆë‹¤.
         MonoBehaviour runner = (MonoBehaviour)attack ?? (MonoBehaviour)mover ?? user.GetComponent<MonoBehaviour>();
         if (runner == null)
         {
-            Debug.LogError($"{Name}: ÄÚ·çÆ¾ ½ÇÇà ÁÖÃ¼ ¾øÀ½");
+            Debug.LogError($"{Name}: ì½”ë£¨í‹´ ì‹¤í–‰ ì£¼ì²´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             if (attack != null) { attack.isCastingSkill = false; attack.isAttacking = false; }
             if (mover != null) mover.SetMovementLocked(false);
             return false;
@@ -110,58 +118,53 @@ public class ChargeSkill : ISkill
         return true;
     }
 
+    /// <summary>
+    /// ê²½ë¡œì— ì¥ì• ë¬¼ì´ ìˆëŠ”ì§€ êµ¬í˜• ìºìŠ¤íŠ¸ë¡œ í™•ì¸í•©ë‹ˆë‹¤.
+    /// </summary>
     private static bool PathBlocked(Vector3 from, Vector3 to, float radius, int layerMask)
     {
-        Vector3 start = from + Vector3.up * 0.2f;   // ¹Ù´Ú Æ¨±è ¹æÁö
+        Vector3 start = from + Vector3.up * 0.2f;
         Vector3 dir = to - from; dir.y = 0f;
         float dist = dir.magnitude;
-        if (dist < 0.001f) return false; // Á¦ÀÚ¸®¸é ¸·Èû ¾Æ´Ô
+        if (dist < 0.001f) return false;
         dir /= dist;
 
-        // ½ºÇÇ¾îÄ³½ºÆ®·Î °æ·Î »ó Ãæµ¹ Ã¼Å©
-        // È÷Æ®°¡ ÀÖÀ¸¸é ¸·Èû
         return Physics.SphereCast(start, Mathf.Max(0.05f, radius), dir, out _, dist, layerMask, QueryTriggerInteraction.Ignore);
     }
 
-
-
+    /// <summary>
+    /// ëª©í‘œ ì§€ì ê¹Œì§€ ëŒì§„í•˜ê³  í”¼í•´ë¥¼ ì ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
     private IEnumerator DashAndHit(Transform self, Rigidbody rb, PlayerStatsManager stats,
                                    EnemyStatsManager target, PlayerAttacks attack, PlayerMove mover,
                                    Animation anim)
     {
-        // µ¹Áø ¸ñÇ¥ ÁöÁ¡ °è»ê(Àû ¹Ù·Î ¾Õ)
         Vector3 startPos = self.position;
         Vector3 targetPos = target.transform.position;
 
-        // ¼öÆò ¹æÇâ
         Vector3 dir = targetPos - startPos;
         dir.y = 0f;
         float dirMag = dir.magnitude;
         if (dirMag < 0.0001f) dir = self.forward; else dir /= dirMag;
 
-        // Àû/ÇÃ·¹ÀÌ¾îÀÇ ¹İ°æ ÃßÁ¤ ¡æ ³Ê¹« ºÙÁö ¸»°í ¾Õ¿¡ ¸ØÃß±â
         float enemyR = EstimateRadius(target.GetComponent<Collider>());
         float selfR = EstimateRadius(self.GetComponent<Collider>());
         float stopDist = Mathf.Max(enemyR + selfR + MinStopPadding, 0.25f);
 
         Vector3 desired = targetPos - dir * stopDist;
 
-        // Àå¾Ö¹°¿¡ ¸·È÷¸é ±× ¾Õ¿¡¼­ ¸ØÃßµµ·Ï ·¹ÀÌÄ³½ºÆ®
         if (Physics.Raycast(startPos + Vector3.up * 0.2f, dir, out RaycastHit hit, Vector3.Distance(startPos, desired)))
         {
-            // º®/Àå¾Ö¹° Ãæµ¹ ½Ã ¾à°£ µÚ¿¡¼­ ¸ØÃß±â
             desired = hit.point - dir * 0.2f;
         }
 
-        // ===== µ¹Áø ·çÇÁ =====
         float totalDist = Vector3.Distance(self.position, desired);
         float timeout = Mathf.Max(totalDist * MaxDashTimePerMeter, 0.25f);
         float t = 0f;
 
-        // ¸ñÇ¥ º¸Á¤ °ü·Ã ÇÃ·¡±×/ÀÓ°è°ª
-        bool lockFinalApproach = false;          // ¸¶Áö¸· ±¸°£¿¡¼­´Â desired °íÁ¤
-        const float lockDistance = 0.35f;        // ÀÌ °Å¸® ÀÌ³»·Î µé¾î¿À¸é desired °íÁ¤
-        const float snapEpsilon = 0.12f;       // ÃæºĞÈ÷ °¡±õ´Ù¸é ¹Ù·Î ½º³À
+        bool lockFinalApproach = false;
+        const float lockDistance = 0.35f;
+        const float snapEpsilon = 0.12f;
 
         Face(self, target.transform.position);
 
@@ -170,14 +173,13 @@ public class ChargeSkill : ISkill
             t += Time.deltaTime;
             if (t > timeout) break;
 
-            // 1) ¸¶Áö¸· ±¸°£ Àü±îÁö¸¸ desired¸¦ Å¸°Ù¿¡ ¸ÂÃç °»½Å
+            // ëŒ€ìƒì´ ì‚´ì•„ ìˆìœ¼ë©´ ëª©í‘œ ì§€ì ì„ ê°±ì‹ í•©ë‹ˆë‹¤.
             if (!lockFinalApproach && target != null && target.CurrentHP > 0)
             {
                 Vector3 curDir = (target.transform.position - self.position);
                 curDir.y = 0f;
                 float mag = curDir.magnitude;
 
-                // ³Ê¹« °¡±î¿ì¸é ÇöÀç forward »ç¿ë
                 if (mag > 0.0001f) curDir /= mag; else curDir = self.forward;
 
                 float curEnemyR = EstimateRadius(target.GetComponent<Collider>());
@@ -187,7 +189,6 @@ public class ChargeSkill : ISkill
                 Vector3 newDesired = target.transform.position - curDir * curStop;
                 desired = newDesired;
 
-                // ¸¶Áö¸· ±¸°£ ÁøÀÔ: desired¸¦ ´õ ÀÌ»ó °»½ÅÇÏÁö ¾ÊÀ½(¼­¼ºÀÓ ¹æÁö)
                 float distToDesiredNow = Vector3.Distance(self.position, desired);
                 if (distToDesiredNow <= lockDistance)
                     lockFinalApproach = true;
@@ -195,21 +196,19 @@ public class ChargeSkill : ISkill
                 Face(self, target.transform.position);
             }
 
-            // 2) ÀÌµ¿
+            // ëª©í‘œ ì§€ì ê¹Œì§€ ì´ë™í•©ë‹ˆë‹¤.
             Vector3 to = desired - self.position; to.y = 0f;
             float d = to.magnitude;
 
-            // ÃæºĞÈ÷ °¡±î¿ì¸é ¹Ù·Î ½º³ÀÇØ¼­ Á¾·á
             if (d <= snapEpsilon)
             {
-                // rb »ç¿ë ÁßÀÌ¸é MovePositionÀ¸·Î ½º³À
                 if (rb != null && !rb.isKinematic) rb.MovePosition(desired);
                 else self.position = desired;
                 break;
             }
 
             Vector3 step = to.normalized * DashSpeed * Time.deltaTime;
-            if (step.magnitude > d) step = to; // ¿À¹ö½´ÆÃ ¹æÁö
+            if (step.magnitude > d) step = to;
 
             if (rb != null && !rb.isKinematic)
                 rb.MovePosition(self.position + step);
@@ -219,22 +218,14 @@ public class ChargeSkill : ISkill
             yield return null;
         }
 
-        // µµÂø Á÷ÈÄ ÀÜ¼Ó Á¦°Å(¿É¼Ç)
         if (rb != null && !rb.isKinematic) rb.linearVelocity = Vector3.zero;
 
-
-        // ===== µµÂø ÁöÁ¡ =====
-        // 1) µµÂø ÈÄ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà & Á¾·á±îÁö ´ë±â
+        // ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒí•˜ë©° ì„íŒ©íŠ¸ íƒ€ì´ë°ì„ ê¸°ë‹¤ë¦½ë‹ˆë‹¤.
         if (anim && !string.IsNullOrEmpty(animationName))
         {
             anim.CrossFade(animationName, 0.1f);
 
             float waitTime = fallbackHitWindup;
-            // Å¬¸³ ±æÀÌ ¾Ë ¼ö ÀÖÀ¸¸é ±×°Í¸¸Å­ ´ë±â
-            //if (anim[animationName] != null && anim[animationName].length > 0f)
-            //    waitTime = anim[animationName].length;
-
-            // ´ë±â Áß¿¡µµ Å¸°Ù ¹Ù¶óº¸±â À¯Áö(¼±ÅÃ)
             float elapsed = 0f;
             while (elapsed < waitTime)
             {
@@ -245,7 +236,7 @@ public class ChargeSkill : ISkill
             }
         }
 
-        // 2) ¾Ö´Ï Á¾·á ÈÄ µ¥¹ÌÁö Àû¿ë
+        // ëŒ€ìƒì´ ì‚´ì•„ ìˆìœ¼ë©´ í”¼í•´ë¥¼ ì ìš©í•©ë‹ˆë‹¤.
         if (target != null && target.CurrentHP > 0)
         {
             bool isCrit;
@@ -265,7 +256,7 @@ public class ChargeSkill : ISkill
                 yield return new WaitForSeconds(ImpactDelay);
         }
 
-        // 3) »óÅÂ/¶ô ÇØÁ¦
+        // ì‹œì „ì´ ëë‚˜ë©´ ìƒíƒœë¥¼ í•´ì œí•©ë‹ˆë‹¤.
         if (attack != null)
         {
             attack.isCastingSkill = false;
@@ -278,6 +269,9 @@ public class ChargeSkill : ISkill
         if (mover != null) mover.SetMovementLocked(false);
     }
 
+    /// <summary>
+    /// ì§€ì •ëœ ë°©í–¥ì„ ë°”ë¼ë³´ë„ë¡ íšŒì „í•©ë‹ˆë‹¤.
+    /// </summary>
     private static void Face(Transform self, Vector3 worldTarget)
     {
         Vector3 d = worldTarget - self.position; d.y = 0f;
@@ -285,11 +279,13 @@ public class ChargeSkill : ISkill
             self.rotation = Quaternion.LookRotation(d);
     }
 
+    /// <summary>
+    /// ì½œë¼ì´ë” í¬ê¸°ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ë°˜ì§€ë¦„ì„ ì¶”ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     private static float EstimateRadius(Collider col)
     {
-        if (!col) return 0.4f; // ´ëÃæ ±âº»°ª
+        if (!col) return 0.4f;
         var b = col.bounds;
-        // X/Z Áß Å« °ªÀÇ Àı¹İÀ» ¹İ°æÀ¸·Î °¡Á¤
         return Mathf.Max(b.extents.x, b.extents.z);
     }
 }

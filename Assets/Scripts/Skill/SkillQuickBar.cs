@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// í€µ ìŠ¬ë¡¯ UIë¥¼ ê´€ë¦¬í•˜ë©° ìŠ¤í‚¬ ë°°ì¹˜ì™€ ì €ì¥ ê¸°ëŠ¥ì„ ì œê³µí•©ë‹ˆë‹¤.
+/// </summary>
 public class SkillQuickBar : MonoBehaviour
 {
     public SkillSlotUI[] slots;
 
-    public event Action OnChanged; // ¡ç ½½·Ô ±¸¼º ¹Ù²ğ ¶§ ÀúÀå Æ®¸®°Å
+    public event Action OnChanged;
 
+    /// <summary>
+    /// ìì‹ ê°ì²´ì—ì„œ ìŠ¬ë¡¯ê³¼ ë¶€ê°€ ì»´í¬ë„ŒíŠ¸ë¥¼ ìë™ìœ¼ë¡œ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
     public void AutoWireSlots()
     {
         if (slots == null || slots.Length == 0)
@@ -21,7 +27,6 @@ public class SkillQuickBar : MonoBehaviour
 
             s.index = i;
 
-            // ¾ÆÀÌÄÜ ÀÚµ¿ ¿¬°á
             if (!s.icon)
             {
                 var iconTr = s.transform.Find("A");
@@ -30,7 +35,6 @@ public class SkillQuickBar : MonoBehaviour
                 if (img) { s.icon = img; s.icon.raycastTarget = false; }
             }
 
-            // Äğ´Ù¿î ÀÚµ¿ ¿¬°á
             if (!s.cooldownUI)
             {
                 var cui = s.GetComponent<SkillCooldownUI>();
@@ -44,13 +48,19 @@ public class SkillQuickBar : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// íŠ¹ì • ìŠ¬ë¡¯ì— ìŠ¤í‚¬ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Assign(int index, string skillId, Sprite icon)
     {
         if (index < 0 || index >= slots.Length) return;
         slots[index].SetSkill(skillId, icon);
-        OnChanged?.Invoke(); // ÀúÀå Æ®¸®°Å
+        OnChanged?.Invoke();
     }
 
+    /// <summary>
+    /// ì²« ë²ˆì§¸ ë¹ˆ ìŠ¬ë¡¯ì— ìŠ¤í‚¬ì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool AssignToFirstEmpty(string skillId, Sprite icon)
     {
         for (int i = 0; i < slots.Length; i++)
@@ -64,6 +74,9 @@ public class SkillQuickBar : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// ë‘ ìŠ¬ë¡¯ì˜ ìŠ¤í‚¬ ì •ë³´ë¥¼ êµí™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Swap(int a, int b)
     {
         if (a == b) return;
@@ -71,16 +84,21 @@ public class SkillQuickBar : MonoBehaviour
         var tmp = slots[a].GetData();
         slots[a].ApplyData(slots[b].GetData());
         slots[b].ApplyData(tmp);
-        OnChanged?.Invoke(); // ÀúÀå Æ®¸®°Å
+        OnChanged?.Invoke();
     }
 
+    /// <summary>
+    /// ì§€ì •ëœ ì¸ë±ìŠ¤ì˜ ìŠ¤í‚¬ ì•„ì´ë””ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public string GetSkillAt(int index)
     {
         if (index < 0 || index >= slots.Length) return null;
         return slots[index].SkillId;
     }
 
-    // ==== JSONÀ¸·Î ³»º¸³»±â/ºÒ·¯¿À±â ====
+    /// <summary>
+    /// í€µë°” ìƒíƒœë¥¼ ì €ì¥ìš© ë°ì´í„°ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public QuickBarSave ToSaveData()
     {
         var data = new QuickBarSave();
@@ -94,8 +112,7 @@ public class SkillQuickBar : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀúÀå µ¥ÀÌÅÍ¸¦ Àû¿ë. iconResolver·Î ¾ÆÀÌÄÜ ÁÖÀÔ.
-    /// canUse(skillId)·Î ¾ğ¶ô ¿©ºÎ °ËÁõ(¾ğ¶ô ¾È µÈ°Ç ¹«½Ã).
+    /// ì €ì¥ëœ ë°ì´í„°ë¥¼ ì ìš©í•˜ë©° ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ì€ ê±´ë„ˆëœë‹ˆë‹¤.
     /// </summary>
     public void ApplySaveData(
         QuickBarSave save,
@@ -104,7 +121,6 @@ public class SkillQuickBar : MonoBehaviour
     {
         if (save == null) return;
 
-        // ÀüÃ¼ ÃÊ±âÈ­(¿øÇÏ¸é À¯Áö °¡´É)
         for (int i = 0; i < slots.Length; i++)
             slots[i].SetSkill(null, null);
 
@@ -113,16 +129,18 @@ public class SkillQuickBar : MonoBehaviour
             if (e.index < 0 || e.index >= slots.Length) continue;
             if (string.IsNullOrEmpty(e.skillId)) continue;
 
-            // ¾ğ¶ô °ËÁõ(Ä¡Æ®/±¸¹öÀü º¸È£)
             if (canUse != null && !canUse(e.skillId)) continue;
 
             var sp = iconResolver?.Invoke(e.skillId);
             slots[e.index].SetSkill(e.skillId, sp);
         }
 
-        OnChanged?.Invoke(); // Àû¿ë ÈÄ ÀúÀå(¼±ÅÃ)
+        OnChanged?.Invoke();
     }
 
+    /// <summary>
+    /// ì¸ë±ìŠ¤ì— í•´ë‹¹í•˜ëŠ” ìŠ¬ë¡¯ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public SkillSlotUI GetSlot(int index)
     {
         if (index < 0 || index >= (slots?.Length ?? 0)) return null;

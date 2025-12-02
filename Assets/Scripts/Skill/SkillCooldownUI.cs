@@ -1,14 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ìŠ¤í‚¬ ì¿¨ë‹¤ìš´ì„ ì´ë¯¸ì§€ í•„ë¡œ í‘œí˜„í•˜ëŠ” UI ì»´í¬ë„ŒíŠ¸ì…ë‹ˆë‹¤.
+/// </summary>
 public class SkillCooldownUI : MonoBehaviour
 {
-    [SerializeField] private Image cooldownOverlay; // Inspector ¿¬°á or BindOverlay·Î ÁÖÀÔ
+    [SerializeField] private Image cooldownOverlay;
     private float cooldownTime;
     private float cooldownRemaining;
-    private bool isRunning; // ¡Ú Ãß°¡: ½ÇÁ¦·Î Ä«¿îÆ® ÁßÀÎÁö
+    private bool isRunning;
 
-    // ¿ÜºÎ¿¡¼­ Overlay ¿¬°á
+    /// <summary>
+    /// ì™¸ë¶€ì—ì„œ ì œê³µí•œ ì´ë¯¸ì§€ë¡œ ì˜¤ë²„ë ˆì´ë¥¼ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
     public void BindOverlay(Image overlay)
     {
         cooldownOverlay = overlay;
@@ -18,15 +23,17 @@ public class SkillCooldownUI : MonoBehaviour
             cooldownOverlay.raycastTarget = false;
             cooldownOverlay.type = Image.Type.Filled;
             cooldownOverlay.fillMethod = Image.FillMethod.Radial360;
-            cooldownOverlay.fillOrigin = 2; // Top
+            cooldownOverlay.fillOrigin = 2;
             cooldownOverlay.fillClockwise = false;
 
-            // ¾ÆÁ÷ ·¯´×ÀÌ ¾Æ´Ï¶ó¸é 0À¸·Î ÃÊ±âÈ­ (·¯´× ÁßÀÌ¸é À¯Áö)
             if (!isRunning) cooldownOverlay.fillAmount = 0f;
             cooldownOverlay.enabled = true;
         }
     }
 
+    /// <summary>
+    /// ì´ˆê¸° ìƒíƒœë¡œ ì¿¨ë‹¤ìš´ì„ ë¦¬ì…‹í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         if (cooldownOverlay != null) cooldownOverlay.fillAmount = 0f;
@@ -35,12 +42,13 @@ public class SkillCooldownUI : MonoBehaviour
         cooldownRemaining = 0f;
     }
 
+    /// <summary>
+    /// ë§¤ í”„ë ˆì„ ì¿¨ë‹¤ìš´ ë‚¨ì€ ì‹œê°„ì„ ê³„ì‚°í•©ë‹ˆë‹¤.
+    /// </summary>
     void Update()
     {
-        // ·¯´× ÁßÀÌ ¾Æ´Ï°Å³ª ¿À¹ö·¹ÀÌ°¡ ¾øÀ¸¸é ÅÍÄ¡ÇÏÁö ¾ÊÀ½
         if (!isRunning || cooldownOverlay == null) return;
 
-        // ½Ã°£ ÁøÇà
         cooldownRemaining -= Time.deltaTime;
 
         if (cooldownTime > 0f)
@@ -49,7 +57,6 @@ public class SkillCooldownUI : MonoBehaviour
             cooldownOverlay.fillAmount = t;
         }
 
-        // ³¡³µÀ¸¸é ÇÑ ¹ø¸¸ 0À¸·Î ¸¸µé°í Á¤Áö
         if (cooldownRemaining <= 0f)
         {
             cooldownOverlay.fillAmount = 0f;
@@ -57,9 +64,11 @@ public class SkillCooldownUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ì£¼ì–´ì§„ ì‹œê°„ìœ¼ë¡œ ì¿¨ë‹¤ìš´ì„ ì‹œì‘í•©ë‹ˆë‹¤.
+    /// </summary>
     public void StartCooldown(float duration)
     {
-        // ¹æ¾î: 0ÀÌÇÏ Äğ´Ù¿îÀº ÀÇ¹Ì ¾øÀ¸´Ï ±×³É Á¾·á Ã³¸®
         if (duration <= 0f)
         {
             isRunning = false;

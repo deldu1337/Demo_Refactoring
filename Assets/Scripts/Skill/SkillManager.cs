@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+/// <summary>
+/// ìŠ¤í‚¬ ë°ì´í„° ë¡œë”©ê³¼ í€µë°”, ìŠ¤í‚¬ë¶ UIë¥¼ ê´€ë¦¬í•©ë‹ˆë‹¤.
+/// </summary>
 public class SkillManager : MonoBehaviour
 {
     [SerializeField] private string playerClass = "warrior";
@@ -23,15 +26,23 @@ public class SkillManager : MonoBehaviour
 
     private Sprite GetIcon(string skillId) => Resources.Load<Sprite>($"SkillIcons/{skillId}");
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ëŠ¥ë ¥ì¹˜ ë§¤ë‹ˆì €ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         stats = PlayerStatsManager.Instance;
     }
 
-    // ¡Ú Á¾Á·¸í ÇïÆÛ (¾øÀ¸¸é humanmale)
+    /// <summary>
+    /// í˜„ì¬ ì¢…ì¡± ì´ë¦„ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private string CurrentRace =>
         string.IsNullOrEmpty(stats?.Data?.Race) ? "humanmale" : stats.Data.Race;
 
+    /// <summary>
+    /// ìŠ¤í‚¬ ë°ì´í„°ë¥¼ ë¡œë“œí•˜ê³  UIë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     void Start()
     {
         if (!quickBar) quickBar = FindFirstObjectByType<SkillQuickBar>(FindObjectsInactive.Include);
@@ -43,7 +54,7 @@ public class SkillManager : MonoBehaviour
         var jsonFile = Resources.Load<TextAsset>("Datas/skillData");
         if (!jsonFile)
         {
-            Debug.LogError("[SkillManager] Resources/Datas/skillData.json ¾øÀ½");
+            Debug.LogError("[SkillManager] Resources/Datas/skillData.json ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
         SkillFactory.LoadSkillsFromJson(jsonFile.text);
@@ -60,7 +71,6 @@ public class SkillManager : MonoBehaviour
         {
             quickBar.AutoWireSlots();
 
-            // ¡Ú Á¾Á·º°·Î ·Îµå (·¹°Å½Ã°¡ ÀÖÀ¸¸é QuickBarPersistence°¡ ¸¶ÀÌ±×·¹ÀÌ¼Ç Ã³¸®)
             var race = CurrentRace;
             var save = QuickBarPersistence.LoadForRaceOrNull(race);
             if (save != null)
@@ -77,7 +87,6 @@ public class SkillManager : MonoBehaviour
                 );
             }
 
-            // ¡Ú º¯°æ ½Ã Á¾Á·º° ÀúÀå
             quickBar.OnChanged += () =>
             {
                 QuickBarPersistence.SaveForRace(race, quickBar.ToSaveData());
@@ -91,14 +100,20 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ê°ì²´ íŒŒê´´ ì‹œ ì´ë²¤íŠ¸ë¥¼ í•´ì œí•˜ê³  ì €ì¥í•©ë‹ˆë‹¤.
+    /// </summary>
     void OnDestroy()
     {
         if (stats != null) stats.OnLevelUp -= OnLevelUp;
 
         if (quickBar != null)
-            QuickBarPersistence.SaveForRace(CurrentRace, quickBar.ToSaveData()); // ¡Ú
+            QuickBarPersistence.SaveForRace(CurrentRace, quickBar.ToSaveData());
     }
 
+    /// <summary>
+    /// ì…ë ¥ì„ ë°›ì•„ ìŠ¤í‚¬ë¶ í† ê¸€ê³¼ ìŠ¬ë¡¯ ì‚¬ìš©ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K) && skillBook != null)
@@ -115,16 +130,21 @@ public class SkillManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V)) UseSlot(8);
     }
 
-    // ===== ·¹º§¾÷ ½Ã =====
+    /// <summary>
+    /// ë ˆë²¨ ì—… ì‹œ ì ê¸ˆ í•´ì œì™€ ì €ì¥ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnLevelUp(int level)
     {
         skillBook?.RefreshLocks(level);
         ApplyUnlocks(level);
 
         if (quickBar != null)
-            QuickBarPersistence.SaveForRace(CurrentRace, quickBar.ToSaveData()); // ¡Ú
+            QuickBarPersistence.SaveForRace(CurrentRace, quickBar.ToSaveData());
     }
 
+    /// <summary>
+    /// í•´ë‹¹ ë ˆë²¨ì—ì„œ ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ìŠ¤í‚¬ì„ í€µë°”ì— ë°°ì¹˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private void ApplyUnlocks(int level)
     {
         if (!quickBar) return;
@@ -146,7 +166,7 @@ public class SkillManager : MonoBehaviour
             if (quickBar.AssignToFirstEmpty(def.skillId, icon))
             {
                 skillBook?.MarkUnlocked(def.skillId);
-                Debug.Log($"[{def.skillId}] ÀÚµ¿ ÇÒ´ç ¿Ï·á (·¹º§ {level})");
+                Debug.Log($"[{def.skillId}] ìŠ¬ë¡¯ì— ë°°ì¹˜í–ˆìŠµë‹ˆë‹¤. (ë ˆë²¨ {level})");
             }
             else
             {
@@ -155,6 +175,9 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ì´ë¯¸ í€µë°”ì— ë“±ë¡ëœ ìŠ¤í‚¬ì¸ì§€ í™•ì¸í•©ë‹ˆë‹¤.
+    /// </summary>
     private bool IsSkillAlreadyAssigned(string skillId)
     {
         if (quickBar == null || quickBar.slots == null) return false;
@@ -163,7 +186,9 @@ public class SkillManager : MonoBehaviour
         return false;
     }
 
-    // ===== ½ÇÇà & Äğ´Ù¿î =====
+    /// <summary>
+    /// ì¸ë±ìŠ¤ì— í•´ë‹¹í•˜ëŠ” ìŠ¬ë¡¯ì˜ ìŠ¤í‚¬ì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
     private void UseSlot(int index)
     {
         if (quickBar == null) return;
@@ -173,6 +198,9 @@ public class SkillManager : MonoBehaviour
         TryUseSkill(skillId, index);
     }
 
+    /// <summary>
+    /// ìŠ¤í‚¬ ì‹¤í–‰ê³¼ ì¿¨ë‹¤ìš´ ì²˜ë¦¬ë¥¼ ì‹œë„í•©ë‹ˆë‹¤.
+    /// </summary>
     private void TryUseSkill(string skillId, int slotIndex)
     {
         var skill = SkillFactory.GetSkill(playerClass, skillId);
@@ -180,7 +208,7 @@ public class SkillManager : MonoBehaviour
 
         if (skillCooldowns.TryGetValue(skill.Id, out float next) && Time.time < next)
         {
-            Debug.Log($"{skill.Name} ½ºÅ³ ÄğÅ¸ÀÓ Áß...");
+            Debug.Log($"{skill.Name} ì¿¨ë‹¤ìš´ ì¤‘ì…ë‹ˆë‹¤...");
             return;
         }
 
@@ -192,9 +220,8 @@ public class SkillManager : MonoBehaviour
             if (slot != null && slot.cooldownUI != null)
                 slot.cooldownUI.StartCooldown(skill.Cooldown);
             else
-                Debug.LogWarning($"[SkillManager] ½½·Ô {slotIndex}¿¡ cooldownUI°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning($"[SkillManager] ìŠ¬ë¡¯ {slotIndex}ì— cooldownUIê°€ ì—†ìŠµë‹ˆë‹¤.");
 
-            // ¡Ú »ç¿ë ÈÄ¿¡µµ ÇöÀç Á¾Á·À¸·Î ÀúÀå
             QuickBarPersistence.SaveForRace(CurrentRace, quickBar.ToSaveData());
         }
     }
