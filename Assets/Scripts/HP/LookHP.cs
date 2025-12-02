@@ -2,19 +2,24 @@ using UnityEngine;
 
 public class LookHP : MonoBehaviour
 {
-    private Camera _cam; // Ä«¸Ş¶ó ÂüÁ¶ (¸ŞÀÎ Ä«¸Ş¶ó)
+    private Camera _cam; // HP UIê°€ ë°”ë¼ë³¼ ì¹´ë©”ë¼
 
+    /// <summary>
+    /// ë©”ì¸ ì¹´ë©”ë¼ë¥¼ ì°¾ì•„ HP UIê°€ ë”°ë¼ë³¼ ëŒ€ìƒì„ ì„¤ì •í•œë‹¤.
+    /// </summary>
     void Awake()
     {
-        _cam = Camera.main; // ¾À¿¡¼­ MainCamera ÀÚµ¿ ÂüÁ¶
+        _cam = Camera.main; // ê¸°ë³¸ ë©”ì¸ ì¹´ë©”ë¼ ì°¸ì¡°
     }
 
+    /// <summary>
+    /// HP UIë¥¼ í•­ìƒ ì¹´ë©”ë¼ë¥¼ í–¥í•˜ë„ë¡ íšŒì „ì‹œí‚¨ë‹¤.
+    /// </summary>
     void LateUpdate()
     {
-        if (_cam == null) return; // Ä«¸Ş¶ó°¡ ¾øÀ¸¸é ¾Æ¹«°Íµµ ÇÏÁö ¾ÊÀ½
+        if (_cam == null) return; // ì¹´ë©”ë¼ê°€ ì—†ìœ¼ë©´ ì²˜ë¦¬í•˜ì§€ ì•ŠìŒ
 
-        // UI³ª ¿ÀºêÁ§Æ®°¡ Ä«¸Ş¶ó¸¦ Ç×»ó ¹Ù¶óº¸µµ·Ï È¸Àü Àû¿ë
-        // ÁÖ·Î HP ¹Ù, ÀÌ¸§Ç¥, ¾ÆÀÌÅÛ ÅøÆÁ µî¿¡ »ç¿ë
+        // UIê°€ ì¹´ë©”ë¼ë¥¼ ì •ë©´ìœ¼ë¡œ ë°”ë¼ë³´ë„ë¡ íšŒì „ì„ ë§ì¶˜ë‹¤
         transform.rotation = _cam.transform.rotation;
     }
 }
