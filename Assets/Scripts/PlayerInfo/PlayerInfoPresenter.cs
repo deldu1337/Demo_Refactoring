@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// 플레이어 정보 UI의 열기와 닫기, 스탯 표시를 담당하는 프리젠터입니다.
+/// </summary>
 public class PlayerInfoPresenter : MonoBehaviour
 {
     [SerializeField] private GameObject playerInfoUI;
@@ -12,23 +15,26 @@ public class PlayerInfoPresenter : MonoBehaviour
     [SerializeField] private GameObject equipmentUI;
     [SerializeField] private bool forceCloseOnStart = true;
 
-    // ★ 추가: 스탯 텍스트 레퍼런스
-    [SerializeField] private Text statsLabelText;    // ← 추가: 라벨 열
-    [SerializeField] private Text statsValueText;    // ← 추가: 값 열(오른쪽 정렬)
+    [SerializeField] private Text statsLabelText;
+    [SerializeField] private Text statsValueText;
 
     private Button InfoButton;
     private Image image;
     private Image playerInfoImage;
     private Sprite[] sprites;
-    private RectTransform playerInfoRect;   // ★ 실제로 움직이는 RT
-    private RectTransform equipmentRect;    // ★ 실제로 움직이는 RT
+    private RectTransform playerInfoRect;   // 드래그로 실제 위치가 이동하는 RectTransform입니다.
+    private RectTransform equipmentRect;    // 장비 창에서 실제 이동하는 RectTransform입니다.
     private bool isOpen = false;
     public bool IsOpen => isOpen;
 
-    private Coroutine initRoutine;                // ★ 추가: 초기화 코루틴
-    private PlayerStatsManager ps;                // ★ 추가: 캐시
+    private Coroutine initRoutine;          // 초기화 흐름을 제어하는 코루틴입니다.
+    private PlayerStatsManager ps;          // 플레이어 스탯 매니저를 캐싱해 둡니다.
 
-    // 비활성 포함 탐색 (이름으로)
+    /// <summary>
+    /// 비활성 객체를 포함하여 이름이 일치하는 게임 오브젝트를 찾습니다.
+    /// </summary>
+    /// <param name="name">검색할 오브젝트 이름입니다.</param>
+    /// <returns>조건에 맞는 게임 오브젝트입니다. 없으면 null을 반환합니다.</returns>
     private static GameObject FindIncludingInactive(string name)
     {
         var all = Resources.FindObjectsOfTypeAll<GameObject>();
@@ -41,24 +47,22 @@ public class PlayerInfoPresenter : MonoBehaviour
         return null;
     }
 
-    // 루트에서 실제 드래그로 이동하는 "창 패널" RT 찾기
-    // 규칙: 루트 하위에서 UIDragHandler를 찾고, 그 핸들러의 parent RT를 반환. 없으면 루트의 RT.
-    // ★ 공통: 실제로 움직일 "창 루트" RT를 얻는다.
-    // 규칙:
-    //  1) root 하위에서 이름이 "HeadPanel"인 트랜스폼을 찾고 -> 그 parent RT를 창 루트로 사용
-    //  2) 없으면 root의 RectTransform 사용
-    //  3) 마지막으로 Canvas의 '직계 자식' 레벨까지 타고 올라가 통일
+    /// <summary>
+    /// 창 루트에서 실제로 이동할 RectTransform을 찾아 반환합니다.
+    /// </summary>
+    /// <param name="root">창 루트 게임 오브젝트입니다.</param>
+    /// <returns>이동 가능한 RectTransform입니다.</returns>
     private static RectTransform GetMovableWindowRT(GameObject root)
     {
         if (!root) return null;
 
         RectTransform cand = null;
 
-        // 1) HeadPanel 우선
+        // HeadPanel을 우선적으로 찾습니다.
         var head = root.transform.Find("HeadPanel");
         if (head == null)
         {
-            // 혹시 더 깊이 있을 수 있으니 전체 탐색
+            // 더 깊은 단계에 있을 가능성을 고려해 전체에서 탐색합니다.
             foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
             {
                 if (t.name == "HeadPanel") { head = t; break; }
@@ -67,57 +71,68 @@ public class PlayerInfoPresenter : MonoBehaviour
 
         if (head && head.parent is RectTransform headParentRT)
         {
-            cand = headParentRT; // HeadPanel의 부모가 '창 루트'
+            cand = headParentRT; // HeadPanel의 부모를 창 루트로 사용합니다.
         }
         else
         {
-            // 2) fallback: root의 RT
+            // HeadPanel이 없으면 루트의 RectTransform을 사용합니다.
             cand = root.GetComponent<RectTransform>();
         }
 
         if (!cand) return null;
 
-        // 3) Canvas 직계 자식 레벨까지 끌어올리기(양쪽 패널을 동일 레벨로 통일)
+        // Canvas의 직계 자식 레벨까지 거슬러 올라가 동일한 기준으로 맞춥니다.
         RectTransform cur = cand;
         while (cur && cur.parent is RectTransform prt)
         {
-            if (prt.GetComponent<Canvas>() != null) break; // prt가 Canvas → cur는 Canvas 직계
+            if (prt.GetComponent<Canvas>() != null) break; // 부모가 Canvas라면 현재가 직계입니다.
             cur = prt;
         }
         return cur;
     }
 
+    /// <summary>
+    /// 활성화될 때 초기화가 완료될 때까지 기다린 후 이벤트를 구독합니다.
+    /// </summary>
     void OnEnable()
     {
-        // ★ 플레이어/매니저 준비될 때까지 대기 후 이벤트 구독
         initRoutine = StartCoroutine(InitializeWhenReady());
     }
 
+    /// <summary>
+    /// 비활성화될 때 초기화 코루틴을 중단하고 이벤트를 해제합니다.
+    /// </summary>
     void OnDisable()
     {
         if (initRoutine != null) { StopCoroutine(initRoutine); initRoutine = null; }
         UnsubscribeStatEvents();
     }
 
-    private IEnumerator InitializeWhenReady()     // ★ 추가
+    /// <summary>
+    /// 필요한 매니저와 UI가 준비될 때까지 기다린 뒤 이벤트를 설정합니다.
+    /// </summary>
+    private IEnumerator InitializeWhenReady()
     {
-        // PlayerStatsManager.Instance 대기
+        // PlayerStatsManager가 준비될 때까지 대기합니다.
         while (PlayerStatsManager.Instance == null) yield return null;
         ps = PlayerStatsManager.Instance;
 
-        // UI 참조가 아직 null이면 한 프레임 정도 더 대기
+        // UI 참조가 비어 있으면 한 프레임 더 대기하여 찾습니다.
         if (playerInfoUI == null)
         {
             yield return null;
             playerInfoUI = GameObject.Find("PlayerInfoUI") ?? playerInfoUI;
         }
 
-        // 이벤트 구독 & 첫 갱신
+        // 이벤트를 구독하고 첫 스탯을 갱신합니다.
         SubscribeStatEvents();
         RefreshStatsText();
     }
 
-    private void SubscribeStatEvents()            // ★ 추가
+    /// <summary>
+    /// 플레이어 스탯 관련 이벤트를 구독합니다.
+    /// </summary>
+    private void SubscribeStatEvents()
     {
         if (ps == null) return;
 
@@ -132,7 +147,10 @@ public class PlayerInfoPresenter : MonoBehaviour
         ps.OnLevelUp += OnLevelUp;
     }
 
-    private void UnsubscribeStatEvents()          // ★ 추가
+    /// <summary>
+    /// 플레이어 스탯 관련 이벤트 구독을 해제합니다.
+    /// </summary>
+    private void UnsubscribeStatEvents()
     {
         if (ps == null) return;
 
@@ -142,15 +160,29 @@ public class PlayerInfoPresenter : MonoBehaviour
         ps.OnLevelUp -= OnLevelUp;
     }
 
-    // ===== 이벤트 핸들러: 전부 텍스트 리프레시로 연결 =====
+    /// <summary>
+    /// HP 변경 시 스탯 텍스트를 갱신합니다.
+    /// </summary>
     private void OnHPChanged(float cur, float max) => RefreshStatsText();
+
+    /// <summary>
+    /// MP 변경 시 스탯 텍스트를 갱신합니다.
+    /// </summary>
     private void OnMPChanged(float cur, float max) => RefreshStatsText();
+
+    /// <summary>
+    /// 경험치 변경 시 스탯 텍스트를 갱신합니다.
+    /// </summary>
     private void OnExpChanged(int level, float exp) => RefreshStatsText();
+
+    /// <summary>
+    /// 레벨업 시 스탯 텍스트를 갱신합니다.
+    /// </summary>
     private void OnLevelUp(int level) => RefreshStatsText();
 
-    // ===== Start/Update/Toggle/Open/Close 등 기존 로직은 그대로 두고,
-    //      Open()에서 한 번 더 RefreshStatsText() 호출하는 정도만 유지 =====
-
+    /// <summary>
+    /// 필요한 UI 요소를 찾고 초기 상태를 설정합니다.
+    /// </summary>
     void Start()
     {
         if (!playerInfoUI) playerInfoUI = GameObject.Find("PlayerInfoUI") ?? FindIncludingInactive("PlayerInfoUI");
@@ -161,7 +193,7 @@ public class PlayerInfoPresenter : MonoBehaviour
         statsLabelText = playerInfoUI.transform.GetChild(7).transform.GetChild(0).GetComponent<Text>();
         statsValueText = playerInfoUI.transform.GetChild(7).transform.GetChild(1).GetComponent<Text>();
 
-        // 🔸 값 텍스트를 우측 정렬
+        // 값 텍스트가 우측 정렬되도록 설정합니다.
         if (statsValueText)
         {
             statsValueText.alignment = TextAnchor.UpperRight;
@@ -203,7 +235,7 @@ public class PlayerInfoPresenter : MonoBehaviour
             return;
         }
 
-        // 실제 움직이는 RT로 세팅
+        // 실제로 이동하는 RectTransform을 설정합니다.
         playerInfoRect = GetMovableWindowRT(playerInfoUI);
         equipmentRect = GetMovableWindowRT(equipmentUI);
 
@@ -222,11 +254,14 @@ public class PlayerInfoPresenter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 입력을 감지하여 창 토글과 배치 동기화를 수행합니다.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            // 전환 직전: 장비창이 켜져 있으면, 장비창의 "움직이는 RT" 기준으로 스냅샷 저장 + 레이아웃 복사
+            // 장비 창이 켜져 있으면 이동 가능한 RectTransform을 기준으로 스냅샷을 저장하고 복사합니다.
             var eqPresenter = FindAnyObjectByType<EquipmentPresenter>();
             bool equipWasOpen = eqPresenter && eqPresenter.IsOpen;
 
@@ -245,13 +280,18 @@ public class PlayerInfoPresenter : MonoBehaviour
             {
                 eqPresenter.CloseEquipmentPublic();
 
-                // (선택) 현재 PI 위치를 장비쪽에도 반영해두고 닫기
+                // PlayerInfo 위치를 장비 창에도 반영한 뒤 닫습니다.
                 if (playerInfoRect && equipmentRect)
                     UIPanelSwitcher.CopyLayoutRT(playerInfoRect, equipmentRect);
             }
         }
     }
 
+    /// <summary>
+    /// 변환 경로를 문자열로 반환합니다.
+    /// </summary>
+    /// <param name="t">경로를 구할 트랜스폼입니다.</param>
+    /// <returns>루트부터의 경로 문자열입니다.</returns>
     private static string PathOf(Transform t)
     {
         if (!t) return "<null>";
@@ -264,14 +304,19 @@ public class PlayerInfoPresenter : MonoBehaviour
         return sb.ToString();
     }
 
+    /// <summary>
+    /// 열림 상태에 따라 창을 열거나 닫습니다.
+    /// </summary>
     public void Toggle() { if (isOpen) Close(); else Open(); }
 
-    // PlayerInfoPresenter
+    /// <summary>
+    /// 플레이어 정보 창을 엽니다.
+    /// </summary>
     public void Open()
     {
         if (isOpen || !playerInfoUI) return;
 
-        // 1차 적용(먹을 때도 있음)
+        // 기존 스냅샷이 있으면 먼저 적용합니다.
         if (playerInfoRect && UIPanelSwitcher.HasSnapshot)
         {
             Debug.Log($"[SNAP] Load  to: {PathOf(playerInfoRect)}");
@@ -282,30 +327,37 @@ public class PlayerInfoPresenter : MonoBehaviour
         isOpen = true;
         UIEscapeStack.Instance.Push("playerinfo", Close, () => isOpen);
 
-        // ★ 추가: 열릴 때 최신 스탯 갱신
+        // 창이 열릴 때 최신 스탯을 갱신합니다.
         RefreshStatsText();
 
-        // ★ 핵심: 활성화로 인한 레이아웃 리빌드가 끝난 "다음 프레임"에 다시 복원
+        // 활성화로 인한 레이아웃 갱신 후 다음 프레임에 스냅샷을 다시 적용합니다.
         if (playerInfoRect && UIPanelSwitcher.HasSnapshot)
             StartCoroutine(ReapplySnapshotNextFrame(playerInfoRect));
     }
 
+    /// <summary>
+    /// 다음 프레임에 스냅샷을 재적용하여 위치를 보정합니다.
+    /// </summary>
+    /// <param name="rt">위치를 복원할 RectTransform입니다.</param>
     private System.Collections.IEnumerator ReapplySnapshotNextFrame(RectTransform rt)
     {
-        yield return null; // 한 프레임 대기 (SetActive → 부모 레이아웃 리빌드 끝난 뒤)
+        yield return null; // SetActive 호출 이후 부모 레이아웃 리빌드가 끝난 다음 프레임까지 대기합니다.
         Debug.Log($"[SNAP] Load  to: {PathOf(playerInfoRect)}");
-        UIPanelSwitcher.LoadSnapshot(rt);           // 스냅샷 재적용
+        UIPanelSwitcher.LoadSnapshot(rt);           // 스냅샷을 다시 적용합니다.
         Canvas.ForceUpdateCanvases();
         var prt = rt.parent as RectTransform;
         if (prt) UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(prt);
     }
 
 
+    /// <summary>
+    /// 플레이어 정보 창을 닫습니다.
+    /// </summary>
     public void Close()
     {
         if (!isOpen || !playerInfoUI) return;
 
-        // 닫히기 직전 현재 위치 스냅샷 저장 (움직이는 RT)
+        // 닫히기 직전에 현재 위치를 스냅샷으로 저장합니다.
         if (playerInfoRect)
             UIPanelSwitcher.SaveSnapshot(playerInfoRect);
 
@@ -314,6 +366,11 @@ public class PlayerInfoPresenter : MonoBehaviour
         UIEscapeStack.Instance.Remove("playerinfo");
     }
 
+    /// <summary>
+    /// 종족 코드에 맞는 표시 이름을 반환합니다.
+    /// </summary>
+    /// <param name="race">종족 코드 문자열입니다.</param>
+    /// <returns>사용자에게 표시할 종족명입니다.</returns>
     private static string GetRaceDisplayName(string race)
     {
         if (string.IsNullOrEmpty(race)) return "인간";
@@ -331,14 +388,16 @@ public class PlayerInfoPresenter : MonoBehaviour
         }
     }
 
-    // ★ 추가: 스탯 텍스트 갱신 함수 (외부에서도 호출 가능)
+    /// <summary>
+    /// 스탯 정보를 UI에 표시합니다.
+    /// </summary>
     public void RefreshStatsText()
     {
         var ps = PlayerStatsManager.Instance;
         var d = ps != null ? ps.Data : null;
         var displayRace = GetRaceDisplayName(d.Race);
 
-        // 폴백: 데이터 없으면 기존 동작
+        // 데이터가 없으면 내용을 비운 채로 반환합니다.
         if (d == null)
         {
             if (statsLabelText) statsLabelText.text = "";
@@ -346,10 +405,10 @@ public class PlayerInfoPresenter : MonoBehaviour
             return;
         }
 
-        // 🔸 두 열이 존재하면 라벨/값을 분리해서 출력 (값은 오른쪽 정렬)
+        // 두 개의 열이 모두 있으면 라벨과 값을 분리하여 출력합니다.
         if (statsLabelText && statsValueText)
         {
-            // 라벨 빌드 (왼쪽)
+            // 라벨 열을 구성합니다.
             var labels = new System.Text.StringBuilder();
             labels.AppendLine("종족");
             labels.AppendLine("레벨");
@@ -364,7 +423,7 @@ public class PlayerInfoPresenter : MonoBehaviour
             labels.AppendLine("치명타 확률(CC)");
             labels.AppendLine("치명타 데미지(CD)");
 
-            // 값 빌드 (오른쪽 정렬은 Text 설정으로 처리)
+            // 값 열을 구성합니다. 정렬은 텍스트 설정으로 처리합니다.
             var values = new System.Text.StringBuilder();
             values.AppendLine($"{displayRace}");
             values.AppendLine($"{d.Level}");
