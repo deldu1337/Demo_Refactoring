@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.EventSystems; // Ãß°¡ ÇÊ¿ä
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {
-    enum RMBMode { None, Move, ChaseEnemy }   // ¿ìÅ¬¸¯ ÀÇµµ
-    private RMBMode rmbMode = RMBMode.None;   // ÇöÀç ÀÇµµ
-    private EnemyStatsManager chasedEnemy;     // ÃßÀû ´ë»ó(Àû)
+    private enum RMBMode { None, Move, ChaseEnemy }
+    private RMBMode rmbMode = RMBMode.None;
+    private EnemyStatsManager chasedEnemy;
 
     [SerializeField] private float baseRotationSpeed = 10f;
 
@@ -19,28 +19,32 @@ public class PlayerMove : MonoBehaviour
 
     private LayerMask wallLayer;
 
-    // Ãß°¡: ÀÌµ¿ Àá±İ ÇÃ·¡±×
     private bool movementLocked = false;
 
+    /// <summary>
+    /// ì´ë™ì— í•„ìš”í•œ êµ¬ì„± ìš”ì†Œë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         animationComponent = GetComponent<Animation>();
-        stats = PlayerStatsManager.Instance; // ¡ç ½Ì±ÛÅæ
+        stats = PlayerStatsManager.Instance;
 
         if (animationComponent == null)
-            Debug.LogError("Animation ÄÄÆ÷³ÍÆ®°¡ ¾ø½À´Ï´Ù!");
+            Debug.LogError("Animation ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
         if (stats == null)
-            Debug.LogError("PlayerStatsManager ½Ì±ÛÅæÀÌ ¾ø½À´Ï´Ù!");
+            Debug.LogError("PlayerStatsManagerë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
 
         wallLayer = LayerMask.GetMask("Wall");
     }
 
+    /// <summary>
+    /// ë§¤ í”„ë ˆì„ë§ˆë‹¤ ì´ë™ ì…ë ¥ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     void Update()
     {
-        // Àá±İ Áß¿¡´Â ÀÔ·Â ÀÚÃ¼¸¦ ¹ŞÁö ¾ÊÀ½
         if (!movementLocked)
             HandleMovementInput();
 
@@ -51,12 +55,18 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ë¬¼ë¦¬ ì—…ë°ì´íŠ¸ì—ì„œ ì‹¤ì œ ì´ë™ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     void FixedUpdate()
     {
-        // Àá±İ Áß¿¡´Â ½ÇÁ¦ ÀÌµ¿µµ ¼öÇàÇÏÁö ¾ÊÀ½
         if (isMoving && !movementLocked)
             MovePlayer();
     }
+
+    /// <summary>
+    /// ìš°í´ë¦­ ì…ë ¥ì„ ê°ì§€í•˜ì—¬ ì´ë™ ë˜ëŠ” ì¶”ì  ë™ì‘ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     void HandleMovementInput()
     {
         if (movementLocked) return;
@@ -65,27 +75,24 @@ public class PlayerMove : MonoBehaviour
 
         var attack = GetComponent<PlayerAttacks>();
 
-        // =======================
-        // 1) ¿ìÅ¬¸¯ "ÇÑ ¹ø" ´­·¶À» ¶§ ¡æ ÀÇµµ °áÁ¤
-        // =======================
+        // 1) ìš°í´ë¦­ì„ ëˆŒë €ì„ ë•Œ ì´ë™ ë˜ëŠ” ì¶”ì ì„ ê²°ì •í•©ë‹ˆë‹¤.
         if (Input.GetMouseButtonDown(1))
         {
             chasedEnemy = null;
 
             if (attack != null && attack.TryPickEnemyUnderMouse(out var clicked))
             {
-                // ÀûÀ» ´­·¶À½
                 if (attack.IsInAttackRange(clicked))
                 {
-                    // ±ÙÁ¢ »ç°Å¸® ¡æ Áï½Ã °ø°İ, ÀÌµ¿ X
+                    // ì‚¬ê±°ë¦¬ ì•ˆì—ì„œëŠ” ì¦‰ì‹œ ê³µê²© ìƒíƒœë¡œ ì „í™˜í•©ë‹ˆë‹¤.
                     attack.SetTarget(clicked);
                     attack.ChangeState(new AttackingStates());
                     isMoving = false;
-                    rmbMode = RMBMode.None;   // µå·¡±× µ¿¾È ÀÌµ¿ °»½Å ¾ÈÇÔ
+                    rmbMode = RMBMode.None;
                 }
                 else
                 {
-                    // »ç°Å¸® ¹Û ¡æ Àû¿¡°Ô "Ãß°İ ÀÌµ¿" ÀÇµµ
+                    // ì‚¬ê±°ë¦¬ ë°–ì—ì„œëŠ” ì¶”ì  ëª¨ë“œë¡œ ì „í™˜í•©ë‹ˆë‹¤.
                     attack.SetTarget(clicked);
                     chasedEnemy = clicked;
                     rmbMode = RMBMode.ChaseEnemy;
@@ -96,7 +103,7 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
-                // ¶¥À» ´­·¶À½ ¡æ "ÀÌµ¿" ÀÇµµ
+                // ì ì´ ì•„ë‹Œ ì§€ì ì„ í´ë¦­í•˜ë©´ í•´ë‹¹ ìœ„ì¹˜ë¡œ ì´ë™í•©ë‹ˆë‹¤.
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
@@ -115,76 +122,65 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        // =======================
-        // 2) ¿ìÅ¬¸¯ "´©¸£´Â µ¿¾È" ¡æ ÀÇµµ¿¡ µû¶ó °è¼Ó °»½Å
-        // =======================
+        // 2) ìš°í´ë¦­ì„ ìœ ì§€í•˜ëŠ” ë™ì•ˆ ëª©í‘œë¥¼ ê°±ì‹ í•©ë‹ˆë‹¤.
         if (Input.GetMouseButton(1))
         {
             switch (rmbMode)
             {
                 case RMBMode.Move:
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit holdHit))
                     {
-                        // Ä¿¼­°¡ Àû À§¿¡ ÀÖ¾îµµ 'ÀÌµ¿' ÀÇµµÀÌ¸é °è¼Ó °»½Å
+                        targetPosition = holdHit.point;
+                        targetPosition.y = transform.position.y;
+                        isMoving = true;
+                    }
+                }
+                break;
+
+                case RMBMode.ChaseEnemy:
+                {
+                    if (chasedEnemy != null && chasedEnemy.CurrentHP > 0)
+                    {
+                        targetPosition = chasedEnemy.transform.position;
+                        targetPosition.y = transform.position.y;
+                        isMoving = true;
+
+                        if (attack != null && attack.IsInAttackRange(chasedEnemy))
+                        {
+                            attack.ChangeState(new AttackingStates());
+                            rmbMode = RMBMode.None;
+                            isMoving = false;
+                        }
+                    }
+                    else
+                    {
                         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                         if (Physics.Raycast(ray, out RaycastHit holdHit))
                         {
+                            rmbMode = RMBMode.Move;
                             targetPosition = holdHit.point;
                             targetPosition.y = transform.position.y;
                             isMoving = true;
                         }
                     }
-                    break;
-
-                case RMBMode.ChaseEnemy:
-                    {
-                        // Àû Ãß°İ: ´ë»óÀÌ »ì¾ÆÀÖÀ¸¸é ´ë»ó À§Ä¡·Î ÀÌµ¿À» °»½Å
-                        if (chasedEnemy != null && chasedEnemy.CurrentHP > 0)
-                        {
-                            targetPosition = chasedEnemy.transform.position;
-                            targetPosition.y = transform.position.y;
-                            isMoving = true;
-
-                            // »ç°Å¸® µé¾î¿À¸é »óÅÂ ÀüÈ¯(°ø°İ ½ÃÀÛ)
-                            if (attack != null && attack.IsInAttackRange(chasedEnemy))
-                            {
-                                attack.ChangeState(new AttackingStates());
-                                rmbMode = RMBMode.None; // ´õ ÀÌ»óÀÇ ÀÌµ¿ °»½ÅÀº Áß´Ü
-                                isMoving = false;
-                            }
-                        }
-                        else
-                        {
-                            // ÃßÀû ´ë»óÀÌ »ç¶óÁö¸é ÀÏ¹İ ÀÌµ¿À¸·Î Æú¹é
-                            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                            if (Physics.Raycast(ray, out RaycastHit holdHit))
-                            {
-                                rmbMode = RMBMode.Move;
-                                targetPosition = holdHit.point;
-                                targetPosition.y = transform.position.y;
-                                isMoving = true;
-                            }
-                        }
-                    }
-                    break;
+                }
+                break;
 
                 case RMBMode.None:
-                    // ÀÇµµ°¡ '±ÙÁ¢ Áï½Ã°ø°İ'ÀÌ´ø °æ¿ì: µå·¡±× Áß ÀÌµ¿ °»½Å ¾øÀ½
                     break;
             }
         }
 
-        // =======================
-        // 3) ¿ìÅ¬¸¯ ¶ÃÀ» ¶§ ¡æ ÀÇµµ Á¾·á
-        // =======================
+        // 3) ìš°í´ë¦­ì„ ë–¼ë©´ ì¶”ì  ìƒíƒœë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
         if (Input.GetMouseButtonUp(1))
         {
             rmbMode = RMBMode.None;
             chasedEnemy = null;
         }
 
-        // =======================
-        // ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç Ã³¸®
-        // =======================
+        // ì´ë™ ì¤‘ì—ëŠ” ë‹¬ë¦¬ê¸° ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒí•©ë‹ˆë‹¤.
         if (isMoving && animationComponent != null)
         {
             if (!animationComponent.IsPlaying("Attack1H (ID 17 variation 0)") &&
@@ -195,7 +191,9 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// ëª©í‘œ ìœ„ì¹˜ë¥¼ í–¥í•´ ì´ë™í•˜ê³  íšŒì „í•©ë‹ˆë‹¤.
+    /// </summary>
     void MovePlayer()
     {
         float moveSpeed = stats.Data.Dex;
@@ -236,18 +234,24 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    // === ¿ÜºÎ Á¢±Ù¿ë ===
+    /// <summary>
+    /// ì´ë™ ì—¬ë¶€ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool IsMoving() => isMoving;
+    /// <summary>
+    /// ì• ë‹ˆë©”ì´ì…˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public Animation GetAnimation() => animationComponent;
 
-    // Ãß°¡: ½ºÅ³ µîÀÌ È£ÃâÇÏ´Â ÀÌµ¿ Àá±İ Åä±Û
+    /// <summary>
+    /// ì™¸ë¶€ì—ì„œ ì´ë™ì„ ì ê·¸ê±°ë‚˜ í•´ì œí•˜ë„ë¡ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public void SetMovementLocked(bool locked)
     {
         movementLocked = locked;
 
         if (locked)
         {
-            // Áï½Ã ÀÌµ¿ Á¤Áö (¹°¸® ¼Óµµµµ 0À¸·Î)
             isMoving = false;
             if (rb != null)
             {
@@ -255,9 +259,10 @@ public class PlayerMove : MonoBehaviour
                 rb.angularVelocity = Vector3.zero;
             }
         }
-        // Àá±İ ÇØÁ¦ ½Ã¿£ ÀÔ·Â/ÀÌµ¿ ·çÆ¾ÀÌ ÀÚ¿¬½º·´°Ô Àç°³µË´Ï´Ù.
     }
 
-    // (¼±ÅÃ) ¿ÜºÎ¿¡¼­ »óÅÂ È®ÀÎÇÏ°í ½Í´Ù¸é:
+    /// <summary>
+    /// ì´ë™ ì ê¸ˆ ì—¬ë¶€ë¥¼ í™•ì¸í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool IsMovementLocked() => movementLocked;
 }

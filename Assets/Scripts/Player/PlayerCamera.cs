@@ -1,25 +1,28 @@
 using UnityEngine;
 
+/// <summary>
+/// í”Œë ˆì´ì–´ë¥¼ ë”°ë¼ë‹¤ë‹ˆë©° ìƒí™©ì— ë§ê²Œ ì¹´ë©”ë¼ ì˜¤í”„ì…‹ì„ ì¡°ì •í•©ë‹ˆë‹¤.
+/// </summary>
 public class PlayerCamera : MonoBehaviour
 {
     [Header("Offsets")]
-    [Tooltip("±âº» Ä«¸Ş¶ó ¿ÀÇÁ¼Â(ÇÃ·¹ÀÌ¾î ±âÁØ). ½ÃÀÛ ½Ã ÇöÀç Ä«¸Ş¶ó ¿ÀÇÁ¼Â »ç¿ë ¿É¼ÇÀÌ ÄÑÁ®ÀÖÀ¸¸é ¹«½ÃµË´Ï´Ù.")]
+    [Tooltip("ê¸°ë³¸ ì¹´ë©”ë¼ ì˜¤í”„ì…‹ì…ë‹ˆë‹¤. ì´ ê°’ì´ í˜„ì¬ ìœ„ì¹˜ ê¸°ì¤€ìœ¼ë¡œ ì ìš©ë©ë‹ˆë‹¤.")]
     public Vector3 baseOffset = new Vector3(-9f, 16.5f, -9f);
 
-    [Tooltip("°ÔÀÓ ½ÃÀÛ ½Ã (ÇöÀç Ä«¸Ş¶ó À§Ä¡ - ÇÃ·¹ÀÌ¾î À§Ä¡)·Î ¿ÀÇÁ¼Â ÀÚµ¿ ¼³Á¤")]
+    [Tooltip("ì‹œì‘ ì‹œì ì— í˜„ì¬ ì¹´ë©”ë¼ ì˜¤í”„ì…‹ì„ ì‚¬ìš©í•˜ë„ë¡ ì„¤ì •í•©ë‹ˆë‹¤.")]
     public bool useCurrentCameraOffsetOnStart = false;
 
-    [Tooltip("º¸½º ±ÙÁ¢½Ã È®´ëµÉ(¸Ö¾îÁú) ¿ÀÇÁ¼Â ¹è¼ö")]
+    [Tooltip("ë³´ìŠ¤ì—ê²Œ ê°€ê¹Œì›Œì§ˆ ë•Œ ì–¼ë§ˆë‚˜ ë©€ë¦¬ ì¹´ë©”ë¼ë¥¼ ëº„ì§€ ê²°ì •í•˜ëŠ” ë°°ìˆ˜ì…ë‹ˆë‹¤.")]
     public float zoomOutMultiplier = 1.7f;
 
     [Header("Boss Zoom")]
-    [Tooltip("º¸½º¿Í ÀÌ °Å¸® ÀÌ³»·Î Á¢±ÙÇÏ¸é ÁÜ¾Æ¿ô ½ÃÀÛ")]
+    [Tooltip("ë³´ìŠ¤ë¡œ ì¸ì‹í•  ê±°ë¦¬ì…ë‹ˆë‹¤. ì´ ë²”ìœ„ ì•ˆì—ì„œëŠ” ì¹´ë©”ë¼ë¥¼ ë©€ë¦¬í•©ë‹ˆë‹¤.")]
     public float bossTriggerRadius = 40f;
 
-    [Tooltip("¿ÀÇÁ¼Â ÀüÈ¯ ¼Óµµ(ÃÊ´ç). °ªÀÌ Å¬¼ö·Ï ºü¸£°Ô ÀüÈ¯")]
+    [Tooltip("ì¹´ë©”ë¼ ì˜¤í”„ì…‹ì„ ë³´ê°„í•  ë•Œ ì‚¬ìš©í•  ì†ë„ì…ë‹ˆë‹¤.")]
     public float zoomLerpSpeed = 6f;
 
-    [Tooltip("º¸½º Å½»ö¿¡ »ç¿ëÇÒ ÅÂ±×")]
+    [Tooltip("ë³´ìŠ¤ë¥¼ íŒë³„í•  ë•Œ ì‚¬ìš©í•  íƒœê·¸ì…ë‹ˆë‹¤.")]
     public string bossTag = "Boss";
 
     [Header("Rotation (optional)")]
@@ -29,14 +32,20 @@ public class PlayerCamera : MonoBehaviour
     private Transform camT;
     private Transform nearestBoss;
 
-    private Vector3 currentOffset; // Ä«¸Ş¶ó°¡ ¸Å ÇÁ·¹ÀÓ Áï½Ã »ç¿ëÇÒ ¿ÀÇÁ¼Â(Áö¿¬ ¾øÀ½)
+    private Vector3 currentOffset;
 
+    /// <summary>
+    /// ë©”ì¸ ì¹´ë©”ë¼ ì°¸ì¡°ë¥¼ ì¤€ë¹„í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         camT = Camera.main ? Camera.main.transform : null;
-        if (!camT) Debug.LogWarning("[PlayerCamera] Main Camera¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.");
+        if (!camT) Debug.LogWarning("[PlayerCamera] ë©”ì¸ ì¹´ë©”ë¼ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
     }
 
+    /// <summary>
+    /// ì‹œì‘ ì‹œ ì¹´ë©”ë¼ ìœ„ì¹˜ì™€ íšŒì „ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     void Start()
     {
         if (!camT)
@@ -45,45 +54,44 @@ public class PlayerCamera : MonoBehaviour
             if (main) camT = main.transform;
         }
 
-        // ½ÃÀÛ ½Ã ±âÁ¸ ½ºÅ©¸³Æ®Ã³·³ ÇöÀç Ä«¸Ş¶ó ±âÁØ ¿ÀÇÁ¼Â °è»ê
         if (camT && useCurrentCameraOffsetOnStart)
             baseOffset = camT.position - transform.position;
 
         currentOffset = baseOffset;
 
-        // Ã¹ ÇÁ·¹ÀÓºÎÅÍ Á¤È®È÷ ºÙÀÌ±â
         if (camT) camT.position = transform.position + currentOffset;
         if (camT && lockRotation) camT.rotation = Quaternion.Euler(lockedEuler);
     }
 
-    void FixedUpdate() // ÇÃ·¹ÀÌ¾î ÀÌµ¿ ÈÄ Ä«¸Ş¶ó µ¤¾î¾²±â
+    /// <summary>
+    /// ë¬¼ë¦¬ í”„ë ˆì„ë§ˆë‹¤ ì¹´ë©”ë¼ ìœ„ì¹˜ì™€ íšŒì „ì„ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
+    void FixedUpdate()
     {
         if (!camT) return;
 
-        // 1) °¡Àå °¡±î¿î º¸½º Ã£±â
         UpdateNearestBoss();
 
-        // 2) ¸ñÇ¥ ¿ÀÇÁ¼Â °è»ê(º¸½º °Å¸® ±â¹İ)
         Vector3 targetOffset = baseOffset;
         if (nearestBoss)
         {
             float d = Vector3.Distance(transform.position, nearestBoss.position);
-            float t = 1f - Mathf.Clamp01(d / bossTriggerRadius); // 0(¸Ö)~1(°¡±õ)
+            float t = 1f - Mathf.Clamp01(d / bossTriggerRadius);
             targetOffset = Vector3.Lerp(baseOffset, baseOffset * zoomOutMultiplier, t);
         }
 
-        // 3) ¿ÀÇÁ¼Â¸¸ ºÎµå·´°Ô º¯°æ (Ä«¸Ş¶ó À§Ä¡ ÀÚÃ¼´Â Áï½Ã Àû¿ë)
-        //    Áö¼öÇü º¸°£: ÇÁ·¹ÀÓ·¹ÀÌÆ®¿Í ¹«°üÇÏ°Ô ±ÕÀÏÇÑ ÀüÈ¯°¨
         float k = 1f - Mathf.Exp(-zoomLerpSpeed * Time.deltaTime);
         currentOffset = Vector3.Lerp(currentOffset, targetOffset, k);
 
-        // 4) Ä«¸Ş¶ó À§Ä¡¸¦ 'Áï½Ã' ÁöÁ¤ ¡æ ÇÃ·¹ÀÌ¾î¿Í µ¿ÀÏÇÏ°Ô ¿òÁ÷ÀÓ(Áö¿¬ ¾øÀ½)
         camT.position = transform.position + currentOffset;
 
         if (lockRotation)
             camT.rotation = Quaternion.Euler(lockedEuler);
     }
 
+    /// <summary>
+    /// ê°€ì¥ ê°€ê¹Œìš´ ë³´ìŠ¤ë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤.
+    /// </summary>
     private void UpdateNearestBoss()
     {
         GameObject[] bosses = GameObject.FindGameObjectsWithTag(bossTag);
@@ -99,6 +107,9 @@ public class PlayerCamera : MonoBehaviour
     }
 
 #if UNITY_EDITOR
+    /// <summary>
+    /// ì—ë””í„°ì—ì„œ ì¹´ë©”ë¼ ë°˜ì‘ ë°˜ê²½ì„ ì‹œê°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
@@ -106,4 +117,3 @@ public class PlayerCamera : MonoBehaviour
     }
 #endif
 }
-

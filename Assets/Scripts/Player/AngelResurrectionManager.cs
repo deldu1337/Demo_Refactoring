@@ -1,44 +1,59 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// í”Œë ˆì´ì–´ ì‚¬ë§ ì‹œ ë¶€í™œ ì²œì‚¬ë¥¼ ì†Œí™˜í•˜ê³  ì •ë¦¬í•˜ëŠ” ê´€ë¦¬ìë¥¼ ë‹´ë‹¹í•©ë‹ˆë‹¤.
+/// </summary>
 public class AngelResurrectionManager : MonoBehaviour
 {
     public static AngelResurrectionManager Instance { get; private set; }
 
     [Header("Prefab")]
-    [Tooltip("ÇÃ·¹ÀÌ¾î »ç¸Á À§Ä¡¿¡ ¼ÒÈ¯µÉ Ãµ»ç ÇÁ¸®ÆÕ(¿ùµå ¿ÀºêÁ§Æ®). ÀÚ½Ä¿¡ ResurrectButton(UIButton) Æ÷ÇÔ ±ÇÀå.")]
+    [Tooltip("ë¶€í™œ ë²„íŠ¼ì´ í¬í•¨ëœ ì²œì‚¬ í”„ë¦¬íŒ¹ì„ ì§€ì •í•´ ì£¼ì„¸ìš”.")]
     public GameObject angelPrefab;
 
     [Header("Resurrect Button Sprite Swap")]
-    [Tooltip("¹öÆ°À» ´©¸£°í ÀÖ´Â µ¿¾È(Pressed)¿¡ º¸¿©ÁÙ ½ºÇÁ¶óÀÌÆ®")]
+    [Tooltip("ë²„íŠ¼ì´ ëˆŒë ¸ì„ ë•Œ ì‚¬ìš©í•  ìŠ¤í”„ë¼ì´íŠ¸ì…ë‹ˆë‹¤.")]
     public Sprite pressedSprite;
-    [Tooltip("¸¶¿ì½º ¿À¹ö(Highlight) ½Ã º¸¿©ÁÙ ½ºÇÁ¶óÀÌÆ® (¼±ÅÃ)")]
+    [Tooltip("ì»¤ì„œê°€ ì˜¬ë¼ê°”ì„ ë•Œ ì‚¬ìš©í•  ìŠ¤í”„ë¼ì´íŠ¸ì…ë‹ˆë‹¤.")]
     public Sprite highlightedSprite;
-    [Tooltip("¼±ÅÃ(Selected) ½Ã º¸¿©ÁÙ ½ºÇÁ¶óÀÌÆ® (¼±ÅÃ)")]
+    [Tooltip("ì„ íƒ ìƒíƒœì¼ ë•Œ ì‚¬ìš©í•  ìŠ¤í”„ë¼ì´íŠ¸ì…ë‹ˆë‹¤.")]
     public Sprite selectedSprite;
-    [Tooltip("ºñÈ°¼º(Disabled) ½Ã º¸¿©ÁÙ ½ºÇÁ¶óÀÌÆ® (¼±ÅÃ)")]
+    [Tooltip("ë¹„í™œì„± ìƒíƒœì¼ ë•Œ ì‚¬ìš©í•  ìŠ¤í”„ë¼ì´íŠ¸ì…ë‹ˆë‹¤.")]
     public Sprite disabledSprite;
 
     private GameObject currentAngel;
 
+    /// <summary>
+    /// ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ì‚¬ë§ ë° ë¶€í™œ ì´ë²¤íŠ¸ë¥¼ êµ¬ë…í•©ë‹ˆë‹¤.
+    /// </summary>
     void OnEnable()
     {
         PlayerStatsManager.OnPlayerDeathAnimFinished += SpawnAngelAtPlayer;
         PlayerStatsManager.OnPlayerRevived += CleanupAngel;
     }
 
+    /// <summary>
+    /// ì´ë²¤íŠ¸ êµ¬ë…ì„ í•´ì œí•©ë‹ˆë‹¤.
+    /// </summary>
     void OnDisable()
     {
         PlayerStatsManager.OnPlayerDeathAnimFinished -= SpawnAngelAtPlayer;
         PlayerStatsManager.OnPlayerRevived -= CleanupAngel;
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ìœ„ì¹˜ì— ì²œì‚¬ë¥¼ ì†Œí™˜í•˜ê³  ë¶€í™œ ë²„íŠ¼ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     private void SpawnAngelAtPlayer()
     {
         if (currentAngel || angelPrefab == null) return;
@@ -51,14 +66,14 @@ public class AngelResurrectionManager : MonoBehaviour
 
         currentAngel = Instantiate(angelPrefab, pos, rot);
 
-        // ÇÁ¸®ÆÕ ³»ºÎ¿¡¼­ ¹öÆ°À» Ã£¾Æ ÀÌº¥Æ® ¿¬°á
+        // ë¶€í™œ ë²„íŠ¼ì„ ì°¾ì•„ì„œ í•„ìš”í•œ ì„¤ì •ì„ ì ìš©í•´ ë“œë¦½ë‹ˆë‹¤.
         var resurrectBtn = currentAngel.GetComponentInChildren<Button>(true);
         if (resurrectBtn != null)
         {
-            // 1) ¹öÆ° TransitionÀ» SpriteSwapÀ¸·Î ¼³Á¤
+            // ë²„íŠ¼ ì „í™˜ ë°©ì‹ì„ ìŠ¤í”„ë¼ì´íŠ¸ êµì²´ë¡œ ì„¤ì •í•©ë‹ˆë‹¤.
             resurrectBtn.transition = Selectable.Transition.SpriteSwap;
 
-            // 2) ±âÁ¸ SpriteState¸¦ °¡Á®¿Í ÇÊ¿äÇÑ Ç×¸ñ¸¸ µ¤¾î¾²±â
+            // ìŠ¤í”„ë¼ì´íŠ¸ ìƒíƒœë¥¼ ì§€ì •í•´ ë“œë¦½ë‹ˆë‹¤.
             var st = resurrectBtn.spriteState;
             if (pressedSprite) st.pressedSprite = pressedSprite;
             if (highlightedSprite) st.highlightedSprite = highlightedSprite;
@@ -66,7 +81,7 @@ public class AngelResurrectionManager : MonoBehaviour
             if (disabledSprite) st.disabledSprite = disabledSprite;
             resurrectBtn.spriteState = st;
 
-            // 3) Å¬¸¯ µ¿ÀÛ
+            // í´ë¦­ ì‹œ í”Œë ˆì´ì–´ë¥¼ ë¶€í™œì‹œí‚¤ë„ë¡ ë¦¬ìŠ¤ë„ˆë¥¼ ì—°ê²°í•©ë‹ˆë‹¤.
             resurrectBtn.onClick.RemoveAllListeners();
             resurrectBtn.onClick.AddListener(() =>
             {
@@ -75,10 +90,13 @@ public class AngelResurrectionManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[AngelResurrectionManager] ResurrectButton(Button)ÀÌ ÇÁ¸®ÆÕ ³»¿¡ ¾ø½À´Ï´Ù. Á÷Á¢ ¿¬°áÇÏ¼¼¿ä.");
+            Debug.LogWarning("[AngelResurrectionManager] ë¶€í™œ ë²„íŠ¼(Button)ì„ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤. ë²„íŠ¼ì„ ë°°ì¹˜í•´ ì£¼ì„¸ìš”.");
         }
     }
 
+    /// <summary>
+    /// ì†Œí™˜ëœ ì²œì‚¬ë¥¼ ì œê±°í•˜ì—¬ ì”¬ì„ ì •ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     private void CleanupAngel()
     {
         if (currentAngel)
