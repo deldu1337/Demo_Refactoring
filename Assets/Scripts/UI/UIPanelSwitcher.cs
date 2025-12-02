@@ -4,18 +4,21 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class UIPanelSwitcher : MonoBehaviour
 {
-    [Header("ÇöÀç(From) ÆĞ³Î ·çÆ® - ºñ¿öµÎ¸é ÀÚµ¿À¸·Î Ã£À½")]
+    [Header("(From) íŒ¨ë„ ë£¨íŠ¸ - ê¸°ì¤€ ìœ„ì¹˜ë¥¼ ì°¸ì¡°")]
     [SerializeField] private RectTransform fromPanelRoot;
 
-    [Header("ÀüÈ¯ ´ë»ó(To) ÆĞ³Î ·çÆ®")]
+    [Header("ì „í™˜ ëŒ€ìƒ (To) íŒ¨ë„ ë£¨íŠ¸")]
     [SerializeField] private RectTransform toPanelRoot;
 
-    [Header("¿É¼Ç")]
+    [Header("ì˜µì…˜")]
     [SerializeField] private bool copyScaleAndRotation = true;
     [SerializeField] private bool matchSiblingIndex = true;
 
     private Button btn;
 
+    /// <summary>
+    /// ë²„íŠ¼ê³¼ íŒ¨ë„ ì°¸ì¡°ë¥¼ ì„¤ì •í•˜ê³  í´ë¦­ ì´ë²¤íŠ¸ë¥¼ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         btn = GetComponent<Button>();
@@ -25,24 +28,21 @@ public class UIPanelSwitcher : MonoBehaviour
             fromPanelRoot = FindRootPanelUnderCanvas(transform as RectTransform);
 
         if (!fromPanelRoot || !toPanelRoot)
-            Debug.LogError("[UIPanelSwitcher] fromPanelRoot / toPanelRoot À»(¸¦) ¼³Á¤ÇÏ¼¼¿ä.");
+            Debug.LogError("[UIPanelSwitcher] fromPanelRoot / toPanelRoot ì„¤ì •ì„ í™•ì¸í•´ ì£¼ì„¸ìš”.");
     }
 
     /// <summary>
-    /// ¹öÆ° Å¬¸¯ ¡æ toPanel·Î ÀüÈ¯
+    /// ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ëŒ€ìƒ íŒ¨ë„ì„ í‘œì‹œí•˜ê³  ê¸°ì¡´ íŒ¨ë„ì„ ìˆ¨ê¹ë‹ˆë‹¤.
     /// </summary>
     public void Switch()
     {
         if (!fromPanelRoot || !toPanelRoot) return;
 
-        // °°Àº ºÎ¸ğ(Canvas ÇÏÀ§)·Î ¸ÂÃã
         if (toPanelRoot.parent != fromPanelRoot.parent)
             toPanelRoot.SetParent(fromPanelRoot.parent, worldPositionStays: false);
 
-        // ·¹ÀÌ¾Æ¿ô º¹»ç (¾ŞÄ¿/ÇÇ¹ş/Å©±â/À§Ä¡)
         CopyLayout(fromPanelRoot, toPanelRoot);
 
-        // ÇÊ¿ä ½Ã ½ºÄÉÀÏ/·ÎÅ×ÀÌ¼Ç/ÇüÁ¦ ÀÎµ¦½º±îÁö µ¿±âÈ­
         if (copyScaleAndRotation)
         {
             toPanelRoot.localScale = fromPanelRoot.localScale;
@@ -51,21 +51,18 @@ public class UIPanelSwitcher : MonoBehaviour
         if (matchSiblingIndex)
             toPanelRoot.SetSiblingIndex(fromPanelRoot.GetSiblingIndex());
 
-        // È°¼º/ºñÈ°¼º ÀüÈ¯
         toPanelRoot.gameObject.SetActive(true);
         fromPanelRoot.gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// ÇöÀç ¹öÆ°ÀÌ ¼ÓÇÑ Æ®¸®¿¡¼­ Canvas ¹Ù·Î ¾Æ·¡ÀÇ "ÆĞ³Î ·çÆ®" RectTransformÀ» Ã£¾Æ ¹İÈ¯
-    /// (¿¹: HeadPanel ¡æ EquipmentUI / PlayerInfoUI)
+    /// ì‹œì‘ ë…¸ë“œì—ì„œ ë¶€ëª¨ë¥¼ ê±°ìŠ¬ëŸ¬ ì˜¬ë¼ê°€ë©° ìº”ë²„ìŠ¤ ë°”ë¡œ ì•„ë˜ íŒ¨ë„ì„ ì°¾ìŠµë‹ˆë‹¤.
     /// </summary>
     private RectTransform FindRootPanelUnderCanvas(RectTransform start)
     {
         RectTransform cur = start;
         while (cur && cur.parent is RectTransform parentRT)
         {
-            // ºÎ¸ğ°¡ Canvas¸é cur°¡ ÆĞ³Î ·çÆ®
             if (parentRT.GetComponent<Canvas>() != null)
                 return cur;
             cur = parentRT;
@@ -73,6 +70,9 @@ public class UIPanelSwitcher : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// ë‘ RectTransformì˜ ë ˆì´ì•„ì›ƒ ì†ì„±ì„ ë³µì‚¬í•©ë‹ˆë‹¤.
+    /// </summary>
     private void CopyLayout(RectTransform from, RectTransform to)
     {
         to.anchorMin = from.anchorMin;
@@ -83,7 +83,9 @@ public class UIPanelSwitcher : MonoBehaviour
         to.anchoredPosition3D = from.anchoredPosition3D;
     }
 
-    // ---- ¿ÜºÎ À¯Æ¿ (ºÎ¸ğ±îÁö ±âº»ÀûÀ¸·Î ¸ÂÃçÁÜ) ----
+    /// <summary>
+    /// ì •ì  ë©”ì„œë“œë¡œ ë‘ RectTransformì˜ ìœ„ì¹˜ì™€ ë°°ì¹˜ë¥¼ ë§ì¶¥ë‹ˆë‹¤.
+    /// </summary>
     public static void CopyLayoutRT(
         RectTransform from, RectTransform to,
         bool ensureSameParent = true,
@@ -110,19 +112,18 @@ public class UIPanelSwitcher : MonoBehaviour
             to.SetSiblingIndex(from.GetSiblingIndex());
     }
 
-    // ===== ½º³À¼¦ ÀúÀå¼Ò =====
-
-    // ----- UIPanelSwitcher.cs ÀÇ ½º³À¼¦ ÇÊµå¿¡ Ãß°¡ -----
-    private static Vector3 s_localPos;   // ¡Ú Ãß°¡: µå·¡±×°¡ ¹Ù²Ù´Â °ª
+    private static Vector3 s_localPos;
 
     private static bool hasSnapshot;
     private static Vector2 s_anchorMin, s_anchorMax, s_pivot, s_sizeDelta;
     private static Vector3 s_anchoredPos3D, s_scale;
     private static Quaternion s_rotation;
     private static int s_siblingIndex;
-    private static RectTransform s_parent; // ¡Ú ºÎ¸ğ±îÁö ÀúÀå
+    private static RectTransform s_parent;
 
-    // ----- SaveSnapshot ¼öÁ¤ -----
+    /// <summary>
+    /// RectTransformì˜ ë°°ì¹˜ ì •ë³´ë¥¼ ìŠ¤ëƒ…ìƒ·ìœ¼ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
+    /// </summary>
     public static void SaveSnapshot(RectTransform rt)
     {
         if (!rt) return;
@@ -132,14 +133,16 @@ public class UIPanelSwitcher : MonoBehaviour
         s_pivot = rt.pivot;
         s_sizeDelta = rt.sizeDelta;
         s_anchoredPos3D = rt.anchoredPosition3D;
-        s_localPos = rt.localPosition;   // ¡Ú Ãß°¡
+        s_localPos = rt.localPosition;
         s_scale = rt.localScale;
         s_rotation = rt.localRotation;
         s_siblingIndex = rt.GetSiblingIndex();
         hasSnapshot = true;
     }
 
-    // ----- LoadSnapshot ¼öÁ¤ -----
+    /// <summary>
+    /// ì €ì¥ëœ ìŠ¤ëƒ…ìƒ· ì •ë³´ë¥¼ RectTransformì— ë³µì›í•©ë‹ˆë‹¤.
+    /// </summary>
     public static void LoadSnapshot(RectTransform rt, bool applySiblingIndex = true)
     {
         if (!rt || !hasSnapshot) return;
@@ -147,33 +150,35 @@ public class UIPanelSwitcher : MonoBehaviour
         if (s_parent && rt.parent != s_parent)
             rt.SetParent(s_parent, worldPositionStays: false);
 
-        // ·¹ÀÌ¾Æ¿ô ¼Ó¼º º¹¿ø
         rt.anchorMin = s_anchorMin;
         rt.anchorMax = s_anchorMax;
         rt.pivot = s_pivot;
         rt.sizeDelta = s_sizeDelta;
 
-        // À§Ä¡ º¹¿ø (localPosition ¿ì¼± ¡æ ¾ŞÄ¿ ÁÂÇ¥µµ ¹é¾÷ Àû¿ë)
-        rt.localPosition = s_localPos;       // ¡Ú ÇÙ½É
-        rt.anchoredPosition3D = s_anchoredPos3D;  // º¸Á¤ °â È£È¯
+        rt.localPosition = s_localPos;
+        rt.anchoredPosition3D = s_anchoredPos3D;
 
         rt.localScale = s_scale;
         rt.localRotation = s_rotation;
 
         if (applySiblingIndex) rt.SetSiblingIndex(s_siblingIndex);
 
-        // ·¹ÀÌ¾Æ¿ô °­Á¦ °»½Å(ºÎ¸ğ¿¡ ·¹ÀÌ¾Æ¿ô ÄÄÆ÷³ÍÆ® ÀÖÀ» ¶§ ÃÊ±âÈ­ ¹ö±× ¹æÁö)
         Canvas.ForceUpdateCanvases();
         var prt = rt.parent as RectTransform;
         if (prt) UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(prt);
     }
 
-    // UIPanelSwitcher.cs ³»ºÎ (Å¬·¡½º ÇÏ´Ü Âë)
+    /// <summary>
+    /// ì €ì¥ëœ ìŠ¤ëƒ…ìƒ·ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     public static void ClearSnapshot()
     {
         hasSnapshot = false;
         s_parent = null;
     }
 
+    /// <summary>
+    /// ìŠ¤ëƒ…ìƒ· ì¡´ì¬ ì—¬ë¶€ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public static bool HasSnapshot => hasSnapshot;
 }

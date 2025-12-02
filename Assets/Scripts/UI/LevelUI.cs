@@ -4,21 +4,22 @@ using UnityEngine.UI;
 
 public class LevelUI : MonoBehaviour
 {
-    [Header("UI ÂüÁ¶")]
-    [SerializeField] private Image tensPlace;   // 10ÀÇ ÀÚ¸®
-    [SerializeField] private Image onesPlace;   // 1ÀÇ ÀÚ¸®
+    [Header("UI ìˆ«ì")]
+    [SerializeField] private Image tensPlace;
+    [SerializeField] private Image onesPlace;
 
-    private PlayerStatsManager playerStats;     // ½Ì±ÛÅæ ÂüÁ¶
+    private PlayerStatsManager playerStats;
     private Sprite[] numberSprites;
 
+    /// <summary>
+    /// ìˆ«ì ìŠ¤í”„ë¼ì´íŠ¸ì™€ UI ì°¸ì¡°ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     private void Awake()
     {
-        // ¼ıÀÚ ½ºÇÁ¶óÀÌÆ® ·Îµå (Assets/Resources/Prefabs/Levels/0~9)
         numberSprites = Resources.LoadAll<Sprite>("Prefabs/Levels");
         if (numberSprites == null || numberSprites.Length < 10)
-            Debug.LogError("[LevelUI] Prefabs/Levels Æú´õ¿¡ 0~9 ½ºÇÁ¶óÀÌÆ®°¡ ÇÊ¿äÇÕ´Ï´Ù!");
+            Debug.LogError("[LevelUI] Prefabs/Levels ê²½ë¡œì— 0~9 ìŠ¤í”„ë¼ì´íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
 
-        // ÇÊ¿ä ½Ã, ÇÏÀÌ¾î¶óÅ°¿¡¼­ Á÷Á¢ Ã£¾Æ ¿¬°á (Á÷Á¢ µå·¡±× ¿¬°áµÇ¾î ÀÖÀ¸¸é »ı·« °¡´É)
         if (!tensPlace || !onesPlace)
         {
             Transform statusUI = GameObject.Find("LevelUI")?.transform;
@@ -30,12 +31,17 @@ public class LevelUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// í™œì„±í™” ì‹œ í”Œë ˆì´ì–´ ì •ë³´ê°€ ì¤€ë¹„ë  ë•Œê¹Œì§€ ëŒ€ê¸° í›„ ë°”ì¸ë”©í•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnEnable()
     {
-        // ½Ì±ÛÅæ/µ¥ÀÌÅÍ ÁØºñµÉ ¶§±îÁö ´ë±â ¡æ ±¸µ¶ + ÃÊ±â 1È¸ ·»´õ
         StartCoroutine(BindWhenReady());
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ì •ë³´ê°€ ì¤€ë¹„ë˜ë©´ ë ˆë²¨ ë³€ê²½ ì´ë²¤íŠ¸ë¥¼ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
     private IEnumerator BindWhenReady()
     {
         while (PlayerStatsManager.Instance == null || PlayerStatsManager.Instance.Data == null)
@@ -43,20 +49,24 @@ public class LevelUI : MonoBehaviour
 
         playerStats = PlayerStatsManager.Instance;
 
-        // Áßº¹ ¹æÁö ÈÄ ±¸µ¶
         playerStats.OnLevelUp -= UpdateLevelUI;
         playerStats.OnLevelUp += UpdateLevelUI;
 
-        // ÃÊ±â 1È¸ °­Á¦ ·»´õ
         UpdateLevelUI(playerStats.Data.Level);
     }
 
+    /// <summary>
+    /// ë¹„í™œì„±í™” ì‹œ ì´ë²¤íŠ¸ êµ¬ë…ì„ í•´ì œí•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnDisable()
     {
         if (playerStats != null)
             playerStats.OnLevelUp -= UpdateLevelUI;
     }
 
+    /// <summary>
+    /// íŒŒê´´ë  ë•Œ ì´ë²¤íŠ¸ êµ¬ë…ì„ ì•ˆì „í•˜ê²Œ í•´ì œí•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnDestroy()
     {
         if (playerStats != null)
@@ -64,20 +74,19 @@ public class LevelUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ·¹º§ °ªÀ¸·Î UI ¾÷µ¥ÀÌÆ® (ÀÌº¥Æ® ±â¹İ)
+    /// ë ˆë²¨ ê°’ì„ UI ìˆ«ì ì´ë¯¸ì§€ë¡œ í‘œì‹œí•©ë‹ˆë‹¤.
     /// </summary>
     private void UpdateLevelUI(int level)
     {
         if (numberSprites == null || numberSprites.Length < 10)
         {
-            Debug.LogWarning("[LevelUI] ¼ıÀÚ ½ºÇÁ¶óÀÌÆ®°¡ ÁØºñµÇÁö ¾ÊÀ½");
+            Debug.LogWarning("[LevelUI] ìˆ«ì ìŠ¤í”„ë¼ì´íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
-        int tens = level / 10;  // 10ÀÇ ÀÚ¸®
-        int ones = level % 10;  // 1ÀÇ ÀÚ¸®
+        int tens = level / 10;
+        int ones = level % 10;
 
-        // 10ÀÇ ÀÚ¸®
         if (tensPlace)
         {
             if (tens > 0)
@@ -87,11 +96,10 @@ public class LevelUI : MonoBehaviour
             }
             else
             {
-                tensPlace.enabled = false; // ÇÑ ÀÚ¸® ·¹º§ÀÌ¸é ¼û±è
+                tensPlace.enabled = false;
             }
         }
 
-        // 1ÀÇ ÀÚ¸®
         if (onesPlace)
         {
             onesPlace.sprite = numberSprites[ones];

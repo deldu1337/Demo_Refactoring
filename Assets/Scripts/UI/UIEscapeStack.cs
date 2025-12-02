@@ -15,6 +15,9 @@ public class UIEscapeStack : MonoBehaviour
 
     private readonly List<Entry> _stack = new();
 
+    /// <summary>
+    /// ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë³´ì¡´í•˜ê³  ì¤‘ë³µ ê°ì²´ë¥¼ ì œê±°í•©ë‹ˆë‹¤.
+    /// </summary>
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,7 +29,9 @@ public class UIEscapeStack : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    /// <summary>¾øÀ¸¸é ¸¸µç´Ù. ¾îµğ¼­µç Instance º¸Àå¿ë.</summary>
+    /// <summary>
+    /// ì „ì—­ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë°˜í™˜í•˜ê±°ë‚˜ ì—†ìœ¼ë©´ ìƒˆë¡œ ë§Œë“­ë‹ˆë‹¤.
+    /// </summary>
     public static UIEscapeStack GetOrCreate()
     {
         if (Instance != null) return Instance;
@@ -34,29 +39,33 @@ public class UIEscapeStack : MonoBehaviour
         return go.AddComponent<UIEscapeStack>();
     }
 
-    /// <summary>UI¸¦ ¿­ ¶§ È£Ãâ: ESC·Î ´İÀ» ¾×¼ÇÀ» ½ºÅÃ¿¡ µî·Ï</summary>
+    /// <summary>
+    /// ESCë¡œ ë‹«ì„ ìˆ˜ ìˆëŠ” UIë¥¼ ìŠ¤íƒì— ë“±ë¡í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Push(string key, Action close, Func<bool> isOpen = null)
     {
         if (string.IsNullOrEmpty(key) || close == null) return;
-        Remove(key); // Áßº¹ ¹æÁö
+        Remove(key);
         _stack.Add(new Entry { key = key, close = close, isOpen = isOpen });
     }
 
-    /// <summary>UI¸¦ ´İÀ» ¶§ È£Ãâ: ½ºÅÃ¿¡¼­ Á¦°Å</summary>
+    /// <summary>
+    /// ë“±ë¡ëœ UIë¥¼ ìŠ¤íƒì—ì„œ ì œê±°í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Remove(string key)
     {
         if (string.IsNullOrEmpty(key)) return;
         _stack.RemoveAll(e => e.key == key);
     }
 
-    /// <summary>°¡Àå ÃÖ±Ù Ç×¸ñÀ» ´İ´Â´Ù. ´İÀ» °ÍÀÌ ¾øÀ¸¸é false.</summary>
+    /// <summary>
+    /// ìŠ¤íƒì˜ ìƒë‹¨ UIë¥¼ ë‹«ê³  ì²˜ë¦¬ ì—¬ë¶€ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool PopTop()
     {
-        // µÚ¿¡¼­ºÎÅÍ ½ºÄµ (°¡Àå ÃÖ±Ù)
         for (int i = _stack.Count - 1; i >= 0; i--)
         {
             var e = _stack[i];
-            // ÀÌ¹Ì ´İÇô ÀÖ´Ù¸é ¹ö¸®°í ´ÙÀ½
             if (e.isOpen != null && !e.isOpen())
             {
                 _stack.RemoveAt(i);
@@ -69,5 +78,8 @@ public class UIEscapeStack : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// ìŠ¤íƒì´ ë¹„ì–´ ìˆëŠ”ì§€ ì—¬ë¶€ì…ë‹ˆë‹¤.
+    /// </summary>
     public bool IsEmpty => _stack.Count == 0;
 }

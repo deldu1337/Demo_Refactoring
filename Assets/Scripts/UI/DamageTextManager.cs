@@ -6,6 +6,9 @@ public class DamageTextManager : MonoBehaviour
     public GameObject damageTextPrefab;
     public Canvas canvas;
 
+    /// <summary>
+    /// ì‹±ê¸€í„´ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         Instance = this;
@@ -18,30 +21,28 @@ public class DamageTextManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ´ë»ó Transform¿¡ °íÁ¤µÇ´Â µ¥¹ÌÁö ÅØ½ºÆ® »ı¼º(±ÇÀå)
+    /// ëŒ€ìƒ Transform ê¸°ì¤€ìœ¼ë¡œ ë°ë¯¸ì§€ í…ìŠ¤íŠ¸ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤.
     /// </summary>
     public void ShowDamage(Transform target, int damage, Color color, DamageTextTarget type)
     {
         if (!target || damageTextPrefab == null || canvas == null) return;
 
-        // ´ë»ó Á¾·ùº° ¿ùµå ¿ÀÇÁ¼Â(¸Ó¸® À§ µî)
         Vector3 worldOffset = Vector3.up * 1.5f;
 
-        // Äµ¹ö½º ÇÏÀ§¿¡ »ı¼º
         GameObject go = Instantiate(damageTextPrefab, canvas.transform);
 
-        // ¹Ù·Î À§Ä¡ ÀâÀ» ÇÊ¿ä ¾øÀÌ, DamageText°¡ ¸Å ÇÁ·¹ÀÓ target ÃßÀû
         var dt = go.GetComponent<DamageText>();
         if (dt != null)
             dt.Setup(damage, color, target, worldOffset, Camera.main);
     }
 
-    // [¼±ÅÃ] ±¸¹öÀü È£È¯: worldPos·Îµµ È£Ãâ °¡´ÉÇÏÁö¸¸ '°íÁ¤'Àº ¾È µÊ (±âÁ¸ µ¿ÀÛ)
+    /// <summary>
+    /// ì›”ë“œ ì¢Œí‘œ ê¸°ì¤€ìœ¼ë¡œ ë°ë¯¸ì§€ í…ìŠ¤íŠ¸ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤.
+    /// </summary>
     public void ShowDamage(Vector3 worldPos, int damage, Color color, DamageTextTarget type)
     {
         if (damageTextPrefab == null || canvas == null || Camera.main == null) return;
 
-        // worldPos¸¦ ½ºÅ©¸°À¸·Î º¯È¯ÇÏ¿© 1ÇÁ·¹ÀÓ¸¸ ±âÁØÀ¸·Î »ç¿ë(ÀÌÀü ¹æ½Ä)
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos + Vector3.up * 1.5f);
         GameObject go = Instantiate(damageTextPrefab, canvas.transform);
         go.transform.position = screenPos;
@@ -49,7 +50,6 @@ public class DamageTextManager : MonoBehaviour
         var dt = go.GetComponent<DamageText>();
         if (dt != null)
         {
-            // µû¶ó°¥ ´ë»óÀÌ ¾øÀ¸´Ï null Àü´Ş(È­¸é ±âÁØÀ¸·Î¸¸ ¾Ö´Ï¸ŞÀÌ¼Ç)
             dt.Setup(damage, color, null, Vector3.zero, Camera.main);
         }
     }
