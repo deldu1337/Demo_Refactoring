@@ -1,7 +1,17 @@
 public static class GameContext
 {
-    // Ä³¸¯ÅÍ ¼±ÅÃ ¾À¿¡¼­ ¼³Á¤
-    public static string SelectedRace;   // ¿¹: "humanmale", "orc", ...
-    public static bool IsNewGame;        // Ä³¸¯ÅÍ ¼±ÅÃ ¡æ »õ °ÔÀÓ ½ÃÀÛ ÇÃ·¡±×
-    public static bool ForceReset; // [»õ·Î ½ÃÀÛ(µ¤¾î¾²±â)] Àü¿ë
+    /// <summary>
+    /// í˜„ì¬ ì„ íƒëœ ìºë¦­í„°ì˜ ì¢…ì¡± ì´ë¦„ (ì˜ˆ: "humanmale", "orc" ë“±).
+    /// </summary>
+    public static string SelectedRace;
+
+    /// <summary>
+    /// ì„ íƒëœ ìºë¦­í„°ë¡œ ìƒˆ ê²Œì„ì„ ì‹œì‘í•´ì•¼ í•˜ëŠ”ì§€ ì—¬ë¶€.
+    /// </summary>
+    public static bool IsNewGame;
+
+    /// <summary>
+    /// ê¸°ì¡´ ì €ì¥ ì—¬ë¶€ì™€ ê´€ê³„ì—†ì´ ë°ì´í„°ë¥¼ ê°•ì œë¡œ ì´ˆê¸°í™”í• ì§€ ì—¬ë¶€.
+    /// </summary>
+    public static bool ForceReset;
 }
