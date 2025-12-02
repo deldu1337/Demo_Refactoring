@@ -3,11 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class FloorMaterialAnimator : MonoBehaviour
 {
-    [Header("Frames (ÅÃ1)")]
-    [Tooltip("Á÷Á¢ ÅØ½ºÃ³ ¹è¿­·Î Àç»ı")]
+    [Header("Frames (1)")]
+    [Tooltip("ì§€ì •ëœ ìˆœì„œë¡œ ì‚¬ìš©í•  ë°”ë‹¥ í…ìŠ¤ì²˜ ëª©ë¡ì…ë‹ˆë‹¤")]
     public Texture2D[] textures;
 
-    [Tooltip("½ºÇÁ¶óÀÌÆ® ¹è¿­·Î Àç»ı(³»ºÎ¿¡¼­ texture »ç¿ë)")]
+    [Tooltip("í•„ìš”í•  ë•Œ ì‚¬ìš©í•  ìŠ¤í”„ë¼ì´íŠ¸ ëª©ë¡ì…ë‹ˆë‹¤")]
     public Sprite[] sprites;
 
     [Header("Playback")]
@@ -15,15 +15,15 @@ public class FloorMaterialAnimator : MonoBehaviour
     public bool loop = true;
     public bool randomStartFrame = true;
 
-    [Header("Auto Load (¼±ÅÃ)")]
+    [Header("Auto Load ()")]
     public bool autoLoadFromResources = false;
-    [Tooltip("Resources Æú´õ °æ·Î (¿¹: Textures/Floor)")]
+    [Tooltip("Resources í´ë” ì•ˆì—ì„œ í…ìŠ¤ì²˜ë¥¼ ë¶ˆëŸ¬ì˜¬ ê²½ë¡œì…ë‹ˆë‹¤")]
     public string resourcesFolder = "Textures/Floor";
-    [Tooltip("ÀÌ Á¢µÎ»ç·Î ½ÃÀÛÇÏ´Â ¿¡¼Â¸¸ ·Îµå (¿¹: Floor_)")]
+    [Tooltip("ìë™ìœ¼ë¡œ ë¶ˆëŸ¬ì˜¬ íŒŒì¼ ì´ë¦„ì˜ ì ‘ë‘ì‚¬ì…ë‹ˆë‹¤")]
     public string namePrefix = "Floor_";
 
     [Header("Shader Property")]
-    [Tooltip("URP/Lit´Â _BaseMap, ³»Àå Standard´Â _MainTex")]
+    [Tooltip("URPì—ì„œëŠ” _BaseMap, Standardì—ì„œëŠ” _MainTexë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤")]
     public string texturePropertyName = "_BaseMap";
 
     private Renderer rend;
@@ -32,7 +32,10 @@ public class FloorMaterialAnimator : MonoBehaviour
     private float timeAcc;
     private int index;
 
-    void Awake()
+    /// <summary>
+    /// ë Œë”ëŸ¬ì™€ ë¨¸í‹°ë¦¬ì–¼ ì†ì„±ì„ ì¤€ë¹„í•˜ê³  í•„ìš”í•œ ê²½ìš° ë¦¬ì†ŒìŠ¤ì—ì„œ í”„ë ˆì„ì„ ë¶ˆëŸ¬ì˜µë‹ˆë‹¤.
+    /// </summary>
+    private void Awake()
     {
         rend = GetComponent<Renderer>();
         mpb = new MaterialPropertyBlock();
@@ -40,12 +43,12 @@ public class FloorMaterialAnimator : MonoBehaviour
 
         if (autoLoadFromResources)
         {
-            // 1) ÅØ½ºÃ³ ¿ì¼± ·Îµå
+            // ë¦¬ì†ŒìŠ¤ì—ì„œ í…ìŠ¤ì²˜ë¥¼ ì°¾ìŠµë‹ˆë‹¤
             var texAll = Resources.LoadAll<Texture2D>(resourcesFolder);
             textures = System.Array.FindAll(texAll, t => t.name.StartsWith(namePrefix));
             System.Array.Sort(textures, (a, b) => string.CompareOrdinal(a.name, b.name));
 
-            // 2) ÅØ½ºÃ³°¡ ¾øÀ¸¸é ½ºÇÁ¶óÀÌÆ® ·Îµå ½Ãµµ
+            // í…ìŠ¤ì²˜ê°€ ì—†ì„ ë•Œ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ëŒ€ì‹  ì‚¬ìš©í•©ë‹ˆë‹¤
             if (textures == null || textures.Length == 0)
             {
                 var sprAll = Resources.LoadAll<Sprite>(resourcesFolder);
@@ -58,7 +61,7 @@ public class FloorMaterialAnimator : MonoBehaviour
         if (count == 0)
         {
             enabled = false;
-            Debug.LogWarning($"{name}: FloorMaterialAnimator frames ¾øÀ½ ¡æ ºñÈ°¼ºÈ­");
+            Debug.LogWarning($"{name}: FloorMaterialAnimator í”„ë ˆì„ì„ ì°¾ì„ ìˆ˜ ì—†ì–´ ë¹„í™œì„±í™”í•©ë‹ˆë‹¤");
             return;
         }
 
@@ -71,7 +74,10 @@ public class FloorMaterialAnimator : MonoBehaviour
         ApplyFrame(index);
     }
 
-    void Update()
+    /// <summary>
+    /// ëˆ„ì ëœ ì‹œê°„ì„ ê¸°ë°˜ìœ¼ë¡œ ë‹¤ìŒ í”„ë ˆì„ì„ ì ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void Update()
     {
         int count = GetFrameCount();
         if (count == 0 || fps <= 0f) return;
@@ -85,42 +91,60 @@ public class FloorMaterialAnimator : MonoBehaviour
             index++;
             if (index >= count)
             {
-                if (loop) index = 0;
-                else { index = count - 1; enabled = false; break; }
+                if (loop)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index = count - 1;
+                    enabled = false;
+                    break;
+                }
             }
+
             ApplyFrame(index);
         }
     }
 
-    int GetFrameCount()
+    /// <summary>
+    /// ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” í”„ë ˆì„ì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
+    private int GetFrameCount()
     {
         if (textures != null && textures.Length > 0) return textures.Length;
         if (sprites != null && sprites.Length > 0) return sprites.Length;
         return 0;
     }
 
-    Texture GetFrameTexture(int i)
+    /// <summary>
+    /// ì¸ë±ìŠ¤ì— í•´ë‹¹í•˜ëŠ” í…ìŠ¤ì²˜ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
+    private Texture GetFrameTexture(int i)
     {
         if (textures != null && textures.Length > 0) return textures[i];
         if (sprites != null && sprites.Length > 0)
         {
-            // ½ºÇÁ¶óÀÌÆ® ½ÃÆ®ÀÏ °æ¿ì¿¡µµ Åë ÅØ½ºÃ³¸¦ »ç¿ë
+            // ìŠ¤í”„ë¼ì´íŠ¸ì—ì„œ í…ìŠ¤ì²˜ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤
             return sprites[i] ? sprites[i].texture : null;
         }
         return null;
     }
 
-    void ApplyFrame(int i)
+    /// <summary>
+    /// ì„ íƒí•œ í”„ë ˆì„ í…ìŠ¤ì²˜ë¥¼ ë¨¸í‹°ë¦¬ì–¼ì— ì ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void ApplyFrame(int i)
     {
         var tex = GetFrameTexture(i);
         if (tex == null) return;
 
-        // _BaseMap ¼¼ÆÃ
+        // ê¸°ë³¸ ë§µ ì†ì„±ì— í…ìŠ¤ì²˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤
         rend.GetPropertyBlock(mpb);
         mpb.SetTexture(propId, tex);
         rend.SetPropertyBlock(mpb);
 
-        // Ç¥ÁØ ¼ÎÀÌ´õ È£È¯ (_MainTex)µµ °°ÀÌ ¼¼ÆÃ(¼±ÅÃ)
+        // í‘œì¤€ ì…°ì´ë” í˜¸í™˜ì„ ìœ„í•´ ë©”ì¸ í…ìŠ¤ì²˜ì—ë„ ë™ì¼í•˜ê²Œ ì„¤ì •í•©ë‹ˆë‹¤
         int mainId = Shader.PropertyToID("_MainTex");
         rend.GetPropertyBlock(mpb);
         mpb.SetTexture(mainId, tex);
