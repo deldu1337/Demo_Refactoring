@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class EquipmentView : MonoBehaviour
 {
-    [SerializeField] private GameObject equipmentUI; // Àåºñ UI ÀüÃ¼
-    [SerializeField] private Button exitButton;      // ÀåºñÃ¢ ´İ±â ¹öÆ°
+    [SerializeField] private GameObject equipmentUI; // ì¥ë¹„ UI ë£¨íŠ¸ ì˜¤ë¸Œì íŠ¸
+    [SerializeField] private Button exitButton;      // ë‹«ê¸° ë²„íŠ¼
 
-    [Header("Àåºñ ½½·Ô")]
+    [Header("ìŠ¬ë¡¯ ë²„íŠ¼")]
     [SerializeField] private Button headSlot;
     [SerializeField] private Button rShoulderSlot;
     [SerializeField] private Button lShoulderSlot;
@@ -25,7 +25,9 @@ public class EquipmentView : MonoBehaviour
         }
     }
 
-    /// <summary>ÃÊ±âÈ­: ½½·Ô ¿¬°á, Á¾·á ¹öÆ° ¿¬°á</summary>
+    /// <summary>
+    /// ì´ˆê¸°í™” ì‹œ UI ì—°ê²°ê³¼ ìŠ¬ë¡¯ ë²„íŠ¼ì„ ì„¤ì •í•œë‹¤.
+    /// </summary>
     public void Initialize(Action onExit, Action<string, InventoryItem> onEquipDropped)
     {
         if (equipmentUI == null)
@@ -37,7 +39,7 @@ public class EquipmentView : MonoBehaviour
             exitButton.onClick.AddListener(() => onExit?.Invoke());
         }
 
-        // ButtonPanel ³» ¹öÆ°µé ¼ø¼­´ë·Î °¡Á®¿À±â
+        // ë²„íŠ¼ íŒ¨ë„ì—ì„œ ìŠ¬ë¡¯ ë²„íŠ¼ ì°¾ê¸°
         headSlot = GameObject.Find("ButtonPanel").transform.GetChild(0).GetComponentInChildren<Button>();
         rShoulderSlot = GameObject.Find("ButtonPanel").transform.GetChild(1).GetComponentInChildren<Button>();
         lShoulderSlot = GameObject.Find("ButtonPanel").transform.GetChild(2).GetComponentInChildren<Button>();
@@ -48,7 +50,9 @@ public class EquipmentView : MonoBehaviour
         Show(false);
     }
 
-    /// <summary>ÀåºñÃ¢ È°¼º/ºñÈ°¼º</summary>
+    /// <summary>
+    /// ì¥ë¹„ UIë¥¼ í‘œì‹œí•˜ê±°ë‚˜ ìˆ¨ê¸´ë‹¤.
+    /// </summary>
     public void Show(bool show)
     {
         equipmentUI?.SetActive(show);
@@ -56,7 +60,9 @@ public class EquipmentView : MonoBehaviour
             exitButton.transform.SetAsLastSibling();
     }
 
-    /// <summary>½½·Ô ¹öÆ°¿¡ ¾ÆÀÌÅÛ µå·Ó ÀÌº¥Æ® ¿¬°á</summary>
+    /// <summary>
+    /// ìŠ¬ë¡¯ ì»´í¬ë„ŒíŠ¸ë¥¼ ì„¤ì •í•˜ê³  ë“œë¡­ ì´ë²¤íŠ¸ë¥¼ ì—°ê²°í•œë‹¤.
+    /// </summary>
     private void SetupSlot(Button button, string slotType, Action<string, InventoryItem> onEquipDropped)
     {
         if (button == null) return;
@@ -68,7 +74,9 @@ public class EquipmentView : MonoBehaviour
         slotView.onItemDropped = onEquipDropped;
     }
 
-    /// <summary>UI °»½Å: ½½·Ô¿¡ ÀåÂøµÈ ¾ÆÀÌÅÛ Ç¥½Ã ¹× Å¬¸¯ ÀÌº¥Æ® µî·Ï</summary>
+    /// <summary>
+    /// UIë¥¼ ê°±ì‹ í•˜ì—¬ ì¥ì°© ìƒíƒœì™€ ìƒí˜¸ì‘ìš©ì„ ì„¤ì •í•œë‹¤.
+    /// </summary>
     public void UpdateEquipmentUI(IReadOnlyList<EquipmentSlot> slots, Action<string> onSlotClicked)
     {
         foreach (var slot in slots)
@@ -78,27 +86,27 @@ public class EquipmentView : MonoBehaviour
 
             if (slot.equipped == null || string.IsNullOrEmpty(slot.equipped.iconPath))
             {
-                btn.gameObject.SetActive(false); // ½½·Ô ºñÈ°¼ºÈ­
+                btn.gameObject.SetActive(false); // ë¹„ì–´ ìˆìœ¼ë©´ ë¹„í™œì„±í™”
             }
             else
             {
                 btn.gameObject.SetActive(true);
 
-                // ¾ÆÀÌÄÜ ¼¼ÆÃ
+                // ì•„ì´ì½˜ ì„¤ì •
                 var image = btn.GetComponent<Image>();
                 var icon = Resources.Load<Sprite>(slot.equipped.iconPath);
                 if (image != null) image.sprite = icon;
 
-                // ±âº» onClick Á¦°Å (ÁÂÅ¬¸¯ ÇØÁ¦ ¹æÁö)
+                // í´ë¦­ ì´ë²¤íŠ¸ ì¬ì„¤ì •
                 btn.onClick.RemoveAllListeners();
 
-                // ½½·Ô ºä ¼¼ÆÃ
+                // ìŠ¬ë¡¯ ì •ë³´ ì„¤ì •
                 var slotView = btn.GetComponent<EquipmentSlotView>();
                 if (slotView == null) slotView = btn.gameObject.AddComponent<EquipmentSlotView>();
                 slotView.slotType = slot.slotType;
                 slotView.onItemDropped = null;
 
-                // DraggableItemView ¼¼ÆÃ
+                // ë“œë˜ê·¸ ê°€ëŠ¥í•œ ì•„ì´í…œ ì„¤ì •
                 var draggable = btn.GetComponent<DraggableItemView>();
                 if (draggable == null)
                     draggable = btn.gameObject.AddComponent<DraggableItemView>();
@@ -111,18 +119,18 @@ public class EquipmentView : MonoBehaviour
                     equipCallback: null,
                     unequipCallback: (slotType, origin) =>
                     {
-                        Debug.Log($"[EquipmentView] ¿ìÅ¬¸¯ ÇØÁ¦: {slotType}, {origin}");
+                        Debug.Log($"ì¥ë¹„ ìŠ¬ë¡¯ í´ë¦­: {slotType}, {origin}");
                         onSlotClicked?.Invoke(slotType);
                     }
                 );
 
-                // Hover tooltip ¼¼ÆÃ
+                // íˆ´íŒ ì„¤ì •
                 var hover = btn.GetComponent<ItemHoverTooltip>();
                 if (hover == null) hover = btn.gameObject.AddComponent<ItemHoverTooltip>();
                 hover.SetItem(slot.equipped);
-                hover.SetContext(ItemOrigin.Equipment);   // ¡Ú Ãß°¡: ÀåºñÃ¢ ÄÁÅØ½ºÆ®
+                hover.SetContext(ItemOrigin.Equipment);
 
-                // PointerClick ÀÌº¥Æ® Á÷Á¢ µî·Ï (¿ìÅ¬¸¯¸¸ Ã³¸®)
+                // ìš°í´ë¦­ ì´ë²¤íŠ¸ ë“±ë¡
                 var trigger = btn.GetComponent<UnityEngine.EventSystems.EventTrigger>();
                 if (trigger == null) trigger = btn.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
                 trigger.triggers.Clear();
@@ -136,10 +144,9 @@ public class EquipmentView : MonoBehaviour
                     var ev = (UnityEngine.EventSystems.PointerEventData)data;
                     if (ev.button == UnityEngine.EventSystems.PointerEventData.InputButton.Right)
                     {
-                        Debug.Log($"¿ìÅ¬¸¯ ¡æ {slot.slotType} ÇØÁ¦");
+                        Debug.Log($"ìš°í´ë¦­: {slot.slotType}");
                         onSlotClicked?.Invoke(slot.slotType);
                     }
-                    // ÁÂÅ¬¸¯Àº ¹«½Ã
                 });
                 trigger.triggers.Add(entry);
             }
@@ -160,7 +167,9 @@ public class EquipmentView : MonoBehaviour
         };
     }
 
-    /// <summary>½½·Ô ¾ÆÀÌÄÜ ¼³Á¤</summary>
+    /// <summary>
+    /// ìŠ¬ë¡¯ì— ì§€ì •ëœ ì•„ì´ì½˜ì„ ì„¤ì •í•œë‹¤.
+    /// </summary>
     public void SetEquipmentIcon(Sprite icon, string slotType)
     {
         var button = GetSlotButton(slotType);

@@ -17,11 +17,14 @@ public class EquipmentData
 
 public class EquipmentModel
 {
-    private readonly string race;   // �� �߰�: ����
+    private readonly string race;   // 플레이어 종족 이름
     private EquipmentData data;
 
     public IReadOnlyList<EquipmentSlot> Slots => data.slots;
 
+    /// <summary>
+    /// 종족 정보를 받아 기본 장비 슬롯을 초기화한다.
+    /// </summary>
     public EquipmentModel(string race)
     {
         this.race = string.IsNullOrEmpty(race) ? "humanmale" : race;
@@ -40,6 +43,9 @@ public class EquipmentModel
         }
     }
 
+    /// <summary>
+    /// 슬롯 유형에 맞춰 아이템을 장착하고 저장한다.
+    /// </summary>
     public void EquipItem(string slotType, InventoryItem item)
     {
         var slot = data.slots.Find(s => s.slotType == slotType);
@@ -47,45 +53,60 @@ public class EquipmentModel
         {
             slot.equipped = item;
             Save();
-            Debug.Log($"{slotType} ���Կ� {item.data.name} ������");
+            Debug.Log($"{slotType} 슬롯에 {item.data.name} 장착");
         }
         else
         {
-            Debug.LogWarning($"EquipItem ����: {slotType} ������ ã�� �� ����");
+            Debug.LogWarning($"EquipItem: {slotType} 슬롯을 찾을 수 없음");
         }
     }
 
+    /// <summary>
+    /// 슬롯 유형에 맞춰 장착된 아이템을 해제한다.
+    /// </summary>
     public void UnequipItem(string slotType)
     {
         var slot = data.slots.Find(s => s.slotType == slotType);
         if (slot != null)
         {
-            Debug.Log($"{slotType} ���Կ��� {slot.equipped?.data?.name ?? "����"} ����");
+            Debug.Log($"{slotType} 슬롯에서 {slot.equipped?.data?.name ?? ""} 해제");
             slot.equipped = null;
             Save();
         }
         else
         {
-            Debug.LogWarning($"UnequipItem ����: {slotType} ������ ã�� �� ����");
+            Debug.LogWarning($"UnequipItem: {slotType} 슬롯을 찾을 수 없음");
         }
     }
 
+    /// <summary>
+    /// 인덱스로 장비 슬롯을 찾아 아이템을 해제한다.
+    /// </summary>
     public void Unequip(int index)
     {
         if (index < 0 || index >= data.slots.Count) return;
         var slot = data.slots[index];
-        Debug.Log($"{slot.slotType} ���Կ��� {slot.equipped?.data?.name ?? "����"} ����");
+        Debug.Log($"{slot.slotType} 슬롯에서 {slot.equipped?.data?.name ?? ""} 해제");
         slot.equipped = null;
         Save();
     }
 
+    /// <summary>
+    /// 슬롯 유형으로 슬롯 정보를 가져온다.
+    /// </summary>
     public EquipmentSlot GetSlot(string slotType) => data.slots.Find(s => s.slotType == slotType);
 
+    /// <summary>
+    /// 저장소에서 현재 종족의 장비 데이터를 불러온다.
+    /// </summary>
     public void Load()
     {
         data = SaveLoadService.LoadEquipmentForRaceOrNew(race);
     }
 
+    /// <summary>
+    /// 현재 장비 데이터를 저장한다.
+    /// </summary>
     public void Save()
     {
         SaveLoadService.SaveEquipmentForRace(race, data);
