@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class EquipmentView : MonoBehaviour
 {
-    [SerializeField] private GameObject equipmentUI; // 장비 UI 루트 오브젝트
-    [SerializeField] private Button exitButton;      // 닫기 버튼
+    [SerializeField] private GameObject equipmentUI; // 장비 UI 루트 오브젝트입니다.
+    [SerializeField] private Button exitButton;      // 닫기 버튼입니다.
 
     [Header("슬롯 버튼")]
     [SerializeField] private Button headSlot;
@@ -26,7 +26,7 @@ public class EquipmentView : MonoBehaviour
     }
 
     /// <summary>
-    /// 초기화 시 UI 연결과 슬롯 버튼을 설정한다.
+    /// 초기화 시 UI 연결과 슬롯 버튼을 설정합니다.
     /// </summary>
     public void Initialize(Action onExit, Action<string, InventoryItem> onEquipDropped)
     {
@@ -39,7 +39,7 @@ public class EquipmentView : MonoBehaviour
             exitButton.onClick.AddListener(() => onExit?.Invoke());
         }
 
-        // 버튼 패널에서 슬롯 버튼 찾기
+        // 버튼 패널에서 슬롯 버튼을 찾습니다.
         headSlot = GameObject.Find("ButtonPanel").transform.GetChild(0).GetComponentInChildren<Button>();
         rShoulderSlot = GameObject.Find("ButtonPanel").transform.GetChild(1).GetComponentInChildren<Button>();
         lShoulderSlot = GameObject.Find("ButtonPanel").transform.GetChild(2).GetComponentInChildren<Button>();
@@ -51,7 +51,7 @@ public class EquipmentView : MonoBehaviour
     }
 
     /// <summary>
-    /// 장비 UI를 표시하거나 숨긴다.
+    /// 장비 UI를 표시하거나 숨깁니다.
     /// </summary>
     public void Show(bool show)
     {
@@ -61,7 +61,7 @@ public class EquipmentView : MonoBehaviour
     }
 
     /// <summary>
-    /// 슬롯 컴포넌트를 설정하고 드롭 이벤트를 연결한다.
+    /// 슬롯 컴포넌트를 설정하고 드롭 이벤트를 연결합니다.
     /// </summary>
     private void SetupSlot(Button button, string slotType, Action<string, InventoryItem> onEquipDropped)
     {
@@ -75,7 +75,7 @@ public class EquipmentView : MonoBehaviour
     }
 
     /// <summary>
-    /// UI를 갱신하여 장착 상태와 상호작용을 설정한다.
+    /// UI를 갱신하여 장착 상태와 상호작용을 설정합니다.
     /// </summary>
     public void UpdateEquipmentUI(IReadOnlyList<EquipmentSlot> slots, Action<string> onSlotClicked)
     {
@@ -86,27 +86,27 @@ public class EquipmentView : MonoBehaviour
 
             if (slot.equipped == null || string.IsNullOrEmpty(slot.equipped.iconPath))
             {
-                btn.gameObject.SetActive(false); // 비어 있으면 비활성화
+                btn.gameObject.SetActive(false); // 비어 있으면 비활성화합니다.
             }
             else
             {
                 btn.gameObject.SetActive(true);
 
-                // 아이콘 설정
+                // 아이콘을 설정합니다.
                 var image = btn.GetComponent<Image>();
                 var icon = Resources.Load<Sprite>(slot.equipped.iconPath);
                 if (image != null) image.sprite = icon;
 
-                // 클릭 이벤트 재설정
+                // 클릭 이벤트를 재설정합니다.
                 btn.onClick.RemoveAllListeners();
 
-                // 슬롯 정보 설정
+                // 슬롯 정보를 설정합니다.
                 var slotView = btn.GetComponent<EquipmentSlotView>();
                 if (slotView == null) slotView = btn.gameObject.AddComponent<EquipmentSlotView>();
                 slotView.slotType = slot.slotType;
                 slotView.onItemDropped = null;
 
-                // 드래그 가능한 아이템 설정
+                // 드래그 가능한 아이템을 설정합니다.
                 var draggable = btn.GetComponent<DraggableItemView>();
                 if (draggable == null)
                     draggable = btn.gameObject.AddComponent<DraggableItemView>();
@@ -124,13 +124,13 @@ public class EquipmentView : MonoBehaviour
                     }
                 );
 
-                // 툴팁 설정
+                // 툴팁을 설정합니다.
                 var hover = btn.GetComponent<ItemHoverTooltip>();
                 if (hover == null) hover = btn.gameObject.AddComponent<ItemHoverTooltip>();
                 hover.SetItem(slot.equipped);
                 hover.SetContext(ItemOrigin.Equipment);
 
-                // 우클릭 이벤트 등록
+                // 우클릭 이벤트를 등록합니다.
                 var trigger = btn.GetComponent<UnityEngine.EventSystems.EventTrigger>();
                 if (trigger == null) trigger = btn.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
                 trigger.triggers.Clear();
@@ -168,7 +168,7 @@ public class EquipmentView : MonoBehaviour
     }
 
     /// <summary>
-    /// 슬롯에 지정된 아이콘을 설정한다.
+    /// 슬롯에 지정된 아이콘을 설정합니다.
     /// </summary>
     public void SetEquipmentIcon(Sprite icon, string slotType)
     {

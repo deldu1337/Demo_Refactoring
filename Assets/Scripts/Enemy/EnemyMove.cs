@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 적의 이동과 추적 로직을 담당하고 애니메이션을 전환한다.
+/// 적의 이동과 추적 로직을 담당하고 애니메이션을 전환합니다.
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animation))]
@@ -9,9 +9,9 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     [Header("이동 설정")]
-    [SerializeField] private float baseMoveSpeed = 3f;      // 기본 이동 속도
-    [SerializeField] private float baseRotationSpeed = 10f; // 기본 회전 속도
-    [SerializeField] private float detectRadius = 10f;      // 플레이어 탐지 범위
+    [SerializeField] private float baseMoveSpeed = 3f;      // 기본 이동 속도입니다.
+    [SerializeField] private float baseRotationSpeed = 10f; // 기본 회전 속도입니다.
+    [SerializeField] private float detectRadius = 10f;      // 플레이어 탐지 범위입니다.
 
     public Transform TargetPlayer { get; private set; }
 
@@ -24,7 +24,7 @@ public class EnemyMove : MonoBehaviour
     private int playerLayerMask;
 
     /// <summary>
-    /// 필수 컴포넌트를 초기화하고 기본 위치와 레이어 마스크를 설정한다.
+    /// 필수 컴포넌트를 초기화하고 기본 위치와 레이어 마스크를 설정합니다.
     /// </summary>
     private void Awake()
     {
@@ -45,7 +45,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 플레이어 사망 이벤트를 구독한다.
+    /// 플레이어 사망 이벤트를 구독합니다.
     /// </summary>
     private void OnEnable()
     {
@@ -53,7 +53,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 플레이어 사망 이벤트 구독을 해제한다.
+    /// 플레이어 사망 이벤트 구독을 해제합니다.
     /// </summary>
     private void OnDisable()
     {
@@ -61,7 +61,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 플레이어가 죽었을 때 추적 상태를 초기화한다.
+    /// 플레이어가 죽었을 때 추적 상태를 초기화합니다.
     /// </summary>
     private void HandlePlayerDied()
     {
@@ -69,12 +69,12 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 생성 위치를 외부에서 지정한다.
+    /// 생성 위치를 외부에서 지정합니다.
     /// </summary>
     public void SetSpawnPosition(Vector3 position) => spawnPosition = position;
 
     /// <summary>
-    /// 고정 업데이트마다 플레이어를 탐지하고 이동 동작을 수행한다.
+    /// 고정 업데이트마다 플레이어를 탐지하고 이동 동작을 수행합니다.
     /// </summary>
     private void FixedUpdate()
     {
@@ -83,7 +83,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 주변에서 살아있는 플레이어를 탐지하고 가장 가까운 대상을 찾는다.
+    /// 주변에서 살아있는 플레이어를 탐지하고 가장 가까운 대상을 찾습니다.
     /// </summary>
     private void DetectPlayer()
     {
@@ -116,7 +116,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 목표 위치를 향해 이동하고 상황에 맞는 애니메이션을 재생한다.
+    /// 목표 위치를 향해 이동하고 상황에 맞는 애니메이션을 재생합니다.
     /// </summary>
     private void MoveTowardsTarget()
     {
@@ -145,13 +145,13 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 이동 상태에 따라 적절한 애니메이션을 재생한다.
+    /// 이동 상태에 따라 적절한 애니메이션을 재생합니다.
     /// </summary>
     private void PlayAnimation(string animName)
     {
         if (!anim) return;
 
-        // 공격 동작 중에는 이동 애니메이션을 덮어쓰지 않는다.
+        // 공격 동작 중에는 이동 애니메이션을 덮어쓰지 않습니다.
         if (anim.IsPlaying("AttackUnarmed (ID 16 variation 0)"))
             return;
 
@@ -160,7 +160,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 에디터에서 탐지 반경을 시각화한다.
+    /// 에디터에서 탐지 반경을 시각화합니다.
     /// </summary>
     private void OnDrawGizmosSelected()
     {

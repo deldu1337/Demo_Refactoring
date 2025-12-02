@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEngine;
 
 /// <summary>
-/// 스테이지 정보에 따라 적 프리팹을 선택하고 맵에 배치한다.
+/// 스테이지 정보에 따라 적 프리팹을 선택하고 맵에 배치합니다.
 /// </summary>
 public class EnemySpawn : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class EnemySpawn : MonoBehaviour
     public StageManager stageManager;
 
     [Header("스폰 설정")]
-    public float spawnFactor = 25f; // 방 면적을 나눈 값으로 적 수를 결정
+    public float spawnFactor = 25f; // 방 면적을 나눈 값으로 적 수를 결정합니다.
     public int bossCount = 1;
     public int triesPerEnemy = 10;
 
@@ -38,7 +38,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 유효한 프리팹 목록을 정리해 빠르게 조회할 수 있도록 매핑한다.
+    /// 유효한 프리팹 목록을 정리해 빠르게 조회할 수 있도록 매핑합니다.
     /// </summary>
     private void Awake()
     {
@@ -49,7 +49,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 맵 생성 이벤트를 구독하여 맵 완성 시 적을 생성한다.
+    /// 맵 생성 이벤트를 구독하여 맵 완성 시 적을 생성합니다.
     /// </summary>
     private void OnEnable()
     {
@@ -62,7 +62,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 맵 생성 이벤트 구독을 해제한다.
+    /// 맵 생성 이벤트 구독을 해제합니다.
     /// </summary>
     private void OnDisable()
     {
@@ -71,7 +71,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 적 데이터베이스를 로드해 메모리에 보관한다.
+    /// 적 데이터베이스를 로드해 메모리에 보관합니다.
     /// </summary>
     private void EnsureDbLoaded()
     {
@@ -88,7 +88,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 기존 스폰을 정리한 뒤 현재 스테이지에 맞는 적을 배치한다.
+    /// 기존 스폰을 정리한 뒤 현재 스테이지에 맞는 적을 배치합니다.
     /// </summary>
     public void GenerateEnemies()
     {
@@ -111,7 +111,7 @@ public class EnemySpawn : MonoBehaviour
     private static readonly FieldInfo _fiMaxStage = typeof(EnemyData).GetField("maxStage");
 
     /// <summary>
-    /// 데이터의 최소 출현 스테이지를 가져온다.
+    /// 데이터의 최소 출현 스테이지를 가져옵니다.
     /// </summary>
     private int GetMinStage(EnemyData e)
     {
@@ -124,7 +124,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 데이터의 최대 출현 스테이지를 가져온다.
+    /// 데이터의 최대 출현 스테이지를 가져옵니다.
     /// </summary>
     private int GetMaxStage(EnemyData e)
     {
@@ -137,7 +137,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재 스테이지와 보스 여부에 맞는 적인지 판별한다.
+    /// 현재 스테이지와 보스 여부에 맞는 적인지 판별합니다.
     /// </summary>
     private bool IsAvailableOnStage(EnemyData e, int stage, bool isBossStage)
     {
@@ -149,7 +149,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 일반 스테이지에서 방 면적을 기준으로 적을 무작위 배치한다.
+    /// 일반 스테이지에서 방 면적을 기준으로 적을 무작위 배치합니다.
     /// </summary>
     private void SpawnNormalStage()
     {
@@ -195,7 +195,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 보스 스테이지에서 보스 룸을 기준으로 적을 스폰한다.
+    /// 보스 스테이지에서 보스 룸을 기준으로 적을 스폰합니다.
     /// </summary>
     private void SpawnBossStage()
     {
@@ -240,7 +240,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// ID에 해당하는 프리팹을 생성하고 스폰 결과를 반환한다.
+    /// ID에 해당하는 프리팹을 생성하고 스폰 결과를 반환합니다.
     /// </summary>
     private GameObject SpawnById(string enemyId, Vector3 position, bool markAsBoss = false, Quaternion? rotation = null)
     {
@@ -265,7 +265,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// 지정된 방 안에서 장애물이 없는 스폰 지점을 찾는다.
+    /// 지정된 방 안에서 장애물이 없는 스폰 지점을 찾습니다.
     /// </summary>
     private bool TryPickPointInRoom(RectInt room, out Vector3 pos)
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 using static DamageTextManager;
 
 /// <summary>
-/// 적의 공격 동작을 관리하고 애니메이션과 데미지 적용을 조율한다.
+/// 적의 공격 동작을 관리하고 애니메이션과 데미지 적용을 조율합니다.
 /// </summary>
 [RequireComponent(typeof(EnemyMove))]
 [RequireComponent(typeof(EnemyStatsManager))]
@@ -17,14 +17,14 @@ public class EnemyAttack : MonoBehaviour
 
     [Header("전투 설정")]
     [SerializeField] private float attackRange = 2f;
-    [SerializeField] private float damageDelay = 0.3f; // 데미지가 적용되기까지의 지연 시간
+    [SerializeField] private float damageDelay = 0.3f; // 데미지가 적용되기까지의 지연 시간입니다.
 
-    // 공격 동작이 진행 중인지 여부
+    // 공격 동작이 진행 중인지 여부입니다.
     private bool isAttacking = false;
     private Coroutine attackRoutine;
 
     /// <summary>
-    /// 필수 컴포넌트를 캐싱하고 기본 값을 초기화한다.
+    /// 필수 컴포넌트를 캐싱하고 기본 값을 초기화합니다.
     /// </summary>
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 플레이어 사망 이벤트를 구독한다.
+    /// 플레이어 사망 이벤트를 구독합니다.
     /// </summary>
     private void OnEnable()
     {
@@ -44,7 +44,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 플레이어 사망 이벤트 구독을 해제한다.
+    /// 플레이어 사망 이벤트 구독을 해제합니다.
     /// </summary>
     private void OnDisable()
     {
@@ -52,7 +52,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 플레이어가 사망했을 때 공격을 중단하고 상태를 초기화한다.
+    /// 플레이어가 사망했을 때 공격을 중단하고 상태를 초기화합니다.
     /// </summary>
     private void InterruptAttackOnPlayerDeath()
     {
@@ -70,7 +70,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 매 프레임 타겟을 갱신하고 공격을 시도한다.
+    /// 매 프레임 타겟을 갱신하고 공격을 시도합니다.
     /// </summary>
     private void Update()
     {
@@ -79,7 +79,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// EnemyMove에서 찾은 플레이어를 타겟으로 설정한다.
+    /// EnemyMove에서 찾은 플레이어를 타겟으로 설정합니다.
     /// </summary>
     private void UpdateTarget()
     {
@@ -94,7 +94,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 공격 가능 여부를 확인하고 코루틴을 시작한다.
+    /// 공격 가능 여부를 확인하고 코루틴을 시작합니다.
     /// </summary>
     private void TryAttack()
     {
@@ -106,7 +106,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 타겟의 상태와 거리를 검사해 공격 가능 여부를 반환한다.
+    /// 타겟의 상태와 거리를 검사해 공격 가능 여부를 반환합니다.
     /// </summary>
     private bool CanAttackTarget()
     {
@@ -118,7 +118,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 공격 애니메이션을 재생하고 데미지를 적용하는 전체 흐름을 처리한다.
+    /// 공격 애니메이션을 재생하고 데미지를 적용하는 전체 흐름을 처리합니다.
     /// </summary>
     private IEnumerator AttackSequence()
     {
@@ -127,7 +127,7 @@ public class EnemyAttack : MonoBehaviour
         string attackAnimName = "AttackUnarmed (ID 16 variation 0)";
         float speed = Mathf.Max(stats.Data.As, 0.1f);
 
-        // 애니메이션을 재생하면서 속도와 반복 방식을 설정한다.
+        // 애니메이션을 재생하면서 속도와 반복 방식을 설정합니다.
         if (anim && anim.GetClip(attackAnimName))
         {
             anim.Stop();
@@ -140,7 +140,7 @@ public class EnemyAttack : MonoBehaviour
             Debug.LogWarning($"{name}: {attackAnimName} 클립을 찾을 수 없습니다!");
         }
 
-        // 데미지 타이밍까지 기다리는 동안 범위와 타겟 유효성을 검사한다.
+        // 데미지 타이밍까지 기다리는 동안 범위와 타겟 유효성을 검사합니다.
         float impactWait = damageDelay / speed;
         float t = 0f;
         while (t < impactWait)
@@ -156,7 +156,7 @@ public class EnemyAttack : MonoBehaviour
             yield return null;
         }
 
-        // 실제 데미지를 적용한다.
+        // 실제 데미지를 적용합니다.
         if (!OutOfRangeOrInvalid())
         {
             float damage = Mathf.Max(stats.Data.atk - targetPlayer.Data.Def, 1f);
@@ -169,7 +169,7 @@ public class EnemyAttack : MonoBehaviour
                 DamageTextManager.DamageTextTarget.Player);
         }
 
-        // 남은 애니메이션이 끝날 때까지 상태를 유지하며 확인한다.
+        // 남은 애니메이션이 끝날 때까지 상태를 유지하며 확인합니다.
         float totalDur = GetAnimDuration(attackAnimName, speed);
         float remain = Mathf.Max(0f, totalDur - impactWait);
         t = 0f;
@@ -191,7 +191,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 타겟이 사라졌거나 범위를 벗어났는지 확인한다.
+    /// 타겟이 사라졌거나 범위를 벗어났는지 확인합니다.
     /// </summary>
     private bool OutOfRangeOrInvalid()
     {
@@ -201,7 +201,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 공격 애니메이션이 재생 중이면 중지한다.
+    /// 공격 애니메이션이 재생 중이면 중지합니다.
     /// </summary>
     private void StopAttackAnimIfPlaying(string attackAnimName)
     {
@@ -210,7 +210,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 공격 속도를 기반으로 한 쿨다운 시간을 계산한다.
+    /// 공격 속도를 기반으로 한 쿨다운 시간을 계산합니다.
     /// </summary>
     private float GetAttackCooldown()
     {
@@ -218,7 +218,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 애니메이션 길이와 재생 속도로 전체 재생 시간을 계산한다.
+    /// 애니메이션 길이와 재생 속도로 전체 재생 시간을 계산합니다.
     /// </summary>
     private float GetAnimDuration(string clipName, float speed)
     {
@@ -227,6 +227,6 @@ public class EnemyAttack : MonoBehaviour
             var st = anim[clipName];
             return st.length / Mathf.Max(speed, 0.0001f);
         }
-        return 0.5f; // 기본값
+        return 0.5f; // 기본값입니다.
     }
 }
