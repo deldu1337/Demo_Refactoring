@@ -3,22 +3,44 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// ì•„ì´í…œì´ ì–´ë””ì—ì„œ ì™”ëŠ”ì§€ ë‚˜íƒ€ë‚´ëŠ” ì›ë³¸ ìœ„ì¹˜ì…ë‹ˆë‹¤.
+/// </summary>
 public enum ItemOrigin
 {
     Inventory,
     Equipment
 }
 
+/// <summary>
+/// ì¸ë²¤í† ë¦¬ë‚˜ ì¥ë¹„ ìŠ¬ë¡¯ì—ì„œ ì•„ì´í…œì„ ë“œë˜ê·¸í•˜ì—¬ ì´ë™í•˜ê±°ë‚˜ ì‚¬ìš©í•˜ë„ë¡ ë•ëŠ” ë·° í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+/// </summary>
 public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDragHandler,
     IDragHandler, IEndDragHandler
 {
-    public Action<string, ItemOrigin> onItemEquipped;    // ÀÎº¥Åä¸® ¡æ ÀåºñÃ¢
+    /// <summary>
+    /// ì•„ì´í…œì„ ì¥ë¹„í•˜ë ¤ê³  í•  ë•Œ í˜¸ì¶œë˜ëŠ” ì½œë°±ì…ë‹ˆë‹¤.
+    /// </summary>
+    public Action<string, ItemOrigin> onItemEquipped;
 
-    public Action<string, ItemOrigin> onItemUnequipped;  // ÀåºñÃ¢ ¡æ ÀÎº¥Åä¸®
+    /// <summary>
+    /// ì¥ë¹„ë¥¼ í•´ì œí•˜ë ¤ê³  í•  ë•Œ í˜¸ì¶œë˜ëŠ” ì½œë°±ì…ë‹ˆë‹¤.
+    /// </summary>
+    public Action<string, ItemOrigin> onItemUnequipped;
 
-    public Action<string, string> onItemDropped;         // ¼ø¼­ º¯°æ (fromId, toId)
-    public Action<string> onItemRemoved;                // »èÁ¦ ÀÌº¥Æ®
+    /// <summary>
+    /// ì•„ì´í…œì„ ë‹¤ë¥¸ ìŠ¬ë¡¯ìœ¼ë¡œ ì´ë™í•  ë•Œ í˜¸ì¶œë˜ëŠ” ì½œë°±ì…ë‹ˆë‹¤. (fromId, toId)
+    /// </summary>
+    public Action<string, string> onItemDropped;
 
+    /// <summary>
+    /// ì•„ì´í…œì„ ì¸ë²¤í† ë¦¬ì—ì„œ ì œê±°í•  ë•Œ í˜¸ì¶œë˜ëŠ” ì½œë°±ì…ë‹ˆë‹¤.
+    /// </summary>
+    public Action<string> onItemRemoved;
+
+    /// <summary>
+    /// í˜„ì¬ ì•„ì´í…œ ì •ë³´ë¥¼ ì œê³µí•©ë‹ˆë‹¤.
+    /// </summary>
     public InventoryItem Item { get; private set; }
 
     private string uniqueId;
@@ -30,8 +52,11 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
     private int originalIndex;
     private InventoryPresenter inventoryPresenter;
 
-    private GameObject placeholder; // ¸Ç ¸¶Áö¸·¿¡ µÑ placeholder
+    private GameObject placeholder; // ì›ë˜ ìœ„ì¹˜ë¥¼ í‘œì‹œí•˜ê¸° ìœ„í•œ í”Œë ˆì´ìŠ¤í™€ë” ì˜¤ë¸Œì íŠ¸
 
+    /// <summary>
+    /// ì»´í¬ë„ŒíŠ¸ê°€ ìƒì„±ë  ë•Œ í•„ìš”í•œ ì°¸ì¡°ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
+    /// </summary>
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -40,6 +65,9 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
         if (!inventoryPresenter) inventoryPresenter = FindAnyObjectByType<InventoryPresenter>();
     }
 
+    /// <summary>
+    /// ì•„ì´í…œ ì •ë³´ë¥¼ ì„¤ì •í•˜ê³  ë“œë˜ê·¸ ë™ì‘ì„ ìœ„í•œ ì½œë°±ì„ ì£¼ì…í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Initialize(
         InventoryItem item,
         ItemOrigin origin,
@@ -51,7 +79,7 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
     {
         if (InventoryGuards.IsInvalid(item))
         {
-            Debug.LogWarning("[DraggableItemView] ¹«È¿ ¾ÆÀÌÅÛÀ¸·Î ÃÊ±âÈ­ ½Ãµµ ¡æ ºñÈ°¼ºÈ­");
+            Debug.LogWarning("[DraggableItemView] ì˜ëª»ëœ ì•„ì´í…œì´ ì „ë‹¬ë˜ì–´ ë¹„í™œì„±í™”í•©ë‹ˆë‹¤");
             gameObject.SetActive(false);
             return;
         }
@@ -64,9 +92,11 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
         onItemRemoved = removeCallback;
         onItemEquipped = equipCallback;
         onItemUnequipped = unequipCallback;
-
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ ì¤‘ ë¬¸ì œê°€ ìƒê²¼ì„ ë•Œ ì›ë˜ ìœ„ì¹˜ë¡œ ëŒë ¤ë†“ìŠµë‹ˆë‹¤.
+    /// </summary>
     public void SnapBackToOriginal()
     {
         if (originalParent)
@@ -76,17 +106,20 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
         }
     }
 
+    /// <summary>
+    /// í´ë¦­ ì…ë ¥ì„ ë°›ì•„ ìš°í´ë¦­ ì‹œ ì¥ì°© ë˜ëŠ” í•´ì œ ë™ì‘ì„ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log($"[OnPointerClick] obj={gameObject.name}, origin={originType}, button={eventData.button}");
-        
-        // ÁÂÅ¬¸¯Àº Àåºñ ÇØÁ¦ ±İÁö ¡æ ±×³É ¸®ÅÏ
+
+        // ì™¼ìª½ í´ë¦­ì€ ë¬´ì‹œ
         if (eventData.button == PointerEventData.InputButton.Left)
             return;
 
         if (eventData.button != PointerEventData.InputButton.Right) return;
 
-        // 1. ÀåºñÃ¢ ½½·Ô ¾È¿¡¼­ ´­·¶´ÂÁö Á÷Á¢ °Ë»ç
+        // 1. ìš°í´ë¦­ ì§€ì ì´ ì¥ë¹„ ìŠ¬ë¡¯ì¸ì§€ í™•ì¸
         bool inEquipmentSlot = false;
         string slotType = null;
 
@@ -109,33 +142,36 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
             }
         }
 
-        // 2. ÀÎº¥Åä¸® ¾ÆÀÌÅÛÀÌ¸é ¡æ ÀåÂø ½Ãµµ
+        // 2. ì¸ë²¤í† ë¦¬ì—ì„œ ìš°í´ë¦­í•˜ë©´ ì¥ë¹„ ì‹œë„
         if (originType == ItemOrigin.Inventory && !inEquipmentSlot)
         {
             onItemEquipped?.Invoke(uniqueId, originType);
         }
-        // 3. ÀåºñÃ¢ ½½·Ô ¾È¿¡¼­ ¿ìÅ¬¸¯ ¡æ ÇØÁ¦ ½Ãµµ
+        // 3. ì¥ë¹„ ìŠ¬ë¡¯ì—ì„œ ìš°í´ë¦­í•˜ë©´ í•´ì œ ì‹œë„
         else if (inEquipmentSlot)
         {
-            Debug.Log($"[Equipment] {uniqueId} ¡æ {slotType} ÇØÁ¦ ½Ãµµ");
+            Debug.Log($"[Equipment] {uniqueId} ìŠ¬ë¡¯ {slotType} í•´ì œ ì‹œë„");
             onItemUnequipped?.Invoke(slotType, ItemOrigin.Equipment);
         }
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ë¥¼ ì‹œì‘í•  ë•Œ í”Œë ˆì´ìŠ¤í™€ë”ë¥¼ ìƒì„±í•˜ê³  ìœ„ì¹˜ë¥¼ ê¸°ë¡í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnBeginDrag(PointerEventData eventData)
     {
-        ItemTooltipUI.Instance?.Hide(); // ¡ç Ãß°¡
+        ItemTooltipUI.Instance?.Hide(); // ë“œë˜ê·¸ ì¤‘ íˆ´íŒ ìˆ¨ê¹€
 
         if (originType == ItemOrigin.Equipment)
         {
-            // ÀåºñÃ¢¿¡¼­´Â µå·¡±× ±İÁö
+            // ì¥ë¹„ ìŠ¬ë¡¯ì—ì„œëŠ” ë“œë˜ê·¸ë¥¼ ë§‰ìŠµë‹ˆë‹¤
             return;
         }
 
         originalParent = transform.parent;
         originalIndex = transform.GetSiblingIndex();
 
-        // È°¼ºÈ­µÈ ½½·Ô °³¼ö °è»ê
+        // í˜„ì¬ ë¶€ëª¨ì—ì„œ í™œì„±í™”ëœ ìì‹ ìˆ˜ ê³„ì‚°
         int activeCount = 0;
         for (int i = 0; i < originalParent.childCount; i++)
         {
@@ -143,28 +179,34 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
                 activeCount++;
         }
 
-        // placeholder »ı¼º
+        // í”Œë ˆì´ìŠ¤í™€ë” ìƒì„±
         placeholder = new GameObject("Placeholder");
         var placeholderRect = placeholder.AddComponent<RectTransform>();
         placeholderRect.sizeDelta = rectTransform.sizeDelta;
         placeholder.transform.SetParent(originalParent);
-        placeholder.transform.SetSiblingIndex(activeCount); // È°¼º ½½·Ô ¸¶Áö¸· ´ÙÀ½ ÀÎµ¦½º
+        placeholder.transform.SetSiblingIndex(activeCount); // ë³´ì´ëŠ” ìˆœì„œ ìœ ì§€
 
         canvasGroup.blocksRaycasts = false;
-        transform.SetParent(canvas.transform, true); // ÃÖ»óÀ§ Äµ¹ö½º·Î ÀÌµ¿
+        transform.SetParent(canvas.transform, true); // ìº”ë²„ìŠ¤ë¡œ ì„ì‹œ ì´ë™
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ ì¤‘ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì— ë§ì¶° ì•„ì´í…œì„ ì´ë™í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnDrag(PointerEventData eventData)
     {
         if (originType == ItemOrigin.Equipment)
         {
-            // ÀåºñÃ¢¿¡¼­´Â µå·¡±× ±İÁö
+            // ì¥ë¹„ ìŠ¬ë¡¯ì—ì„œëŠ” ë“œë˜ê·¸ë¥¼ ë§‰ìŠµë‹ˆë‹¤
             return;
         }
 
         rectTransform.position = eventData.position;
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ë¥¼ ëëƒˆì„ ë•Œ ìœ„ì¹˜ë¥¼ íŒì •í•˜ê³  ì½œë°±ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnEndDrag(PointerEventData eventData)
     {
         ItemTooltipUI.Instance?.Hide();
@@ -174,28 +216,28 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
 
         canvasGroup.blocksRaycasts = true;
 
-        // 0) ¡Ú Æ÷¼Ç ½½·Ô À§ Ã¼Å©: µå·Ó Ã³¸®´Â OnDrop¿¡¼­ ÇÏ¹Ç·Î ¿©±â¼± '»èÁ¦'¸¸ ¸·°í Á¾·á
+        // 0) í¬ì…˜ ìŠ¬ë¡¯ìœ¼ë¡œ ì´ë™í–ˆëŠ”ì§€ ë¨¼ì € í™•ì¸í•©ë‹ˆë‹¤
         var potionSlotUnderPointer = eventData.pointerEnter
             ? eventData.pointerEnter.GetComponentInParent<PotionSlotUI>()
             : null;
         if (potionSlotUnderPointer != null)
         {
-            // placeholder¸¸ Á¤¸®ÇÏ°í ¾Æ¹« °Íµµ ÇÏÁö ¾Ê´Â´Ù.
+            // í¬ì…˜ ìŠ¬ë¡¯ì—ì„œëŠ” í”Œë ˆì´ìŠ¤í™€ë”ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ ì •ë¦¬í•©ë‹ˆë‹¤
             if (placeholder)
             {
                 placeholder.transform.SetParent(null, false);
                 Destroy(placeholder);
                 placeholder = null;
             }
-            return; // ¡ç »èÁ¦ ºĞ±â·Î °¡Áö ¾Ê°Ô Á¶±â Á¾·á
+            return; // í¬ì…˜ í€µ ìŠ¬ë¡¯ì—ì„œ ì²˜ë¦¬ê°€ ëë‚¬ìœ¼ë¯€ë¡œ ì¢…ë£Œ
         }
 
-        // 1) ÀÎº¥Åä¸® ¿µ¿ª È®ÀÎ
+        // 1) ì¸ë²¤í† ë¦¬ ì˜ì—­ ì•ˆì¸ì§€ í™•ì¸
         RectTransform inventoryRect = originalParent as RectTransform;
         bool inInventory = RectTransformUtility.RectangleContainsScreenPoint(
             inventoryRect, eventData.position, canvas.worldCamera);
 
-        // 2) ÀåºñÃ¢ ¿µ¿ª È®ÀÎ
+        // 2) ì¥ë¹„ ìŠ¬ë¡¯ ìœ„ì¸ì§€ í™•ì¸
         bool inEquipmentSlot = false;
         Button targetSlot = null;
         var equipmentUI = GameObject.Find("EquipmentUI");
@@ -217,7 +259,7 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
             }
         }
 
-        // placeholder À§Ä¡·Î ¾ÆÀÌÅÛ ÀÌµ¿
+        // í”Œë ˆì´ìŠ¤í™€ë” ê¸°ì¤€ìœ¼ë¡œ ì‚½ì… ìœ„ì¹˜ë¥¼ ê³„ì‚°
         int newIndex = placeholder ? placeholder.transform.GetSiblingIndex() : originalIndex;
 
         if (inInventory)
@@ -257,7 +299,7 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
         }
         else
         {
-            // ¡Ú ¿©±â·Î ¿À¸é 'UI ¹Û'ÀÌ¹Ç·Î »èÁ¦. (Æ÷¼Ç ½½·ÔÀÇ °æ¿ì À§¿¡¼­ ÀÌ¹Ì return ÇßÀ½)
+            // ì¸ë²¤í† ë¦¬ì™€ ì¥ë¹„ê°€ ì•„ë‹Œ ì˜ì—­ìœ¼ë¡œ ë“œë¡­í•˜ë©´ ì•„ì´í…œì„ ë²„ë¦½ë‹ˆë‹¤
             if (placeholder)
             {
                 placeholder.transform.SetParent(null, false);
@@ -272,7 +314,7 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
             return;
         }
 
-        // ¸¶Áö¸· Á¤¸®
+        // í”Œë ˆì´ìŠ¤í™€ë” ì •ë¦¬
         if (placeholder)
         {
             placeholder.transform.SetParent(null, false);
@@ -280,6 +322,4 @@ public class DraggableItemView : MonoBehaviour, IPointerClickHandler, IBeginDrag
             placeholder = null;
         }
     }
-
 }
-

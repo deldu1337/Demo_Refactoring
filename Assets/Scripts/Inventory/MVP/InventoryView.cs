@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ì¸ë²¤í† ë¦¬ UIë¥¼ í‘œì‹œí•˜ê³  ë²„íŠ¼ ìƒíƒœë¥¼ ê°±ì‹ í•˜ëŠ” ë·°ì…ë‹ˆë‹¤.
+/// </summary>
 public class InventoryView : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel;
@@ -11,6 +14,9 @@ public class InventoryView : MonoBehaviour
 
     private Button[] inventoryButtons;
 
+    /// <summary>
+    /// ì¢…ë£Œ ë²„íŠ¼ ë¦¬ìŠ¤ë„ˆë¥¼ ì„¤ì •í•˜ê³  ì´ˆê¸° ìƒíƒœë¥¼ ìˆ¨ê¹ë‹ˆë‹¤.
+    /// </summary>
     public void Initialize(Action onExit)
     {
         if (exitButton != null)
@@ -20,8 +26,14 @@ public class InventoryView : MonoBehaviour
         Show(false);
     }
 
+    /// <summary>
+    /// ì¸ë²¤í† ë¦¬ íŒ¨ë„ í‘œì‹œ ì—¬ë¶€ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Show(bool show) => inventoryPanel?.SetActive(show);
 
+    /// <summary>
+    /// ì¸ë²¤í† ë¦¬ ë²„íŠ¼ UIë¥¼ ìµœì‹  ë°ì´í„°ë¡œ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     public void UpdateInventoryUI(
         IReadOnlyList<InventoryItem> items,
         Action<string, string> onItemDropped,
@@ -29,7 +41,7 @@ public class InventoryView : MonoBehaviour
         Action<string> onItemEquipped
     )
     {
-        // UpdateInventoryUI ½ÃÀÛ ºÎºĞ
+        // ì´ì „ì— ë‚¨ì•„ìˆì„ ìˆ˜ ìˆëŠ” í”Œë ˆì´ìŠ¤í™€ë” ì •ë¦¬
         foreach (Transform child in buttonContainer)
         {
             if (child && (child.name == "Placeholder"))
@@ -43,7 +55,7 @@ public class InventoryView : MonoBehaviour
         {
             var item = items[i];
             if (InventoryGuards.IsInvalid(item))
-                continue; // UI ½½·Ô ¹èÁ¤ ¾ÈÇÔ
+                continue; // ì˜ëª»ëœ ë°ì´í„°ëŠ” ìŠ¤í‚µ
 
             var button = inventoryButtons[i];
             button.gameObject.SetActive(true);
@@ -55,7 +67,7 @@ public class InventoryView : MonoBehaviour
                 if (icon != null) image.sprite = icon;
             }
 
-            // ¡Ú ¿ìÇÏ´Ü ¼ö·® ¶óº§(ÇÊ¿ä ½Ã »ı¼º ÈÄ °»½Å)
+            // ì¤‘ì²© ìˆ˜ëŸ‰ í‘œì‹œ ë¼ë²¨ í™•ë³´
             var qty = EnsureQtyLabel(button.transform);
             if (item.data != null && item.data.type == "potion" && item.quantity >= 1)
             {
@@ -81,16 +93,16 @@ public class InventoryView : MonoBehaviour
             var hover = button.GetComponent<ItemHoverTooltip>();
             if (hover == null) hover = button.gameObject.AddComponent<ItemHoverTooltip>();
             hover.SetItem(item);
-            hover.SetContext(ItemOrigin.Inventory);   // ¡Ú Ãß°¡: ÀÎº¥Åä¸® ÄÁÅØ½ºÆ®
+            hover.SetContext(ItemOrigin.Inventory);   // íˆ´íŒ ì»¨í…ìŠ¤íŠ¸ ì„¤ì •
 
             var CanvasGroup = button.GetComponent<CanvasGroup>();
             CanvasGroup.blocksRaycasts = true;
         }
     }
 
-    // °¡Àå À§¿¡ using À¯Áö:
-    // using UnityEngine.UI;
-
+    /// <summary>
+    /// ë²„íŠ¼ í•˜ìœ„ì— ìˆ˜ëŸ‰ í‘œì‹œ í…ìŠ¤íŠ¸ë¥¼ í™•ë³´í•˜ê±°ë‚˜ ìƒˆë¡œ ë§Œë“­ë‹ˆë‹¤.
+    /// </summary>
     private Text EnsureQtyLabel(Transform parent)
     {
         var t = parent.Find("Qty") as RectTransform;
@@ -108,22 +120,21 @@ public class InventoryView : MonoBehaviour
             var txt = go.AddComponent<Text>();
             txt.alignment = TextAnchor.LowerRight;
 
-            // ¡Ú º¯°æµÈ ºÎºĞ: ³»Àå ÆùÆ® ÀÌ¸§ ±³Ã¼ + Æú¹é
+            // ê¸°ë³¸ í°íŠ¸ ì§€ì •
             Font f = null;
             try
             {
-                // »õ ³»Àå ÆùÆ® ÀÌ¸§
                 f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             }
-            catch { /* ÀÏºÎ ¹öÀü¿¡¼­ ¿¹¿Ü °¡´É */ }
+            catch { }
 
-            // ¸¸¾à À§¿¡¼­ ¸ø Ã£À¸¸é OS ÆùÆ® Æú¹é ½Ãµµ
+            // ê¸°ë³¸ í°íŠ¸ê°€ ì—†ìœ¼ë©´ OS í°íŠ¸ë¡œ ëŒ€ì²´
             if (f == null)
             {
                 try { f = Font.CreateDynamicFontFromOSFont("Arial", 18); } catch { }
             }
 
-            txt.font = f;            // f°¡ nullÀÌ¾îµµ Text´Â µ¿ÀÛÇÏÁö¸¸ °¡´ÉÇÏ¸é ¼¼ÆÃµÊ
+            txt.font = f;            // í°íŠ¸ê°€ nullì´ì–´ë„ Text ìƒì„±ì€ ê°€ëŠ¥
             txt.fontSize = 16;
             txt.raycastTarget = false;
 
@@ -133,6 +144,4 @@ public class InventoryView : MonoBehaviour
         }
         return t.GetComponent<Text>();
     }
-
 }
-
