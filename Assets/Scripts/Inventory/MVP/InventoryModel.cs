@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// ì¸ë²¤í† ë¦¬ì— ì €ì¥ë˜ëŠ” ì•„ì´í…œ ë°ì´í„°ë¥¼ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.
+/// </summary>
 [Serializable]
 public class InventoryItem
 {
@@ -12,54 +15,59 @@ public class InventoryItem
     public string iconPath;
     public string prefabPath;
 
-    // È¹µæ ½Ã È®Á¤µÈ(·Ñ¸µ) ´É·ÂÄ¡ (±¸¹öÀü null Çã¿ë)
+    // ë“œë¡­ ì‹œ ë¶€ì—¬ëœ ì¶”ê°€ ìŠ¤íƒ¯ ì •ë³´(ì—†ìœ¼ë©´ null)
     public RolledItemStats rolled;
 
-    // ¡Ú Ãß°¡: ½ºÅÃ
-    public bool stackable;       // Æ÷¼ÇÀº true
-    public int quantity = 1;     // ÇöÀç ¼ö·®
-    public int maxStack = 99;    // ÃÖ´ë ½ºÅÃ(¿øÇÏ¸é Á¶Àı)
+    // ì¤‘ì²© ê´€ë ¨ ì •ë³´
+    public bool stackable;       // ì¤‘ì²© ê°€ëŠ¥ ì—¬ë¶€
+    public int quantity = 1;     // í˜„ì¬ ê°œìˆ˜
+    public int maxStack = 99;    // ìµœëŒ€ ì¤‘ì²© ê°œìˆ˜
 
     public GameObject prefab => Resources.Load<GameObject>(prefabPath);
 }
 
-[Serializable]
-public class InventoryData
-{
-    public List<InventoryItem> items = new List<InventoryItem>();
-}
-
+/// <summary>
+/// ì¸ë²¤í† ë¦¬ ë°ì´í„°ë¥¼ ê´€ë¦¬í•˜ê³  ì €ì¥ì„ ë‹´ë‹¹í•˜ëŠ” ëª¨ë¸ í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+/// </summary>
 public class InventoryModel
 {
     private readonly string race;
-    private List<InventoryItem> items = new();  // ¼ø¼­ º¸Àå
+    private List<InventoryItem> items = new();  // ì‹¤ì œ ì•„ì´í…œ ëª©ë¡
     private string filePath;
 
     public IReadOnlyList<InventoryItem> Items => items;
 
-    // ¡Ú Á¾Á·º° »ı¼ºÀÚ
+    /// <summary>
+    /// ì¢…ì¡±ë³„ ì¸ë²¤í† ë¦¬ë¥¼ ì´ˆê¸°í™”í•˜ê³  ì €ì¥ íŒŒì¼ ê²½ë¡œë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public InventoryModel(string race = "humanmale")
     {
         this.race = string.IsNullOrEmpty(race) ? "humanmale" : race;
         filePath = Path.Combine(Application.persistentDataPath, $"playerInventory_{this.race}.json");
 
         Load();
-        SaveIfCleaned(); // ·Îµå½Ã Á¤¸®µÈ ³»¿ëÀÌ ÀÖÀ¸¸é ¹İ¿µ
+        SaveIfCleaned(); // ë¡œë“œ ê³¼ì •ì—ì„œ ì •ë¦¬ëœ ë‚´ìš©ì´ ìˆìœ¼ë©´ ì¦‰ì‹œ ì €ì¥
     }
 
+    /// <summary>
+    /// ê³ ìœ  IDë¡œ ì•„ì´í…œì„ ì¡°íšŒí•©ë‹ˆë‹¤.
+    /// </summary>
     public InventoryItem GetItemById(string uniqueId)
         => items.Find(i => i.uniqueId == uniqueId);
 
+    /// <summary>
+    /// ìƒˆë¡œìš´ ì•„ì´í…œì„ ì¶”ê°€í•˜ê³  ì €ì¥í•©ë‹ˆë‹¤. ì¤‘ë³µì´ë‚˜ ì˜ëª»ëœ ë°ì´í„°ëŠ” ê±°ë¶€í•©ë‹ˆë‹¤.
+    /// </summary>
     public void AddItem(InventoryItem item)
     {
         if (InventoryGuards.IsInvalid(item))
         {
-            Debug.LogWarning("[InventoryModel] ¹«È¿ ¾ÆÀÌÅÛ Ãß°¡ ½Ãµµ ¡æ ¹«½Ã");
+            Debug.LogWarning("[InventoryModel] ìœ íš¨í•˜ì§€ ì•Šì€ ì•„ì´í…œ ì¶”ê°€ ì‹œë„");
             return;
         }
         if (items.Exists(i => i.uniqueId == item.uniqueId))
         {
-            Debug.LogWarning($"[InventoryModel] Áßº¹ uniqueId Ãß°¡ ½Ãµµ({item.uniqueId}) ¡æ ¹«½Ã");
+            Debug.LogWarning($"[InventoryModel] ì¤‘ë³µ uniqueId ì¶”ê°€ ì‹œë„({item.uniqueId}) ê±°ë¶€");
             return;
         }
 
@@ -69,13 +77,18 @@ public class InventoryModel
         Save();
     }
 
+    /// <summary>
+    /// ê³ ìœ  IDë¡œ ì•„ì´í…œì„ ì œê±°í•˜ê³  ì €ì¥í•©ë‹ˆë‹¤.
+    /// </summary>
     public void RemoveById(string uniqueId)
     {
         items.RemoveAll(i => i.uniqueId == uniqueId);
         Save();
     }
 
-    /// <summary>uniqueId ±â¹İÀ¸·Î ¾ÆÀÌÅÛ ¼ø¼­¸¦ Àç¹èÄ¡ÇÏ°í JSON¿¡ ÀúÀå</summary>
+    /// <summary>
+    /// fromId ìœ„ì¹˜ì˜ ì•„ì´í…œì„ toId ì•ì— ì¬ë°°ì¹˜í•˜ê³  ê²°ê³¼ë¥¼ ì €ì¥í•©ë‹ˆë‹¤.
+    /// </summary>
     public void ReorderByUniqueId(string fromId, string toId)
     {
         int fromIndex = items.FindIndex(i => i.uniqueId == fromId);
@@ -87,7 +100,7 @@ public class InventoryModel
         var item = items[fromIndex];
         if (InventoryGuards.IsInvalid(item))
         {
-            Debug.LogWarning("[InventoryModel] Àç¹èÄ¡ Áß ¹«È¿ ¾ÆÀÌÅÛ ¹ß°ß ¡æ Á¦°Å");
+            Debug.LogWarning("[InventoryModel] ì¬ì •ë ¬ ëŒ€ìƒ ì•„ì´í…œì´ ë¬´íš¨ë¼ ì‚­ì œí•©ë‹ˆë‹¤");
             items.RemoveAt(fromIndex);
             Save();
             return;
@@ -99,6 +112,9 @@ public class InventoryModel
         Save();
     }
 
+    /// <summary>
+    /// ì¤‘ë³µë˜ì§€ ì•Šì€ ì•„ì´í…œì„ ì¶”ê°€í•˜ê³  ì„±ê³µ ì—¬ë¶€ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool Add(InventoryItem item)
     {
         if (InventoryGuards.IsInvalid(item)) return false;
@@ -111,7 +127,9 @@ public class InventoryModel
         return true;
     }
 
-    /// <summary>µ¿ÀÏ Æ÷¼Ç(id) ¹ß°ß ½Ã ¼ö·® ÇÕÄ¡±â. ¹ß°ßÇÏ¸é true.</summary>
+    /// <summary>
+    /// ë™ì¼í•œ í¬ì…˜ IDê°€ ìˆë‹¤ë©´ ìˆ˜ëŸ‰ì„ ëŠ˜ë¦½ë‹ˆë‹¤. ì„±ê³µ ì‹œ trueë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool TryStackPotion(int itemId, int addAmount)
     {
         var found = items.Find(i => i.data != null
@@ -122,12 +140,14 @@ public class InventoryModel
 
         int before = found.quantity;
         found.quantity = Mathf.Clamp(found.quantity + addAmount, 0, found.maxStack);
-        Debug.Log($"[InventoryModel] Æ÷¼Ç ½ºÅÃ: id={itemId}, {before} ¡æ {found.quantity}");
+        Debug.Log($"[InventoryModel] í¬ì…˜ ìŠ¤íƒ ë³€ê²½: id={itemId}, {before} -> {found.quantity}");
         Save();
         return true;
     }
 
-    /// <summary>uniqueId·Î Æ÷¼Ç 1°³(or n°³) »ç¿ë. 0 µÇ¸é ½½·Ô Á¦°Å.</summary>
+    /// <summary>
+    /// ì§€ì •í•œ í¬ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ìˆ˜ëŸ‰ì„ ì¤„ì´ê³  0 ì´í•˜ì´ë©´ ì œê±°í•©ë‹ˆë‹¤.
+    /// </summary>
     public void ConsumePotionByUniqueId(string uniqueId, int count = 1)
     {
         var it = items.Find(i => i.uniqueId == uniqueId);
@@ -144,38 +164,47 @@ public class InventoryModel
         }
         else
         {
-            // ½ºÅÃÇüÀÌ ¾Æ´Ï¸é ±âÁ¸Ã³·³ Á¦°Å
+            // í¬ì…˜ì´ ì•„ë‹ˆë©´ ì¼ë°˜ ì œê±°ë¡œ ì²˜ë¦¬
             RemoveById(uniqueId);
         }
     }
 
+    /// <summary>
+    /// ë””ìŠ¤í¬ì—ì„œ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¤ê³  ì˜ëª»ëœ í•­ëª©ì„ ì •ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Load()
     {
-        // Á¾Á·º° ÆÄÀÏ ¿ì¼± + ·¹°Å½Ã ¸¶ÀÌ±×·¹ÀÌ¼Ç
+        // ì €ì¥ëœ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¤ê³  ì—†ìœ¼ë©´ ê¸°ë³¸ ê°’ì„ ë°˜í™˜
         var data = SaveLoadService.LoadInventoryForRaceOrNew(race);
         items = data.items ?? new List<InventoryItem>();
 
-        // ·Îµå½Ã ¹«È¿ ¾ÆÀÌÅÛ Á¤¸®
+        // ìœ íš¨í•˜ì§€ ì•Šì€ ë°ì´í„° ì •ë¦¬
         int before = items.Count;
         items.RemoveAll(InventoryGuards.IsInvalid);
         int after = items.Count;
         if (before != after)
-            Debug.LogWarning($"[InventoryModel] ·Îµå½Ã ¹«È¿ ¾ÆÀÌÅÛ {before - after}°³ Á¤¸®ÇÔ");
+            Debug.LogWarning($"[InventoryModel] ë¡œë“œ ì‹œ ì •ë¦¬ëœ í•­ëª© ìˆ˜: {before - after}");
 
-        // rolled ±¸Á¶Ã¼ Á¤ÇÕ¼º º¸Á¤(±¸¹öÀü null Çã¿ë)
+        // ë¡¤ë§ëœ ìŠ¤íƒ¯ì— ì˜ëª»ëœ ê°’ì´ ìˆìœ¼ë©´ ê¸°ë³¸ê°’ìœ¼ë¡œ ê³ ì •
         for (int i = 0; i < items.Count; i++)
             EnsureRolledShapeIfPresent(items[i]);
     }
 
+    /// <summary>
+    /// í˜„ì¬ ë©”ëª¨ë¦¬ì˜ ì¸ë²¤í† ë¦¬ ë°ì´í„°ë¥¼ íŒŒì¼ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Save()
     {
-        // ÀúÀå Àü¿¡µµ ¹«È¿ ¾ÆÀÌÅÛ Á¤¸®(ÀÌÁß ¾ÈÀü¸Á)
+        // ì €ì¥ ì „ì— ì˜ëª»ëœ ë°ì´í„° ì œê±°
         items.RemoveAll(InventoryGuards.IsInvalid);
 
         var data = new InventoryData { items = items };
         SaveLoadService.SaveInventoryForRace(race, data);
     }
 
+    /// <summary>
+    /// ë¡œë“œ í›„ ë©”ëª¨ë¦¬ ìƒíƒœì™€ ë””ìŠ¤í¬ ìƒíƒœê°€ ë‹¤ë¥´ë©´ ì •ë¦¬ëœ ë‚´ìš©ì„ ì €ì¥í•©ë‹ˆë‹¤.
+    /// </summary>
     private void SaveIfCleaned()
     {
         if (!File.Exists(filePath)) { Save(); return; }
@@ -188,18 +217,20 @@ public class InventoryModel
             int memCount = items.Count;
             if (diskCount != memCount)
             {
-                Debug.LogWarning($"[InventoryModel] ÃÊ±â ·Îµå ½Ã Á¤¸® ¹İ¿µ: {diskCount} ¡æ {memCount}");
+                Debug.LogWarning($"[InventoryModel] ë¡œë“œ í›„ í•­ëª© ìˆ˜ê°€ ë‹¬ë¼ ì €ì¥ì„ ê°±ì‹ í•©ë‹ˆë‹¤: {diskCount} -> {memCount}");
                 Save();
             }
         }
         catch (Exception e)
         {
-            Debug.LogWarning($"[InventoryModel] SaveIfCleaned Áß ÆÄÀÏ ºñ±³ ½ÇÆĞ ¡æ Save °­Çà: {e}");
+            Debug.LogWarning($"[InventoryModel] SaveIfCleaned ì¤‘ ì˜ˆì™¸ ë°œìƒ, ë°ì´í„°ë¥¼ ë‹¤ì‹œ ì €ì¥í•©ë‹ˆë‹¤: {e}");
             Save();
         }
     }
 
-    /// <summary>rolled°¡ Á¸ÀçÇÏ´Â °æ¿ì Á÷·ÄÈ­ È£È¯(±¸¹öÀü null Çã¿ë) ¹× ±âº»°ª º¸Á¤.</summary>
+    /// <summary>
+    /// ë¡¤ë§ëœ ìŠ¤íƒ¯ì´ NaNì´ë‚˜ ë¬´í•œëŒ€ì¸ ê²½ìš° 0ìœ¼ë¡œ êµì •í•©ë‹ˆë‹¤.
+    /// </summary>
     private static void EnsureRolledShapeIfPresent(InventoryItem item)
     {
         if (item == null) return;

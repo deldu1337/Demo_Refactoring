@@ -1,45 +1,48 @@
 using UnityEngine;
 
 /// <summary>
-/// ÀÎº¥Åä¸®¿Í ÀåºñÃ¢À» ¿¬°áÇÏ°í, ¾ÆÀÌÅÛ ÀÌµ¿/ÀåÂø/ÇØÁ¦ µîÀÇ UI¿Í ¸ğµ¨ ¾÷µ¥ÀÌÆ®¸¦ °ü¸®ÇÏ´Â ÄÁÆ®·Ñ·¯
+/// ì¸ë²¤í† ë¦¬ì™€ ì¥ë¹„ UIë¥¼ ëª¨ë‘ ì´ˆê¸°í™”í•˜ê³  ìƒí˜¸ì‘ìš©ì„ ì—°ê²°í•˜ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ì…ë‹ˆë‹¤.
 /// </summary>
 public class InventoryController : MonoBehaviour
 {
-    // ¸ğµ¨
-    public InventoryModel inventory;    // ÇÃ·¹ÀÌ¾î ÀÎº¥Åä¸® µ¥ÀÌÅÍ
-    public EquipmentModel equipment;    // Àåºñ ½½·Ô µ¥ÀÌÅÍ
+    // ëª¨ë¸
+    public InventoryModel inventory;    // í”Œë ˆì´ì–´ ì¸ë²¤í† ë¦¬
+    public EquipmentModel equipment;    // ì¥ë¹„ ìŠ¬ë¡¯ ì •ë³´
 
-    // ºä
-    public InventoryView inventoryView; // ÀÎº¥Åä¸® UI
-    public EquipmentView equipmentView; // ÀåºñÃ¢ UI
+    // ë·°
+    public InventoryView inventoryView; // ì¸ë²¤í† ë¦¬ UI
+    public EquipmentView equipmentView; // ì¥ë¹„ UI
 
+    /// <summary>
+    /// ì‹œì‘ ì‹œ UIë¥¼ ìµœì‹  ë°ì´í„°ë¡œ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     private void Start()
     {
         RefreshUI();
     }
 
     /// <summary>
-    /// ÀÎº¥Åä¸®¿Í ÀåºñÃ¢ UI ÀüÃ¼ °»½Å
+    /// ì¸ë²¤í† ë¦¬ì™€ ì¥ë¹„ UIë¥¼ ëª¨ë‘ ê°±ì‹ í•©ë‹ˆë‹¤.
     /// </summary>
     private void RefreshUI()
     {
-        // ÀÎº¥Åä¸® UI
+        // ì¸ë²¤í† ë¦¬ UI
         inventoryView.UpdateInventoryUI(
             inventory.Items,
-            OnItemDropped,   // µå·¡±× ÈÄ À§Ä¡ º¯°æ
-            OnItemRemoved,   // ¿ÜºÎ·Î µå·¡±× ¡æ »èÁ¦
-            OnEquipRequest   // ¾ÆÀÌÅÛ ÀåÂø
+            OnItemDropped,   // ìœ„ì¹˜ ë³€ê²½
+            OnItemRemoved,   // ì•„ì´í…œ ì œê±°
+            OnEquipRequest   // ì¥ë¹„ ìš”ì²­
         );
 
-        // ÀåºñÃ¢ UI
+        // ì¥ë¹„ UI
         equipmentView.UpdateEquipmentUI(
             equipment.Slots,
-            OnUnequipRequest // ½½·Ô Å¬¸¯ ¡æ ¾ÆÀÌÅÛ ÇØÁ¦
+            OnUnequipRequest // í•´ì œ ìš”ì²­
         );
     }
 
     /// <summary>
-    /// ÀÎº¥Åä¸® ¾ÆÀÌÅÛ À§Ä¡ º¯°æ (µå·¡±× ¾Ø µå·Ó)
+    /// ì¸ë²¤í† ë¦¬ì—ì„œ ì•„ì´í…œ ìˆœì„œë¥¼ ë³€ê²½í•©ë‹ˆë‹¤.
     /// </summary>
     private void OnItemDropped(string fromId, string toId)
     {
@@ -48,7 +51,7 @@ public class InventoryController : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀÎº¥Åä¸® ¾ÆÀÌÅÛ »èÁ¦
+    /// ì¸ë²¤í† ë¦¬ì—ì„œ ì•„ì´í…œì„ ì œê±°í•©ë‹ˆë‹¤.
     /// </summary>
     private void OnItemRemoved(string uniqueId)
     {
@@ -57,7 +60,7 @@ public class InventoryController : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀÎº¥Åä¸®¿¡¼­ ÀåºñÃ¢À¸·Î ¾ÆÀÌÅÛ ÀåÂø
+    /// ì¸ë²¤í† ë¦¬ ì•„ì´í…œì„ ì¥ë¹„ë¡œ ì˜®ê¸°ëŠ” ìš”ì²­ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤.
     /// </summary>
     private void OnEquipRequest(string uniqueId)
     {
@@ -66,16 +69,16 @@ public class InventoryController : MonoBehaviour
 
         var slotType = item.data.type;
 
-        // ÇØ´ç ½½·Ô¿¡ ¾ÆÀÌÅÛ ÀåÂø
+        // í•´ë‹¹ ìŠ¬ë¡¯ì— ì¥ë¹„ ë°°ì¹˜
         equipment.EquipItem(slotType, item);
         inventory.RemoveById(uniqueId);
-        
-        Debug.Log($"ÀåÂø: {item.data.name}");
+
+        Debug.Log($"ì¥ë¹„ ì¥ì°©: {item.data.name}");
         RefreshUI();
     }
 
     /// <summary>
-    /// ÀåºñÃ¢¿¡¼­ ¾ÆÀÌÅÛ ÇØÁ¦ ¡æ ÀÎº¥Åä¸®·Î ÀÌµ¿
+    /// ì¥ë¹„ë¥¼ í•´ì œí•˜ê³  ì¸ë²¤í† ë¦¬ë¡œ ë˜ëŒë¦½ë‹ˆë‹¤.
     /// </summary>
     private void OnUnequipRequest(string slotType)
     {
@@ -87,10 +90,9 @@ public class InventoryController : MonoBehaviour
         if (inventory.Add(item))
         {
             equipment.UnequipItem(slotType);
-            Debug.Log($"ÇØÁ¦: {item.data.name}");
+            Debug.Log($"ì¥ë¹„ í•´ì œ: {item.data.name}");
         }
 
         RefreshUI();
     }
 }
-
