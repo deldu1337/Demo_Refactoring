@@ -18,12 +18,12 @@ public class PlayerDataCollection
 
 public class PlayerStatsManager : MonoBehaviour, IHealth
 {
-    public static PlayerStatsManager Instance { get; private set; }   // ← 추가
+    public static PlayerStatsManager Instance { get; private set; } // 단일 인스턴스를 유지합니다.
 
-    // 전역 브로드캐스트 이벤트
+    // 전역 브로드캐스트 이벤트입니다.
     public static event Action OnPlayerDied;
     public static event Action OnPlayerDeathAnimFinished;
-    public static event Action OnPlayerRevived;              
+    public static event Action OnPlayerRevived;
 
     [Header("Death/Revive Options")]
     public bool pauseEditorOnDeath = false;
@@ -32,7 +32,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
     [Tooltip("플레이어 메시에 해당하는 모델 루트를 지정(비우면 이 오브젝트 자체를 사용)")]
     [SerializeField] private Transform poseRoot;
 
-    // 죽음 1회 처리 가드
+    // 죽음을 한 번만 처리하도록 보호합니다.
     private bool isDead = false;
     public bool IsDead => isDead;
 
@@ -51,6 +51,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
 
     private float eqHP, eqMP, eqAtk, eqDef, eqDex, eqAS, eqCC, eqCD;
 
+    /// <summary>싱글톤 인스턴스를 보존하고 레벨업 전략을 준비합니다.</summary>
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -62,11 +63,13 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         levelUpStrategy = new DefaultLevelUpStrategy();
     }
 
+    /// <summary>파괴 시 싱글톤 참조를 정리합니다.</summary>
     void OnDestroy()
     {
         if (Instance == this) Instance = null;
     }
 
+    /// <summary>초기 데이터가 있다면 디버그 정보를 남깁니다.</summary>
     void Start()
     {
         if (Data != null)
@@ -74,15 +77,15 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
     }
 
     /// <summary>
-    /// PlayerSpawn이 프리팹 인스턴스 생성 직후 부르는 진입점.
-    /// - 새 게임(캐릭터 선택 후)이라면 선택한 종족의 기본값을 리소스에서 로드
-    /// - 이어하기(세이브 존재)라면 세이브를 우선, 단 세이브 종족 != 선택종족이면 선택종족 기본값으로 신규시작
+    /// PlayerSpawn이 프리팹 인스턴스 생성 직후 호출하는 초기화 진입점입니다.
+    /// - 새 게임이면 선택하신 종족의 기본값을 로드해 드립니다.
+    /// - 이어하기일 경우 세이브 데이터를 우선 적용하며, 선택 종족이 다르면 기본값으로 새로 시작합니다.
     /// </summary>
     public void InitializeForSelectedRace()
     {
         string race = string.IsNullOrEmpty(GameContext.SelectedRace) ? "humanmale" : GameContext.SelectedRace;
 
-        // 0) 이어하기 경로: 해당 종족 세이브가 있으면 그걸 로드하고 끝
+        // 이어하기 경로: 해당 종족 세이브가 있으면 불러와서 종료합니다.
         var saved = SaveLoadService.LoadPlayerDataForRaceOrNull(race);
         if (!GameContext.IsNewGame && saved != null)
         {
@@ -90,36 +93,36 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
             return;
         }
 
-        // 1) 새 게임인데, 기존 세이브가 존재하는 경우 → 기본은 "덮지 않는다"
+        // 새 게임이지만 기존 세이브가 있다면 기본적으로 덮어쓰지 않습니다.
         if (GameContext.IsNewGame && saved != null && !GameContext.ForceReset)
         {
-            // 사용자가 실수로 새 게임을 눌렀을 가능성 → 기존 저장을 존중
+            // 실수로 새 게임을 누르셨을 수 있으므로 기존 저장을 우선 존중합니다.
             LoadData(saved);
             return;
         }
 
-        // 2) 여기 오면 (a) 새 게임 + 기존 없음, (b) 새 게임 + 강제 리셋, (c) 이어하기인데 저장이 없을 때
+        // 여기까지 오면 새 게임 또는 강제 리셋 상황이므로 기본값을 적용합니다.
         LoadRaceData_FromSingleFile(race);
         Data.Race = race;
-        SaveLoadService.SavePlayerDataForRace(race, Data); // 첫 저장 (또는 리셋 저장)
+        SaveLoadService.SavePlayerDataForRace(race, Data); // 첫 저장 또는 리셋 저장입니다.
 
-        // 새 게임 플래그 해제
+        // 새 게임 플래그를 정리합니다.
         GameContext.IsNewGame = false;
-        GameContext.ForceReset = false; // 있다면
+        GameContext.ForceReset = false;
     }
 
 
 
-    /// <summary>저장된 데이터 불러오기</summary>
+    /// <summary>저장된 데이터를 불러와 현재 데이터로 설정합니다.</summary>
     public void LoadData(PlayerData loaded)
     {
         if (loaded != null) Data = loaded;
         else
         {
-            Data = new PlayerData { /* 네가 쓰던 디폴트 값들 */ };
+            Data = new PlayerData();
         }
 
-        // ★ Base 미존재(=0)일 때 Final에서 한 번 복사하여 초기화
+        // Base 수치가 비어 있을 때 최종 수치에서 한 번 복사하여 초기화해 드립니다.
         if (Data.BaseMaxHP <= 0f && Data.MaxHP > 0f)
         {
             Data.BaseMaxHP = Data.MaxHP;
@@ -137,8 +140,8 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
 
 
     /// <summary>
-    /// 하나의 JSON 파일(Entries 배열)에서 선택 종족 기본값 로드
-    /// Resources/PlayerData/PlayerDataAll.json
+    /// 단일 JSON 파일에서 선택하신 종족의 기본값을 읽어 옵니다.
+    /// Resources/PlayerData/PlayerDataAll.json 파일을 사용합니다.
     /// </summary>
     public void LoadRaceData_FromSingleFile(string raceName)
     {
@@ -156,7 +159,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
                 {
                     Race = raceName,
 
-                    // Base를 종족 기본값으로
+                    // Base를 종족 기본값으로 설정합니다.
                     BaseMaxHP = e.MaxHP,
                     BaseMaxMP = e.MaxMP,
                     BaseAtk = e.Atk,
@@ -170,7 +173,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
                     Exp = e.Exp,
                     ExpToNextLevel = e.ExpToNextLevel,
 
-                    // ★ Final = Base (장비 없음 기준)
+                    // Final은 장비가 없는 기준으로 Base 값을 복사합니다.
                     MaxHP = e.MaxHP,
                     MaxMP = e.MaxMP,
                     Atk = e.Atk,
@@ -195,10 +198,10 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
     }
 
 
-    /// <summary>장비 기반으로 MaxHP만 계산</summary>
+    /// <summary>장비 정보를 반영하여 최종 스탯을 다시 계산합니다.</summary>
     public void RecalculateStats(IReadOnlyList<EquipmentSlot> equippedSlots)
     {
-        // 1) 장비 보너스 합산
+        // 장비에서 얻는 보너스를 합산합니다.
         eqHP = eqMP = eqAtk = eqDef = eqDex = eqAS = eqCC = eqCD = 0f;
 
         if (equippedSlots != null)
@@ -212,7 +215,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
             }
         }
 
-        // 2) Final = Base + Equip
+        // 최종 수치는 기본값과 장비 보너스를 합산합니다.
         Data.MaxHP = Data.BaseMaxHP + eqHP;
         Data.MaxMP = Data.BaseMaxMP + eqMP;
         Data.Atk = Data.BaseAtk + eqAtk;
@@ -222,7 +225,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         Data.CritChance = Data.BaseCritChance + eqCC;
         Data.CritDamage = Data.BaseCritDamage + eqCD;
 
-        // 현재 HP/MP가 최대치를 넘지 않게 클램프 (옵션)
+        // 현재 HP/MP가 최대치를 넘지 않도록 제한합니다.
         Data.CurrentHP = Mathf.Min(Data.CurrentHP, Data.MaxHP);
         Data.CurrentMP = Mathf.Min(Data.CurrentMP, Data.MaxMP);
 
@@ -231,9 +234,11 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
     }
 
 
+    /// <summary>들어온 피해를 반영하고 사망 여부를 확인합니다.</summary>
+    /// <param name="damage">입으신 피해량입니다.</param>
     public void TakeDamage(float damage)
     {
-        if (isDead) return; // 이미 죽은 뒤엔 무시
+        if (isDead) return; // 이미 사망하셨다면 무시합니다.
 
         float finalDamage = Mathf.Max(damage - Data.Def, 1f);
         Data.CurrentHP = Mathf.Max(Data.CurrentHP - finalDamage, 0);
@@ -247,27 +252,29 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         }
     }
 
+    /// <summary>사망 시 한 번만 처리되도록 관련 동작을 실행합니다.</summary>
     private void HandleDeath()
     {
         isDead = true;
 
-        // 전역 알림: 모든 적이 즉시 반응 가능
+        // 전역 알림을 보내 모든 오브젝트가 즉시 반응할 수 있도록 합니다.
         try { OnPlayerDied?.Invoke(); } catch (Exception e) { Debug.LogException(e); }
 
-        // 이동/공격 등 플레이어 컨트롤러가 있다면 비활성화(선택)
+        // 이동과 공격 컴포넌트를 잠시 비활성화합니다.
         var move = GetComponent<PlayerMove>();
         if (move) move.enabled = false;
         var attacks = GetComponent<PlayerAttacks>();
         if (attacks) attacks.enabled = false;
 
-        // 죽음 애니메이션 재생 후 에디터 일시정지
+        // 죽음 애니메이션을 재생한 뒤 추가 처리를 진행합니다.
         StartCoroutine(PlayDeathAndPauseEditor());
     }
 
+    /// <summary>죽음 애니메이션을 재생하고 종료 시점을 알립니다.</summary>
     private IEnumerator PlayDeathAndPauseEditor()
     {
         string deathAnim = "Death (ID 1 variation 0)";
-        float duration = 0.7f; // 기본값(클립이 없을 때 대비)
+        float duration = 0.7f; // 기본 대기 시간입니다.
 
         var anim = GetComponent<Animation>();
         if (anim && anim.GetClip(deathAnim))
@@ -284,7 +291,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
             Debug.LogWarning($"[PlayerStatsManager] Death clip '{deathAnim}'을 찾지 못했습니다. 기본 대기시간({duration}s) 후 일시정지합니다.");
         }
 
-        // 애니메이션이 끝날 때까지 대기
+        // 애니메이션이 끝날 때까지 기다립니다.
         float t = 0f;
         while (t < duration)
         {
@@ -292,7 +299,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
             yield return null;
         }
 
-        // 애니 끝난 뒤 알림
+        // 애니메이션 종료 후 알림을 보냅니다.
         try { OnPlayerDeathAnimFinished?.Invoke(); } catch (Exception e) { Debug.LogException(e); }
 
         // 에디터에서만 일시정지
@@ -301,28 +308,28 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
 //#endif
     }
 
-    /// <summary>
-    /// 부활: revivePos/Rot 위치에서, 죽기 직전 스냅샷 포즈를 복원한 뒤 HP/MP 풀, EXP 0.
-    /// </summary>
+    /// <summary>지정한 위치에서 부활시키고 죽기 직전 포즈를 복원합니다.</summary>
+    /// <param name="reviveWorldPos">부활하실 월드 위치입니다.</param>
+    /// <param name="reviveWorldRot">부활하실 월드 회전값입니다.</param>
     public void ReviveAt(Vector3 reviveWorldPos, Quaternion reviveWorldRot)
     {
         if (!isDead) return;
 
-        // 0) 위치/자세 먼저 설정
+        // 먼저 위치와 자세를 설정합니다.
         transform.SetPositionAndRotation(reviveWorldPos, reviveWorldRot);
 
-        // 1) 물리 초기화
+        // 물리 상태를 초기화합니다.
         var rb = GetComponent<Rigidbody>();
         if (rb) { rb.linearVelocity = Vector3.zero; rb.angularVelocity = Vector3.zero; }
 
-        // 2) (중요) 죽기 직전 포즈 스냅샷을 로컬 단위로 복원
+        // 죽기 직전 포즈 스냅샷을 로컬 단위로 복원합니다.
         if (lastAliveSnapshot != null)
         {
-            // 현재 reviveWorldPos/Rot 을 유지하면서, 포즈만 스냅샷으로
+            // 현재 위치를 유지하면서 포즈만 스냅샷으로 복원합니다.
             lastAliveSnapshot.Apply(poseRoot, transform.position, transform.rotation);
         }
 
-        // 3) 애니메이션 초기화 (잔상 방지)
+        // 애니메이션을 초기화하여 잔상을 방지합니다.
         var anim = GetComponent<Animation>();
         if (anim)
         {
@@ -333,38 +340,43 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
                 var st = anim[idle];
                 st.wrapMode = WrapMode.Loop;
                 st.time = 0f;
-                anim.Play(idle); // 상태 갱신
-                anim.Sample();   // 즉시 0프레임 적용
+                anim.Play(idle); // 상태를 갱신합니다.
+                anim.Sample();   // 즉시 0프레임을 적용합니다.
             }
         }
 
-        // 4) 수치 회복
+        // 체력과 마나를 모두 회복합니다.
         Data.CurrentHP = Data.MaxHP;
         Data.CurrentMP = Data.MaxMP;
         Data.Exp = 0f;
         SaveLoadService.SavePlayerDataForRace(Data.Race, Data);
         UpdateUI();
 
-        // 5) 컨트롤 재활성
+        // 이동과 공격 컨트롤을 다시 활성화합니다.
         var move = GetComponent<PlayerMove>(); if (move) move.enabled = true;
         var attacks = GetComponent<PlayerAttacks>(); if (attacks) attacks.enabled = true;
 
         isDead = false;
 
-        // 6) 스냅샷은 1회성으로 사용했으니 필요하면 파기(원한다면 유지 가능)
+        // 스냅샷은 1회성으로 사용했으니 정리합니다.
         lastAliveSnapshot = null;
 
         try { OnPlayerRevived?.Invoke(); } catch (Exception e) { Debug.LogException(e); }
     }
 
+    /// <summary>체력을 회복시킵니다.</summary>
+    /// <param name="amount">회복하실 체력량입니다.</param>
     public void Heal(float amount)
     {
-        if (isDead) return; // 죽은 뒤엔 힐 무시 (원한다면 부활 로직 따로)
+        if (isDead) return; // 사망 상태에서는 회복을 적용하지 않습니다.
         Data.CurrentHP = Mathf.Min(Data.CurrentHP + amount, Data.MaxHP);
         SaveLoadService.SavePlayerDataForRace(Data.Race, Data);
         UpdateUI();
     }
 
+    /// <summary>마나를 소모하고 가능 여부를 알려드립니다.</summary>
+    /// <param name="amount">소모하실 마나량입니다.</param>
+    /// <returns>마나가 충분하면 true를 반환합니다.</returns>
     public bool UseMana(float amount)
     {
         if (Data.CurrentMP < amount) return false;
@@ -374,6 +386,8 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         return true;
     }
 
+    /// <summary>마나를 회복시킵니다.</summary>
+    /// <param name="amount">회복하실 마나량입니다.</param>
     public void RestoreMana(float amount)
     {
         Data.CurrentMP = Mathf.Min(Data.CurrentMP + amount, Data.MaxMP);
@@ -381,12 +395,14 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         UpdateUI();
     }
 
+    /// <summary>경험치를 획득하고 필요하면 레벨업을 진행합니다.</summary>
+    /// <param name="amount">획득하신 경험치 양입니다.</param>
     public void GainExp(float amount)
     {
         Data.Exp += amount;
         Debug.Log($"현재 EXP: {Data.Exp}/{Data.ExpToNextLevel}");
 
-        // 레벨업 루프
+        // 필요하면 여러 번 레벨업을 처리합니다.
         while (Data.Exp >= Data.ExpToNextLevel)
         {
             Data.Exp -= Data.ExpToNextLevel; // 여분 EXP 유지
@@ -397,20 +413,21 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         UpdateUI();
     }
 
+    /// <summary>레벨업 처리와 스탯 갱신을 수행합니다.</summary>
     private void LevelUp()
     {
         Data.Level++;
         Data.ExpToNextLevel = Mathf.Round(Data.ExpToNextLevel * 1.2f);
 
-        // 레벨업 보너스: Base에만 적용
+        // 레벨업 보너스를 기본 수치에 적용합니다.
         Data.BaseMaxHP += 10f;
         Data.BaseMaxMP += 5f;
         Data.BaseAtk += 2f;
         Data.BaseDef += 0.5f;
 
-        // Dex / AS / CritChance / CritDamage 는 그대로 (Base 변경 X)
+        // Dex, AS, 치명타 수치는 기본값을 유지합니다.
 
-        // Final = Base + (마지막 장비 보너스 캐시)
+        // 최종 수치에 장비 보너스를 다시 반영합니다.
         Data.MaxHP = Data.BaseMaxHP + eqHP;
         Data.MaxMP = Data.BaseMaxMP + eqMP;
         Data.Atk = Data.BaseAtk + eqAtk;
@@ -420,7 +437,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         Data.CritChance = Data.BaseCritChance + eqCC;            // 변화 없음
         Data.CritDamage = Data.BaseCritDamage + eqCD;            // 변화 없음
 
-        // 레벨업 시 풀 회복
+        // 레벨업 시 체력과 마나를 모두 회복합니다.
         Data.CurrentHP = Data.MaxHP;
         Data.CurrentMP = Data.MaxMP;
 
@@ -431,13 +448,14 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
     }
 
 
+    /// <summary>공격 데미지를 계산합니다.</summary>
     public float CalculateDamage() // 기존 그대로 유지 (호환용)
     {
         bool _;
         return CalculateDamage(out _);
     }
 
-    // 치명타 여부를 함께 반환하는 오버로드
+    /// <summary>치명타 여부까지 함께 반환하는 데미지 계산입니다.</summary>
     public float CalculateDamage(out bool isCrit)
     {
         float damage = Data.Atk;
@@ -450,6 +468,7 @@ public class PlayerStatsManager : MonoBehaviour, IHealth
         return damage;
     }
 
+    /// <summary>UI에 최신 수치를 반영하도록 알립니다.</summary>
     private void UpdateUI()
     {
         OnHPChanged?.Invoke(Data.CurrentHP, Data.MaxHP);
