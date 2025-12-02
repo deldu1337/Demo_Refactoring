@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using static DamageTextManager;
 
+/// <summary>
+/// ì ì˜ ê³µê²© ë™ì‘ì„ ê´€ë¦¬í•˜ê³  ì• ë‹ˆë©”ì´ì…˜ê³¼ ë°ë¯¸ì§€ ì ìš©ì„ ì¡°ìœ¨í•œë‹¤.
+/// </summary>
 [RequireComponent(typeof(EnemyMove))]
 [RequireComponent(typeof(EnemyStatsManager))]
 public class EnemyAttack : MonoBehaviour
@@ -12,58 +15,72 @@ public class EnemyAttack : MonoBehaviour
     private Animation anim;
     private float lastAttackTime;
 
-    [Header("°ø°İ ¼³Á¤")]
+    [Header("ì „íˆ¬ ì„¤ì •")]
     [SerializeField] private float attackRange = 2f;
-    [SerializeField] private float damageDelay = 0.3f; // Å¸°İ Å¸ÀÌ¹Ö(ÃÊ)
+    [SerializeField] private float damageDelay = 0.3f; // ë°ë¯¸ì§€ê°€ ì ìš©ë˜ê¸°ê¹Œì§€ì˜ ì§€ì—° ì‹œê°„
 
-    // Ãß°¡: »óÅÂ/ÄÚ·çÆ¾ ÇÚµé
+    // ê³µê²© ë™ì‘ì´ ì§„í–‰ ì¤‘ì¸ì§€ ì—¬ë¶€
     private bool isAttacking = false;
     private Coroutine attackRoutine;
 
+    /// <summary>
+    /// í•„ìˆ˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ìºì‹±í•˜ê³  ê¸°ë³¸ ê°’ì„ ì´ˆê¸°í™”í•œë‹¤.
+    /// </summary>
     private void Awake()
     {
         stats = GetComponent<EnemyStatsManager>();
         enemyMove = GetComponent<EnemyMove>();
         anim = GetComponent<Animation>();
 
-        if (!anim) Debug.LogWarning($"{name}: Animation ÄÄÆ÷³ÍÆ®°¡ ¾ø½À´Ï´Ù!");
+        if (!anim) Debug.LogWarning($"{name}: Animation ì»´í¬ë„ŒíŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤!");
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ì‚¬ë§ ì´ë²¤íŠ¸ë¥¼ êµ¬ë…í•œë‹¤.
+    /// </summary>
     private void OnEnable()
     {
         PlayerStatsManager.OnPlayerDied += InterruptAttackOnPlayerDeath;
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ì‚¬ë§ ì´ë²¤íŠ¸ êµ¬ë…ì„ í•´ì œí•œë‹¤.
+    /// </summary>
     private void OnDisable()
     {
         PlayerStatsManager.OnPlayerDied -= InterruptAttackOnPlayerDeath;
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ê°€ ì‚¬ë§í–ˆì„ ë•Œ ê³µê²©ì„ ì¤‘ë‹¨í•˜ê³  ìƒíƒœë¥¼ ì´ˆê¸°í™”í•œë‹¤.
+    /// </summary>
     private void InterruptAttackOnPlayerDeath()
     {
-        // °ø°İ ÁßÀÌ¸é Áï½Ã Áß´Ü
         if (attackRoutine != null)
         {
             StopCoroutine(attackRoutine);
             attackRoutine = null;
         }
 
-        // °ø°İ ¾Ö´Ï ÁßÀÌ¸é ¸ØÃã
         if (anim && anim.IsPlaying("AttackUnarmed (ID 16 variation 0)"))
             anim.Stop();
 
         isAttacking = false;
-
-        // ´ÙÀ½ °ø°İ µô·¹ÀÌ ÃÊ±âÈ­ (Áï½Ã Àç°³ÇÏÁö ¾Êµµ·Ï ¾à°£ÀÇ ÄğÀ» ÁÙ ¼öµµ ÀÖÀ½)
         lastAttackTime = Time.time;
     }
 
+    /// <summary>
+    /// ë§¤ í”„ë ˆì„ íƒ€ê²Ÿì„ ê°±ì‹ í•˜ê³  ê³µê²©ì„ ì‹œë„í•œë‹¤.
+    /// </summary>
     private void Update()
     {
         UpdateTarget();
         TryAttack();
     }
 
+    /// <summary>
+    /// EnemyMoveì—ì„œ ì°¾ì€ í”Œë ˆì´ì–´ë¥¼ íƒ€ê²Ÿìœ¼ë¡œ ì„¤ì •í•œë‹¤.
+    /// </summary>
     private void UpdateTarget()
     {
         if (enemyMove?.TargetPlayer == null)
@@ -76,9 +93,11 @@ public class EnemyAttack : MonoBehaviour
             targetPlayer = enemyMove.TargetPlayer.GetComponent<PlayerStatsManager>();
     }
 
+    /// <summary>
+    /// ê³µê²© ê°€ëŠ¥ ì—¬ë¶€ë¥¼ í™•ì¸í•˜ê³  ì½”ë£¨í‹´ì„ ì‹œì‘í•œë‹¤.
+    /// </summary>
     private void TryAttack()
     {
-        // °ø°İ Áß¿£ Àç½ÃÀÛ ±İÁö
         if (isAttacking) return;
         if (!CanAttackTarget()) return;
 
@@ -86,6 +105,9 @@ public class EnemyAttack : MonoBehaviour
         attackRoutine = StartCoroutine(AttackSequence());
     }
 
+    /// <summary>
+    /// íƒ€ê²Ÿì˜ ìƒíƒœì™€ ê±°ë¦¬ë¥¼ ê²€ì‚¬í•´ ê³µê²© ê°€ëŠ¥ ì—¬ë¶€ë¥¼ ë°˜í™˜í•œë‹¤.
+    /// </summary>
     private bool CanAttackTarget()
     {
         if (!targetPlayer || targetPlayer.Data.CurrentHP <= 0)
@@ -95,6 +117,9 @@ public class EnemyAttack : MonoBehaviour
         return distance <= attackRange && Time.time >= lastAttackTime;
     }
 
+    /// <summary>
+    /// ê³µê²© ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒí•˜ê³  ë°ë¯¸ì§€ë¥¼ ì ìš©í•˜ëŠ” ì „ì²´ íë¦„ì„ ì²˜ë¦¬í•œë‹¤.
+    /// </summary>
     private IEnumerator AttackSequence()
     {
         isAttacking = true;
@@ -102,21 +127,20 @@ public class EnemyAttack : MonoBehaviour
         string attackAnimName = "AttackUnarmed (ID 16 variation 0)";
         float speed = Mathf.Max(stats.Data.As, 0.1f);
 
-        // °ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        // ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒí•˜ë©´ì„œ ì†ë„ì™€ ë°˜ë³µ ë°©ì‹ì„ ì„¤ì •í•œë‹¤.
         if (anim && anim.GetClip(attackAnimName))
         {
             anim.Stop();
             anim[attackAnimName].speed = speed;
             anim[attackAnimName].wrapMode = WrapMode.Once;
             anim.Play(attackAnimName);
-            // Debug.Log($"{name} : {attackAnimName} Àç»ı");
         }
         else
         {
-            Debug.LogWarning($"{name}: {attackAnimName} Å¬¸³À» Ã£À» ¼ö ¾øÀ½!");
+            Debug.LogWarning($"{name}: {attackAnimName} í´ë¦½ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!");
         }
 
-        // ÀÓÆÑÆ®±îÁö ¸Å ÇÁ·¹ÀÓ °Å¸®/À¯È¿¼º Ã¼Å©
+        // ë°ë¯¸ì§€ íƒ€ì´ë°ê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” ë™ì•ˆ ë²”ìœ„ì™€ íƒ€ê²Ÿ ìœ íš¨ì„±ì„ ê²€ì‚¬í•œë‹¤.
         float impactWait = damageDelay / speed;
         float t = 0f;
         while (t < impactWait)
@@ -132,13 +156,12 @@ public class EnemyAttack : MonoBehaviour
             yield return null;
         }
 
-        // Å¸°İ: ¿©ÀüÈ÷ ¹üÀ§ ¾È/À¯È¿ÇÒ ¶§¸¸
+        // ì‹¤ì œ ë°ë¯¸ì§€ë¥¼ ì ìš©í•œë‹¤.
         if (!OutOfRangeOrInvalid())
         {
             float damage = Mathf.Max(stats.Data.atk - targetPlayer.Data.Def, 1f);
             targetPlayer.TakeDamage(damage);
 
-            // ÇÃ·¹ÀÌ¾î ÇÇ°İ ÅØ½ºÆ®
             DamageTextManager.Instance.ShowDamage(
                 targetPlayer.transform,
                 Mathf.RoundToInt(damage),
@@ -146,7 +169,7 @@ public class EnemyAttack : MonoBehaviour
                 DamageTextManager.DamageTextTarget.Player);
         }
 
-        // ³²Àº ¸ğ¼Ç µ¿¾Èµµ ÀÌÅ» Áï½Ã Áß´Ü
+        // ë‚¨ì€ ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚  ë•Œê¹Œì§€ ìƒíƒœë¥¼ ìœ ì§€í•˜ë©° í™•ì¸í•œë‹¤.
         float totalDur = GetAnimDuration(attackAnimName, speed);
         float remain = Mathf.Max(0f, totalDur - impactWait);
         t = 0f;
@@ -163,11 +186,13 @@ public class EnemyAttack : MonoBehaviour
             yield return null;
         }
 
-        // Á¾·á
         isAttacking = false;
         attackRoutine = null;
     }
 
+    /// <summary>
+    /// íƒ€ê²Ÿì´ ì‚¬ë¼ì¡Œê±°ë‚˜ ë²”ìœ„ë¥¼ ë²—ì–´ë‚¬ëŠ”ì§€ í™•ì¸í•œë‹¤.
+    /// </summary>
     private bool OutOfRangeOrInvalid()
     {
         return targetPlayer == null ||
@@ -175,19 +200,26 @@ public class EnemyAttack : MonoBehaviour
                Vector3.Distance(transform.position, targetPlayer.transform.position) > attackRange;
     }
 
+    /// <summary>
+    /// ê³µê²© ì• ë‹ˆë©”ì´ì…˜ì´ ì¬ìƒ ì¤‘ì´ë©´ ì¤‘ì§€í•œë‹¤.
+    /// </summary>
     private void StopAttackAnimIfPlaying(string attackAnimName)
     {
         if (anim && anim.IsPlaying(attackAnimName))
             anim.Stop();
-        // EnemyMove´Â °ø°İ ¾Ö´Ï°¡ ¾Æ´Ò ¶§¸¸ Run/Stand¸¦ Àç»ıÇÏ¹Ç·Î,
-        // ¿©±â¼­ Stop()ÇÏ¸é ´ÙÀ½ FixedUpdate¿¡¼­ ÀÚµ¿À¸·Î Run/Stand·Î ÀüÈ¯µË´Ï´Ù.
     }
 
+    /// <summary>
+    /// ê³µê²© ì†ë„ë¥¼ ê¸°ë°˜ìœ¼ë¡œ í•œ ì¿¨ë‹¤ìš´ ì‹œê°„ì„ ê³„ì‚°í•œë‹¤.
+    /// </summary>
     private float GetAttackCooldown()
     {
         return 1f / Mathf.Max(stats.Data.As, 0.1f);
     }
 
+    /// <summary>
+    /// ì• ë‹ˆë©”ì´ì…˜ ê¸¸ì´ì™€ ì¬ìƒ ì†ë„ë¡œ ì „ì²´ ì¬ìƒ ì‹œê°„ì„ ê³„ì‚°í•œë‹¤.
+    /// </summary>
     private float GetAnimDuration(string clipName, float speed)
     {
         if (anim && anim.GetClip(clipName))
@@ -195,6 +227,6 @@ public class EnemyAttack : MonoBehaviour
             var st = anim[clipName];
             return st.length / Mathf.Max(speed, 0.0001f);
         }
-        return 0.5f; // ±âº»°ª
+        return 0.5f; // ê¸°ë³¸ê°’
     }
 }

@@ -1,31 +1,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using System.Reflection;              // ¡Ú min/maxStage ¹İ¿µÀ» À§ÇÑ ¸®ÇÃ·º¼Ç
+using System.Reflection;
 using UnityEngine;
 
+/// <summary>
+/// ìŠ¤í…Œì´ì§€ ì •ë³´ì— ë”°ë¼ ì  í”„ë¦¬íŒ¹ì„ ì„ íƒí•˜ê³  ë§µì— ë°°ì¹˜í•œë‹¤.
+/// </summary>
 public class EnemySpawn : MonoBehaviour
 {
     [SerializeField] private BossProximityWatcher bossWatcher;
 
-    [Header("Refs")]
+    [Header("ì°¸ì¡° ì„¤ì •")]
     public TileMapGenerator mapGenerator;
     public StageManager stageManager;
 
-    [Header("½ºÆù ¼ö Á¶Àı")]
-    public float spawnFactor = 25f; // ¹æ ¸éÀû / spawnFactor = Àû ¼ö(ÃÖ¼Ò 1)
+    [Header("ìŠ¤í° ì„¤ì •")]
+    public float spawnFactor = 25f; // ë°© ë©´ì ì„ ë‚˜ëˆˆ ê°’ìœ¼ë¡œ ì  ìˆ˜ë¥¼ ê²°ì •
     public int bossCount = 1;
     public int triesPerEnemy = 10;
 
-    [Header("½ºÆù ³ôÀÌ/Ãæµ¹")]
+    [Header("ë°°ì¹˜ ì˜µì…˜")]
     public float spawnY = 1f;
     public LayerMask obstacleMask;
 
-    [Header("ÇÁ¸®ÆÕ ¸ÅÇÎ")]
-    public List<EnemyPrefabPair> prefabPairs = new(); // ÀÎ½ºÆåÅÍ¿¡¼­ id ¡ê prefab ¿¬°á
+    [Header("í”„ë¦¬íŒ¹ ë§¤í•‘")]
+    public List<EnemyPrefabPair> prefabPairs = new();
     private Dictionary<string, GameObject> prefabMap;
 
-    // DB Ä³½Ã
     private EnemyDatabase db;
 
     [System.Serializable]
@@ -35,7 +37,10 @@ public class EnemySpawn : MonoBehaviour
         public GameObject prefab;
     }
 
-    void Awake()
+    /// <summary>
+    /// ìœ íš¨í•œ í”„ë¦¬íŒ¹ ëª©ë¡ì„ ì •ë¦¬í•´ ë¹ ë¥´ê²Œ ì¡°íšŒí•  ìˆ˜ ìˆë„ë¡ ë§¤í•‘í•œë‹¤.
+    /// </summary>
+    private void Awake()
     {
         prefabMap = prefabPairs
             .Where(p => !string.IsNullOrEmpty(p.id) && p.prefab != null)
@@ -43,30 +48,38 @@ public class EnemySpawn : MonoBehaviour
             .ToDictionary(g => g.Key, g => g.First().prefab);
     }
 
-    void OnEnable()
+    /// <summary>
+    /// ë§µ ìƒì„± ì´ë²¤íŠ¸ë¥¼ êµ¬ë…í•˜ì—¬ ë§µ ì™„ì„± ì‹œ ì ì„ ìƒì„±í•œë‹¤.
+    /// </summary>
+    private void OnEnable()
     {
         if (mapGenerator == null)
         {
-            Debug.LogError("TileMapGenerator¸¦ ¿¬°áÇØÁÖ¼¼¿ä!");
+            Debug.LogError("TileMapGeneratorê°€ ì„¤ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!");
             return;
         }
         mapGenerator.OnMapGenerated += GenerateEnemies;
     }
 
-    void OnDisable()
+    /// <summary>
+    /// ë§µ ìƒì„± ì´ë²¤íŠ¸ êµ¬ë…ì„ í•´ì œí•œë‹¤.
+    /// </summary>
+    private void OnDisable()
     {
         if (mapGenerator != null)
             mapGenerator.OnMapGenerated -= GenerateEnemies;
     }
 
-    // DB ·Îµå (ÇÑ ¹ø)
+    /// <summary>
+    /// ì  ë°ì´í„°ë² ì´ìŠ¤ë¥¼ ë¡œë“œí•´ ë©”ëª¨ë¦¬ì— ë³´ê´€í•œë‹¤.
+    /// </summary>
     private void EnsureDbLoaded()
     {
         if (db != null) return;
         TextAsset json = Resources.Load<TextAsset>("Datas/enemyData");
         if (json == null)
         {
-            Debug.LogError("Resources/Datas/enemyData.jsonÀÌ ÇÊ¿äÇÕ´Ï´Ù!");
+            Debug.LogError("Resources/Datas/enemyData.jsonì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!");
             db = new EnemyDatabase { enemies = new EnemyData[0] };
             return;
         }
@@ -74,9 +87,11 @@ public class EnemySpawn : MonoBehaviour
         if (db.enemies == null) db.enemies = new EnemyData[0];
     }
 
+    /// <summary>
+    /// ê¸°ì¡´ ìŠ¤í°ì„ ì •ë¦¬í•œ ë’¤ í˜„ì¬ ìŠ¤í…Œì´ì§€ì— ë§ëŠ” ì ì„ ë°°ì¹˜í•œë‹¤.
+    /// </summary>
     public void GenerateEnemies()
     {
-        // ÀÌÀü ½ºÆù Á¦°Å
         for (int i = transform.childCount - 1; i >= 0; i--)
             Destroy(transform.GetChild(i).gameObject);
 
@@ -84,7 +99,7 @@ public class EnemySpawn : MonoBehaviour
 
         if (stageManager == null)
         {
-            Debug.LogWarning("[EnemySpawn] StageManager ¾øÀ½ ¡æ ½ºÅ×ÀÌÁö ±â¹İ ´Ù¾ç¼º ¹ÌÀû¿ë");
+            Debug.LogWarning("[EnemySpawn] StageManagerê°€ ì„¤ì •ë˜ì§€ ì•Šì•„ ì ì„ ìŠ¤í°í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -92,13 +107,14 @@ public class EnemySpawn : MonoBehaviour
         else SpawnNormalStage();
     }
 
-    // ====== ¡Ú¡Ú ÇÙ½É: ½ºÅ×ÀÌÁö ¹üÀ§ À¯Æ¿ (JSON¿¡ ¾øÀ¸¸é ±âº»°ª À¯µµ) ¡Ú¡Ú ======
     private static readonly FieldInfo _fiMinStage = typeof(EnemyData).GetField("minStage");
     private static readonly FieldInfo _fiMaxStage = typeof(EnemyData).GetField("maxStage");
 
+    /// <summary>
+    /// ë°ì´í„°ì˜ ìµœì†Œ ì¶œí˜„ ìŠ¤í…Œì´ì§€ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+    /// </summary>
     private int GetMinStage(EnemyData e)
     {
-        // JSON¿¡ minStage ÇÊµå°¡ ÀÖÀ¸¸é »ç¿ë, ¾øÀ¸¸é unlockStage ±â¹İÀ¸·Î À¯µµ
         if (_fiMinStage != null)
         {
             int v = (int)_fiMinStage.GetValue(e);
@@ -107,6 +123,9 @@ public class EnemySpawn : MonoBehaviour
         return Math.Max(1, e.unlockStage);
     }
 
+    /// <summary>
+    /// ë°ì´í„°ì˜ ìµœëŒ€ ì¶œí˜„ ìŠ¤í…Œì´ì§€ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+    /// </summary>
     private int GetMaxStage(EnemyData e)
     {
         if (_fiMaxStage != null)
@@ -117,29 +136,32 @@ public class EnemySpawn : MonoBehaviour
         return int.MaxValue;
     }
 
+    /// <summary>
+    /// í˜„ì¬ ìŠ¤í…Œì´ì§€ì™€ ë³´ìŠ¤ ì—¬ë¶€ì— ë§ëŠ” ì ì¸ì§€ íŒë³„í•œë‹¤.
+    /// </summary>
     private bool IsAvailableOnStage(EnemyData e, int stage, bool isBossStage)
     {
         if (e.isBoss != isBossStage) return false;
-        // unlockStage´Â ¿©ÀüÈ÷ ÇÏÇÑÀ¸·Î Á¸Áß
         if (stage < Math.Max(1, e.unlockStage)) return false;
         int minS = GetMinStage(e);
         int maxS = GetMaxStage(e);
         return stage >= minS && stage <= maxS;
     }
-    // ====================================================================
 
-    void SpawnNormalStage()
+    /// <summary>
+    /// ì¼ë°˜ ìŠ¤í…Œì´ì§€ì—ì„œ ë°© ë©´ì ì„ ê¸°ì¤€ìœ¼ë¡œ ì ì„ ë¬´ì‘ìœ„ ë°°ì¹˜í•œë‹¤.
+    /// </summary>
+    private void SpawnNormalStage()
     {
         int stage = stageManager.currentStage;
 
-        // ¡Ú unlockStage + (min/maxStage ¹üÀ§) + ÇÁ¸®ÆÕ ¸ÅÇÎ Ã¼Å©
         var pool = db.enemies
             .Where(e => IsAvailableOnStage(e, stage, isBossStage: false) && prefabMap.ContainsKey(e.id))
             .ToList();
 
         if (pool.Count == 0)
         {
-            Debug.LogWarning($"[EnemySpawn] Stage {stage}¿¡¼­ ½ºÆù °¡´ÉÇÑ ÀÏ¹İ ¸÷ÀÌ ¾ø½À´Ï´Ù.");
+            Debug.LogWarning($"[EnemySpawn] Stage {stage}ì— ìŠ¤í° ê°€ëŠ¥í•œ ì ì´ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -156,7 +178,6 @@ public class EnemySpawn : MonoBehaviour
                 tries++;
                 if (!TryPickPointInRoom(room, out Vector3 pos)) continue;
 
-                // °¡ÁßÄ¡ ·£´ı ÇÈ
                 float pick = UnityEngine.Random.value * totalWeight;
                 EnemyData chosen = null;
                 float acc = 0f;
@@ -173,18 +194,20 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    void SpawnBossStage()
+    /// <summary>
+    /// ë³´ìŠ¤ ìŠ¤í…Œì´ì§€ì—ì„œ ë³´ìŠ¤ ë£¸ì„ ê¸°ì¤€ìœ¼ë¡œ ì ì„ ìŠ¤í°í•œë‹¤.
+    /// </summary>
+    private void SpawnBossStage()
     {
         int stage = stageManager.currentStage;
 
-        // ¡Ú º¸½ºµµ ¹üÀ§ Ã¼Å©
         var bosses = db.enemies
             .Where(e => IsAvailableOnStage(e, stage, isBossStage: true) && prefabMap.ContainsKey(e.id))
             .ToList();
 
         if (bosses.Count == 0)
         {
-            Debug.LogWarning($"[EnemySpawn] Stage {stage} º¸½º Ç® ¾øÀ½ ¡æ ÀÏ¹İ ½ºÆùÀ¸·Î ´ëÃ¼");
+            Debug.LogWarning($"[EnemySpawn] Stage {stage}ì— ë°°ì¹˜í•  ë³´ìŠ¤ê°€ ì—†ì–´ ì¼ë°˜ ìŠ¤í°ì„ ì§„í–‰í•©ë‹ˆë‹¤.");
             SpawnNormalStage();
             return;
         }
@@ -192,7 +215,7 @@ public class EnemySpawn : MonoBehaviour
         var br = mapGenerator.GetBossRoom();
         if (br.width <= 0 || br.height <= 0)
         {
-            Debug.LogWarning("[EnemySpawn] º¸½º¹æ ¹ÌÁ¤ÀÇ ¡æ ÀÏ¹İ ½ºÆùÀ¸·Î ´ëÃ¼");
+            Debug.LogWarning("[EnemySpawn] ë³´ìŠ¤ ë£¸ì´ ì—†ì–´ ì¼ë°˜ ìŠ¤í°ì„ ì§„í–‰í•©ë‹ˆë‹¤.");
             SpawnNormalStage();
             return;
         }
@@ -202,34 +225,32 @@ public class EnemySpawn : MonoBehaviour
         if (mapGenerator.IsFloor(c.x, c.y)) pos = new Vector3(c.x, spawnY, c.y);
         else if (!TryPickPointInRoom(br, out pos)) pos = new Vector3(br.xMin + br.width / 2f, spawnY, br.yMin + br.height / 2f);
 
-        //var boss = bosses[UnityEngine.Random.Range(0, bosses.Count)];
         var boss = bosses[UnityEngine.Random.Range(0, bosses.Count)];
 
-        // YÃà 180µµ È¸Àü ÈÄ ½ºÆù
         Quaternion bossRot = Quaternion.Euler(0f, 180f, 0f);
         GameObject go = SpawnById(boss.id, pos, markAsBoss: true, rotation: bossRot);
 
-        // º¸½º ÅÂ±× ºÎ¿©
-        //GameObject go = SpawnById(boss.id, pos, markAsBoss: true);
-        if (go == null) { Debug.LogError("[EnemySpawn] º¸½º ½ºÆù ½ÇÆĞ"); return; }
+        if (go == null) { Debug.LogError("[EnemySpawn] ë³´ìŠ¤ ì˜¤ë¸Œì íŠ¸ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤."); return; }
 
         var esm = go.GetComponent<EnemyStatsManager>();
-        if (esm == null) { Debug.LogError("[EnemySpawn] EnemyStatsManager ´©¶ô"); return; }
+        if (esm == null) { Debug.LogError("[EnemySpawn] EnemyStatsManagerë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."); return; }
 
         if (bossWatcher == null) bossWatcher = FindAnyObjectByType<BossProximityWatcher>();
         if (bossWatcher != null) bossWatcher.SetBoss(esm);
     }
 
-    // ¹İÈ¯Çü GameObject ±ÇÀå
-    GameObject SpawnById(string enemyId, Vector3 position, bool markAsBoss = false, Quaternion? rotation = null)
+    /// <summary>
+    /// IDì— í•´ë‹¹í•˜ëŠ” í”„ë¦¬íŒ¹ì„ ìƒì„±í•˜ê³  ìŠ¤í° ê²°ê³¼ë¥¼ ë°˜í™˜í•œë‹¤.
+    /// </summary>
+    private GameObject SpawnById(string enemyId, Vector3 position, bool markAsBoss = false, Quaternion? rotation = null)
     {
         if (!prefabMap.TryGetValue(enemyId, out var prefab))
         {
-            Debug.LogWarning($"[EnemySpawn] '{enemyId}' ÇÁ¸®ÆÕ ¸ÅÇÎÀÌ ¾ø½À´Ï´Ù.");
+            Debug.LogWarning($"[EnemySpawn] '{enemyId}' í”„ë¦¬íŒ¹ì´ ì—†ìŠµë‹ˆë‹¤.");
             return null;
         }
 
-        Quaternion rot = rotation ?? Quaternion.identity;   // ±âº»Àº È¸Àü ¾øÀ½
+        Quaternion rot = rotation ?? Quaternion.identity;
         var go = Instantiate(prefab, position, rot, transform);
 
         var esm = go.GetComponent<EnemyStatsManager>();
@@ -243,8 +264,10 @@ public class EnemySpawn : MonoBehaviour
         return go;
     }
 
-
-    bool TryPickPointInRoom(RectInt room, out Vector3 pos)
+    /// <summary>
+    /// ì§€ì •ëœ ë°© ì•ˆì—ì„œ ì¥ì• ë¬¼ì´ ì—†ëŠ” ìŠ¤í° ì§€ì ì„ ì°¾ëŠ”ë‹¤.
+    /// </summary>
+    private bool TryPickPointInRoom(RectInt room, out Vector3 pos)
     {
         for (int t = 0; t < triesPerEnemy; t++)
         {
