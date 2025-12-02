@@ -13,28 +13,41 @@ public class CharacterManager : MonoBehaviour
     private Image image;
     private int currentIndex = 0;
 
+    /// <summary>
+    /// ìºë¦­í„° ì„ íƒ UIë¥¼ ì´ˆê¸°í™”í•˜ê³  ë²„íŠ¼ ì´ë²¤íŠ¸ë¥¼ ì„¤ì •í•œë‹¤.
+    /// </summary>
     void Start()
     {
+        // ìºë¦­í„° ë° ì´ë¯¸ì§€ ë°°ì—´ ì´ˆê¸°í™”
         CharacterButtons = new Button[8];
         CharacterImages = new Image[8];
         image = CharacterBackground.GetComponent<Image>();
+
+        // ì‹œì‘ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ ê²Œì„ì„ ì‹œì‘í•˜ë„ë¡ ë“±ë¡
         StartButton.onClick.AddListener(GameStart);
 
         if (CharacterPanel != null)
         {
             for (int i = 0; i < 8; i++)
             {
-                int index = i;  // i¸¦ ·ÎÄÃ º¯¼ö¿¡ º¹»ç
+                // ë°˜ë³µë¬¸ í´ë¡œì € ë¬¸ì œë¥¼ í”¼í•˜ê¸° ìœ„í•´ ì¸ë±ìŠ¤ ìº¡ì²˜
+                int index = i;
                 CharacterButtons[i] = CharacterPanel.transform.GetChild(i).GetComponent<Button>();
                 CharacterButtons[i].onClick.AddListener(() => ChangeCharacter(index));
                 CharacterImages[i] = CharacterButtons[i].transform.GetChild(0).GetComponent<Image>();
             }
         }
+
+        // ê¸°ë³¸ ìºë¦­í„°ë¥¼ í™œì„±í™”í•˜ê³  ì„ íƒ ìƒíƒœ ì ìš©
         CharacterObject.transform.GetChild(0).gameObject.SetActive(true);
         currentIndex = 0;
-        ApplySelection(currentIndex); // ±âº» ¼±ÅÃ ¹İ¿µ
+        ApplySelection(currentIndex);
     }
 
+    /// <summary>
+    /// ì„ íƒí•œ ìºë¦­í„° ë²„íŠ¼ì— ë”°ë¼ ìºë¦­í„°ë¥¼ êµì²´í•œë‹¤.
+    /// </summary>
+    /// <param name="ButtonNum">ì„ íƒëœ ë²„íŠ¼ì˜ ì¸ë±ìŠ¤</param>
     public void ChangeCharacter(int ButtonNum)
     {
         for (int i = 0; i < 8; i++)
@@ -43,28 +56,35 @@ public class CharacterManager : MonoBehaviour
             CharacterObject.transform.GetChild(i).gameObject.SetActive(active);
             if (active) image.sprite = CharacterImages[i].sprite;
         }
-        ApplySelection(ButtonNum); // ¼±ÅÃ ¹İ¿µ
+        ApplySelection(ButtonNum);
     }
 
+    /// <summary>
+    /// í˜„ì¬ ì„ íƒëœ ìºë¦­í„° ì´ë¦„ì„ ì €ì¥í•˜ê³  ë¡œê·¸ë¡œ ë‚¨ê¸´ë‹¤.
+    /// </summary>
+    /// <param name="index">ì„ íƒí•œ ìºë¦­í„°ì˜ ì¸ë±ìŠ¤</param>
     private void ApplySelection(int index)
     {
         string raceName = CharacterObject.transform.GetChild(index).gameObject.name;
-        GameContext.SelectedRace = raceName;              // Àü¿ª ÀúÀå
-        Debug.Log($"¼±ÅÃµÈ Á¾Á·: {GameContext.SelectedRace}");
+        GameContext.SelectedRace = raceName;              // ì„ íƒëœ ì¢…ì¡± ì´ë¦„ ìœ ì§€
+        Debug.Log($"ì„ íƒëœ ì¢…ì¡± : {GameContext.SelectedRace}");
     }
 
+    /// <summary>
+    /// ì„ íƒí•œ ìºë¦­í„° ì •ë³´ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ê²Œì„ ì”¬ì„ ë¡œë“œí•œë‹¤.
+    /// </summary>
     private void GameStart()
     {
         var race = string.IsNullOrEmpty(GameContext.SelectedRace)
             ? CharacterObject.transform.GetChild(0).gameObject.name
             : GameContext.SelectedRace;
 
-        // ÇØ´ç Á¾Á· ÀúÀå Á¸Àç ¿©ºÎ È®ÀÎ
+        // ì„ íƒí•œ ì¢…ì¡±ì— ëŒ€í•œ ì €ì¥ ë°ì´í„° ì¡´ì¬ ì—¬ë¶€ í™•ì¸
         var existing = SaveLoadService.LoadPlayerDataForRaceOrNull(race);
-        GameContext.IsNewGame = (existing == null);  // ÀÖÀ¸¸é false(ÀÌ¾îÇÏ±â), ¾øÀ¸¸é true(»õ °ÔÀÓ)
+        GameContext.IsNewGame = (existing == null);  // ì €ì¥ ì—†ìŒ: true, ì €ì¥ ìˆìŒ: false
 
-        // (¼±ÅÃ) ¡®»õ·Î ½ÃÀÛ(µ¤¾î¾²±â)¡¯ ¹öÆ°À» µû·Î µÑ °æ¿ì:
-        // GameContext.ForceReset = true; // »ç¿ëÀÚ°¡ ÁøÂ¥ µ¤¾î¾²±â¸¦ ¿øÇÒ ¶§¸¸!
+        // í•„ìš” ì‹œ ìºë¦­í„° ë°ì´í„°ë¥¼ ê°•ì œë¡œ ì´ˆê¸°í™”í•˜ê³  ì‹¶ë‹¤ë©´ ì•„ë˜ë¥¼ í™œì„±í™”í•œë‹¤.
+        // GameContext.ForceReset = true;
 
         SceneManager.LoadScene("DungeonScene");
     }
