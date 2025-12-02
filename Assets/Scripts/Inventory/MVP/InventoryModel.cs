@@ -26,6 +26,12 @@ public class InventoryItem
     public GameObject prefab => Resources.Load<GameObject>(prefabPath);
 }
 
+[Serializable]
+public class InventoryData
+{
+    public List<InventoryItem> items = new List<InventoryItem>();
+}
+
 /// <summary>
 /// 인벤토리 데이터를 관리하고 저장을 담당하는 모델 클래스입니다.
 /// </summary>
