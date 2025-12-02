@@ -3,24 +3,26 @@ using UnityEngine;
 
 public class BossProximityWatcher : MonoBehaviour
 {
-    [Header("Player (Layer·Î Å½»ö)")]
-    [SerializeField] private Transform player;         // ºñ¿ì¸é playerLayer·Î ÀÚµ¿ Å½»ö
-    [SerializeField] private LayerMask playerLayer;    // ¿¹: Player ·¹ÀÌ¾î Ã¼Å©
+    [Header("Player (Layer)")]
+    [SerializeField] private Transform player;         // í”Œë ˆì´ì–´ íŠ¸ëœìŠ¤í¼ ì°¸ì¡°
+    [SerializeField] private LayerMask playerLayer;    // í”Œë ˆì´ì–´ê°€ ì†í•œ ë ˆì´ì–´ ë§ˆìŠ¤í¬
 
     [Header("UI")]
-    [SerializeField] private BossTopBarUI bossTopUI;   // BossCanvas¿¡ ºÙÀº ½ºÅ©¸³Æ®
+    [SerializeField] private BossTopBarUI bossTopUI;   // ë³´ìŠ¤ HPë¥¼ í‘œì‹œí•  ìµœìƒë‹¨ UI
 
     [Header("Settings")]
-    [SerializeField] private float showRadius = 100f;   // ÀÌ °Å¸® ÀÌ³»¸é HP¹Ù Ç¥½Ã
+    [SerializeField] private float showRadius = 100f;   // ë³´ìŠ¤ HPë¥¼ í‘œì‹œí•  ìµœëŒ€ ê±°ë¦¬
 
-    private EnemyStatsManager bossESM;                 // IHealth ±¸ÇöÃ¼
+    private EnemyStatsManager bossESM;                 // ë³´ìŠ¤ ìŠ¤íƒ¯ê³¼ HP ì •ë³´ë¥¼ ê°€ì§„ ê°ì²´
 
+    /// <summary>
+    /// ì”¬ì—ì„œ í•„ìš”í•œ ì°¸ì¡°ë¥¼ ìë™ìœ¼ë¡œ ì°¾ì•„ ì´ˆê¸°í™”í•œë‹¤.
+    /// </summary>
     void Awake()
     {
-        // ÇÃ·¹ÀÌ¾î¸¦ ·¹ÀÌ¾î·Î ÀÚµ¿ Å½»ö
         if (player == null)
         {
-            // ¾À ³» ¸ğµç Transform Áß ·¹ÀÌ¾î ÀÏÄ¡ÇÏ´Â Ã¹¹øÂ°¸¦ Ã£À½
+            // ë ˆì´ì–´ ë§ˆìŠ¤í¬ì— ì†í•œ ì²« ë²ˆì§¸ íŠ¸ëœìŠ¤í¼ì„ ì°¾ì•„ í”Œë ˆì´ì–´ë¡œ ì„¤ì •
             var all = FindObjectsByType<Transform>(FindObjectsSortMode.None);
             var t = all.FirstOrDefault(tf => (playerLayer.value & (1 << tf.gameObject.layer)) != 0);
             if (t != null) player = t;
@@ -30,16 +32,21 @@ public class BossProximityWatcher : MonoBehaviour
             bossTopUI = FindAnyObjectByType<BossTopBarUI>();
     }
 
-    /// <summary>EnemySpawn¿¡¼­ º¸½º ½ºÆù ÈÄ È£Ãâ</summary>
+    /// <summary>
+    /// ìƒˆë¡œ ë“±ì¥í•œ ë³´ìŠ¤ì˜ ì²´ë ¥ ì •ë³´ë¥¼ UIì— ì—°ê²°í•œë‹¤.
+    /// </summary>
     public void SetBoss(EnemyStatsManager esm)
     {
         bossESM = esm;
         if (bossTopUI != null && bossESM != null)
         {
-            bossTopUI.SetBoss(bossESM); // HealthBarUI ³»ºÎ±îÁö Å¸±ê ¼¼ÆÃµÊ
+            bossTopUI.SetBoss(bossESM); // ì²´ë ¥ë°”ê°€ ìƒˆ ë³´ìŠ¤ë¥¼ ë°”ë¼ë³´ë„ë¡ ì„¤ì •
         }
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ì™€ ë³´ìŠ¤ì˜ ê±°ë¦¬ë¥¼ í™•ì¸í•´ ë³´ìŠ¤ HP UI ë…¸ì¶œ ì—¬ë¶€ë¥¼ ì œì–´í•œë‹¤.
+    /// </summary>
     void Update()
     {
         if (bossTopUI == null) return;
