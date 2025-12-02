@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,12 +10,12 @@ public class EquipmentPresenter : MonoBehaviour
     private EquipmentView view;
     private InventoryPresenter inventoryPresenter;
 
-    private bool isOpen = false;                 // 장비창 열림 상태
-    private RectTransform equipmentRect;         // ★ 실제로 움직이는 RT
-    private RectTransform playerInfoRect;        // ★ 실제로 움직이는 RT
+    private bool isOpen = false;                 // 장비창 열림 여부
+    private RectTransform equipmentRect;         // 이동 가능한 장비창 RectTransform
+    private RectTransform playerInfoRect;        // 이동 가능한 플레이어 정보 RectTransform
 
     [SerializeField] private Camera uiCamera;           // 장비 UI 전용 카메라
-    [SerializeField] private Transform targetCharacter; // 캐릭터 모델
+    [SerializeField] private Transform targetCharacter; // 캐릭터 모델 트랜스폼
 
     private Button EquipButton;
 
@@ -24,7 +24,9 @@ public class EquipmentPresenter : MonoBehaviour
 
     public bool IsOpen => isOpen;
 
-    // 비활성 포함 탐색 (이름으로)
+    /// <summary>
+    /// 비활성 객체를 포함해 이름으로 GameObject를 찾는다.
+    /// </summary>
     private static GameObject FindIncludingInactive(string name)
     {
         var all = Resources.FindObjectsOfTypeAll<GameObject>();
@@ -37,12 +39,9 @@ public class EquipmentPresenter : MonoBehaviour
         return null;
     }
 
-    // 루트에서 실제 드래그로 이동하는 "창 패널" RT 찾기
-    // ★ 공통: 실제로 움직일 "창 루트" RT를 얻는다.
-    // 규칙:
-    //  1) root 하위에서 이름이 "HeadPanel"인 트랜스폼을 찾고 -> 그 parent RT를 창 루트로 사용
-    //  2) 없으면 root의 RectTransform 사용
-    //  3) 마지막으로 Canvas의 '직계 자식' 레벨까지 타고 올라가 통일
+    /// <summary>
+    /// 창 루트를 찾아 실제로 이동하는 RectTransform을 반환한다.
+    /// </summary>
     private static RectTransform GetMovableWindowRT(GameObject root)
     {
         if (!root) return null;
@@ -62,27 +61,30 @@ public class EquipmentPresenter : MonoBehaviour
 
         if (head && head.parent is RectTransform headParentRT)
         {
-            cand = headParentRT; // HeadPanel의 부모가 '창 루트'
+            cand = headParentRT; // HeadPanel의 부모가 창 루트
         }
         else
         {
-            // 2) fallback: root의 RT
+            // 2) fallback: root의 RectTransform
             cand = root.GetComponent<RectTransform>();
         }
 
         if (!cand) return null;
 
-        // 3) Canvas 직계 자식 레벨까지 끌어올리기(양쪽 패널을 동일 레벨로 통일)
+        // 3) Canvas 직계 자식 레벨까지 끌어올리기
         RectTransform cur = cand;
         while (cur && cur.parent is RectTransform prt)
         {
-            if (prt.GetComponent<Canvas>() != null) break; // prt가 Canvas → cur는 Canvas 직계
+            if (prt.GetComponent<Canvas>() != null) break;
             cur = prt;
         }
         return cur;
     }
 
-    void Start()
+    /// <summary>
+    /// 초기화 시 모델, 뷰, 카메라를 설정하고 장비 UI를 준비한다.
+    /// </summary>
+    private void Start()
     {
         UIEscapeStack.GetOrCreate();
 
@@ -97,7 +99,7 @@ public class EquipmentPresenter : MonoBehaviour
         view = FindAnyObjectByType<EquipmentView>();
         inventoryPresenter = FindAnyObjectByType<InventoryPresenter>();
 
-        // 루트 GO에서 "움직이는 RT"를 얻음
+        // 루트 오브젝트에서 이동 가능한 RectTransform을 찾는다.
         var eqRoot = GameObject.Find("EquipmentUI") ?? FindIncludingInactive("EquipmentUI");
         var piRoot = GameObject.Find("PlayerInfoUI") ?? FindIncludingInactive("PlayerInfoUI");
         equipmentRect = GetMovableWindowRT(eqRoot);
@@ -118,19 +120,25 @@ public class EquipmentPresenter : MonoBehaviour
         RefreshEquipmentUI();
     }
 
+    /// <summary>
+    /// 현재 장비 슬롯 목록을 외부에 제공한다.
+    /// </summary>
     public IReadOnlyList<EquipmentSlot> GetEquipmentSlots()
     {
         return model?.Slots;
     }
 
-    void Update()
+    /// <summary>
+    /// 입력을 감지해 장비창과 플레이어 정보창 전환을 처리한다.
+    /// </summary>
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             var pi = FindAnyObjectByType<PlayerInfoPresenter>();
             bool playerWasOpen = pi && pi.IsOpen;
 
-            // 전환 직전, 플레이어인포가 켜져 있으면 스냅샷 저장 + 위치 복사 (모두 "움직이는 RT" 기준)
+            // 전환 직전, 플레이어 정보가 켜져 있으면 스냅샷 저장 후 위치를 복사한다.
             if (playerWasOpen && playerInfoRect)
             {
                 Debug.Log($"[SNAP] Save from: {PathOf(equipmentRect)} localPos={equipmentRect.localPosition}");
@@ -151,6 +159,9 @@ public class EquipmentPresenter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 트랜스폼의 경로를 문자열로 반환한다.
+    /// </summary>
     private static string PathOf(Transform t)
     {
         if (!t) return "<null>";
@@ -163,10 +174,11 @@ public class EquipmentPresenter : MonoBehaviour
         return sb.ToString();
     }
 
-
-    void LateUpdate()
+    /// <summary>
+    /// UI 카메라가 캐릭터를 바라보도록 위치를 유지한다.
+    /// </summary>
+    private void LateUpdate()
     {
-        // UI 카메라가 캐릭터를 바라보도록 유지
         if (uiCamera != null && targetCharacter != null)
         {
             float dist = GetRaceCameraDistance(currentRace);
@@ -179,6 +191,9 @@ public class EquipmentPresenter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 종족별 카메라 거리를 계산한다.
+    /// </summary>
     private float GetRaceCameraDistance(string race)
     {
         string r = string.IsNullOrEmpty(race) ? "humanmale" : race.ToLowerInvariant();
@@ -196,6 +211,9 @@ public class EquipmentPresenter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 종족별로 바라볼 높이를 계산한다.
+    /// </summary>
     private float GetRaceLookAtHeight(string race)
     {
         string r = string.IsNullOrEmpty(race) ? "humanmale" : race.ToLowerInvariant();
@@ -213,6 +231,9 @@ public class EquipmentPresenter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 종족별 카메라 높이를 계산한다.
+    /// </summary>
     private float GetRaceCameraHeight(string race)
     {
         string r = string.IsNullOrEmpty(race) ? "humanmale" : race.ToLowerInvariant();
@@ -230,6 +251,9 @@ public class EquipmentPresenter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 장비 UI 카메라를 찾거나 지정한다.
+    /// </summary>
     private void SetupUICamera()
     {
         if (uiCamera == null)
@@ -250,19 +274,25 @@ public class EquipmentPresenter : MonoBehaviour
         }
     }
 
-    /// <summary>외부에서 켜기</summary>
+    /// <summary>
+    /// 외부에서 장비창을 열도록 요청한다.
+    /// </summary>
     public void OpenEquipment()
     {
         if (!isOpen) ToggleEquipment();
     }
 
-    /// <summary>외부에서 끄기</summary>
+    /// <summary>
+    /// 외부에서 장비창을 닫도록 요청한다.
+    /// </summary>
     public void CloseEquipmentPublic()
     {
         if (isOpen) CloseEquipment();
     }
 
-    /// <summary>장비창 열기/닫기</summary>
+    /// <summary>
+    /// 장비창을 토글한다.
+    /// </summary>
     public void ToggleEquipment()
     {
         if (view == null) return;
@@ -281,17 +311,19 @@ public class EquipmentPresenter : MonoBehaviour
         }
         else
         {
-            // 닫힐 때: 반드시 스냅샷 저장하도록 CloseEquipment() 사용
+            // 닫힐 때: 반드시 스냅샷 저장하도록 CloseEquipment 사용
             CloseEquipment();
         }
     }
 
-
+    /// <summary>
+    /// 장비창을 닫고 위치 스냅샷을 저장한다.
+    /// </summary>
     private void CloseEquipment()
     {
         if (!isOpen) return;
 
-        // 닫히기 직전 현재 위치 스냅샷 저장 (움직이는 RT)
+        // 닫히기 직전 현재 위치 스냅샷 저장
         if (equipmentRect) UIPanelSwitcher.SaveSnapshot(equipmentRect);
 
         view.Show(false);
@@ -300,20 +332,25 @@ public class EquipmentPresenter : MonoBehaviour
         UIEscapeStack.Instance.Remove("equipment");
     }
 
+    /// <summary>
+    /// 플레이어 레벨을 가져온다.
+    /// </summary>
     private int GetPlayerLevel()
     {
         var ps = PlayerStatsManager.Instance;
         return (ps != null && ps.Data != null) ? ps.Data.Level : 1;
     }
 
-    /// <summary>아이템 장착 (uniqueId 기반)</summary>
+    /// <summary>
+    /// 아이템을 장착하고 관련 UI와 데이터를 갱신한다.
+    /// </summary>
     public void HandleEquipItem(InventoryItem item)
     {
         int reqLevel = Mathf.Max(1, item.data.level);
         int curLevel = GetPlayerLevel();
         if (curLevel < reqLevel)
         {
-            Debug.LogWarning($"[장착 실패] 요구 레벨 {reqLevel}, 현재 레벨 {curLevel} → '{item.data.name}' 장착 불가");
+            Debug.LogWarning($"[장착 실패] 요구 레벨 {reqLevel}, 현재 레벨 {curLevel} 로 '{item.data.name}' 장착 불가");
             return;
         }
 
@@ -340,17 +377,23 @@ public class EquipmentPresenter : MonoBehaviour
                 AttachPrefabToCharacter(prefab, slotType);
         }
 
-        // UI & 스탯 갱신
+        // UI와 스탯 갱신
         ApplyStatsAndSave();
         inventoryPresenter?.Refresh();
         RefreshEquipmentUI();
     }
 
+    /// <summary>
+    /// 인벤토리에서 끌어온 아이템을 장착할 때 호출한다.
+    /// </summary>
     private void HandleEquipFromInventory(string slotType, InventoryItem item)
     {
         HandleEquipItem(item);
     }
 
+    /// <summary>
+    /// 슬롯에서 아이템을 해제하고 UI를 갱신한다.
+    /// </summary>
     public void HandleUnequipItem(string slotType)
     {
         var slot = model.GetSlot(slotType);
@@ -367,6 +410,9 @@ public class EquipmentPresenter : MonoBehaviour
         RefreshEquipmentUI();
     }
 
+    /// <summary>
+    /// 능력치를 다시 계산하고 저장하며 정보 텍스트를 갱신한다.
+    /// </summary>
     private void ApplyStatsAndSave()
     {
         var ps = PlayerStatsManager.Instance;
@@ -376,11 +422,14 @@ public class EquipmentPresenter : MonoBehaviour
             SaveLoadService.SavePlayerDataForRace(ps.Data.Race, ps.Data);
         }
 
-        // ★ 추가: 플레이어인포 텍스트 갱신
+        // 플레이어 정보 텍스트 갱신
         var pi = FindAnyObjectByType<PlayerInfoPresenter>(FindObjectsInactive.Include);
         if (pi != null) pi.RefreshStatsText();
     }
 
+    /// <summary>
+    /// 저장된 장비 프리팹을 캐릭터에 장착하고 스탯을 초기화한다.
+    /// </summary>
     private void InitializeEquippedItems()
     {
         foreach (var slot in model.Slots)
@@ -396,6 +445,9 @@ public class EquipmentPresenter : MonoBehaviour
         if (ps != null) ps.RecalculateStats(model.Slots);
     }
 
+    /// <summary>
+    /// 특정 슬롯 본에 프리팹을 장착하고 물리 및 인터랙션 컴포넌트를 정리한다.
+    /// </summary>
     private void AttachPrefabToCharacter(GameObject prefab, string slotType)
     {
         Transform bone = GetSlotTransform(slotType);
@@ -425,6 +477,9 @@ public class EquipmentPresenter : MonoBehaviour
             Destroy(rb);
     }
 
+    /// <summary>
+    /// 슬롯에 장착된 프리팹을 제거한다.
+    /// </summary>
     private void RemovePrefabFromCharacter(string slotType)
     {
         Transform bone = GetSlotTransform(slotType);
@@ -437,6 +492,9 @@ public class EquipmentPresenter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 슬롯 유형에 해당하는 본을 찾는다.
+    /// </summary>
     private Transform GetSlotTransform(string slotType)
     {
         string boneName = slotType switch
@@ -455,10 +513,13 @@ public class EquipmentPresenter : MonoBehaviour
             if (t.name == boneName)
                 return t;
 
-        Debug.LogWarning($"{slotType} 슬롯에 해당하는 본({boneName})을 찾을 수 없습니다.");
+        Debug.LogWarning($"{slotType} 슬롯에 해당하는 본 {boneName} 을 찾을 수 없습니다.");
         return null;
     }
 
+    /// <summary>
+    /// 슬롯별 위치 오프셋을 반환한다.
+    /// </summary>
     private Vector3 GetSlotOffset(string slotType)
     {
         return slotType switch
@@ -471,6 +532,9 @@ public class EquipmentPresenter : MonoBehaviour
         };
     }
 
+    /// <summary>
+    /// 뷰에 현재 장비 정보를 반영한다.
+    /// </summary>
     private void RefreshEquipmentUI()
     {
         if (view != null && model != null)

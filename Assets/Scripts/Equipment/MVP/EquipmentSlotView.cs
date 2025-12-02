@@ -4,31 +4,35 @@ using System;
 
 public class EquipmentSlotView : MonoBehaviour, IDropHandler, IPointerClickHandler
 {
-    public string slotType; // ½½·Ô Å¸ÀÔ
-    public Action<string, InventoryItem> onItemDropped; // µå·Ó ÀÌº¥Æ® Äİ¹é
+    public string slotType; // ìŠ¬ë¡¯ ìœ í˜• ì´ë¦„
+    public Action<string, InventoryItem> onItemDropped; // ì¥ë¹„ ìŠ¬ë¡¯ì— ì•„ì´í…œì´ ë–¨ì–´ì¡Œì„ ë•Œ ì‹¤í–‰í•  ì½œë°±
 
-    /// <summary>¾ÆÀÌÅÛ µå·¡±× ¾Ø µå·Ó Ã³¸®</summary>
+    /// <summary>
+    /// ì¥ë¹„ ìŠ¬ë¡¯ ìœ„ì— ë“œë˜ê·¸í•œ ì•„ì´í…œì„ ë†“ì•˜ì„ ë•Œ ì²˜ë¦¬í•œë‹¤.
+    /// </summary>
     public void OnDrop(PointerEventData eventData)
     {
         var draggedItem = eventData.pointerDrag?.GetComponent<DraggableItemView>();
         if (draggedItem == null || draggedItem.Item == null)
             return;
 
-        // ½½·Ô Å¸ÀÔ°ú ¾ÆÀÌÅÛ Å¸ÀÔ ÀÏÄ¡ È®ÀÎ
+        // ìŠ¬ë¡¯ ìœ í˜•ì´ ì¼ì¹˜í•˜ë©´ ì¥ì°© ì²˜ë¦¬
         if (draggedItem.Item.data.type == slotType)
         {
-            Debug.Log($"µå·Ó ¼º°ø ¡æ {slotType} ½½·Ô¿¡ {draggedItem.Item.data.name}");
+            Debug.Log($"ìŠ¬ë¡¯ {slotType} ì— {draggedItem.Item.data.name} ì¥ì°© ìš”ì²­");
             onItemDropped?.Invoke(slotType, draggedItem.Item);
         }
         else
         {
-            Debug.LogWarning($"µå·Ó ½ÇÆĞ: {slotType} ½½·ÔÀº {draggedItem.Item.data.type} ¾ÆÀÌÅÛ ÀåÂø ºÒ°¡");
+            Debug.LogWarning($"ì¥ì°© ì‹¤íŒ¨: ìŠ¬ë¡¯ {slotType} ê³¼ ì•„ì´í…œ ìœ í˜• {draggedItem.Item.data.type} ì´ ë‹¤ë¦„");
         }
     }
 
-    /// <summary>½½·Ô Å¬¸¯ °¨Áö (¿ìÅ¬¸¯ µî ÃßÈÄ È®Àå °¡´É)</summary>
+    /// <summary>
+    /// ìŠ¬ë¡¯ì„ í´ë¦­í–ˆì„ ë•Œ ë™ì‘ì„ ê¸°ë¡í•œë‹¤.
+    /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"Click detected on {slotType}: {eventData.button}");
+        Debug.Log($"ìŠ¬ë¡¯ {slotType} í´ë¦­ ê°ì§€: {eventData.button}");
     }
 }
