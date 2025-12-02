@@ -1,16 +1,22 @@
 using UnityEngine;
 
+/// <summary>
+/// í”Œë ˆì´ì–´ ìƒì„±ê³¼ ë§µ ì¬ìƒì„± ì‹œ ìœ„ì¹˜ ì´ë™ì„ ë‹´ë‹¹í•©ë‹ˆë‹¤.
+/// </summary>
 public class PlayerSpawn : MonoBehaviour
 {
     public TileMapGenerator mapGenerator;
 
     private GameObject currentPlayer;
 
+    /// <summary>
+    /// ë§µ ìƒì„± ì´ë²¤íŠ¸ë¥¼ êµ¬ë…í•˜ê³  ê¸°ë³¸ ì¢…ì¡±ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     void Start()
     {
         if (mapGenerator == null)
         {
-            Debug.LogError("TileMapGenerator¸¦ ¿¬°áÇØÁÖ¼¼¿ä!");
+            Debug.LogError("TileMapGeneratorë¥¼ í• ë‹¹í•´ ì£¼ì„¸ìš”.");
             return;
         }
 
@@ -18,26 +24,34 @@ public class PlayerSpawn : MonoBehaviour
 
         if (string.IsNullOrEmpty(GameContext.SelectedRace))
         {
-            // Ä³¸¯ÅÍ ¼±ÅÃ ¾øÀÌ ¹Ù·Î µé¾î¿Â °æ¿ì ÀÌ¾îÇÏ±â ½Ã³ª¸®¿ÀÀÏ ¼ö ÀÖÀ¸´Ï ±âº»°ª¸¸ ¹æ¾î
             GameContext.SelectedRace = "humanmale";
         }
 
         RespawnPlayer();
     }
 
+    /// <summary>
+    /// ê°ì²´ íŒŒê´´ ì‹œ ì´ë²¤íŠ¸ êµ¬ë…ì„ í•´ì œí•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnDestroy()
     {
         if (mapGenerator != null) mapGenerator.OnMapGenerated -= ReloadPlayer;
     }
 
+    /// <summary>
+    /// ë§µì´ ë‹¤ì‹œ ìƒì„±ë  ë•Œ í”Œë ˆì´ì–´ë¥¼ ìƒˆë¡œìš´ ë°© ì¤‘ì•™ìœ¼ë¡œ ì˜®ê¹ë‹ˆë‹¤.
+    /// </summary>
     public void ReloadPlayer()
     {
-        if (currentPlayer == null) return; // ¡Ú °¡µå
+        if (currentPlayer == null) return;
         RectInt playerRoom = mapGenerator.GetPlayerRoom();
         Vector3 newPos = new Vector3(playerRoom.center.x, 0.5f, playerRoom.center.y);
         currentPlayer.transform.position = newPos;
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ í”„ë¦¬íŒ¹ì„ ìƒˆë¡œ ìƒì„±í•˜ê³  ìŠ¤íƒ¯ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     public void RespawnPlayer()
     {
         if (currentPlayer != null)
@@ -46,25 +60,24 @@ public class PlayerSpawn : MonoBehaviour
         RectInt playerRoom = mapGenerator.GetPlayerRoom();
         Vector3 spawnPos = new Vector3(playerRoom.center.x, 0.5f, playerRoom.center.y);
 
-        string prefabName = GameContext.SelectedRace; // ¿¹: "humanmale"
+        string prefabName = GameContext.SelectedRace;
         GameObject prefab = Resources.Load<GameObject>($"Characters/{prefabName}");
         if (prefab == null)
         {
-            Debug.LogError($"ÇÁ¸®ÆÕ 'Resources/Characters/{prefabName}.prefab' ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"Resources/Characters/{prefabName}.prefab íŒŒì¼ì„ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
             return;
         }
 
         currentPlayer = Instantiate(prefab, spawnPos, Quaternion.identity, transform);
 
-        // ¡Ú ½ºÅÈ ÃÊ±âÈ­
         var stats = currentPlayer.GetComponent<PlayerStatsManager>();
         if (stats != null)
         {
-            stats.InitializeForSelectedRace(); // ¾Æ·¡ 3)¿¡¼­ ±¸Çö
+            stats.InitializeForSelectedRace();
         }
         else
         {
-            Debug.LogWarning("PlayerStatsManager ÄÄÆ÷³ÍÆ®¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.");
+            Debug.LogWarning("PlayerStatsManager ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
         }
     }
 }

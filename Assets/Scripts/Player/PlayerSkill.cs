@@ -1,49 +1,61 @@
 using UnityEngine;
 
+/// <summary>
+/// í”Œë ˆì´ì–´ ìŠ¤í‚¬ ì‚¬ìš©ê³¼ ì¢…ë£Œë¥¼ ê´€ë¦¬í•©ë‹ˆë‹¤.
+/// </summary>
 public class PlayerSkill : MonoBehaviour
 {
     private Animation animationComponent;
     private Quaternion savedRotation;
     private bool isUsingSkill = false;
 
+    /// <summary>
+    /// ìŠ¤í‚¬ ì‚¬ìš©ì— í•„ìš”í•œ ì• ë‹ˆë©”ì´ì…˜ì„ ì¤€ë¹„í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         animationComponent = GetComponent<Animation>();
         if (animationComponent == null)
-            Debug.LogError("Animation ÄÄÆ÷³ÍÆ®°¡ Player ÇÁ¸®ÆÕ ¶Ç´Â ÀÚ½Ä¿¡ ¾ø½À´Ï´Ù!");
+            Debug.LogError("Animation ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
     }
 
+    /// <summary>
+    /// ì…ë ¥ì„ í™•ì¸í•˜ì—¬ ìŠ¤í‚¬ì„ ì‹œì‘í•˜ê±°ë‚˜ ì¤‘ë‹¨í•©ë‹ˆë‹¤.
+    /// </summary>
     void Update()
     {
-        // AÅ°·Î ½ºÅ³ ½ÃÀÛ
         if (Input.GetKeyDown(KeyCode.A))
         {
             StartWhirlwind();
         }
 
-        // ÀÌµ¿ ÀÔ·ÂÀ¸·Î ½ºÅ³ ²÷±â (¿¹½Ã: ¿ìÅ¬¸¯ ÀÌµ¿)
         if (isUsingSkill && Input.GetMouseButtonDown(1))
         {
             StopWhirlwind();
         }
 
-        // ½ºÅ³ Áß¿¡´Â ¸Å ÇÁ·¹ÀÓ ¹æÇâ °­Á¦ °íÁ¤
         if (isUsingSkill)
         {
             transform.rotation = savedRotation;
         }
     }
 
+    /// <summary>
+    /// íšŒì˜¤ë¦¬ ìŠ¤í‚¬ì„ ì‹œì‘í•˜ê³  íšŒì „ì„ ê³ ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     private void StartWhirlwind()
     {
         if (animationComponent == null) return;
 
-        savedRotation = transform.rotation; // ¹æÇâ ÀúÀå
+        savedRotation = transform.rotation;
         animationComponent.CrossFade("Whirlwind (ID 126 variation 0)", 0.1f);
         isUsingSkill = true;
         Debug.Log(savedRotation);
     }
 
+    /// <summary>
+    /// íšŒì˜¤ë¦¬ ìŠ¤í‚¬ì„ ë©ˆì¶”ê³  ì›ë˜ íšŒì „ì„ ë³µêµ¬í•©ë‹ˆë‹¤.
+    /// </summary>
     private void StopWhirlwind()
     {
         if (!isUsingSkill) return;

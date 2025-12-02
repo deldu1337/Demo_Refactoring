@@ -1,20 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ë¯¸ë‹ˆë§µ ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ì™€ ë°©í–¥ì„ í”Œë ˆì´ì–´ì— ë§ì¶° ì¡°ì •í•©ë‹ˆë‹¤.
+/// </summary>
 public class MinimapCamera : MonoBehaviour
 {
-    private Camera minimapCam; // Minimap Ä«¸Ş¶ó ÂüÁ¶
+    private Camera minimapCam;
     private Image arrowImage;
-    private Vector3 distance; // Ä«¸Ş¶ó¿Í ÇÃ·¹ÀÌ¾î °£ »ó´ë À§Ä¡ (offset)
-    private Vector3 fixedRotation = new Vector3(90f, 45f, 0f); // ¹Ì´Ï¸Ê Ä«¸Ş¶ó °íÁ¤ È¸Àü°ª
+    private Vector3 distance;
+    private Vector3 fixedRotation = new Vector3(90f, 45f, 0f);
 
+    /// <summary>
+    /// ë¯¸ë‹ˆë§µ ì¹´ë©”ë¼ì™€ í™”ì‚´í‘œ UIë¥¼ ì¤€ë¹„í•©ë‹ˆë‹¤.
+    /// </summary>
     void Start()
     {
-        // Minimap ÅÂ±×¸¦ °¡Áø Ä«¸Ş¶ó Ã£¾Æ¼­ ÀúÀå
         minimapCam = GameObject.FindGameObjectWithTag("Minimap").GetComponent<Camera>();
         if (minimapCam == null)
         {
-            Debug.LogError("Minimap ÅÂ±×¸¦ °¡Áø Ä«¸Ş¶ó¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù!");
+            Debug.LogError("Minimap íƒœê·¸ì˜ ì¹´ë©”ë¼ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
             return;
         }
         Transform canvasTransform = transform.Find("Canvas");
@@ -27,27 +32,22 @@ public class MinimapCamera : MonoBehaviour
             }
         }
 
-        // Ä«¸Ş¶ó È¸Àü °íÁ¤
         minimapCam.transform.eulerAngles = fixedRotation;
 
-        // ÃÊ±â Ä«¸Ş¶ó À§Ä¡¸¦ ±âÁØÀ¸·Î offset °è»ê
-        Vector3 vector3 = new Vector3(transform.position.x, 50f, transform.position.z); // Ä«¸Ş¶ó ÃÊ±â À§Ä¡
-        distance = vector3 - transform.position;       // ÇÃ·¹ÀÌ¾î À§Ä¡ ±âÁØ offset °è»ê
-       
-        // ÁÖ¼® Ã³¸®µÊ, °íÁ¤µÈ ÃÊ±â º¤ÅÍ·Î offset ¼³Á¤
+        Vector3 vector3 = new Vector3(transform.position.x, 50f, transform.position.z);
+        distance = vector3 - transform.position;
     }
 
+    /// <summary>
+    /// ë¯¸ë‹ˆë§µ ì¹´ë©”ë¼ ìœ„ì¹˜ì™€ UI í™”ì‚´í‘œ íšŒì „ì„ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     void FixedUpdate()
     {
-        // Ä«¸Ş¶ó À§Ä¡¸¦ ÇÃ·¹ÀÌ¾î À§Ä¡ + offsetÀ¸·Î ¼³Á¤
         minimapCam.transform.position = distance + transform.position;
 
-        // ÇöÀç Ä«¸Ş¶ó À§Ä¡ ±âÁØ offset °»½Å
         distance = minimapCam.transform.position - transform.position;
 
-        // ÇÃ·¹ÀÌ¾î yÃà È¸Àü(¹æÇâ) ±âÁØÀ¸·Î UI ZÃà È¸Àü
         float playerYRotation = transform.eulerAngles.y;
         arrowImage.rectTransform.localEulerAngles = new Vector3(45f, 0f, -playerYRotation + 45f);
-        // 45´Â ÀÎ½ºÆåÅÍ¿¡¼­ ¼³Á¤ÇÑ x°ª À¯Áö, y´Â 0À¸·Î °íÁ¤, z¸¸ ÇÃ·¹ÀÌ¾î È¸Àü ¹İ¿µ
     }
 }

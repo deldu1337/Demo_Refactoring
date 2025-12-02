@@ -14,11 +14,11 @@ public class PlayerSkeletonSnapshot
     }
 
     private readonly List<Bone> bones = new();
-    private readonly Transform rootCaptured;         // ¾î¶² ·çÆ®¸¦ ±âÁØÀ¸·Î Ä¸Ã³Çß´ÂÁö
-    private readonly bool includeRootLocalTransform; // ·çÆ®ÀÇ local º¯È¯µµ º¹¿øÇÒÁö
+    private readonly Transform rootCaptured;
+    private readonly bool includeRootLocalTransform;
 
-    private readonly Vector3 worldRootPos;           // Ä¸Ã³ ½Ã ·çÆ®ÀÇ ¿ùµå À§Ä¡(ÇÊ¿ä ½Ã »ç¿ë)
-    private readonly Quaternion worldRootRot;        // Ä¸Ã³ ½Ã ·çÆ®ÀÇ ¿ùµå È¸Àü
+    private readonly Vector3 worldRootPos;
+    private readonly Quaternion worldRootRot;
 
     private PlayerSkeletonSnapshot(Transform root, bool includeRootLocal)
     {
@@ -41,23 +41,20 @@ public class PlayerSkeletonSnapshot
         }
     }
 
-    /// <summary>Æ¯Á¤ ·çÆ®(poseRoot) ÀÌÇÏ Æ®·£½ºÆûÀ» ¸ğµÎ ½º³À¼¦.</summary>
+    /// <summary>ì§€ì •í•œ ë£¨íŠ¸(poseRoot)ì˜ í˜„ì¬ í¬ì¦ˆë¥¼ ìŠ¤ëƒ…ìƒ·ìœ¼ë¡œ ì €ì¥í•©ë‹ˆë‹¤.</summary>
     public static PlayerSkeletonSnapshot Capture(Transform poseRoot, bool includeRootLocalTransform = true)
         => new PlayerSkeletonSnapshot(poseRoot, includeRootLocalTransform);
 
     /// <summary>
-    /// ÀúÀåµÈ ·ÎÄÃ Æ®·£½ºÆûÀ» º¹¿ø. 
-    /// worldPos/worldRot¸¦ null·Î ÁÖ¸é ÇöÀç À§Ä¡/È¸ÀüÀ» À¯ÁöÇÏ°í, °ªÀ» ÁÖ¸é ±× °ªÀ¸·Î ¼³Á¤.
+    /// ì €ì¥ëœ í¬ì¦ˆë¥¼ ì§€ì •í•œ ë£¨íŠ¸ì— ì ìš©í•©ë‹ˆë‹¤. ì›”ë“œ ìœ„ì¹˜ë‚˜ íšŒì „ì„ ë®ì–´ì“°ì‹¤ ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤.
     /// </summary>
     public void Apply(Transform poseRoot, Vector3? worldPosOverride = null, Quaternion? worldRotOverride = null)
     {
         if (poseRoot != rootCaptured)
         {
-            // ´Ù¸¥ ·çÆ®¸¦ Àü´ŞÇØµµ ±¸Á¶°¡ µ¿ÀÏÇÏ¸é ÂüÁ¶°¡ °°À» È®·üÀÌ ³ôÀ½.
-            // º»¹®Àº Transform ·¹ÆÛ·±½º¿¡ Á÷Á¢ Àû¿ëÇÏ¹Ç·Î poseRoot ¸Å°³º¯¼ö´Â ´ÜÁö ¿ùµå À§Ä¡/È¸Àü Àû¿ë¿ë.
+            // ë‹¤ë¥¸ ë£¨íŠ¸ì— ì ìš©í•˜ëŠ” ê²½ìš°ë¼ë©´ ì¢Œí‘œê³„ ì°¨ì´ì— ìœ ì˜í•´ ì£¼ì„¸ìš”.
         }
 
-        // 1) (¼±ÅÃ) ·çÆ® ¿ùµå º¯È¯ºÎÅÍ ¼³Á¤
         if (worldPosOverride.HasValue || worldRotOverride.HasValue)
         {
             poseRoot.SetPositionAndRotation(
@@ -66,7 +63,6 @@ public class PlayerSkeletonSnapshot
             );
         }
 
-        // 2) ºñÈ°¼º/È°¼º »óÅÂ ¸ÕÀú ¸ÂÃã (ºÎ¸ğ-ÀÚ½Ä ÀÇÁ¸¼º ÃÖ¼ÒÈ­¸¦ À§ÇØ ÀÚ½ÄºÎÅÍ È°¼ºÇØµµ OK)
         for (int i = 0; i < bones.Count; i++)
         {
             var b = bones[i];
@@ -75,13 +71,11 @@ public class PlayerSkeletonSnapshot
                 b.t.gameObject.SetActive(b.active);
         }
 
-        // 3) ·ÎÄÃ Æ®·£½ºÆû º¹¿ø
         for (int i = 0; i < bones.Count; i++)
         {
             var b = bones[i];
             if (!b.t) continue;
 
-            // ·çÆ®ÀÇ local º¯È¯À» °Çµå¸®°í ½ÍÁö ¾ÊÀ¸¸é(º¸Åë ¿ùµå À§Ä¡/È¸ÀüÀ» µû·Î Á¤ÇÏ´Â °æ¿ì) skip
             if (!includeRootLocalTransform && b.t == rootCaptured) continue;
 
             b.t.localPosition = b.lp;
@@ -90,7 +84,7 @@ public class PlayerSkeletonSnapshot
         }
     }
 
-    /// <summary>Á×´Â ¼ø°£ À§Ä¡ ±×´ë·Î µÇ»ì¸®°í ½ÍÀ» ¶§ »ç¿ë.</summary>
+    /// <summary>ìŠ¤ëƒ…ìƒ·ì´ ì €ì¥ëœ ì›”ë“œ ìœ„ì¹˜ì™€ íšŒì „ì„ ê·¸ëŒ€ë¡œ ì ìš©í•©ë‹ˆë‹¤.</summary>
     public void ApplyAtCapturedWorldPose(Transform poseRoot)
         => Apply(poseRoot, worldRootPos, worldRootRot);
 }
