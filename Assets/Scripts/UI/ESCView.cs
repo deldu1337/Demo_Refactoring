@@ -12,9 +12,12 @@ public class ESCView : MonoBehaviour
     private Button ExitButton;
     private bool show = false;
 
+    /// <summary>
+    /// ESC UIë¥¼ ì°¾ê³  ë²„íŠ¼ ë™ì‘ì„ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
     void Start()
     {
-        UIEscapeStack.GetOrCreate(); // ½ºÅÃ º¸Àå
+        UIEscapeStack.GetOrCreate();
 
         if (escUI == null)
             escUI = GameObject.Find("escUI");
@@ -37,19 +40,23 @@ public class ESCView : MonoBehaviour
         if (escUI) escUI.SetActive(show);
     }
 
+    /// <summary>
+    /// ESC í‚¤ ì…ë ¥ì„ ê°ì§€í•˜ì—¬ UIë¥¼ í† ê¸€í•˜ê±°ë‚˜ ìŠ¤íƒ ìƒë‹¨ì„ ë‹«ìŠµë‹ˆë‹¤.
+    /// </summary>
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            // 1) ÃÖ±Ù ¿­¸° UIºÎÅÍ ´İ±â (ÀÖÀ¸¸é ¿©±â¼­ ³¡)
             if (UIEscapeStack.Instance != null && UIEscapeStack.Instance.PopTop())
                 return;
 
-            // 2) ´İÀ» UI°¡ ¾ø´Ù¸é ESC ¸Ş´º Åä±Û
             ToggleESC();
         }
     }
 
+    /// <summary>
+    /// ESC UIì˜ í‘œì‹œ ì—¬ë¶€ë¥¼ ì „í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public void ToggleESC()
     {
         if (!escUI) return;
@@ -57,22 +64,31 @@ public class ESCView : MonoBehaviour
         escUI.SetActive(show);
     }
 
+    /// <summary>
+    /// ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Logout()
     {
         SceneManager.LoadScene("LoginScene");
     }
 
+    /// <summary>
+    /// ìºë¦­í„° ì„ íƒ í™”ë©´ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
+    /// </summary>
     public void SelectCharacter()
     {
         SceneManager.LoadScene("CharacterScene");
     }
 
+    /// <summary>
+    /// ê²Œì„ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.
+    /// </summary>
     private void ExitGame()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
-#endif   
+#endif
     }
 }

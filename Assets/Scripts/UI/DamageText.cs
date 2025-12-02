@@ -4,35 +4,40 @@ using UnityEngine.UI;
 public class DamageText : MonoBehaviour
 {
     [Header("Animation")]
-    public float duration = 1.0f;       // ÀüÃ¼ Àç»ı ½Ã°£(ÃÊ)
-    public float risePixels = 60f;      // È­¸é ÇÈ¼¿ ±âÁØ À§·Î ¶°¿À¸£´Â ÃÑ °Å¸®
-    public float horizontalDrift = 20f; // ÁÂ¿ì·Î »ìÂ¦ Èçµé¸± ÃÖ´ë ÇÈ¼¿
+    public float duration = 1.0f;       // í‘œì‹œê°€ ìœ ì§€ë˜ëŠ” ì‹œê°„ì…ë‹ˆë‹¤.
+    public float risePixels = 60f;      // í™”ë©´ì—ì„œ ìƒìŠ¹í•˜ëŠ” ê±°ë¦¬ì…ë‹ˆë‹¤.
+    public float horizontalDrift = 20f; // ì¢Œìš°ë¡œ í”ë“¤ë¦¬ëŠ” ì •ë„ì…ë‹ˆë‹¤.
 
     private Text text;
     private float elapsed;
     private float driftX;
     private Color baseColor;
 
-    // ÃßÀû ´ë»ó/¿ÀÇÁ¼Â/Ä«¸Ş¶ó
+    // ë”°ë¼ê°ˆ ëŒ€ìƒê³¼ ì¹´ë©”ë¼ ê´€ë ¨ ì •ë³´ì…ë‹ˆë‹¤.
     private Transform followTarget;
     private Vector3 worldOffset;
     private Camera cam;
 
-    // ºĞ¸®(Detach) ¸ğµå °ü·Ã
+    // ë¶„ë¦¬(detach) ì• ë‹ˆë©”ì´ì…˜ ìƒíƒœì…ë‹ˆë‹¤.
     private bool detached = false;
     private float detachElapsed = 0f;
-    private float detachDuration = 0.5f;       // ºĞ¸® ÈÄ ¸¶¹«¸® ½Ã°£(³²Àº ½Ã°£ ±â¹İÀ¸·Î °è»ê)
-    private Vector3 detachStartScreenPos;      // ºĞ¸® ½ÃÀÛ È­¸é ÁÂÇ¥
-    private float detachStartEase;             // ºĞ¸® ½ÃÁ¡±îÁö ÁøÇàµÈ ease °ª (0~1)
-    private float currentAlpha = 1f;           // ºĞ¸® ½ÃÁ¡ ¾ËÆÄ
+    private float detachDuration = 0.5f;       // ë¶„ë¦¬ëœ ë’¤ ì‚¬ë¼ì§€ê¸°ê¹Œì§€ì˜ ì‹œê°„ì…ë‹ˆë‹¤.
+    private Vector3 detachStartScreenPos;      // ë¶„ë¦¬ ì‹œì ì˜ í™”ë©´ ì¢Œí‘œì…ë‹ˆë‹¤.
+    private float detachStartEase;             // ë¶„ë¦¬ ì‹œì ì˜ ì´ì§• ê°’ì…ë‹ˆë‹¤.
+    private float currentAlpha = 1f;           // í˜„ì¬ ì•ŒíŒŒ ê°’ì…ë‹ˆë‹¤.
 
+    /// <summary>
+    /// í…ìŠ¤íŠ¸ ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜¤ê³  ê¸°ë³¸ ìƒíƒœë¥¼ ì¤€ë¹„í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         text = GetComponent<Text>();
-        if (!text) Debug.LogWarning("[DamageText] Text ÄÄÆ÷³ÍÆ®°¡ ¾ø½À´Ï´Ù.");
+        if (!text) Debug.LogWarning("[DamageText] Text ì»´í¬ë„ŒíŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
     }
 
-    /// <summary>´ë»ó¿¡ °íÁ¤µÇ´Â µ¥¹ÌÁö ÅØ½ºÆ® ¼³Á¤</summary>
+    /// <summary>
+    /// ë°ë¯¸ì§€ ìˆ«ìì™€ ìƒ‰ìƒì„ ì„¤ì •í•˜ê³  ì´ë™ ëŒ€ìƒ ì •ë³´ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Setup(int damage, Color color, Transform target, Vector3 followWorldOffset, Camera cameraIfNullUseMain = null)
     {
         if (!text) return;
@@ -52,7 +57,7 @@ public class DamageText : MonoBehaviour
         detachElapsed = 0f;
         currentAlpha = 1f;
 
-        // [Áß¿ä] »ı¼º Áï½Ã ÇöÀç È­¸é ÁÂÇ¥·Î °íÁ¤ (Ã¹ ÇÁ·¹ÀÓ Àü¿¡ ºĞ¸®µÅµµ ½ÃÀÛ À§Ä¡°¡ Á¤È®)
+        // ì‹œì‘ ìœ„ì¹˜ë¥¼ ëŒ€ìƒ ê¸°ì¤€ í™”ë©´ ì¢Œí‘œë¡œ ë§ì¶¥ë‹ˆë‹¤.
         if (followTarget && cam != null)
         {
             Vector3 baseScreen = cam.WorldToScreenPoint(followTarget.position + worldOffset);
@@ -60,12 +65,14 @@ public class DamageText : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// ë§¤ í”„ë ˆì„ë§ˆë‹¤ í…ìŠ¤íŠ¸ ìœ„ì¹˜ì™€ ì•ŒíŒŒ ê°’ì„ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     void Update()
     {
         if (!text) return;
 
-        // ´ë»óÀÌ »ç¶óÁö°Å³ª ºñÈ°¼ºÈ­µÇ¸é ºĞ¸® ¸ğµå·Î ÀüÈ¯
+        // ëŒ€ìƒì´ ì‚¬ë¼ì§€ë©´ ë¶„ë¦¬ ëª¨ë“œë¡œ ì „í™˜í•©ë‹ˆë‹¤.
         if (!detached && (followTarget == null || !followTarget.gameObject.activeInHierarchy))
         {
             EnterDetachMode();
@@ -73,12 +80,11 @@ public class DamageText : MonoBehaviour
 
         if (!detached)
         {
-            // ===== ÃßÀû ¸ğµå =====
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            float ease = 1f - Mathf.Pow(1f - t, 2f); // ease-out
+            float ease = 1f - Mathf.Pow(1f - t, 2f);
 
-            Vector3 baseScreen = transform.position; // fallback
+            Vector3 baseScreen = transform.position;
             if (followTarget && cam != null)
                 baseScreen = cam.WorldToScreenPoint(followTarget.position + worldOffset);
 
@@ -87,7 +93,8 @@ public class DamageText : MonoBehaviour
             transform.position = new Vector3(x, y, 0f);
 
             currentAlpha = 1f - t;
-            var c = baseColor; c.a = currentAlpha;
+            var c = baseColor;
+            c.a = currentAlpha;
             text.color = c;
 
             if (elapsed >= duration)
@@ -95,20 +102,16 @@ public class DamageText : MonoBehaviour
         }
         else
         {
-            // ===== ºĞ¸® ¸ğµå =====
             detachElapsed += Time.deltaTime;
             float t = Mathf.Clamp01(detachElapsed / detachDuration);
             float ease = 1f - Mathf.Pow(1f - t, 2f);
 
-            // ºĞ¸® Àü±îÁö ¿Ã¶ó°£ ¸¸Å­ Á¦¿ÜÇÑ '³²Àº »ó½Â·®'¸¸ Ãß°¡
             float remainingRise = risePixels * (1f - detachStartEase);
 
-            // X´Â °íÁ¤, Y¸¸ ³²Àº »ó½Â Àû¿ë (Æ¢´Â Çö»ó ¹æÁö)
             float x = detachStartScreenPos.x;
             float y = detachStartScreenPos.y + Mathf.Lerp(0f, remainingRise, ease);
             transform.position = new Vector3(x, y, 0f);
 
-            // ¾ËÆÄµµ ºĞ¸® ½ÃÁ¡ÀÇ currentAlpha¿¡¼­ 0±îÁö ¼­¼­È÷
             var c = baseColor;
             c.a = Mathf.Lerp(currentAlpha, 0f, t);
             text.color = c;
@@ -118,24 +121,25 @@ public class DamageText : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ë”°ë¼ê°€ëŠ” ëŒ€ìƒì´ ì‚¬ë¼ì¡Œì„ ë•Œ ë¶„ë¦¬ ì• ë‹ˆë©”ì´ì…˜ì„ ì‹œì‘í•©ë‹ˆë‹¤.
+    /// </summary>
     private void EnterDetachMode()
     {
         detached = true;
 
-        // [Áß¿ä] ºĞ¸® ½ÃÀÛ ÁÂÇ¥´Â "ÇöÀç transform.position" ±×´ë·Î »ç¿ë
-        // (ÀÌ¹Ì Àû¿ëµÈ »ó½Â/µå¸®ÇÁÆ®¸¦ ´Ù½Ã ´õÇÏÁö ¾ÊÀ½)
+        // ë¶„ë¦¬ ì‹œì ì˜ í™”ë©´ ì¢Œí‘œë¥¼ ê·¸ëŒ€ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
         detachStartScreenPos = transform.position;
 
-        // ºĞ¸® ½ÃÁ¡±îÁöÀÇ ÁøÇàµµ(ease)¸¸ ±â·ÏÇØ¼­ ³²Àº »ó½Â·® °è»ê¿¡¸¸ È°¿ë
+        // ì§„í–‰ëœ ì‹œê°„ìœ¼ë¡œ ë¶„ë¦¬ ì‹œì ì˜ ì´ì§• ê°’ì„ ê³„ì‚°í•©ë‹ˆë‹¤.
         float tSoFar = Mathf.Clamp01(elapsed / Mathf.Max(0.0001f, duration));
         detachStartEase = 1f - Mathf.Pow(1f - tSoFar, 2f);
 
-        // ³²Àº ½Ã°£(³Ê¹« ÂªÀ¸¸é ÃÖ¼Ò º¸Àå)
+        // ë‚¨ì€ ì‹œê°„ì„ ê³ ë ¤í•˜ì—¬ ë¶„ë¦¬ ì• ë‹ˆë©”ì´ì…˜ ê¸¸ì´ë¥¼ ì •í•©ë‹ˆë‹¤.
         float remainingTime = Mathf.Max(0f, duration - elapsed);
         detachDuration = Mathf.Max(remainingTime, 0.2f);
 
-        // ÀÌÈÄ¿£ ´ë»ó ÃßÀû Áß´Ü
+        // ë” ì´ìƒ ëŒ€ìƒì„ ì¶”ì í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
         followTarget = null;
     }
 }
-

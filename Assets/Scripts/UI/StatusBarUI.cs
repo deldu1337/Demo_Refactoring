@@ -10,47 +10,57 @@ public class StatusBarUI : MonoBehaviour
     [SerializeField] private Image expBar;
 
     [Header("Portrait")]
-    [SerializeField] private GameObject Circle; // ÃÊ»óÈ­°¡ µé¾îÀÖ´Â ¿ÀºêÁ§Æ®
-    [SerializeField] private string portraitsFolder = "Portraits"; // Resources/Portraits/ ¾È¿¡¼­ Ã£À½
-    [SerializeField] private string defaultPortraitName = "default"; // ´ëÃ¼ ÀÌ¹ÌÁö ÆÄÀÏ¸í
+    [SerializeField] private GameObject Circle;
+    [SerializeField] private string portraitsFolder = "Portraits";
+    [SerializeField] private string defaultPortraitName = "default";
 
     private Image face;
 
     [Header("StatusUI Hierarchy Auto-Wire")]
     [SerializeField] private string statusUIRootName = "StatusUI";
-    [SerializeField] private int hpIndex = 3;   // StatusUI ÇÏÀ§ ÀÚ½Ä ÀÎµ¦½º
+    [SerializeField] private int hpIndex = 3;
     [SerializeField] private int mpIndex = 4;
     [SerializeField] private int expIndex = 5;
 
     private PlayerStatsManager playerStats;
     private Coroutine initRoutine;
 
+    /// <summary>
+    /// ì´ˆìƒí™” ì´ë¯¸ì§€ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     private void Start()
     {
         if (Circle != null)
             face = Circle.GetComponent<Image>();
     }
 
+    /// <summary>
+    /// í™œì„±í™”ë  ë•Œ í”Œë ˆì´ì–´ ì •ë³´ë¥¼ ê¸°ë‹¤ë¦½ë‹ˆë‹¤.
+    /// </summary>
     private void OnEnable()
     {
         initRoutine = StartCoroutine(InitializeWhenReady());
     }
 
+    /// <summary>
+    /// ë¹„í™œì„±í™” ì‹œ ì´ˆê¸°í™” ë£¨í‹´ì„ ì¤‘ë‹¨í•˜ê³  ì´ë²¤íŠ¸ë¥¼ í•´ì œí•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnDisable()
     {
         if (initRoutine != null) { StopCoroutine(initRoutine); initRoutine = null; }
         UnsubscribeEvents();
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ì •ë³´ì™€ UI ì°¸ì¡°ë¥¼ ì¤€ë¹„í•œ ë’¤ ì´ë²¤íŠ¸ë¥¼ êµ¬ë…í•©ë‹ˆë‹¤.
+    /// </summary>
     private IEnumerator InitializeWhenReady()
     {
-        // 1) PlayerStats ÁØºñ ´ë±â
         while (PlayerStatsManager.Instance == null)
             yield return null;
 
         playerStats = PlayerStatsManager.Instance;
 
-        // 2) StatusUI ·çÆ® ´ë±â
         Transform statusUI = null;
         while (statusUI == null)
         {
@@ -59,7 +69,6 @@ public class StatusBarUI : MonoBehaviour
             else yield return null;
         }
 
-        // 3) ¹Ù ÀÚµ¿ Å½»ö(ºñ¾îÀÖÀ¸¸é)
         if (hpBar == null && statusUI.childCount > hpIndex)
             hpBar = statusUI.GetChild(hpIndex).GetComponentInChildren<Image>();
         if (mpBar == null && statusUI.childCount > mpIndex)
@@ -67,14 +76,15 @@ public class StatusBarUI : MonoBehaviour
         if (expBar == null && statusUI.childCount > expIndex)
             expBar = statusUI.GetChild(expIndex).GetComponentInChildren<Image>();
 
-        // 4) ÀÌº¥Æ® ±¸µ¶
         SubscribeEvents();
 
-        // 5) ÃÊ»óÈ­/¼öÄ¡ Áï½Ã 1È¸ °»½Å
         RefreshPortrait();
         RefreshAll();
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ìƒíƒœ ì´ë²¤íŠ¸ë¥¼ êµ¬ë…í•©ë‹ˆë‹¤.
+    /// </summary>
     private void SubscribeEvents()
     {
         if (playerStats == null) return;
@@ -84,11 +94,13 @@ public class StatusBarUI : MonoBehaviour
         playerStats.OnExpChanged += OnExpChanged;
         playerStats.OnLevelUp += OnLevelUp;
 
-        // (¼±ÅÃ) ºÎÈ° µî Æ¯Á¤ ½ÃÁ¡¿¡ Á¾Á·ÀÌ ¹Ù²ğ ¼ö ÀÖ´Ù¸é ¿©±âµµ °»½Å °¡´É
         PlayerStatsManager.OnPlayerRevived -= OnPlayerRevivedRefreshPortrait;
         PlayerStatsManager.OnPlayerRevived += OnPlayerRevivedRefreshPortrait;
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ìƒíƒœ ì´ë²¤íŠ¸ë¥¼ í•´ì œí•©ë‹ˆë‹¤.
+    /// </summary>
     private void UnsubscribeEvents()
     {
         if (playerStats != null)
@@ -101,24 +113,22 @@ public class StatusBarUI : MonoBehaviour
         PlayerStatsManager.OnPlayerRevived -= OnPlayerRevivedRefreshPortrait;
     }
 
-    // ===== Portrait =====
+    /// <summary>
+    /// ì´ˆìƒí™” ì´ë¯¸ì§€ë¥¼ í˜„ì¬ ì¢…ì¡±ì— ë§ê²Œ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     private void RefreshPortrait()
     {
         if (face == null) return;
 
-        // ÇÃ·¹ÀÌ¾î Á¾Á·¸í ¾ò±â (¾øÀ¸¸é humanmale·Î °¡Á¤)
         string race = "humanmale";
         if (playerStats != null && playerStats.Data != null && !string.IsNullOrEmpty(playerStats.Data.Race))
             race = playerStats.Data.Race;
 
-        // ÆÄÀÏ¸í ¸ÅÇÎ(ÆÄÀÏ¸íÀÌ Á¾Á·¸í°ú ´Ù¸£¸é ¿©±â¼­ º¯È¯)
         string spriteName = MapRaceToPortraitName(race);
 
-        // Resources/Portraits/<spriteName>.png ·Îµå
         Sprite sp = Resources.Load<Sprite>($"{portraitsFolder}/{spriteName}");
         if (sp == null)
         {
-            // ´ëÃ¼ ÀÌ¹ÌÁö ½Ãµµ
             sp = Resources.Load<Sprite>($"{portraitsFolder}/{defaultPortraitName}");
 #if UNITY_EDITOR
             if (sp == null)
@@ -131,14 +141,15 @@ public class StatusBarUI : MonoBehaviour
         face.preserveAspect = true;
     }
 
-    // Á¾Á·¸í ¡æ ÃÊ»óÈ­ ÆÄÀÏ¸í ¸ÅÇÎ(ÆÄÀÏ¸íÀÌ °°´Ù¸é ±×´ë·Î ¹İÈ¯)
+    /// <summary>
+    /// ì¢…ì¡± ë¬¸ìì—´ì„ í¬íŠ¸ë ˆì´íŠ¸ ì´ë¦„ìœ¼ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private string MapRaceToPortraitName(string race)
     {
         if (string.IsNullOrEmpty(race)) return "humanmale";
 
         switch (race.ToLowerInvariant())
         {
-            // ÆÄÀÏ¸íÀÌ µ¿ÀÏÇÏ¸é ±×´ë·Î ¹İÈ¯
             case "humanmale": return "humanmale";
             case "dwarfmale": return "dwarfmale";
             case "gnomemale": return "gnomemale";
@@ -147,32 +158,39 @@ public class StatusBarUI : MonoBehaviour
             case "trollmale": return "trollmale";
             case "goblinmale": return "goblinmale";
             case "scourgefemale": return "scourgefemale";
-
-            // ÆÄÀÏ¸íÀÌ ´Ù¸£¸é ¿©±â¼­ ¿øÇÏ´Â ÀÌ¸§À¸·Î º¯È¯
-            // case "mycustomrace":  return "portrait_mycustom";
-
-            default: return race.ToLowerInvariant(); // ½Ãµµ ÈÄ ½ÇÆĞ ½Ã default·Î ´ëÃ¼
+            default: return race.ToLowerInvariant();
         }
     }
 
+    /// <summary>
+    /// ë¶€í™œ ì‹œ ì´ˆìƒí™”ë¥¼ ìƒˆë¡œê³ ì¹©ë‹ˆë‹¤.
+    /// </summary>
     private void OnPlayerRevivedRefreshPortrait()
     {
         RefreshPortrait();
     }
 
-    // ===== Bars =====
+    /// <summary>
+    /// HP ë°”ë¥¼ ìµœì‹  ê°’ìœ¼ë¡œ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnHPChanged(float cur, float max)
     {
         if (hpBar == null) return;
         hpBar.fillAmount = (max > 0f) ? cur / max : 0f;
     }
 
+    /// <summary>
+    /// MP ë°”ë¥¼ ìµœì‹  ê°’ìœ¼ë¡œ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnMPChanged(float cur, float max)
     {
         if (mpBar == null) return;
         mpBar.fillAmount = (max > 0f) ? cur / max : 0f;
     }
 
+    /// <summary>
+    /// ê²½í—˜ì¹˜ ë°”ë¥¼ ìµœì‹  ê°’ìœ¼ë¡œ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnExpChanged(int level, float exp)
     {
         if (expBar == null || playerStats == null || playerStats.Data == null) return;
@@ -180,34 +198,38 @@ public class StatusBarUI : MonoBehaviour
         expBar.fillAmount = ratio;
     }
 
+    /// <summary>
+    /// ë ˆë²¨ ì—… ì‹œ ì „ì²´ ìƒíƒœ UIë¥¼ ìƒˆë¡œ ê³ ì¹©ë‹ˆë‹¤.
+    /// </summary>
     private void OnLevelUp(int level)
     {
-        // ·¹º§¾÷ ½Ã ÃÊ»óÈ­°¡ ¹Ù²îÁø ¾ÊÁö¸¸, È¤½Ã Á¾Á· ÀüÈ¯ ½Ã½ºÅÛÀÌ ÀÖ´Ù¸é ¾Æ·¡ È£Ãâ À¯Áö °¡´É
-        // RefreshPortrait();
         RefreshAll();
     }
 
+    /// <summary>
+    /// ì™¸ë¶€ì—ì„œ ìƒíƒœ ê°±ì‹ ì„ ìš”ì²­í•  ë•Œ ì‚¬ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
     public void RefreshStatus() => RefreshAll();
 
+    /// <summary>
+    /// HP, MP, ê²½í—˜ì¹˜ ë°”ë¥¼ ëª¨ë‘ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     private void RefreshAll()
     {
         if (playerStats == null || playerStats.Data == null) return;
 
-        // HP
         if (hpBar != null)
         {
             float maxHp = Mathf.Max(1f, playerStats.MaxHP);
             hpBar.fillAmount = playerStats.CurrentHP / maxHp;
         }
 
-        // MP
         if (mpBar != null)
         {
             float maxMp = Mathf.Max(1f, playerStats.Data.MaxMP);
             mpBar.fillAmount = playerStats.Data.CurrentMP / maxMp;
         }
 
-        // EXP
         if (expBar != null)
         {
             float ratio = Mathf.Clamp01(playerStats.Data.Exp / Mathf.Max(1f, playerStats.Data.ExpToNextLevel));

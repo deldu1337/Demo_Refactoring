@@ -16,12 +16,10 @@ public class ItemTooltipUI : MonoBehaviour
     [SerializeField] private Text typeText;
     [SerializeField] private Text statsText;
 
-    // ItemTooltipUI.cs (ÇÊµå Ãß°¡)
     [Header("Compare Tooltip (optional)")]
     [SerializeField] private RectTransform compareRoot;
     [SerializeField] private float compareGap = 10f;
 
-    // ¡Ú ¸ŞÀÎ°ú µ¿ÀÏÇÑ ±¸Á¶ÀÇ ÅØ½ºÆ®µé
     [SerializeField] private Text compareNameText;
     [SerializeField] private Text compareLevelText;
     [SerializeField] private Text compareTierText;
@@ -36,8 +34,11 @@ public class ItemTooltipUI : MonoBehaviour
     private Transform originalParent;
     private ItemHoverTooltip currentOwner;
 
-    private static readonly Color32 MaxRollColor = new Color32(73, 221, 223, 255); // 73,221,223,255
+    private static readonly Color32 MaxRollColor = new Color32(73, 221, 223, 255);
 
+    /// <summary>
+    /// ì°¸ì¡°ë¥¼ ì´ˆê¸°í™”í•˜ê³  í…ìŠ¤íŠ¸ ìƒ‰ìƒì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         Instance = this;
@@ -59,14 +60,12 @@ public class ItemTooltipUI : MonoBehaviour
 
         if (compareRoot)
         {
-            // ¿¬°áÀÌ ºñ¾î ÀÖÀ¸¸é ÀÚ½Ä¿¡¼­ Ã£¾Æ¿À±â (ÀÌ¸§/¼ø¼­¿¡ ¸ÂÃç Á¤¸®µÅ ÀÖ´Ù¸é »ı·« °¡´É)
             if (!compareNameText) compareNameText = compareRoot.GetComponentsInChildren<Text>(true).FirstOrDefault(t => t.name.Contains("Name"));
             if (!compareLevelText) compareLevelText = compareRoot.GetComponentsInChildren<Text>(true).FirstOrDefault(t => t.name.Contains("Level"));
             if (!compareTierText) compareTierText = compareRoot.GetComponentsInChildren<Text>(true).FirstOrDefault(t => t.name.Contains("Tier"));
             if (!compareTypeText) compareTypeText = compareRoot.GetComponentsInChildren<Text>(true).FirstOrDefault(t => t.name.Contains("Type"));
             if (!compareStatsText) compareStatsText = compareRoot.GetComponentsInChildren<Text>(true).FirstOrDefault(t => t.name.Contains("Stats"));
 
-            // ¸®Ä¡ÅØ½ºÆ®/±âº»»ö
             if (compareNameText) compareNameText.color = Color.white;
             if (compareLevelText) compareLevelText.color = Color.white;
             if (compareTypeText) compareTypeText.color = Color.white;
@@ -78,8 +77,14 @@ public class ItemTooltipUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// ë¹„í™œì„±í™” ì‹œ íˆ´íŒì„ ìˆ¨ê¹ë‹ˆë‹¤.
+    /// </summary>
     private void OnDisable() => Hide();
 
+    /// <summary>
+    /// ì§€ì •ëœ í™”ë©´ ì¢Œí‘œì— ë‹¨ì¼ íˆ´íŒì„ ë³´ì—¬ì¤ë‹ˆë‹¤.
+    /// </summary>
     public void Show(InventoryItem item, Vector2 screenPos)
     {
         if (item == null || item.data == null) return;
@@ -94,6 +99,9 @@ public class ItemTooltipUI : MonoBehaviour
         transform.SetAsLastSibling();
     }
 
+    /// <summary>
+    /// ëŒ€ìƒ UI ì˜†ì— ë‹¨ì¼ íˆ´íŒì„ í‘œì‹œí•©ë‹ˆë‹¤.
+    /// </summary>
     public void ShowNextTo(InventoryItem item, RectTransform target, ItemHoverTooltip owner)
     {
         if (item == null || item.data == null || target == null) return;
@@ -142,40 +150,41 @@ public class ItemTooltipUI : MonoBehaviour
         if (compareRoot) compareRoot.gameObject.SetActive(false);
     }
 
-    // ±âÁ¸ ´ÜÀÏ ShowNextTo´Â ±×´ë·Î µÎ°í, ¾Æ·¡ "ºñ±³ Æ÷ÇÔ" ¿À¹ö·Îµå Ãß°¡
+    /// <summary>
+    /// ë¹„êµìš© íˆ´íŒì„ í¬í•¨í•˜ì—¬ ëŒ€ìƒ ì˜†ì— í‘œì‹œí•©ë‹ˆë‹¤.
+    /// </summary>
     public void ShowNextToWithCompare(InventoryItem invItem, InventoryItem eqItem, RectTransform target, ItemHoverTooltip owner)
     {
-        // 1) ¸ŞÀÎ(ÀÎº¥) ÅøÆÁÀº ±âÁ¸´ë·Î
         ShowNextTo(invItem, target, owner);
 
-        // 2) ºñ±³ ´ë»ó ¾øÀ¸¸é Á¾·á
-        if (eqItem == null || compareRoot == null) { if (compareRoot) compareRoot.gameObject.SetActive(false); return; }
+        if (eqItem == null || compareRoot == null)
+        {
+            if (compareRoot) compareRoot.gameObject.SetActive(false);
+            return;
+        }
 
-        // 3) ºñ±³ Çì´õ: ¸ŞÀÎ°ú µ¿ÀÏ Æ÷¸Ë
         if (compareNameText)
         {
-            compareNameText.text = $"{eqItem.data.name} <size=11><color=#A1A1A6>(ÇöÀç ÀåÂø)</color></size>";
-            compareNameText.color = GetTierColor(eqItem.data.tier); // ¡Ú µî±Ş»öÀ¸·Î
+            compareNameText.text = $"{eqItem.data.name} <size=11><color=#A1A1A6>(ì¥ì°©ì¤‘)</color></size>";
+            compareNameText.color = GetTierColor(eqItem.data.tier);
         }
         if (compareTierText)
         {
-            compareTierText.text = $"µî±Ş: {eqItem.data.tier}";
+            compareTierText.text = $"ë“±ê¸‰: {eqItem.data.tier}";
             compareTierText.color = GetTierColor(eqItem.data.tier);
         }
         if (compareLevelText)
         {
             int req = Mathf.Max(1, eqItem.data.level);
-            compareLevelText.text = $"¿ä±¸ ·¹º§: {req}";
+            compareLevelText.text = $"ìš”êµ¬ ë ˆë²¨: {req}";
             var ps = PlayerStatsManager.Instance;
             compareLevelText.color = (ps != null && ps.Data != null && ps.Data.Level < req) ? Color.red : Color.white;
         }
-        if (compareTypeText) compareTypeText.text = $"ºĞ·ù: {eqItem.data.type}";
+        if (compareTypeText) compareTypeText.text = $"ì¢…ë¥˜: {eqItem.data.type}";
 
-        // 4) ºñ±³ º»¹®: inv vs eq (¡¾ ÄÃ·¯)
         if (compareStatsText)
             compareStatsText.text = ItemStatCompare.BuildCompareLines(invItem, eqItem, showEquippedValues: true);
 
-        // 5) Å©±â ¸®ºôµå + À§Ä¡´Â ¸ŞÀÎ ¿ŞÂÊ¿¡
         ForceRebuild(compareRoot);
 
         var parentRect = compareRoot.parent as RectTransform;
@@ -183,11 +192,11 @@ public class ItemTooltipUI : MonoBehaviour
 
         Vector2 mainPos = root.anchoredPosition;
         Vector2 mainSize = root.rect.size;
-        float mainLeftX = mainPos.x - (root.pivot.x * mainSize.x); // ¸ŞÀÎ ¿ŞÂÊ ¿§Áö
+        float mainLeftX = mainPos.x - (root.pivot.x * mainSize.x);
 
         compareRoot.pivot = new Vector2(1f, 0.5f);
         Vector2 desired;
-        desired.x = mainLeftX - compareGap; // ºñ±³ÆĞ³Î ¿À¸¥ÂÊ ¿§Áö¸¦ ¸ŞÀÎ ¿ŞÂÊ-g
+        desired.x = mainLeftX - compareGap;
         desired.y = mainPos.y;
 
         compareRoot.anchoredPosition = ClampInsideParentByPivot(desired, compareRoot, parentRect);
@@ -196,26 +205,30 @@ public class ItemTooltipUI : MonoBehaviour
         transform.SetAsLastSibling();
     }
 
+    /// <summary>
+    /// ìš”ì²­ìê°€ ë§ì„ ë•Œ íˆ´íŒì„ ìˆ¨ê¹ë‹ˆë‹¤.
+    /// </summary>
     public void Hide(ItemHoverTooltip requester = null)
     {
         if (requester != null && requester != currentOwner) return;
-        // ¸ŞÀÎ
         gameObject.SetActive(false);
         currentOwner = null;
-        // ºñ±³
         if (compareRoot) compareRoot.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// ë¹„êµ íˆ´íŒ ë ˆì´ì•„ì›ƒì„ ê°•ì œë¡œ ì¬ê³„ì‚°í•©ë‹ˆë‹¤.
+    /// </summary>
     private void ForceRebuild(RectTransform rt)
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
-        // VerticalLayoutGroup ÀÖ´Â °æ¿ì ³ôÀÌ Àç»êÁ¤ (root¿Í µ¿ÀÏ ·ÎÁ÷À» Àç»ç¿ëÇÏ°í ½ÍÀ¸¸é °ø¿ëÈ­ÇØµµ µÊ)
-        // ¿©±â¼­´Â °£´ÜÈ÷ °­Á¦ ¸®ºôµå¸¸
     }
 
+    /// <summary>
+    /// í”¼ë²—ì„ ê³ ë ¤í•˜ì—¬ ë¶€ëª¨ ë‚´ë¶€ì— ìœ„ì¹˜ë¥¼ ê³ ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     private Vector2 ClampInsideParentByPivot(Vector2 desired, RectTransform self, RectTransform parentRect)
     {
-        // self.pivotÀ» °í·ÁÇØ¼­ parentRect ¾ÈÀ¸·Î Å¬·¥ÇÁ
         Rect r = parentRect.rect;
         Vector2 size = self.rect.size;
         Vector2 pvt = self.pivot;
@@ -231,6 +244,9 @@ public class ItemTooltipUI : MonoBehaviour
         );
     }
 
+    /// <summary>
+    /// í™”ë©´ ì¢Œí‘œë¥¼ ì…ë ¥ë°›ì•„ íˆ´íŒ ìœ„ì¹˜ë¥¼ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     public void UpdatePosition(Vector2 screenPos)
     {
         if (canvas == null) return;
@@ -243,25 +259,31 @@ public class ItemTooltipUI : MonoBehaviour
         root.anchoredPosition = ClampInsideCanvas(local, canvasRect);
     }
 
+    /// <summary>
+    /// í—¤ë” í…ìŠ¤íŠ¸ì™€ ìƒ‰ìƒì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     private void SetupHeader(InventoryItem item)
     {
         nameText.text = item.data.name;
         nameText.color = GetTierColor(item.data.tier);
 
-        tierText.text = $"µî±Ş: {item.data.tier}";
+        tierText.text = $"ë“±ê¸‰: {item.data.tier}";
         tierText.color = GetTierColor(item.data.tier);
 
         int required = Mathf.Max(1, item.data.level);
-        levelText.text = $"¿ä±¸ ·¹º§: {required}";
+        levelText.text = $"ìš”êµ¬ ë ˆë²¨: {required}";
         var ps = PlayerStatsManager.Instance;
         if (ps != null && ps.Data != null && ps.Data.Level < required)
             levelText.color = Color.red;
         else
             levelText.color = Color.white;
 
-        if (typeText) typeText.text = $"ºĞ·ù: {item.data.type}";
+        if (typeText) typeText.text = $"ì¢…ë¥˜: {item.data.type}";
     }
 
+    /// <summary>
+    /// ì•„ì´í…œ ëŠ¥ë ¥ì¹˜ë¥¼ ë¬¸ìì—´ë¡œ êµ¬ì„±í•©ë‹ˆë‹¤.
+    /// </summary>
     private string BuildStats(InventoryItem item)
     {
         var sb = new StringBuilder();
@@ -270,18 +292,15 @@ public class ItemTooltipUI : MonoBehaviour
 
         bool isPotion = string.Equals(d.type, "potion", System.StringComparison.OrdinalIgnoreCase);
 
-        // ¶óÀÎ Ãß°¡ ÇïÆÛ (Æ÷¼ÇÀÌ¸é rolled Àı´ë Àû¿ë X)
         void AddLine(string label, string key, float baseVal)
         {
             float v = baseVal;
 
-            // ¡Ú Æ÷¼ÇÀÌ ¾Æ´Ò ¶§¸¸ rolled Àû¿ë
             bool hasRolled = !isPotion && r != null && r.TryGet(key, out v);
 
             bool isZero = Mathf.Abs(v) <= 0.0001f;
             if (isZero) return;
 
-            // ÇÏÀÌ¶óÀÌÆ®(ÃÖ´ëÄ¡)´Â Æ÷¼Ç Á¦¿Ü
             bool isMax = hasRolled && ItemRoller.IsMaxRoll(item.id, key, v);
 
             string valueStr = key == "cc" ? $"+{v * 100f}%" :
@@ -289,24 +308,27 @@ public class ItemTooltipUI : MonoBehaviour
                               $"+{v}";
 
             if (!isPotion && isMax && d.type != "potion")
-                sb.AppendLine($"<color=#{ColorUtility.ToHtmlStringRGBA(MaxRollColor)}>{label}  {valueStr}</color>");
+                sb.AppendLine($"<color=#{ColorUtility.ToHtmlStringRGBA(MaxRollColor)}>{label} {valueStr}</color>");
             else
-                sb.AppendLine($"{label}  {valueStr}");
+                sb.AppendLine($"{label} {valueStr}");
         }
 
         AddLine("HP", "hp", d.hp);
         AddLine("MP", "mp", d.mp);
-        AddLine("µ¥¹ÌÁö", "atk", d.atk);
-        AddLine("¹æ¾î·Â", "def", d.def);
-        AddLine("¹ÎÃ¸¼º", "dex", d.dex);
-        AddLine("°ø°İ ¼Óµµ", "As", d.As);
-        AddLine("Ä¡¸íÅ¸ È®·ü", "cc", d.cc);
-        AddLine("Ä¡¸íÅ¸ µ¥¹ÌÁö", "cd", d.cd);
+        AddLine("ê³µê²©ë ¥", "atk", d.atk);
+        AddLine("ë°©ì–´ë ¥", "def", d.def);
+        AddLine("ë¯¼ì²©", "dex", d.dex);
+        AddLine("ê³µì†", "As", d.As);
+        AddLine("ì¹˜ëª…íƒ€ í™•ë¥ ", "cc", d.cc);
+        AddLine("ì¹˜ëª…íƒ€ í”¼í•´", "cd", d.cd);
 
-        if (sb.Length == 0) sb.Append("Ãß°¡ ´É·ÂÄ¡ ¾øÀ½");
+        if (sb.Length == 0) sb.Append("í‘œì‹œí•  ëŠ¥ë ¥ì¹˜ê°€ ì—†ìŠµë‹ˆë‹¤.");
         return sb.ToString();
     }
 
+    /// <summary>
+    /// ë‚´ìš©ì— ë§ì¶° íˆ´íŒ ë†’ì´ë¥¼ ì¬ì¡°ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     private void ForceResizeToContent()
     {
         var vlg = root.GetComponent<VerticalLayoutGroup>();
@@ -337,6 +359,9 @@ public class ItemTooltipUI : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(root);
     }
 
+    /// <summary>
+    /// ìº”ë²„ìŠ¤ ë²”ìœ„ ì•ˆìœ¼ë¡œ ìœ„ì¹˜ë¥¼ ì œí•œí•©ë‹ˆë‹¤.
+    /// </summary>
     private Vector2 ClampInsideCanvas(Vector2 local, RectTransform canvasRect)
     {
         Vector2 size = root.sizeDelta;
@@ -353,6 +378,9 @@ public class ItemTooltipUI : MonoBehaviour
         );
     }
 
+    /// <summary>
+    /// ë¶€ëª¨ RectTransform ë‚´ë¶€ë¡œ ìœ„ì¹˜ë¥¼ ì¡°ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     private Vector2 ClampInsideParent(Vector2 local, RectTransform parentRect)
     {
         Vector2 size = root.rect.size;
@@ -369,34 +397,49 @@ public class ItemTooltipUI : MonoBehaviour
         );
     }
 
+    /// <summary>
+    /// ì¢Œì¸¡ì— ë°°ì¹˜í•  ìˆ˜ ìˆëŠ”ì§€ íŒë‹¨í•©ë‹ˆë‹¤.
+    /// </summary>
     private bool HasRoomOnLeft(Vector2 parentLocalLeft, RectTransform parentRect)
     {
         Vector2 size = root.rect.size;
         Rect r = parentRect.rect;
-        float predictedLeftEdge = parentLocalLeft.x - gapFromIcon - size.x; // pivot.x=1
+        float predictedLeftEdge = parentLocalLeft.x - gapFromIcon - size.x;
         return predictedLeftEdge >= r.xMin;
     }
 
+    /// <summary>
+    /// ìš°ì¸¡ì— ë°°ì¹˜í•  ìˆ˜ ìˆëŠ”ì§€ íŒë‹¨í•©ë‹ˆë‹¤.
+    /// </summary>
     private bool HasRoomOnRight(Vector2 parentLocalRight, RectTransform parentRect)
     {
         Vector2 size = root.rect.size;
         Rect r = parentRect.rect;
-        float predictedRightEdge = parentLocalRight.x + gapFromIcon + size.x; // pivot.x=0
+        float predictedRightEdge = parentLocalRight.x + gapFromIcon + size.x;
         return predictedRightEdge <= r.xMax;
     }
 
+    /// <summary>
+    /// ì¢Œì¸¡ ì—¬ìœ  ê³µê°„ì„ ê³„ì‚°í•©ë‹ˆë‹¤.
+    /// </summary>
     private float AvailableSpaceLeft(Vector2 parentLocalLeft, RectTransform parentRect)
     {
         Rect r = parentRect.rect;
         return parentLocalLeft.x - gapFromIcon - r.xMin;
     }
 
+    /// <summary>
+    /// ìš°ì¸¡ ì—¬ìœ  ê³µê°„ì„ ê³„ì‚°í•©ë‹ˆë‹¤.
+    /// </summary>
     private float AvailableSpaceRight(Vector2 parentLocalRight, RectTransform parentRect)
     {
         Rect r = parentRect.rect;
         return r.xMax - (parentLocalRight.x + gapFromIcon);
     }
 
+    /// <summary>
+    /// ì•„ì´í…œ ë“±ê¸‰ì— ë§ëŠ” ìƒ‰ìƒì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private static Color GetTierColor(string tier)
     {
         if (string.IsNullOrEmpty(tier)) return Color.white;
