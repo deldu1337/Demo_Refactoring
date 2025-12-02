@@ -1,23 +1,35 @@
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// í¬ì…˜ í€µë°” ë°ì´í„°ë¥¼ íŒŒì¼ë¡œ ì €ì¥í•˜ê³  ë¶ˆëŸ¬ì˜¤ëŠ” ê¸°ëŠ¥ì„ ì œê³µí•©ë‹ˆë‹¤.
+/// </summary>
 public static class PotionQuickBarPersistence
 {
     private const string LegacyFile = "potion_quickbar.json";
 
+    /// <summary>
+    /// ì €ì¥ íŒŒì¼ì˜ ì „ì²´ ê²½ë¡œë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
+    /// </summary>
     private static string PathOf(string fileName)
         => Path.Combine(Application.persistentDataPath, fileName);
 
+    /// <summary>
+    /// ì¢…ì¡± ì´ë¦„ì— ë§ëŠ” íŒŒì¼ ì´ë¦„ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private static string FileNameForRace(string race)
     {
         var rk = string.IsNullOrWhiteSpace(race) ? "humanmale" : race.ToLower();
         return $"potion_quickbar_{rk}.json";
     }
 
+    /// <summary>
+    /// ì¢…ì¡± ì´ë¦„ì— ë§ëŠ” ì €ì¥ íŒŒì¼ ê²½ë¡œë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private static string FilePathForRace(string race)
         => PathOf(FileNameForRace(race));
 
-    /// <summary>Á¾Á·º° ÀúÀå</summary>
+    /// <summary>ì €ì¥ ë°ì´í„°ë¥¼ íŒŒì¼ë¡œ ê¸°ë¡í•©ë‹ˆë‹¤.</summary>
     public static void SaveForRace(string race, PotionQuickBarSave data)
     {
         try
@@ -32,12 +44,12 @@ public static class PotionQuickBarPersistence
     }
 
     /// <summary>
-    /// Á¾Á·º° ·Îµå. ¾øÀ¸¸é ·¹°Å½Ã ÆÄÀÏ(ÅëÇÕ) ÀÖ³ª º¸°í, ÀÖÀ¸¸é ÇØ´ç Á¾Á· ÆÄÀÏ·Î 1È¸ ¸¶ÀÌ±×·¹ÀÌ¼ÇÇØ¼­ ¹İÈ¯.
-    /// µÑ ´Ù ¾øÀ¸¸é ºó µ¥ÀÌÅÍ ¹İÈ¯.
+    /// ì €ì¥ëœ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¤ê±°ë‚˜, ì—†ì„ ê²½ìš° ìƒˆ ë°ì´í„°ë¥¼ ì œê³µí•©ë‹ˆë‹¤.
+    /// ê¸°ì¡´ í¬ë§·ì´ ìˆë‹¤ë©´ í•œ ë²ˆë§Œ ë§ˆì´ê·¸ë ˆì´ì…˜í•©ë‹ˆë‹¤.
     /// </summary>
     public static PotionQuickBarSave LoadForRaceOrNew(string race)
     {
-        // 1) Á¾Á·º° ÆÄÀÏ ¿ì¼±
+        // 1) ì¢…ì¡±ë³„ íŒŒì¼ì´ ìˆìœ¼ë©´ ìš°ì„  ì‚¬ìš©í•©ë‹ˆë‹¤.
         var perRacePath = FilePathForRace(race);
         if (File.Exists(perRacePath))
         {
@@ -53,7 +65,7 @@ public static class PotionQuickBarPersistence
             }
         }
 
-        // 2) ·¹°Å½Ã ÆÄÀÏ ÀÖÀ¸¸é ¡æ ÇöÀç Á¾Á· ÆÄÀÏ·Î ¸¶ÀÌ±×·¹ÀÌ¼Ç
+        // 2) ì´ì „ í¬ë§· íŒŒì¼ì´ ìˆë‹¤ë©´ ì´ë¥¼ ë§ˆì´ê·¸ë ˆì´ì…˜í•©ë‹ˆë‹¤.
         var legacyPath = PathOf(LegacyFile);
         if (File.Exists(legacyPath))
         {
@@ -62,10 +74,10 @@ public static class PotionQuickBarPersistence
                 var json = File.ReadAllText(legacyPath);
                 var legacy = JsonUtility.FromJson<PotionQuickBarSave>(json) ?? new PotionQuickBarSave();
 
-                // Áï½Ã Çö Á¾Á· ÆÄÀÏ·Î ÀúÀå
+                // ìƒˆ íŒŒì¼ë¡œ ì €ì¥í•˜ì—¬ ì´í›„ë¶€í„° ì‚¬ìš©í•˜ë„ë¡ í•©ë‹ˆë‹¤.
                 SaveForRace(race, legacy);
 #if UNITY_EDITOR
-                Debug.Log($"[PotionQuickBarPersistence] Migrated legacy {LegacyFile} ¡æ {FileNameForRace(race)}");
+                Debug.Log($"[PotionQuickBarPersistence] Migrated legacy {LegacyFile}  {FileNameForRace(race)}");
 #endif
                 return legacy;
             }
@@ -76,7 +88,7 @@ public static class PotionQuickBarPersistence
             }
         }
 
-        // 3) ¾Æ¹«°Íµµ ¾øÀ¸¸é ºó µ¥ÀÌÅÍ
+        // 3) ì–´ë–¤ íŒŒì¼ë„ ì—†ìœ¼ë©´ ë¹ˆ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
         return new PotionQuickBarSave();
     }
 }

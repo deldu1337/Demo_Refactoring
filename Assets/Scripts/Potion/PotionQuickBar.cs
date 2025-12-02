@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// í¬ì…˜ í€µë°”ì˜ ìŠ¬ë¡¯ì„ ì´ˆê¸°í™”í•˜ê³  ì…ë ¥ì„ ì²˜ë¦¬í•˜ëŠ” ê´€ë¦¬ í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+/// </summary>
 public class PotionQuickBar : MonoBehaviour
 {
     public static PotionQuickBar Instance { get; private set; }
@@ -8,16 +11,16 @@ public class PotionQuickBar : MonoBehaviour
     [Header("Slots (0~3)")]
     public PotionSlotUI[] slots = new PotionSlotUI[4];
 
-    [Header("¿É¼Ç")]
+    [Header("É¼")]
     public KeyCode key1 = KeyCode.Alpha1;
     public KeyCode key2 = KeyCode.Alpha2;
     public KeyCode key3 = KeyCode.Alpha3;
     public KeyCode key4 = KeyCode.Alpha4;
 
-    [SerializeField] private InventoryPresenter inventoryPresenter; // ÀÎ½ºÆåÅÍ·Î ¿¬°á ±ÇÀå
+    [SerializeField] private InventoryPresenter inventoryPresenter; // ì¸ë²¤í† ë¦¬ í”„ë¦¬ì  í„° ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì°¸ì¡°í•©ë‹ˆë‹¤.
     private PlayerStatsManager stats;
 
-    // ½½·Ôº° Ä³½Ã
+    // ìŠ¬ë¡¯ë§ˆë‹¤ ê³ ìœ  ì‹ë³„ìì™€ ì•„ì´í…œ ì •ë³´ë¥¼ ê¸°ì–µí•©ë‹ˆë‹¤.
     private string[] slotUID = new string[4];
     private int[] slotItemId = new int[4];
     private string[] slotIconPath = new string[4];
@@ -26,14 +29,20 @@ public class PotionQuickBar : MonoBehaviour
     private float[] cachedHP = new float[4];
     private float[] cachedMP = new float[4];
 
-    // ½½·Ôº° ¼ö·® Ä³½Ã
+    // ìŠ¬ë¡¯ì— ìŒ“ì—¬ ìˆëŠ” ìˆ˜ëŸ‰ì„ ê¸°ë¡í•©ë‹ˆë‹¤.
     private int[] slotQty = new int[4];
 
-    // ÀÌº¥Æ®(¼±ÅÃ): ½½·Ô ±¸¼º º¯°æ ¶§ ¹Ù±ù¿¡¼­ ÈÄÅ·ÇÏ°í ½ÍÀ¸¸é
+    // ìŠ¬ë¡¯ ë³€ê²½ì„ ì•Œë¦¬ëŠ” ì´ë²¤íŠ¸ì…ë‹ˆë‹¤.
     public event System.Action OnChanged;
 
+    /// <summary>
+    /// ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake() => Instance = this;
 
+    /// <summary>
+    /// ì˜ì¡´ì„±ì„ ì°¾ê³  ì €ì¥ëœ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜µë‹ˆë‹¤.
+    /// </summary>
     void Start()
     {
         AutoWireByHierarchy();
@@ -43,28 +52,31 @@ public class PotionQuickBar : MonoBehaviour
         for (int i = 0; i < slots.Length; i++)
             slots[i]?.Clear();
 
-        // ¡Ú ÇöÀç Á¾Á·À¸·Î ·Îµå (¾øÀ¸¸é ·¹°Å½Ã¿¡¼­ ¸¶ÀÌ±×·¹ÀÌ¼Ç)
+        // ì €ì¥ëœ í€µë°” ë°ì´í„°ê°€ ìˆë‹¤ë©´ ë¶ˆëŸ¬ì˜¤ê² ìŠµë‹ˆë‹¤.
         var save = PotionQuickBarPersistence.LoadForRaceOrNew(CurrentRace());
         ApplySaveData(save);
     }
 
     /// <summary>
-    /// ÇöÀç ¼¼¼ÇÀÇ ·¹ÀÌ½º Å°. PlayerStatsManager°¡ ¾øÀ¸¸é GameContext.SelectedRace·Î º¸¿Ï.
+    /// í˜„ì¬ ì„ íƒëœ ì¢…ì¡± ì´ë¦„ì„ ê°€ì ¸ì˜µë‹ˆë‹¤. ê°’ì´ ì—†ìœ¼ë©´ ê¸°ë³¸ê°’ì„ ì œê³µí•©ë‹ˆë‹¤.
     /// </summary>
     private string CurrentRace()
     {
-        // 1) PlayerStatsManagerÀÇ ÀúÀå ·¹ÀÌ½º
+        // 1) PlayerStatsManagerì—ì„œ ìš°ì„  ê°€ì ¸ì˜µë‹ˆë‹¤.
         var r = (stats != null && stats.Data != null) ? stats.Data.Race : null;
         if (!string.IsNullOrWhiteSpace(r)) return r.ToLower();
 
-        // 2) ¾ÆÁ÷ ÃÊ±âÈ­ ÀüÀÌ¸é ¼±ÅÃ ·¹ÀÌ½º »ç¿ë
+        // 2) ì„ íƒëœ ì¢…ì¡±ì´ ìˆë‹¤ë©´ ì‚¬ìš©í•©ë‹ˆë‹¤.
         var sel = GameContext.SelectedRace;
         if (!string.IsNullOrWhiteSpace(sel)) return sel.ToLower();
 
-        // 3) ÃÖÁ¾ ¾ÈÀü°ª
+        // 3) ê¸°ë³¸ê°’ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
         return "humanmale";
     }
 
+    /// <summary>
+    /// ìŠ¬ë¡¯ ë‹¨ì¶•í‚¤ ì…ë ¥ì„ ê°ì§€í•©ë‹ˆë‹¤.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(key1)) Use(0);
@@ -73,30 +85,33 @@ public class PotionQuickBar : MonoBehaviour
         if (Input.GetKeyDown(key4)) Use(3);
     }
 
+    /// <summary>
+    /// ì§€ì •í•œ ìŠ¬ë¡¯ì— í¬ì…˜ ì•„ì´í…œì„ ë°°ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Assign(int index, InventoryItem item, Sprite icon)
     {
         if (!ValidIndex(index) || item == null || item.data == null) return;
         if (!string.Equals(item.data.type, "potion", StringComparison.OrdinalIgnoreCase)) return;
 
-        // ¡Ú °°Àº Æ÷¼ÇÀÌ¸é "ÇÕÄ¡±â"¸¸ ÇÏ°í ³¡
+        // ì´ë¯¸ ê°™ì€ ì•„ì´í…œì´ ìˆì„ ê²½ìš° ìˆ˜ëŸ‰ì„ ì¶”ê°€í•˜ê² ìŠµë‹ˆë‹¤.
         if (!string.IsNullOrEmpty(slotUID[index]) && slotItemId[index] == item.id)
         {
             slotQty[index] = Mathf.Clamp(slotQty[index] + Mathf.Max(1, item.quantity), 1, 99);
             slots[index].SetQty(slotQty[index]);
 
             if (!inventoryPresenter) inventoryPresenter = FindAnyObjectByType<InventoryPresenter>();
-            inventoryPresenter?.RemoveItemFromInventory(item.uniqueId); // ÀÎº¥ ½ºÅÃ Á¦°Å
+            inventoryPresenter?.RemoveItemFromInventory(item.uniqueId); // ì¸ë²¤í† ë¦¬ì—ì„œ ì‚¬ìš©ëœ ì•„ì´í…œì„ ì œê±°í•©ë‹ˆë‹¤.
 
             PotionQuickBarPersistence.SaveForRace(CurrentRace(), ToSaveData());
             OnChanged?.Invoke();
             return;
         }
 
-        // ±âÁ¸: ´Ù¸¥ Æ÷¼ÇÀÌ µé¾îÀÖÀ¸¸é ÀÎº¥À¸·Î ¹İÈ¯ ÈÄ ±³Ã¼
+        // ë‹¤ë¥¸ ì•„ì´í…œì´ ìˆì—ˆë‹¤ë©´ ë¨¼ì € ë°˜í™˜í•˜ê² ìŠµë‹ˆë‹¤.
         if (!string.IsNullOrEmpty(slotUID[index]))
             ReturnToInventory(index, refreshUI: false);
 
-        // ½Å±Ô ¹èÄ¡(+ ¼ö·® ¼¼ÆÃ)
+        // ìƒˆ ì•„ì´í…œì„ ìŠ¬ë¡¯ì— ì„¤ì •í•©ë‹ˆë‹¤.
         slots[index].Set(item, icon, Mathf.Max(1, item.quantity));
         slotUID[index] = item.uniqueId;
         slotItemId[index] = item.id;
@@ -113,6 +128,9 @@ public class PotionQuickBar : MonoBehaviour
         OnChanged?.Invoke();
     }
 
+    /// <summary>
+    /// ë‘ ìŠ¬ë¡¯ì˜ ë‚´ìš©ì„ ì„œë¡œ êµí™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Move(int from, int to)
     {
         if (!ValidIndex(from) || !ValidIndex(to) || from == to) return;
@@ -126,7 +144,7 @@ public class PotionQuickBar : MonoBehaviour
         (cachedHP[from], cachedHP[to]) = (cachedHP[to], cachedHP[from]);
         (cachedMP[from], cachedMP[to]) = (cachedMP[to], cachedMP[from]);
 
-        // ¡Ú ¼ö·®µµ
+        // ìˆ˜ëŸ‰ë„ í•¨ê»˜ êµí™˜í•©ë‹ˆë‹¤.
         (slotQty[from], slotQty[to]) = (slotQty[to], slotQty[from]);
 
         var spA = a.icon ? a.icon.sprite : null;
@@ -136,13 +154,16 @@ public class PotionQuickBar : MonoBehaviour
 
         a.RefreshEmptyOverlay(); b.RefreshEmptyOverlay();
 
-        // ¡Ú ¼ö·® ¶óº§ °»½Å
+        // êµí™˜ëœ ìˆ˜ëŸ‰ì„ UIì— ë°˜ì˜í•©ë‹ˆë‹¤.
         a.SetQty(slotQty[from]);
         b.SetQty(slotQty[to]);
 
         PotionQuickBarPersistence.SaveForRace(CurrentRace(), ToSaveData());
     }
 
+    /// <summary>
+    /// ì§€ì •í•œ ìŠ¬ë¡¯ì„ ë¹„ì›ë‹ˆë‹¤.
+    /// </summary>
     public void Clear(int index)
     {
         if (!ValidIndex(index) || slots[index] == null) return;
@@ -154,11 +175,14 @@ public class PotionQuickBar : MonoBehaviour
         slotPrefabPath[index] = null;
         cachedHP[index] = 0f;
         cachedMP[index] = 0f;
-        slotQty[index] = 0; // ¡Ú
+        slotQty[index] = 0; // ìˆ˜ëŸ‰ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 
         PotionQuickBarPersistence.SaveForRace(CurrentRace(), ToSaveData());
     }
 
+    /// <summary>
+    /// ìŠ¬ë¡¯ì— ë°°ì •ëœ í¬ì…˜ì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Use(int index)
     {
         if (!ValidIndex(index) || slots[index] == null) return;
@@ -171,7 +195,7 @@ public class PotionQuickBar : MonoBehaviour
         int mp = Mathf.RoundToInt(cachedMP[index]);
         if (stats != null) { stats.Heal(hp); stats.RestoreMana(mp); }
 
-        // ¡Ú ¼ö·® Ã³¸®
+        // ë‚¨ì€ ìˆ˜ëŸ‰ì´ ìˆë‹¤ë©´ ì°¨ê°í•˜ê³ , ì—†ìœ¼ë©´ ìŠ¬ë¡¯ì„ ë¹„ì›ë‹ˆë‹¤.
         if (slotQty[index] > 1)
         {
             slotQty[index]--;
@@ -184,6 +208,9 @@ public class PotionQuickBar : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ìŠ¬ë¡¯ì˜ ì•„ì´í…œì„ ì¸ë²¤í† ë¦¬ë¡œ ë˜ëŒë¦½ë‹ˆë‹¤.
+    /// </summary>
     public void ReturnToInventory(int index, bool refreshUI = true)
     {
         if (!ValidIndex(index)) return;
@@ -192,7 +219,7 @@ public class PotionQuickBar : MonoBehaviour
         var dataMgr = DataManager.Instance;
         if (!dataMgr || !dataMgr.dicItemDatas.ContainsKey(slotItemId[index]))
         {
-            Debug.LogWarning("[PotionQuickBar] DataManager¿¡ itemId°¡ ¾ø¾î ¹İÈ¯ ½ÇÆĞ");
+            Debug.LogWarning("[PotionQuickBar] DataManagerì—ì„œ í•´ë‹¹ ì•„ì´í…œ ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -204,7 +231,7 @@ public class PotionQuickBar : MonoBehaviour
             iconPath = slotIconPath[index],
             prefabPath = slotPrefabPath[index],
 
-            // ¡Ú Áß¿ä: ÇöÀç Äü½½·Ô ¼ö·®À¸·Î º¹¿ø
+            // ì €ì¥ëœ ìˆ˜ëŸ‰ì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
             quantity = Mathf.Max(1, slotQty[index]),
             stackable = true,
             maxStack = 99
@@ -216,6 +243,9 @@ public class PotionQuickBar : MonoBehaviour
         Clear(index);
     }
 
+    /// <summary>
+    /// í˜„ì¬ ìŠ¬ë¡¯ ì •ë³´ë¥¼ ì €ì¥ ë°ì´í„°ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public PotionQuickBarSave ToSaveData()
     {
         var save = new PotionQuickBarSave();
@@ -231,12 +261,15 @@ public class PotionQuickBar : MonoBehaviour
                 prefabPath = slotPrefabPath[i],
                 hp = cachedHP[i],
                 mp = cachedMP[i],
-                qty = Mathf.Max(1, slotQty[i]) // ¡Ú
+                qty = Mathf.Max(1, slotQty[i]) // ì €ì¥ ì‹œ ìˆ˜ëŸ‰ì´ ìµœì†Œ 1ì´ ë˜ë„ë¡ í•©ë‹ˆë‹¤.
             });
         }
         return save;
     }
 
+    /// <summary>
+    /// ì €ì¥ëœ ìŠ¬ë¡¯ ë°ì´í„°ë¥¼ UIì— ë°˜ì˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public void ApplySaveData(PotionQuickBarSave save)
     {
         for (int i = 0; i < slots.Length; i++) Clear(i);
@@ -252,19 +285,22 @@ public class PotionQuickBar : MonoBehaviour
             slotPrefabPath[e.index] = e.prefabPath;
             cachedHP[e.index] = e.hp;
             cachedMP[e.index] = e.mp;
-            slotQty[e.index] = Mathf.Max(1, e.qty); // ¡Ú
+            slotQty[e.index] = Mathf.Max(1, e.qty); // ì €ì¥ëœ ìˆ˜ëŸ‰ì´ 1 ë¯¸ë§Œì´ë©´ 1ë¡œ ë§ì¶¥ë‹ˆë‹¤.
 
             Sprite sp = null;
             if (!string.IsNullOrEmpty(e.iconPath))
                 sp = Resources.Load<Sprite>(e.iconPath);
 
-            // ¡Ú ·Îµå½Ã¿¡µµ ¼ö·®À» ÇÔ²² ¹İ¿µ
+            // ì €ì¥ëœ ë°ì´í„°ë¥¼ ë°”íƒ•ìœ¼ë¡œ ìŠ¬ë¡¯ì„ ì±„ìš°ê² ìŠµë‹ˆë‹¤.
             slots[e.index].SetBySave(e.uniqueId, sp, slotQty[e.index]);
         }
 
         PotionQuickBarPersistence.SaveForRace(CurrentRace(), ToSaveData());
     }
 
+    /// <summary>
+    /// ë™ì¼í•œ ì•„ì´í…œì´ ìˆëŠ” ìŠ¬ë¡¯ì— ìˆ˜ëŸ‰ì„ ì¶”ê°€í•˜ë ¤ ì‹œë„í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool TryAddToExistingSlot(int itemId, int amount = 1)
     {
         for (int i = 0; i < slots.Length; i++)
@@ -280,7 +316,9 @@ public class PotionQuickBar : MonoBehaviour
         return false;
     }
 
-
+    /// <summary>
+    /// ì£¼ì–´ì§„ í™”ë©´ ì¢Œí‘œì— í•´ë‹¹í•˜ëŠ” ìŠ¬ë¡¯ ì¸ë±ìŠ¤ë¥¼ ì°¾ìŠµë‹ˆë‹¤.
+    /// </summary>
     public bool TryGetSlotIndexAtScreenPosition(Vector2 screenPos, out int index)
     {
         index = -1;
@@ -299,8 +337,14 @@ public class PotionQuickBar : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// ë°°ì—´ ë²”ìœ„ ë‚´ì— ìˆëŠ” ì¸ë±ìŠ¤ì¸ì§€ í™•ì¸í•©ë‹ˆë‹¤.
+    /// </summary>
     private bool ValidIndex(int i) => i >= 0 && i < (slots?.Length ?? 0);
 
+    /// <summary>
+    /// í•˜ì´ë¼í‚¤ì—ì„œ í•„ìš”í•œ UI ìš”ì†Œë¥¼ ì°¾ì•„ ìŠ¬ë¡¯ê³¼ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
     private void AutoWireByHierarchy()
     {
         var canvas = GameObject.Find("ItemCanvas");
@@ -319,7 +363,7 @@ public class PotionQuickBar : MonoBehaviour
             slot.index = i;
             slot.AutoWireIconByChildName($"{i + 1}");
 
-            // ¾ÆÀÌÄÜ¿¡ µå·¡±× ÇÚµé ÀÚµ¿ ºÎÂø
+            // ë“œë˜ê·¸ê°€ ê°€ëŠ¥í•˜ë„ë¡ ë“œë˜ê·¸ í•¸ë“¤ëŸ¬ë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
             if (slot.icon && !slot.icon.gameObject.GetComponent<QuickSlotDraggable>())
             {
                 var d = slot.icon.gameObject.AddComponent<QuickSlotDraggable>();
