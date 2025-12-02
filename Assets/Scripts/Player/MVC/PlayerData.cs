@@ -3,9 +3,9 @@ using System;
 [Serializable]
 public class PlayerData
 {
-    public string Race; // Ãß°¡: ÀúÀå/ºñ±³¿ë
+    public string Race; // í”Œë ˆì´ì–´ê°€ ì„ íƒí•˜ì‹  ì¢…ì¡± ì´ë¦„ì…ë‹ˆë‹¤.
 
-    // Base (Á¾Á·/·¹º§¾÷À¸·Î¸¸ º¯ÇÔ)
+    // Base: ì¥ë¹„ íš¨ê³¼ê°€ ì ìš©ë˜ê¸° ì „ ê¸°ë³¸ ìˆ˜ì¹˜ì…ë‹ˆë‹¤.
     public float BaseMaxHP;
     public float BaseMaxMP;
     public float BaseAtk;
@@ -15,7 +15,7 @@ public class PlayerData
     public float BaseCritChance;
     public float BaseCritDamage;
 
-    // ÃÖÁ¾ ½ºÅÈ
+    // Final: ì¥ë¹„ íš¨ê³¼ê°€ í¬í•¨ëœ ìµœì¢… ìˆ˜ì¹˜ì…ë‹ˆë‹¤.
     public float MaxHP;
     public float MaxMP;
     public float Atk;
@@ -25,11 +25,11 @@ public class PlayerData
     public float CritChance;
     public float CritDamage;
 
-    // ÇöÀç »óÅÂ
+    // í˜„ì¬ ìƒíƒœë¥¼ ë‚˜íƒ€ë‚´ëŠ” ê°’ì…ë‹ˆë‹¤.
     public float CurrentHP;
     public float CurrentMP;
 
-    // ·¹º§ / °æÇèÄ¡
+    // ì„±ì¥ ê´€ë ¨ ì •ë³´ì…ë‹ˆë‹¤.
     public int Level;
     public float Exp;
     public float ExpToNextLevel;
