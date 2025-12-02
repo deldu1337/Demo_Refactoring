@@ -1,19 +1,19 @@
 using UnityEngine;
 
 /// <summary>
-/// Àû ÀÌµ¿°ú ÇÃ·¹ÀÌ¾î ÃßÀû/º¹±Í, ¾Ö´Ï¸ŞÀÌ¼Ç Á¦¾î
+/// ì ì˜ ì´ë™ê³¼ ì¶”ì  ë¡œì§ì„ ë‹´ë‹¹í•˜ê³  ì• ë‹ˆë©”ì´ì…˜ì„ ì „í™˜í•œë‹¤.
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animation))]
 [RequireComponent(typeof(EnemyStatsManager))]
 public class EnemyMove : MonoBehaviour
 {
-    [Header("ÀÌµ¿ ¼³Á¤")]
-    [SerializeField] private float baseMoveSpeed = 3f;      // ±âº» ÀÌµ¿ ¼Óµµ
-    [SerializeField] private float baseRotationSpeed = 10f; // ±âº» È¸Àü ¼Óµµ
-    [SerializeField] private float detectRadius = 10f;      // ÇÃ·¹ÀÌ¾î Å½Áö ¹üÀ§
+    [Header("ì´ë™ ì„¤ì •")]
+    [SerializeField] private float baseMoveSpeed = 3f;      // ê¸°ë³¸ ì´ë™ ì†ë„
+    [SerializeField] private float baseRotationSpeed = 10f; // ê¸°ë³¸ íšŒì „ ì†ë„
+    [SerializeField] private float detectRadius = 10f;      // í”Œë ˆì´ì–´ íƒì§€ ë²”ìœ„
 
-    public Transform TargetPlayer { get; private set; }     // ÃßÀû ´ë»ó
+    public Transform TargetPlayer { get; private set; }
 
     private TileMapGenerator mapGenerator;
     private Rigidbody rb;
@@ -21,8 +21,11 @@ public class EnemyMove : MonoBehaviour
     private EnemyStatsManager stats;
     private Vector3 spawnPosition;
 
-    private int playerLayerMask; // Awake¿¡¼­ ÃÊ±âÈ­ÇÒ º¯¼ö
+    private int playerLayerMask;
 
+    /// <summary>
+    /// í•„ìˆ˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ì´ˆê¸°í™”í•˜ê³  ê¸°ë³¸ ìœ„ì¹˜ì™€ ë ˆì´ì–´ ë§ˆìŠ¤í¬ë¥¼ ì„¤ì •í•œë‹¤.
+    /// </summary>
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -31,47 +34,57 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animation>();
         stats = GetComponent<EnemyStatsManager>();
 
-        if (!anim) Debug.LogError($"{name}: Animation ÄÄÆ÷³ÍÆ®°¡ ¾ø½À´Ï´Ù!");
-        if (!stats) Debug.LogError($"{name}: EnemyStatsManager°¡ ¾ø½À´Ï´Ù!");
+        if (!anim) Debug.LogError($"{name}: Animation ì»´í¬ë„ŒíŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤!");
+        if (!stats) Debug.LogError($"{name}: EnemyStatsManagerê°€ ì—†ìŠµë‹ˆë‹¤!");
 
         mapGenerator = FindAnyObjectByType<TileMapGenerator>();
-        if (!mapGenerator) Debug.LogWarning($"{name}: TileMapGenerator¸¦ Ã£Áö ¸øÇß½À´Ï´Ù. ¹æ Á¦¾à ¾øÀÌ Å½ÁöÇÕ´Ï´Ù.");
+        if (!mapGenerator) Debug.LogWarning($"{name}: TileMapGeneratorë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤. ê¸°ë³¸ ì¶”ì  ë²”ìœ„ë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤.");
 
         spawnPosition = transform.position;
-
-        // ¿©±â¼­ ·¹ÀÌ¾î ¸¶½ºÅ© ÃÊ±âÈ­
         playerLayerMask = 1 << LayerMask.NameToLayer("Player");
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ì‚¬ë§ ì´ë²¤íŠ¸ë¥¼ êµ¬ë…í•œë‹¤.
+    /// </summary>
     private void OnEnable()
     {
         PlayerStatsManager.OnPlayerDied += HandlePlayerDied;
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ì‚¬ë§ ì´ë²¤íŠ¸ êµ¬ë…ì„ í•´ì œí•œë‹¤.
+    /// </summary>
     private void OnDisable()
     {
         PlayerStatsManager.OnPlayerDied -= HandlePlayerDied;
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ê°€ ì£½ì—ˆì„ ë•Œ ì¶”ì  ìƒíƒœë¥¼ ì´ˆê¸°í™”í•œë‹¤.
+    /// </summary>
     private void HandlePlayerDied()
     {
-        // ÇÃ·¹ÀÌ¾î°¡ Á×´Â Áï½Ã Å¸°Ù ÇØÁ¦ ¡æ ´ÙÀ½ FixedUpdateºÎÅÍ ½ºÆù º¹±Í
         TargetPlayer = null;
-
-        // ÀÌµ¿ ¾Ö´Ï/»óÅÂ¸¦ Áï½Ã ÀüÈ¯ÇÏ°í ½Í´Ù¸é(¼±ÅÃ)
-        // Run/Stand´Â MoveTowardsTarget°¡ Ã³¸®ÇÏ¹Ç·Î ¿©±â¼­´Â »ı·« °¡´É
     }
 
-    /// <summary>Àû ½ºÆù À§Ä¡ ¼³Á¤</summary>
+    /// <summary>
+    /// ìƒì„± ìœ„ì¹˜ë¥¼ ì™¸ë¶€ì—ì„œ ì§€ì •í•œë‹¤.
+    /// </summary>
     public void SetSpawnPosition(Vector3 position) => spawnPosition = position;
 
+    /// <summary>
+    /// ê³ ì • ì—…ë°ì´íŠ¸ë§ˆë‹¤ í”Œë ˆì´ì–´ë¥¼ íƒì§€í•˜ê³  ì´ë™ ë™ì‘ì„ ìˆ˜í–‰í•œë‹¤.
+    /// </summary>
     private void FixedUpdate()
     {
         DetectPlayer();
         MoveTowardsTarget();
     }
 
-    /// <summary>ÇÃ·¹ÀÌ¾î Å½Áö</summary>
+    /// <summary>
+    /// ì£¼ë³€ì—ì„œ ì‚´ì•„ìˆëŠ” í”Œë ˆì´ì–´ë¥¼ íƒì§€í•˜ê³  ê°€ì¥ ê°€ê¹Œìš´ ëŒ€ìƒì„ ì°¾ëŠ”ë‹¤.
+    /// </summary>
     private void DetectPlayer()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectRadius, playerLayerMask);
@@ -83,12 +96,10 @@ public class EnemyMove : MonoBehaviour
             var pStats = hit.GetComponent<PlayerStatsManager>();
             if (pStats == null) continue;
 
-            // Á×Àº ÇÃ·¹ÀÌ¾î´Â ¹«½Ã
             if (pStats.CurrentHP <= 0f) continue;
 
             Vector3 playerPos = hit.transform.position;
 
-            // °°Àº ¹æ ÇÃ·¹ÀÌ¾î Á¦¿Ü
             if (mapGenerator && mapGenerator.GetPlayerRoom().Contains(
                 new Vector2Int(Mathf.FloorToInt(playerPos.x), Mathf.FloorToInt(playerPos.z))))
                 continue;
@@ -104,7 +115,9 @@ public class EnemyMove : MonoBehaviour
         TargetPlayer = closest;
     }
 
-    /// <summary>Å¸°Ù ¶Ç´Â ½ºÆù À§Ä¡·Î ÀÌµ¿</summary>
+    /// <summary>
+    /// ëª©í‘œ ìœ„ì¹˜ë¥¼ í–¥í•´ ì´ë™í•˜ê³  ìƒí™©ì— ë§ëŠ” ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒí•œë‹¤.
+    /// </summary>
     private void MoveTowardsTarget()
     {
         Vector3 destination = TargetPlayer ? TargetPlayer.position : spawnPosition;
@@ -112,8 +125,8 @@ public class EnemyMove : MonoBehaviour
         direction.y = 0f;
 
         float distance = direction.magnitude;
-        float moveSpeed = baseMoveSpeed + stats.Data.dex;                 // ¹ÎÃ¸ ±â¹İ ÀÌµ¿¼Óµµ
-        float rotationSpeed = baseRotationSpeed + stats.Data.dex * 0.5f;  // ¹ÎÃ¸ ±â¹İ È¸Àü¼Óµµ
+        float moveSpeed = baseMoveSpeed + stats.Data.dex;
+        float rotationSpeed = baseRotationSpeed + stats.Data.dex * 0.5f;
 
         if (distance > 1f)
         {
@@ -131,12 +144,14 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    /// <summary>¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı (°ø°İ ÁßÀÌ¸é ÀÌµ¿/´ë±â ¾Ö´Ï¸ŞÀÌ¼Ç µ¤Áö ¾ÊÀ½)</summary>
+    /// <summary>
+    /// ì´ë™ ìƒíƒœì— ë”°ë¼ ì ì ˆí•œ ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒí•œë‹¤.
+    /// </summary>
     private void PlayAnimation(string animName)
     {
         if (!anim) return;
 
-        // °ø°İ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Àç»ı ÁßÀÌ¸é ´Ù¸¥ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı ¾È ÇÔ
+        // ê³µê²© ë™ì‘ ì¤‘ì—ëŠ” ì´ë™ ì• ë‹ˆë©”ì´ì…˜ì„ ë®ì–´ì“°ì§€ ì•ŠëŠ”ë‹¤.
         if (anim.IsPlaying("AttackUnarmed (ID 16 variation 0)"))
             return;
 
@@ -144,12 +159,12 @@ public class EnemyMove : MonoBehaviour
             anim.CrossFade(animName, 0.2f);
     }
 
-
+    /// <summary>
+    /// ì—ë””í„°ì—ì„œ íƒì§€ ë°˜ê²½ì„ ì‹œê°í™”í•œë‹¤.
+    /// </summary>
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRadius);
     }
 }
-
-
