@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// BSP ë¶„í• ì„ í™œìš©í•´ ë˜ì „ íƒ€ì¼ ë§µì„ ìƒì„±í•˜ê³  ë°°ì¹˜í•©ë‹ˆë‹¤.
+/// </summary>
 public class TileMapGenerator : MonoBehaviour
 {
     [System.Serializable]
@@ -20,7 +23,7 @@ public class TileMapGenerator : MonoBehaviour
     public GameObject floorPrefab;
     public int minRoomSize = 10;
     public int maxRoomSize = 24;
-    // ÀÎ½ºÆåÅÍ¿¡¼­ Á¶Àı °¡´É
+
     [Range(0.1f, 0.9f)] public float minimumDevideRate = 0.45f;
     [Range(0.1f, 0.9f)] public float maximumDivideRate = 0.55f;
     [Range(1, 12)] public int maxDepth = 6;
@@ -31,10 +34,10 @@ public class TileMapGenerator : MonoBehaviour
     public int bossRoomWidth = 28;
     public int bossRoomHeight = 28;
 
-    private int[,] map;                 // 0 ¹Ù´Ú 1 º®
-    private List<RectInt> rooms;        // ¸®ÇÁ¿¡¼­ ¸¸µç ¹æ
-    private RectInt playerRoom;         // ½ÃÀÛ ¹æ
-    private RectInt bossRoom;           // º¸½º ¹æ
+    private int[,] map;
+    private List<RectInt> rooms;
+    private RectInt playerRoom;
+    private RectInt bossRoom;
 
     [Header("Stage Themes")]
     public int stagesPerTheme = 5;
@@ -45,14 +48,23 @@ public class TileMapGenerator : MonoBehaviour
     public delegate void MapGeneratedHandler();
     public event MapGeneratedHandler OnMapGenerated;
 
+    /// <summary>
+    /// ë³´ìŠ¤ ë°©ì´ ì¡´ì¬í•˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private bool HasBossRoom => bossRoom.width > 0 && bossRoom.height > 0;
 
-    void Start()
+    /// <summary>
+    /// ì‹œì‘ ì‹œ ë§µì„ ìƒì„±í•˜ê³  ë Œë”ë§í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void Start()
     {
         GenerateMap();
         RenderMap();
     }
 
+    /// <summary>
+    /// í˜„ì¬ ìŠ¤í…Œì´ì§€ì— ë§ëŠ” í…Œë§ˆë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private StageTheme GetActiveTheme()
     {
         if (useBossOverrideTheme && stageManager != null && stageManager.IsBossStage() && bossOverrideTheme != null)
@@ -66,31 +78,34 @@ public class TileMapGenerator : MonoBehaviour
         return themes[idx];
     }
 
+    /// <summary>
+    /// BSP ê·œì¹™ì— ë”°ë¼ ë°©ê³¼ ë³µë„ë¥¼ ìƒì„±í•˜ê³  í¬íƒˆì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public void GenerateMap()
     {
         InitMap();
 
-        // 1 ÇÃ·¹ÀÌ¾î ¹æ ¸ÕÀú Ä³ºê
+        // í”Œë ˆì´ì–´ ì‹œì‘ ë°©ì„ ë¨¼ì € ì¤€ë¹„í•©ë‹ˆë‹¤
         CarvePlayerRoom();
 
-        // 2 BSP ºĞÇÒ
+        // ë¶„í•  íŠ¸ë¦¬ë¥¼ ë§Œë“¤ê³  ë°© í›„ë³´ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤
         Node root = new Node(new RectInt(1, 1, width - 2, height - 2));
         SplitRoom(root, 0);
 
-        // 3 ¸®ÇÁ¿¡¼­ ¹æ »ı¼º Ä³ºê
+        // ë¦¬í”„ ë…¸ë“œì— ì‹¤ì œ ë°©ì„ ìƒì„±í•©ë‹ˆë‹¤
         GenerateRooms(root);
 
-        // 4 º¸½º ½ºÅ×ÀÌÁö¸é Áß¾Ó¿¡ º¸½º ¹æ Ä³ºê
+        // ë³´ìŠ¤ ìŠ¤í…Œì´ì§€ë¼ë©´ ì¤‘ì•™ì— ë³´ìŠ¤ ë°©ì„ ë§Œë“­ë‹ˆë‹¤
         bool isBoss = stageManager != null && stageManager.IsBossStage();
         if (isBoss) CarveBossRoomCenter();
 
-        // 5 ÇÃ·¹ÀÌ¾î ¹æ°ú °¡Àå °¡±î¿î ÀÏ¹İ ¹æÀ» ¹İµå½Ã ¿¬°á
+        // í”Œë ˆì´ì–´ ë°©ê³¼ ê°€ì¥ ê°€ê¹Œìš´ ë°©ì„ ì—°ê²°í•©ë‹ˆë‹¤
         ConnectPlayerRoomToNearestRoom();
 
-        // 6 BSP Æ®¸®¸¦ µû¶ó ÇüÁ¦ ¸®ÇÁ ¼¾ÅÍ °£ º¹µµ »ı¼º
+        // íŠ¸ë¦¬ë¥¼ ë”°ë¼ ë³µë„ë¥¼ ì—°ê²°í•©ë‹ˆë‹¤
         GenerateTreeCorridors(root);
 
-        // 7 º¸½º¹æ ÀÔ±¸ ¿¬°á
+        // ë³´ìŠ¤ ë°© ì…êµ¬ë¥¼ ë‹¤ë¥¸ ë°©ê³¼ ì´ì–´ ì¤ë‹ˆë‹¤
         if (isBoss)
         {
             var centers = rooms.Where(r => !r.Overlaps(playerRoom) && !r.Overlaps(bossRoom))
@@ -99,13 +114,16 @@ public class TileMapGenerator : MonoBehaviour
             ConnectBossRoomEntrances(centers);
         }
 
-        // 8 Æ÷Å» ¹èÄ¡
+        // ê°€ì¥ ë¨¼ ë°©ì— í¬íƒˆì„ ë°°ì¹˜í•©ë‹ˆë‹¤
         PlacePortal();
 
         OnMapGenerated?.Invoke();
     }
 
-    void InitMap()
+    /// <summary>
+    /// ë§µ ë°ì´í„°ì™€ ë°© ëª©ë¡ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void InitMap()
     {
         map = new int[width, height];
         rooms = new List<RectInt>();
@@ -118,28 +136,29 @@ public class TileMapGenerator : MonoBehaviour
         playerRoom = new RectInt(2, 2, 25, 25);
     }
 
-    void CarvePlayerRoom()
+    /// <summary>
+    /// í”Œë ˆì´ì–´ê°€ ì‹œì‘í•˜ëŠ” ê³µê°„ì„ ë¹„ì›Œ ë‘¡ë‹ˆë‹¤.
+    /// </summary>
+    private void CarvePlayerRoom()
     {
-        // Å×µÎ¸®´Â º® À¯Áö ³»ºÎ¸¸ ¹Ù´Ú
         for (int x = playerRoom.xMin + 1; x < playerRoom.xMax - 1; x++)
             for (int y = playerRoom.yMin + 1; y < playerRoom.yMax - 1; y++)
                 map[x, y] = 0;
     }
 
-    //bool CanSplit(RectInt r)
-    //{
-    //    return (r.width >= minRoomSize * 2) || (r.height >= minRoomSize * 2);
-    //}
-
-    // ´õ ºĞÇÒ °¡´ÉÇÑÁö
-    bool CanSplit(RectInt r)
+    /// <summary>
+    /// ì£¼ì–´ì§„ ì˜ì—­ì„ ì¶”ê°€ë¡œ ë¶„í• í•  ìˆ˜ ìˆëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
+    /// </summary>
+    private bool CanSplit(RectInt r)
     {
-        const int minLeaf = 10;  // ¸®ÇÁ ÃÖ¼Ò Æø/³ôÀÌ
+        const int minLeaf = 10;
         return (r.width >= minLeaf * 2) || (r.height >= minLeaf * 2);
     }
 
-    // ºĞÇÒ¸¸ ¼öÇà, mapÀº °Çµå¸®Áö ¾ÊÀ½
-    void SplitRoom(Node tree, int depth)
+    /// <summary>
+    /// BSP íŠ¸ë¦¬ë¥¼ ë”°ë¼ ë…¸ë“œë¥¼ ë¶„í• í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void SplitRoom(Node tree, int depth)
     {
         if (depth >= maxDepth || !CanSplit(tree.nodeRect))
             return;
@@ -147,7 +166,6 @@ public class TileMapGenerator : MonoBehaviour
         bool splitHoriz = tree.nodeRect.width >= tree.nodeRect.height;
         int axisLen = splitHoriz ? tree.nodeRect.width : tree.nodeRect.height;
 
-        // ºĞÇÒ ±¸°£À» 1..axisLen-1·Î °­Á¦
         int minSplit = Mathf.Clamp(Mathf.RoundToInt(axisLen * minimumDevideRate), 1, axisLen - 1);
         int maxSplit = Mathf.Clamp(Mathf.RoundToInt(axisLen * maximumDivideRate), minSplit, axisLen - 1);
         if (minSplit >= maxSplit) return;
@@ -172,9 +190,11 @@ public class TileMapGenerator : MonoBehaviour
         SplitRoom(tree.rightNode, depth + 1);
     }
 
-    RectInt GenerateRooms(Node node)
+    /// <summary>
+    /// ë¦¬í”„ ë…¸ë“œë§ˆë‹¤ ë°©ì„ ë§Œë“¤ê³  ë§µì— í‘œì‹œí•©ë‹ˆë‹¤.
+    /// </summary>
+    private RectInt GenerateRooms(Node node)
     {
-        // ¸®ÇÁ
         if (node.leftNode == null && node.rightNode == null)
         {
             RectInt r = node.nodeRect;
@@ -197,7 +217,6 @@ public class TileMapGenerator : MonoBehaviour
                 node.roomRect = new RectInt(x, y, w, h);
             }
 
-            // ÇÃ·¹ÀÌ¾î ¹æ°ú °ãÄ¡¸é Á¦¿Ü
             if (!node.roomRect.Overlaps(playerRoom))
             {
                 rooms.Add(node.roomRect);
@@ -209,14 +228,16 @@ public class TileMapGenerator : MonoBehaviour
             return node.roomRect;
         }
 
-        // ³»ºÎ ³ëµå¸é ÀÚ½Ä Ã³¸®
         RectInt left = (node.leftNode != null) ? GenerateRooms(node.leftNode) : new RectInt();
         RectInt right = (node.rightNode != null) ? GenerateRooms(node.rightNode) : new RectInt();
         node.roomRect = (left.width > 0) ? left : right;
         return node.roomRect;
     }
 
-    void ConnectPlayerRoomToNearestRoom()
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ë°©ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ ë°©ê¹Œì§€ ë³µë„ë¥¼ íŒë‹ˆë‹¤.
+    /// </summary>
+    private void ConnectPlayerRoomToNearestRoom()
     {
         if (rooms == null || rooms.Count == 0) return;
 
@@ -232,7 +253,6 @@ public class TileMapGenerator : MonoBehaviour
         }
         if (nearest.width == 0 || nearest.height == 0) return;
 
-        // ÇÃ·¹ÀÌ¾î ¹æ »ó´Ü Áß¾Ó¿¡ ¹® ¶Õ±â
         Vector2Int doorway = new Vector2Int((playerRoom.xMin + playerRoom.xMax) / 2, playerRoom.yMax - 1);
         int half = Mathf.Max(1, corridorWidth / 2);
         for (int w = -half; w <= half; w++)
@@ -247,7 +267,10 @@ public class TileMapGenerator : MonoBehaviour
         DigCorridor(doorway, target);
     }
 
-    void GenerateTreeCorridors(Node node)
+    /// <summary>
+    /// ë¶„í•  íŠ¸ë¦¬ë¥¼ ìˆœíšŒí•˜ë©° ë°©ì˜ ì¤‘ì‹¬ì„ ë³µë„ë¡œ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void GenerateTreeCorridors(Node node)
     {
         if (node.leftNode == null || node.rightNode == null)
             return;
@@ -260,11 +283,13 @@ public class TileMapGenerator : MonoBehaviour
         GenerateTreeCorridors(node.rightNode);
     }
 
-    void DigCorridor(Vector2Int a, Vector2Int b)
+    /// <summary>
+    /// ë‘ ì¢Œí‘œë¥¼ ì§êµ í˜•íƒœì˜ ë³µë„ë¡œ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void DigCorridor(Vector2Int a, Vector2Int b)
     {
         int half = Mathf.Max(1, corridorWidth / 2);
 
-        // ¼öÆò
         int x0 = Mathf.Min(a.x, b.x);
         int x1 = Mathf.Max(a.x, b.x);
         for (int x = x0; x <= x1; x++)
@@ -274,7 +299,6 @@ public class TileMapGenerator : MonoBehaviour
                 if (Inside(x, yy)) map[x, yy] = 0;
             }
 
-        // ¼öÁ÷
         int y0 = Mathf.Min(a.y, b.y);
         int y1 = Mathf.Max(a.y, b.y);
         for (int y = y0; y <= y1; y++)
@@ -285,9 +309,15 @@ public class TileMapGenerator : MonoBehaviour
             }
     }
 
-    bool Inside(int x, int y) => x >= 0 && x < width && y >= 0 && y < height;
+    /// <summary>
+    /// ì¢Œí‘œê°€ ë§µ ë²”ìœ„ ì•ˆì— ìˆëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
+    /// </summary>
+    private bool Inside(int x, int y) => x >= 0 && x < width && y >= 0 && y < height;
 
-    void CarveBossRoomCenter()
+    /// <summary>
+    /// ë§µ ì¤‘ì•™ì— ë³´ìŠ¤ ë°©ì„ ë§Œë“¤ê³  ë¹„ì›ë‹ˆë‹¤.
+    /// </summary>
+    private void CarveBossRoomCenter()
     {
         int bw = Mathf.Clamp(bossRoomWidth, minRoomSize, width - 4);
         int bh = Mathf.Clamp(bossRoomHeight, minRoomSize, height - 4);
@@ -300,7 +330,10 @@ public class TileMapGenerator : MonoBehaviour
                 map[x, y] = 0;
     }
 
-    void ConnectBossRoomEntrances(List<Vector2Int> normalCenters)
+    /// <summary>
+    /// ë³´ìŠ¤ ë°©ì˜ ë³€ì— ì…êµ¬ë¥¼ ë§Œë“¤ê³  ê°€ì¥ ê°€ê¹Œìš´ ë°©ê³¼ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void ConnectBossRoomEntrances(List<Vector2Int> normalCenters)
     {
         if (normalCenters == null || normalCenters.Count == 0 || !HasBossRoom) return;
 
@@ -348,7 +381,10 @@ public class TileMapGenerator : MonoBehaviour
         }
     }
 
-    void PlacePortal()
+    /// <summary>
+    /// í”Œë ˆì´ì–´ì™€ ê°€ì¥ ë¨¼ ë°©ì— í¬íƒˆì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void PlacePortal()
     {
         if (portalPrefab == null || rooms == null || rooms.Count == 0) return;
 
@@ -377,7 +413,10 @@ public class TileMapGenerator : MonoBehaviour
         trigger.Setup(this);
     }
 
-    void RenderMap()
+    /// <summary>
+    /// ìƒì„±ëœ ë§µ ë°ì´í„°ë¥¼ ë°”íƒ•ìœ¼ë¡œ í”„ë¦¬íŒ¹ì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void RenderMap()
     {
         float floorStep = 10f;
         var theme = GetActiveTheme();
@@ -412,12 +451,18 @@ public class TileMapGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ì£¼ì–´ì§„ ì¢Œí‘œê°€ ë°”ë‹¥ì¸ì§€ í™•ì¸í•©ë‹ˆë‹¤.
+    /// </summary>
     public bool IsFloor(int x, int y)
     {
         if (x < 0 || x >= width || y < 0 || y >= height) return false;
         return map[x, y] == 0;
     }
 
+    /// <summary>
+    /// ìƒì„±ëœ ì¼ë°˜ ë°© ëª©ë¡ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public List<RectInt> GetRooms()
     {
         if (HasBossRoom)
@@ -425,9 +470,25 @@ public class TileMapGenerator : MonoBehaviour
         return new List<RectInt>(rooms);
     }
 
-    public RectInt GetBossRoom() => bossRoom;
-    public RectInt GetPlayerRoom() => playerRoom;
+    /// <summary>
+    /// ìƒì„±ëœ ë³´ìŠ¤ ë°© ì •ë³´ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
+    public RectInt GetBossRoom()
+    {
+        return bossRoom;
+    }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ ì‹œì‘ ë°© ì •ë³´ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
+    public RectInt GetPlayerRoom()
+    {
+        return playerRoom;
+    }
+
+    /// <summary>
+    /// ìì‹ ê°ì²´ë¥¼ ì •ë¦¬í•˜ê³  ë§µì„ ë‹¤ì‹œ ìƒì„±í•©ë‹ˆë‹¤.
+    /// </summary>
     public void ReloadMap()
     {
         for (int i = transform.childCount - 1; i >= 0; i--)

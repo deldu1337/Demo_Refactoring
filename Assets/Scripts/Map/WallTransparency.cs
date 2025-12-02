@@ -1,20 +1,25 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// í”Œë ˆì´ì–´ì™€ ì¹´ë©”ë¼ ì‚¬ì´ì˜ ë²½ì„ íˆ¬ëª…í•˜ê²Œ ë§Œë“¤ì–´ ì‹œì•¼ë¥¼ í™•ë³´í•©ë‹ˆë‹¤.
+/// </summary>
 public class WallTransparency : MonoBehaviour
 {
-    public Transform player;              // ÇÃ·¹ÀÌ¾î Transform
-    public Camera mainCamera;             // ¸ŞÀÎ Ä«¸Ş¶ó
-    public LayerMask wallLayer;           // º® ·¹ÀÌ¾î
-    public float transparency = 0.3f;     // Åõ¸íµµ
-    public float checkRadius = 0.5f;      // ½ºÇÇ¾îÄ³½ºÆ® ¹İÁö¸§
+    public Transform player;
+    public Camera mainCamera;
+    public LayerMask wallLayer;
+    public float transparency = 0.3f;
+    public float checkRadius = 0.5f;
 
     private Dictionary<Renderer, Material[]> originalMaterials = new();
     private List<Renderer> currentlyTransparent = new();
 
-    void Update()
+    /// <summary>
+    /// ì¹´ë©”ë¼ì™€ í”Œë ˆì´ì–´ ì‚¬ì´ë¥¼ ê²€ì‚¬í•´ ê°€ë ¤ì§€ëŠ” ë²½ì„ íˆ¬ëª…í•˜ê²Œ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void Update()
     {
-        // ÀÌÀü Åõ¸í Ã³¸® ÃÊ±âÈ­
         foreach (var rend in currentlyTransparent)
         {
             if (rend != null && originalMaterials.ContainsKey(rend))
@@ -27,19 +32,16 @@ public class WallTransparency : MonoBehaviour
         Vector3 direction = player.position - mainCamera.transform.position;
         float distance = direction.magnitude;
 
-        // SphereCast·Î Ä«¸Ş¶ó ¡æ ÇÃ·¹ÀÌ¾î »çÀÌ º® °¨Áö
         if (Physics.SphereCast(mainCamera.transform.position, checkRadius, direction, out RaycastHit hit, distance, wallLayer))
         {
             Renderer rend = hit.collider.GetComponent<Renderer>();
             if (rend != null)
             {
-                // ¿ø·¡ ÀçÁú ÀúÀå
                 if (!originalMaterials.ContainsKey(rend))
                 {
                     originalMaterials[rend] = rend.materials;
                 }
 
-                // Åõ¸í ÀçÁú·Î º¯°æ
                 Material[] mats = rend.materials;
                 for (int i = 0; i < mats.Length; i++)
                 {

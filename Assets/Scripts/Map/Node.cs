@@ -1,20 +1,32 @@
 using UnityEngine;
 
+/// <summary>
+/// BSP ë¶„í• ì— ì‚¬ìš©ë˜ëŠ” ë…¸ë“œë¥¼ ë‚˜íƒ€ë‚´ë©° ë°©ê³¼ ì—°ê²° ì •ë³´ë¥¼ ë³´ê´€í•©ë‹ˆë‹¤.
+/// </summary>
 public class Node
 {
     public Node leftNode;
     public Node rightNode;
     public Node parNode;
-    public RectInt nodeRect; //ºĞ¸®µÈ °ø°£ÀÇ rectÁ¤º¸
-    public RectInt roomRect; //ºĞ¸®µÈ °ø°£ ¼Ó ¹æÀÇ rectÁ¤º¸
+
+    public RectInt nodeRect;
+    public RectInt roomRect;
+
+    /// <summary>
+    /// ë°©ì˜ ì¤‘ì‹¬ ì¢Œí‘œë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public Vector2Int center
     {
         get
         {
             return new Vector2Int(roomRect.x + roomRect.width / 2, roomRect.y + roomRect.height / 2);
         }
-        //¹æÀÇ °¡¿îµ¥ Á¡. ¹æ°ú ¹æÀ» ÀÌÀ» ¶§ »ç¿ë
     }
+
+    /// <summary>
+    /// ë¶„í•  ì˜ì—­ì„ ë°›ì•„ ë…¸ë“œë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
+    /// <param name="rect">í• ë‹¹í•  ì‚¬ê°í˜• ì˜ì—­ì…ë‹ˆë‹¤.</param>
     public Node(RectInt rect)
     {
         this.nodeRect = rect;
