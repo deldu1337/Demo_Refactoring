@@ -1,21 +1,23 @@
 using System;
 
-// ¾ÆÀÌÅÛÀÇ ±âº» µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â Å¬·¡½º
-[Serializable] // Unity Inspector¿Í JSON Á÷·ÄÈ­¸¦ À§ÇØ Á÷·ÄÈ­ °¡´ÉÇÏ°Ô ÇÔ
+/// <summary>
+/// ì•„ì´í…œì˜ ê¸°ë³¸ ìŠ¤íƒ¯ê³¼ ì‹ë³„ ì •ë³´ë¥¼ ë³´ê´€í•˜ëŠ” ë°ì´í„° í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+/// </summary>
+[Serializable]
 public class ItemData
 {
-    public int id;      // ¾ÆÀÌÅÛ °íÀ¯ ID, °ÔÀÓ ³»¿¡¼­ ¾ÆÀÌÅÛÀ» ½Äº°ÇÒ ¶§ »ç¿ë
-    public string name; // ¾ÆÀÌÅÛ ÀÌ¸§, UI Ç¥½Ã³ª ·Î±× Ãâ·Â¿¡ »ç¿ë
+    public int id;      // ì•„ì´í…œì˜ ê³ ìœ  IDì…ë‹ˆë‹¤.
+    public string name; // UIì— í‘œì‹œí•  ì•„ì´í…œ ì´ë¦„ì…ë‹ˆë‹¤.
     public string uniqueName;
     public int level;
     public string tier;
     public float hp;
     public float mp;
-    public float atk;   // ¾ÆÀÌÅÛ °ø°İ·Â ¶Ç´Â ¼Ó¼º °ª, °ÔÀÓ ·ÎÁ÷¿¡¼­ ¼öÄ¡ °è»ê¿¡ »ç¿ë
+    public float atk;   // ê³µê²©ë ¥ì— í•´ë‹¹í•˜ëŠ” ìˆ˜ì¹˜ì…ë‹ˆë‹¤.
     public float def;
     public float dex;
     public float As;
     public float cc;
     public float cd;
-    public string type; // ¾ÆÀÌÅÛ °íÀ¯ Å¸ÀÔ
+    public string type; // ì•„ì´í…œì˜ ë¶„ë¥˜ ì •ë³´ì…ë‹ˆë‹¤.
 }

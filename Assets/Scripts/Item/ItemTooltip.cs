@@ -7,12 +7,12 @@ public class ItemTooltip : MonoBehaviour
     public static ItemTooltip Instance;
 
     [Header("UI")]
-    [SerializeField] private GameObject tooltipPanel;      // ¾À °´Ã¼ or ÇÁ¸®ÆÕ
+    [SerializeField] private GameObject tooltipPanel;      // í‘œì‹œí•  ë§í’ì„  íŒ¨ë„ì…ë‹ˆë‹¤.
     [SerializeField] private Text tooltipText;
 
     [Header("Optional")]
-    [SerializeField] private Canvas uiCanvas;              // ¾øÀ¸¸é ÀÚµ¿ Å½»ö
-    [SerializeField] private GameObject tooltipPanelPrefab;// ÆĞ³ÎÀÌ ¾ø´Ù¸é ÀÎ½ºÅÏ½º »ı¼º¿ë(¼±ÅÃ)
+    [SerializeField] private Canvas uiCanvas;              // í•„ìš” ì‹œ ì‚¬ìš©í•  UI ìº”ë²„ìŠ¤ì…ë‹ˆë‹¤.
+    [SerializeField] private GameObject tooltipPanelPrefab;// ìº”ë²„ìŠ¤ì— ë¶™ì¼ íŒ¨ë„ í”„ë¦¬íŒ¹ì…ë‹ˆë‹¤.
 
     [Header("Layout")]
     [SerializeField] private Vector3 worldOffset = new Vector3(0f, 1.1f, 0f);
@@ -26,22 +26,30 @@ public class ItemTooltip : MonoBehaviour
     private Button panelButton;
     private UIHoverColor hover;
 
-    void Awake()
+    /// <summary>
+    /// ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì§€ì •í•˜ê³  ë§í’ì„  íŒ¨ë„ì„ ì¤€ë¹„í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void Awake()
     {
         Instance = this;
         EnsureCanvas();
-        EnsurePanel();        // ÇÊ¿äÇÑ ÄÄÆ÷³ÍÆ® ¹ÙÀÎµù±îÁö
+        EnsurePanel();
         Hide();
     }
 
-    void OnDestroy()
+    /// <summary>
+    /// íŒŒê´´ ì‹œ ì‹±ê¸€í„´ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì •ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void OnDestroy()
     {
         if (Instance == this) Instance = null;
     }
 
-    void Update()
+    /// <summary>
+    /// ëŒ€ìƒ ìœ„ì¹˜ë¥¼ ë”°ë¼ê°€ë©° ë§í’ì„  íŒ¨ë„ì˜ í™”ë©´ ì¢Œí‘œë¥¼ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
+    private void Update()
     {
-        // tooltipPanelÀÌ ÆÄ±«µÇ¾ú°Å³ª(null °°À½) ¾ÆÁ÷ ÁØºñ ¾È µÆÀ¸¸é ÆĞ½º
         if (!tooltipPanel || !tooltipPanel.activeSelf || followTarget == null) return;
 
         var cam = Camera.main;
@@ -51,11 +59,17 @@ public class ItemTooltip : MonoBehaviour
         tooltipPanel.transform.position = screenPos;
     }
 
+    /// <summary>
+    /// ì§€ì •í•œ ëŒ€ìƒ ìœ„ì— ë§í’ì„ ì„ í‘œì‹œí•˜ê³  í´ë¦­ ì‹œ í˜¸ì¶œí•  ë™ì‘ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
+    /// <param name="target">ë§í’ì„ ì„ í‘œì‹œí•  ëŒ€ìƒ íŠ¸ëœìŠ¤í¼ì…ë‹ˆë‹¤.</param>
+    /// <param name="info">ë§í’ì„ ì— ë³´ì—¬ì¤„ ë¬¸ìì—´ì…ë‹ˆë‹¤.</param>
+    /// <param name="onClick">í´ë¦­ ì‹œ í˜¸ì¶œí•  ì½œë°±ì…ë‹ˆë‹¤.</param>
     public void ShowFor(Transform target, string info, Action onClick)
     {
         if (!EnsurePanel())
         {
-            Debug.LogWarning("[ItemTooltip] tooltipPanelÀÌ ¾ø¾î Ç¥½ÃÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogWarning("[ItemTooltip] ë§í’ì„  íŒ¨ë„ì„ ì¤€ë¹„í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤");
             return;
         }
 
@@ -63,16 +77,17 @@ public class ItemTooltip : MonoBehaviour
         tooltipText.text = info;
         this.onClick = onClick;
 
-        // ¹è°æ»ö ÃÊ±âÈ­
         var img = tooltipPanel.GetComponent<Image>();
         if (img) img.color = normalColor;
 
         tooltipPanel.SetActive(true);
-        // ÃÊ±â À§Ä¡µµ ÇÑ ¹ø °è»ê
         if (Camera.main)
             tooltipPanel.transform.position = Camera.main.WorldToScreenPoint(followTarget.position + worldOffset);
     }
 
+    /// <summary>
+    /// ë§í’ì„ ì„ ìˆ¨ê¸°ê³  ëŒ€ìƒ ë° ì½œë°±ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Hide()
     {
         if (tooltipPanel) tooltipPanel.SetActive(false);
@@ -80,19 +95,17 @@ public class ItemTooltip : MonoBehaviour
         onClick = null;
     }
 
-    // ================== helpers ==================
-
-    // ÆÄ±«/¹ÌÇÒ´ç ¸ğµÎ Ä¿¹öÇÏ´Â Áö¿¬ º¸Àå
+    /// <summary>
+    /// ë§í’ì„  íŒ¨ë„ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•˜ê³  í•„ìš”í•˜ë©´ ìƒì„±í•©ë‹ˆë‹¤.
+    /// </summary>
+    /// <returns>íŒ¨ë„ì´ ì¤€ë¹„ë˜ì—ˆì„ ë•Œ ì°¸ì„ ë°˜í™˜í•©ë‹ˆë‹¤.</returns>
     private bool EnsurePanel()
     {
-        // ÀÌ¹Ì À¯È¿ÇÏ¸é OK
         if (tooltipPanel) return true;
 
-        // 1) ¾À¿¡¼­ ÀÌ¸§À¸·Î Ã£¾Æº¸±â(¿É¼Ç: ÇÊ¿ä¿¡ ¸Â°Ô ¼öÁ¤)
         var found = GameObject.Find("TooltipPanel");
         if (found) tooltipPanel = found;
 
-        // 2) ÇÁ¸®ÆÕÀÌ ÀÖÀ¸¸é Äµ¹ö½º ¾Æ·¡¿¡ ÀÎ½ºÅÏ½º »ı¼º
         if (!tooltipPanel && tooltipPanelPrefab && EnsureCanvas())
         {
             tooltipPanel = Instantiate(tooltipPanelPrefab, uiCanvas.transform);
@@ -101,7 +114,6 @@ public class ItemTooltip : MonoBehaviour
 
         if (!tooltipPanel) return false;
 
-        // ÄÄÆ÷³ÍÆ® Àç¹ÙÀÎµù
         hover = tooltipPanel.GetComponent<UIHoverColor>();
         if (!hover) hover = tooltipPanel.AddComponent<UIHoverColor>();
         hover.SetColors(normalColor, hoverColor);
@@ -111,12 +123,15 @@ public class ItemTooltip : MonoBehaviour
         panelButton.onClick.RemoveAllListeners();
         panelButton.onClick.AddListener(() => onClick?.Invoke());
 
-        // ÅØ½ºÆ® ÀÚµ¿ ¹ÙÀÎµù(ÇÊ¿äÇÏ¸é Á÷Á¢ Drag&Drop)
         if (!tooltipText) tooltipText = tooltipPanel.GetComponentInChildren<Text>(true);
 
         return true;
     }
 
+    /// <summary>
+    /// ì‚¬ìš©í•  UI ìº”ë²„ìŠ¤ë¥¼ ì°¾ê±°ë‚˜ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
+    /// <returns>ìº”ë²„ìŠ¤ê°€ ì¤€ë¹„ë˜ë©´ ì°¸ì„ ë°˜í™˜í•©ë‹ˆë‹¤.</returns>
     private bool EnsureCanvas()
     {
         if (uiCanvas) return true;
@@ -124,7 +139,7 @@ public class ItemTooltip : MonoBehaviour
         uiCanvas = FindAnyObjectByType<Canvas>();
         if (!uiCanvas)
         {
-            Debug.LogWarning("[ItemTooltip] Canvas°¡ ¾ø¾î tooltipÀ» »ı¼º/Ç¥½ÃÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogWarning("[ItemTooltip] Canvasë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤. íˆ´íŒì„ í‘œì‹œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
             return false;
         }
         return true;

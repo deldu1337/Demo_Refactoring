@@ -1,13 +1,15 @@
 using UnityEngine;
 
-// ¾ÆÀÌÅÛ ÇÈ¾÷ ½ºÅ©¸³Æ® (±ÙÁ¢ ´ÙÁß ÅøÆÁ + Å¬¸¯ È¹µæ)
+/// <summary>
+/// ì•„ì´í…œì„ í‘œì‹œí•˜ê³  íšë“ ë™ì‘ì„ ì²˜ë¦¬í•˜ëŠ” ì»´í¬ë„ŒíŠ¸ì…ë‹ˆë‹¤.
+/// </summary>
 public class ItemPickup : MonoBehaviour
 {
     [TextArea] public string itemInfo;
     [TextArea] public string id;
     public Sprite icon;
 
-    [Header("±ÙÁ¢/ÅøÆÁ ¼³Á¤")]
+    [Header("íˆ´íŒ ê±°ë¦¬ ì„¤ì •")]
     public float showDistance = 7f;
     public bool hideWhenFar = true;
 
@@ -16,19 +18,20 @@ public class ItemPickup : MonoBehaviour
     private InventoryPresenter inventoryPresenter;
     private bool isShowing;
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ì™€ í”„ë ˆì  í„°ë¥¼ ì°¾ê³  ë°ì´í„° ë§¤ë‹ˆì €ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     private void Start()
     {
-        // ÀåÂø º»(EquippedMarker) ¾Æ·¡¿¡ ÀÖÀ¸¸é ÀÚ½Å ºñÈ°¼ºÈ­
         if (GetComponentInParent<EquippedMarker>() != null)
         {
-            enabled = false;         // Update ºñÈ°¼ºÈ­
+            enabled = false;
             return;
         }
 
         dataManager = DataManager.Instance;
         dataManager.LoadDatas();
 
-        // Player Ã£±â(·¹ÀÌ¾î)
         int playerLayer = LayerMask.NameToLayer("Player");
         foreach (var obj in FindObjectsByType<GameObject>(FindObjectsSortMode.None))
         {
@@ -37,9 +40,12 @@ public class ItemPickup : MonoBehaviour
 
         inventoryPresenter = FindAnyObjectByType<InventoryPresenter>();
         if (inventoryPresenter == null)
-            Debug.LogError("InventoryPresenter¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù!");
+            Debug.LogError("InventoryPresenterë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤");
     }
 
+    /// <summary>
+    /// í”Œë ˆì´ì–´ì™€ì˜ ê±°ë¦¬ë¥¼ í™•ì¸í•˜ë©° ë§í’ì„  ë…¸ì¶œ ì—¬ë¶€ë¥¼ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     private void Update()
     {
         if (!player || ItemTooltipManager.Instance == null) return;
@@ -67,6 +73,9 @@ public class ItemPickup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ì•„ì´í…œ ì •ë³´ë¥¼ ì•ˆì „í•˜ê²Œ ì¡°íšŒí•˜ì—¬ ì´ë¦„ê³¼ í‹°ì–´ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private (string, string) GetItemInfoSafe()
     {
         if (!int.TryParse(id, out int parsedId)) return (itemInfo, null);
@@ -77,7 +86,9 @@ public class ItemPickup : MonoBehaviour
         return (data.name, data.tier);
     }
 
-
+    /// <summary>
+    /// íˆ´íŒì— í‘œì‹œí•  ì•ˆì „í•œ ì´ë¦„ ë¬¸ìì—´ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     private string GetDisplayNameSafe()
     {
         if (!int.TryParse(id, out int parsedId)) return itemInfo;
@@ -85,32 +96,36 @@ public class ItemPickup : MonoBehaviour
         return dataManager.dicItemDatas[parsedId].name;
     }
 
+    /// <summary>
+    /// ì¸ë²¤í† ë¦¬ì— ì•„ì´í…œì„ ì¶”ê°€í•˜ê³  ì›”ë“œ ìƒì˜ ê°ì²´ë¥¼ ì œê±°í•©ë‹ˆë‹¤.
+    /// </summary>
     private void Pickup()
     {
         if (inventoryPresenter == null) return;
 
         if (!int.TryParse(id, out int parsedId))
         {
-            Debug.LogError($"[ItemPickup] id ÆÄ½Ì ½ÇÆĞ: '{id}'");
+            Debug.LogError($"[ItemPickup] idë¥¼ ì •ìˆ˜ë¡œ ë³€í™˜í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤: '{id}'");
             return;
         }
         if (dataManager?.dicItemDatas == null || !dataManager.dicItemDatas.ContainsKey(parsedId))
         {
-            Debug.LogError($"[ItemPickup] DataManager¿¡ id={parsedId} ¾øÀ½");
+            Debug.LogError($"[ItemPickup] DataManagerì—ì„œ id={parsedId} í•­ëª©ì„ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤");
             return;
         }
 
         string prefabPath = $"Prefabs/{dataManager.dicItemDatas[parsedId].uniqueName}";
         inventoryPresenter.AddItem(parsedId, icon, prefabPath);
 
-        // ³» ÅøÆÁ ´İ°í ÀÚ½Å Á¦°Å
         ItemTooltipManager.Instance?.HideFor(transform);
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// ë¹„í™œì„±í™”ë  ë•Œ ë…¸ì¶œ ì¤‘ì¸ ë§í’ì„ ì„ ì •ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     private void OnDisable()
     {
-        // ¾À ÀüÈ¯/ÆÄ±« ½Ã¿¡µµ ¾ÈÀü Á¤¸®
         if (ItemTooltipManager.Instance != null)
             ItemTooltipManager.Instance.HideFor(transform);
     }
