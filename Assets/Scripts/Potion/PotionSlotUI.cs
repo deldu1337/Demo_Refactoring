@@ -3,21 +3,26 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// í¬ì…˜ ìŠ¬ë¡¯ UIì˜ ìƒíƒœë¥¼ ê´€ë¦¬í•˜ê³  ë“œë¡­ ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+/// </summary>
 public class PotionSlotUI : MonoBehaviour, IDropHandler
 {
-    [Tooltip("0~3 (Å° 1~4¿¡ ¸ÅÇÎ)")]
+    [Tooltip("0~3 (í‚¤ 1~4 ëŒ€ì‘)")]
     public int index;
 
     [Header("UI")]
-    public Image icon;                 // ÀÚ½Ä¿¡ ÀÖ´Â ÀÌ¹ÌÁö(¿¹: "1", "2", "3", "4")
-    public GameObject emptyOverlay;    // ºó ½½·ÔÀÏ ¶§ º¸ÀÌ´Â ¹è°æ(¼±ÅÃ)
+    public Image icon;                 // ìŠ¬ë¡¯ì— í‘œì‹œë  ì•„ì´ì½˜ì…ë‹ˆë‹¤.
+    public GameObject emptyOverlay;    // ë¹„ì–´ ìˆì„ ë•Œ í‘œì‹œë˜ëŠ” ì˜¤ë²„ë ˆì´ì…ë‹ˆë‹¤.
 
-    // ÇöÀç ½½·Ô¿¡ ¹ÙÀÎµùµÈ ÀÎº¥Åä¸® ¾ÆÀÌÅÛÀÇ uniqueId
+    // ê° ìŠ¬ë¡¯ì— ì—°ê²°ëœ ì¸ë²¤í† ë¦¬ ì•„ì´í…œì˜ ê³ ìœ  IDì…ë‹ˆë‹¤.
     public string boundUniqueId;
 
-    private Text qtyText; // ¡Ú Ãß°¡
+    private Text qtyText; // ìˆ˜ëŸ‰ì„ í‘œì‹œí•˜ëŠ” í…ìŠ¤íŠ¸ì…ë‹ˆë‹¤.
 
-    // ¿ÜºÎ¿¡¼­ ¾ÆÀÌÄÜÀ» ÀÚµ¿À¸·Î ²ø¾î´Ù ¿¬°áÇÏ°í ½ÍÀ¸¸é È£Ãâ
+    /// <summary>
+    /// ìì‹ ì´ë¦„ì„ ê¸°ë°˜ìœ¼ë¡œ ì•„ì´ì½˜ ì´ë¯¸ì§€ë¥¼ ì°¾ì•„ ì—°ê²°í•©ë‹ˆë‹¤.
+    /// </summary>
     public void AutoWireIconByChildName(string childName)
     {
         if (icon) return;
@@ -26,10 +31,13 @@ public class PotionSlotUI : MonoBehaviour, IDropHandler
         if (icon)
         {
             icon.raycastTarget = false;
-            icon.enabled = false; // ¡ç ÃÊ±â¿£ ºñÈ°¼º
+            icon.enabled = false; // ì´ˆê¸°ì—ëŠ” í‘œì‹œí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
         }
     }
 
+    /// <summary>
+    /// ìŠ¬ë¡¯ì„ ë¹„ìš°ê³  UIë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Clear()
     {
         boundUniqueId = null;
@@ -40,11 +48,13 @@ public class PotionSlotUI : MonoBehaviour, IDropHandler
             icon.enabled = false;
         }
 
-        SetQty(0); // ¡Ú ¼û±è
+        SetQty(0); // ìˆ˜ëŸ‰ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
         if (emptyOverlay) emptyOverlay.SetActive(true);
     }
 
-    // ¡Ú ¼ö·® Áö¿ø ¹öÀü
+    /// <summary>
+    /// ìŠ¬ë¡¯ì— ì•„ì´í…œê³¼ ìˆ˜ëŸ‰ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public void Set(InventoryItem item, Sprite s, int quantity)
     {
         boundUniqueId = item.uniqueId;
@@ -55,29 +65,38 @@ public class PotionSlotUI : MonoBehaviour, IDropHandler
             icon.enabled = s != null;
         }
 
-        SetQty(quantity); // ¡Ú
+        SetQty(quantity); // ì…ë ¥ëœ ìˆ˜ëŸ‰ì„ í‘œì‹œí•©ë‹ˆë‹¤.
         if (emptyOverlay) emptyOverlay.SetActive(string.IsNullOrEmpty(boundUniqueId));
     }
 
+    /// <summary>
+    /// ì €ì¥ëœ ë°ì´í„°ë¡œë¶€í„° ìŠ¬ë¡¯ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public void SetBySave(string uniqueId, Sprite s, int quantity)
     {
         boundUniqueId = uniqueId;
         if (icon) { icon.sprite = s; icon.enabled = (s != null); }
-        SetQty(quantity); // ¡Ú
+        SetQty(quantity); // ì €ì¥ëœ ìˆ˜ëŸ‰ì„ í‘œì‹œí•©ë‹ˆë‹¤.
         if (emptyOverlay) emptyOverlay.SetActive(string.IsNullOrEmpty(boundUniqueId));
     }
 
-    public void SetBySave(string uniqueId, Sprite s) // ¡ç ±âÁ¸ ½Ã±×´ÏÃ³°¡ ¾²ÀÌ´Â °÷ ÀÖÀ¸¸é À¯Áö
+    /// <summary>
+    /// ì €ì¥ëœ ë°ì´í„°ë¡œë¶€í„° ê¸°ë³¸ ìˆ˜ëŸ‰ì„ ì‚¬ìš©í•´ ìŠ¬ë¡¯ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+    /// </summary>
+    public void SetBySave(string uniqueId, Sprite s)
     {
         SetBySave(uniqueId, s, 1);
     }
 
+    /// <summary>
+    /// ìˆ˜ëŸ‰ í…ìŠ¤íŠ¸ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
+    /// </summary>
     public void SetQty(int q)
     {
         if (qtyText == null) qtyText = EnsureQtyLabel(transform);
         if (qtyText == null) return;
 
-        if (q >= 1) // 1°³´Â Ç¥½Ã ¾È ÇØµµ µÇ¸é ÀÌ·¸°Ô, ÇÊ¿äÇÏ¸é >=1 ·Î
+        if (q >= 1) // í•œ ê°œ ì´ìƒì´ë©´ ìˆ«ìë¥¼ ë³´ì—¬ë“œë¦½ë‹ˆë‹¤.
         {
             qtyText.text = q.ToString();
             qtyText.enabled = true;
@@ -89,6 +108,9 @@ public class PotionSlotUI : MonoBehaviour, IDropHandler
         }
     }
 
+    /// <summary>
+    /// ìˆ˜ëŸ‰ì„ í‘œì‹œí•˜ê¸° ìœ„í•œ í…ìŠ¤íŠ¸ ì˜¤ë¸Œì íŠ¸ë¥¼ í™•ë³´í•©ë‹ˆë‹¤.
+    /// </summary>
     private Text EnsureQtyLabel(Transform parent)
     {
         var t = parent.Find("Qty") as RectTransform;
@@ -124,7 +146,9 @@ public class PotionSlotUI : MonoBehaviour, IDropHandler
 
     public bool IsEmpty => string.IsNullOrEmpty(boundUniqueId);
 
-    // === ÀÎº¥Åä¸®¿¡¼­ µå·¡±× µå·Ó ¼ö½Å (Æ÷¼Ç¸¸ Çã¿ë) ===
+    /// <summary>
+    /// ë“œë˜ê·¸ëœ ì•„ì´í…œì„ ë“œë¡­í–ˆì„ ë•Œ í¬ì…˜ì¸ì§€ í™•ì¸í•˜ê³  ìŠ¬ë¡¯ì— ë°°ì •í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnDrop(PointerEventData eventData)
     {
         var drag = eventData.pointerDrag ? eventData.pointerDrag.GetComponent<DraggableItemView>() : null;
@@ -133,25 +157,33 @@ public class PotionSlotUI : MonoBehaviour, IDropHandler
         var item = drag.Item;
         if (item.data == null || !string.Equals(item.data.type, "potion", StringComparison.OrdinalIgnoreCase))
         {
-            // Æ÷¼Ç¸¸ Çã¿ë
+            // í¬ì…˜ì´ ì•„ë‹ˆë¼ë©´ ì²˜ë¦¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
             return;
         }
 
-        // ¾ÆÀÌÄÜ ·Îµå
+        // ì•„ì´ì½˜ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ë¶ˆëŸ¬ì˜µë‹ˆë‹¤.
         Sprite s = null;
         if (!string.IsNullOrEmpty(item.iconPath))
             s = Resources.Load<Sprite>(item.iconPath);
 
         PotionQuickBar.Instance.Assign(index, item, s);
 
-        // µå·¡±× ½Ã°¢¹°Àº ¿ø·¡ ÀÚ¸®·Î º¹±Í(ÀÎº¥Åä¸®¿¡¼­¸¸ µå·¡±×µÇ¹Ç·Î UI´Â ±×´ë·Î)
+        // ë“œë˜ê·¸ëœ ë·°ë¥¼ ì›ë˜ ìë¦¬ë¡œ ëŒë ¤ UI ìƒíƒœë¥¼ ìœ ì§€í•©ë‹ˆë‹¤.
         drag.SnapBackToOriginal();
     }
 
-    // PotionSlotUI.cs ³»ºÎ¿¡
+    /// <summary>
+    /// ìŠ¬ë¡¯ì˜ RectTransformì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public RectTransform GetRect() => GetComponent<RectTransform>();
+    /// <summary>
+    /// ìŠ¬ë¡¯ì´ ì†í•œ ìº”ë²„ìŠ¤ì˜ ì¹´ë©”ë¼ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
     public Camera GetCanvasCamera() => GetComponentInParent<Canvas>()?.worldCamera;
 
+    /// <summary>
+    /// ë¹„ì–´ ìˆëŠ” ìƒíƒœ ì—¬ë¶€ì— ë”°ë¼ ì˜¤ë²„ë ˆì´ì™€ ì•„ì´ì½˜ì„ ê°±ì‹ í•©ë‹ˆë‹¤.
+    /// </summary>
     public void RefreshEmptyOverlay()
     {
         if (emptyOverlay)

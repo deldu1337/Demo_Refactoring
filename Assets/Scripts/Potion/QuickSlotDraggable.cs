@@ -3,14 +3,20 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
+/// <summary>
+/// í¬ì…˜ ìŠ¬ë¡¯ ì•„ì´ì½˜ì„ ë“œë˜ê·¸í•˜ì—¬ ì´ë™í•˜ê±°ë‚˜ ë°˜í™˜í•˜ëŠ” ê¸°ëŠ¥ì„ ì œê³µí•©ë‹ˆë‹¤.
+/// </summary>
 public class QuickSlotDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public PotionSlotUI slot;          // ÀÌ ¾ÆÀÌÄÜÀÌ ¼ÓÇÑ ½½·Ô ÂüÁ¶
-    public Canvas canvas;              // µå·¡±×¿ë
+    public PotionSlotUI slot;          // ì—°ê²°ëœ ìŠ¬ë¡¯ ì •ë³´ë¥¼ ë³´ê´€í•©ë‹ˆë‹¤.
+    public Canvas canvas;              // ë“œë˜ê·¸ ì‹œ ì‚¬ìš©í•  ìº”ë²„ìŠ¤ë¥¼ ì°¸ì¡°í•©ë‹ˆë‹¤.
     private RectTransform rt;
     private Transform originalParent;
     private CanvasGroup cg;
 
+    /// <summary>
+    /// ë“œë˜ê·¸ì— í•„ìš”í•œ ì»´í¬ë„ŒíŠ¸ë¥¼ ì¤€ë¹„í•©ë‹ˆë‹¤.
+    /// </summary>
     void Awake()
     {
         rt = GetComponent<RectTransform>();
@@ -19,12 +25,15 @@ public class QuickSlotDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (!canvas) canvas = GetComponentInParent<Canvas>();
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ë¥¼ ì‹œì‘í•  ë•Œ í˜¸ì¶œë©ë‹ˆë‹¤.
+    /// </summary>
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (slot == null || slot.IsEmpty) return;
         originalParent = transform.parent;
 
-        // ¿ø·¡ ºÎ¸ğ ¾ÈÀÇ Qty ºñÈ°¼ºÈ­ (ÀÖÀ» °æ¿ì)
+        // ë“œë˜ê·¸ ì¤‘ì—ëŠ” ìˆ˜ëŸ‰ í‘œê¸°ë¥¼ ì ì‹œ ìˆ¨ê¸°ê² ìŠµë‹ˆë‹¤.
         if (originalParent != null)
         {
             var qtyTr = originalParent.Find("Qty");
@@ -35,26 +44,32 @@ public class QuickSlotDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler
         transform.SetParent(canvas.transform, true);
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ ì¤‘ ìœ„ì¹˜ë¥¼ ë”°ë¼ ì´ë™í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnDrag(PointerEventData eventData)
     {
         if (slot == null || slot.IsEmpty) return;
         rt.position = eventData.position;
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ë¥¼ ì¢…ë£Œí•˜ë©´ì„œ ìŠ¬ë¡¯ ì´ë™ ë˜ëŠ” ë°˜í™˜ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤.
+    /// </summary>
     public void OnEndDrag(PointerEventData eventData)
     {
         cg.blocksRaycasts = true;
 
         var qb = PotionQuickBar.Instance;
 
-        // µå·¡±× ³¡³ª¸é ¿ø·¡ ºÎ¸ğÀÇ Qty ´Ù½Ã È°¼ºÈ­ (ÀÖÀ» °æ¿ì)
+        // ë“œë˜ê·¸ê°€ ëë‚˜ë©´ ìˆ˜ëŸ‰ í‘œê¸°ë¥¼ ë‹¤ì‹œ ë³´ì´ê²Œ í•˜ê² ìŠµë‹ˆë‹¤.
         if (originalParent != null)
         {
             var qtyTr = originalParent.Find("Qty");
             if (qtyTr) qtyTr.gameObject.SetActive(true);
         }
 
-        // 1) Æ÷¼Ç ½½·Ô À§·Î µå·Ó ¡æ Move
+        // 1) ë‹¤ë¥¸ í¬ì…˜ ìŠ¬ë¡¯ìœ¼ë¡œ ì´ë™í–ˆëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
         if (qb && qb.TryGetSlotIndexAtScreenPosition(eventData.position, out int targetIndex))
         {
             if (slot != null && targetIndex != slot.index)
@@ -64,19 +79,22 @@ public class QuickSlotDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler
             return;
         }
 
-        // 2) ±× ¿Ü(¾îµğµç) ¡æ ÀÎº¥Åä¸®·Î ¹İÈ¯
+        // 2) ëŒ€ìƒ ìŠ¬ë¡¯ì´ ì—†ë‹¤ë©´ ì¸ë²¤í† ë¦¬ë¡œ ë˜ëŒë¦½ë‹ˆë‹¤.
         if (slot != null)
-            qb?.ReturnToInventory(slot.index);   // ¡ç ÇÙ½É ÇÑ ÁÙ
+            qb?.ReturnToInventory(slot.index);
 
         SnapBack();
     }
 
+    /// <summary>
+    /// ë“œë˜ê·¸ ëŒ€ìƒì˜ ìœ„ì¹˜ì™€ ë¶€ëª¨ë¥¼ ì›ë˜ëŒ€ë¡œ ëŒë ¤ë†“ìŠµë‹ˆë‹¤.
+    /// </summary>
     private void SnapBack()
     {
         transform.SetParent(originalParent, false);
         rt.anchoredPosition = Vector2.zero;
 
-        // ºÎ¸ğ(Potion1) ¾È¿¡¼­ Text°¡ Ç×»ó ¸Ç À§·Î ¿À°Ô º¸Àå
+        // ì›ë˜ ìŠ¬ë¡¯ ì•ˆì—ì„œ ìˆ˜ëŸ‰ê³¼ í…ìŠ¤íŠ¸ê°€ ìœ„ì— ë³´ì´ë„ë¡ ì •ë ¬í•©ë‹ˆë‹¤.
         if (originalParent != null)
         {
             var qtyTr = originalParent.Find("Qty");

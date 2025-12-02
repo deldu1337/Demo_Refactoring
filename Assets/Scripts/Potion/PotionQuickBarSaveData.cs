@@ -2,22 +2,28 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
+/// <summary>
+/// í¬ì…˜ í€µë°”ì˜ ì €ì¥ ë°ì´í„°ë¥¼ ë³´ê´€í•˜ëŠ” ì»¨í…Œì´ë„ˆì…ë‹ˆë‹¤.
+/// </summary>
 public class PotionQuickBarSave
 {
-    public List<PotionSlotEntry> slots = new(); // index, uid, id, iconPath, prefabPath, hp, mp
+    public List<PotionSlotEntry> slots = new(); // ìŠ¬ë¡¯ ì •ë³´ë¥¼ ìˆœì„œëŒ€ë¡œ ë³´ê´€í•©ë‹ˆë‹¤.
 }
 
 [Serializable]
+/// <summary>
+/// ê° í¬ì…˜ ìŠ¬ë¡¯ì˜ ì €ì¥ ì •ë³´ë¥¼ í‘œí˜„í•©ë‹ˆë‹¤.
+/// </summary>
 public class PotionSlotEntry
 {
     public int index;
-    public string uniqueId;     // ÀÎº¥ UID (Äü½½·Ô¿¡ ÀÌ°üµÈ ÈÄ¿¡µµ À¯Áö)
-    public int itemId;          // DataManager¿ë id (Àç±¸¼º¿ë)
-    public string iconPath;     // Resources °æ·Î (¿¹: "Icons/HPPotion")
-    public string prefabPath;   // ¿ø·¡ ÇÁ¸®ÆÕ °æ·Î(ÀÖÀ¸¸é)
+    public string uniqueId;     // ì¸ë²¤í† ë¦¬ ì•„ì´í…œ ê³ ìœ  IDì…ë‹ˆë‹¤.
+    public int itemId;          // DataManagerì—ì„œ ì‚¬ìš©ë˜ëŠ” ì•„ì´í…œ IDì…ë‹ˆë‹¤.
+    public string iconPath;     // Resources ê²½ë¡œì˜ ì•„ì´ì½˜ ì •ë³´ì…ë‹ˆë‹¤.
+    public string prefabPath;   // í”„ë¦¬íŒ¹ ê²½ë¡œ ì •ë³´ì…ë‹ˆë‹¤.
     public float hp;
     public float mp;
 
-    // ¡Ú Ãß°¡: ¼ö·®
+    // ì €ì¥ëœ ìˆ˜ëŸ‰ì…ë‹ˆë‹¤.
     public int qty;
 }
