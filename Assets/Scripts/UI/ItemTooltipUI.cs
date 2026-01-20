@@ -315,12 +315,12 @@ public class ItemTooltipUI : MonoBehaviour
 
         AddLine("HP", "hp", d.hp);
         AddLine("MP", "mp", d.mp);
-        AddLine("공격력", "atk", d.atk);
+        AddLine("데미지", "atk", d.atk);
         AddLine("방어력", "def", d.def);
-        AddLine("민첩", "dex", d.dex);
-        AddLine("공속", "As", d.As);
+        AddLine("민첩성", "dex", d.dex);
+        AddLine("공격 속도", "As", d.As);
         AddLine("치명타 확률", "cc", d.cc);
-        AddLine("치명타 피해", "cd", d.cd);
+        AddLine("치명타 데미지", "cd", d.cd);
 
         if (sb.Length == 0) sb.Append("표시할 능력치가 없습니다.");
         return sb.ToString();
