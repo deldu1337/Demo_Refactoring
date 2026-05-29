@@ -5,6 +5,9 @@ public class DamageTextManager : MonoBehaviour
     public static DamageTextManager Instance;
     public GameObject damageTextPrefab;
     public Canvas canvas;
+    [SerializeField] private int prewarmCount = 20;
+
+    private ObjectPoolManager poolManager;
 
     /// <summary>
     /// 싱글턴 인스턴스를 설정합니다.
@@ -12,6 +15,9 @@ public class DamageTextManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        poolManager = ObjectPoolManager.GetOrCreate();
+        if (damageTextPrefab != null)
+            poolManager.Prewarm(damageTextPrefab, prewarmCount, canvas != null ? canvas.transform : null);
     }
 
     public enum DamageTextTarget
@@ -29,7 +35,7 @@ public class DamageTextManager : MonoBehaviour
 
         Vector3 worldOffset = Vector3.up * 1.5f;
 
-        GameObject go = Instantiate(damageTextPrefab, canvas.transform);
+        GameObject go = poolManager.Get(damageTextPrefab, canvas.transform);
 
         var dt = go.GetComponent<DamageText>();
         if (dt != null)
@@ -44,7 +50,7 @@ public class DamageTextManager : MonoBehaviour
         if (damageTextPrefab == null || canvas == null || Camera.main == null) return;
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos + Vector3.up * 1.5f);
-        GameObject go = Instantiate(damageTextPrefab, canvas.transform);
+        GameObject go = poolManager.Get(damageTextPrefab, canvas.transform);
         go.transform.position = screenPos;
 
         var dt = go.GetComponent<DamageText>();
