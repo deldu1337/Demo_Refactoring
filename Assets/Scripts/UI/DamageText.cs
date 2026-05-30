@@ -1,43 +1,57 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DamageText : MonoBehaviour
+public class DamageText : MonoBehaviour, IPoolable
 {
     [Header("Animation")]
-    public float duration = 1.0f;       // 표시가 유지되는 시간입니다.
-    public float risePixels = 60f;      // 화면에서 상승하는 거리입니다.
-    public float horizontalDrift = 20f; // 좌우로 흔들리는 정도입니다.
+    public float duration = 1.0f;
+    public float risePixels = 60f;
+    public float horizontalDrift = 20f;
 
     private Text text;
     private float elapsed;
     private float driftX;
     private Color baseColor;
 
-    // 따라갈 대상과 카메라 관련 정보입니다.
     private Transform followTarget;
     private Vector3 worldOffset;
     private Camera cam;
+    private ObjectPoolManager poolManager;
 
-    // 분리(detach) 애니메이션 상태입니다.
-    private bool detached = false;
-    private float detachElapsed = 0f;
-    private float detachDuration = 0.5f;       // 분리된 뒤 사라지기까지의 시간입니다.
-    private Vector3 detachStartScreenPos;      // 분리 시점의 화면 좌표입니다.
-    private float detachStartEase;             // 분리 시점의 이징 값입니다.
-    private float currentAlpha = 1f;           // 현재 알파 값입니다.
+    private bool detached;
+    private float detachElapsed;
+    private float detachDuration = 0.5f;
+    private Vector3 detachStartScreenPos;
+    private float detachStartEase;
+    private float currentAlpha = 1f;
 
-    /// <summary>
-    /// 텍스트 컴포넌트를 가져오고 기본 상태를 준비합니다.
-    /// </summary>
-    void Awake()
+    private void Awake()
     {
         text = GetComponent<Text>();
-        if (!text) Debug.LogWarning("[DamageText] Text 컴포넌트가 없습니다.");
+        if (!text) Debug.LogWarning("[DamageText] Text component is missing.");
+        poolManager = ObjectPoolManager.GetOrCreate();
     }
 
-    /// <summary>
-    /// 데미지 숫자와 색상을 설정하고 이동 대상 정보를 초기화합니다.
-    /// </summary>
+    public void OnSpawnedFromPool()
+    {
+        if (!text) text = GetComponent<Text>();
+
+        elapsed = 0f;
+        detachElapsed = 0f;
+        detachDuration = 0.5f;
+        detached = false;
+        currentAlpha = 1f;
+        followTarget = null;
+        worldOffset = Vector3.zero;
+        cam = null;
+    }
+
+    public void OnReturnedToPool()
+    {
+        followTarget = null;
+        cam = null;
+    }
+
     public void Setup(int damage, Color color, Transform target, Vector3 followWorldOffset, Camera cameraIfNullUseMain = null)
     {
         if (!text) return;
@@ -57,7 +71,6 @@ public class DamageText : MonoBehaviour
         detachElapsed = 0f;
         currentAlpha = 1f;
 
-        // 시작 위치를 대상 기준 화면 좌표로 맞춥니다.
         if (followTarget && cam != null)
         {
             Vector3 baseScreen = cam.WorldToScreenPoint(followTarget.position + worldOffset);
@@ -65,18 +78,12 @@ public class DamageText : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 매 프레임마다 텍스트 위치와 알파 값을 갱신합니다.
-    /// </summary>
-    void Update()
+    private void Update()
     {
         if (!text) return;
 
-        // 대상이 사라지면 분리 모드로 전환합니다.
         if (!detached && (followTarget == null || !followTarget.gameObject.activeInHierarchy))
-        {
             EnterDetachMode();
-        }
 
         if (!detached)
         {
@@ -98,7 +105,7 @@ public class DamageText : MonoBehaviour
             text.color = c;
 
             if (elapsed >= duration)
-                Destroy(gameObject);
+                Release();
         }
         else
         {
@@ -117,29 +124,27 @@ public class DamageText : MonoBehaviour
             text.color = c;
 
             if (detachElapsed >= detachDuration)
-                Destroy(gameObject);
+                Release();
         }
     }
 
-    /// <summary>
-    /// 따라가는 대상이 사라졌을 때 분리 애니메이션을 시작합니다.
-    /// </summary>
     private void EnterDetachMode()
     {
         detached = true;
-
-        // 분리 시점의 화면 좌표를 그대로 저장합니다.
         detachStartScreenPos = transform.position;
 
-        // 진행된 시간으로 분리 시점의 이징 값을 계산합니다.
         float tSoFar = Mathf.Clamp01(elapsed / Mathf.Max(0.0001f, duration));
         detachStartEase = 1f - Mathf.Pow(1f - tSoFar, 2f);
 
-        // 남은 시간을 고려하여 분리 애니메이션 길이를 정합니다.
         float remainingTime = Mathf.Max(0f, duration - elapsed);
         detachDuration = Mathf.Max(remainingTime, 0.2f);
 
-        // 더 이상 대상을 추적하지 않습니다.
         followTarget = null;
+    }
+
+    private void Release()
+    {
+        if (poolManager == null) poolManager = ObjectPoolManager.GetOrCreate();
+        poolManager.Release(gameObject);
     }
 }
