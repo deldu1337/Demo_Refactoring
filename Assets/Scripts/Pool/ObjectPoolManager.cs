@@ -16,6 +16,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     private readonly Dictionary<GameObject, Queue<GameObject>> pools = new();
     private readonly Dictionary<GameObject, GameObject> instanceToPrefab = new();
+    private readonly Dictionary<GameObject, IPoolable[]> instancePoolables = new();
     private Transform poolRoot;
 
     private void Awake()
@@ -67,7 +68,7 @@ public class ObjectPoolManager : MonoBehaviour
 
         if (parent != null) instance.transform.SetParent(parent, false);
 
-        foreach (var poolable in instance.GetComponentsInChildren<IPoolable>(true))
+        foreach (var poolable in GetPoolables(instance))
             poolable.OnSpawnedFromPool();
 
         instanceToPrefab[instance] = prefab;
@@ -103,11 +104,36 @@ public class ObjectPoolManager : MonoBehaviour
             return;
         }
 
-        foreach (var poolable in instance.GetComponentsInChildren<IPoolable>(true))
+        foreach (var poolable in GetPoolables(instance))
             poolable.OnReturnedToPool();
 
         instance.SetActive(false);
         ReturnToPool(instance);
+    }
+
+    public int GetInactiveCount(GameObject prefab)
+    {
+        if (prefab == null) return 0;
+        return pools.TryGetValue(prefab, out var queue) ? queue.Count : 0;
+    }
+
+    public int GetTrackedCount(GameObject prefab)
+    {
+        if (prefab == null) return 0;
+
+        int count = 0;
+        foreach (var trackedPrefab in instanceToPrefab.Values)
+        {
+            if (trackedPrefab == prefab)
+                count++;
+        }
+
+        return count;
+    }
+
+    public int GetActiveCount(GameObject prefab)
+    {
+        return Mathf.Max(0, GetTrackedCount(prefab) - GetInactiveCount(prefab));
     }
 
     private void EnsurePool(GameObject prefab)
@@ -120,7 +146,19 @@ public class ObjectPoolManager : MonoBehaviour
     {
         var instance = Instantiate(prefab, parent);
         instanceToPrefab[instance] = prefab;
+        instancePoolables[instance] = instance.GetComponentsInChildren<IPoolable>(true);
         return instance;
+    }
+
+    private IPoolable[] GetPoolables(GameObject instance)
+    {
+        if (!instancePoolables.TryGetValue(instance, out var poolables) || poolables == null)
+        {
+            poolables = instance.GetComponentsInChildren<IPoolable>(true);
+            instancePoolables[instance] = poolables;
+        }
+
+        return poolables;
     }
 
     private void ReturnToPool(GameObject instance)
