@@ -68,16 +68,16 @@ public class AttackingStates : IPlayerStates
 
         if (!targetDead)
         {
-            player.RotateTowardsTarget(player.targetEnemy.transform.position);
+            Collider enemyCollider = player.targetEnemy.GetComponent<Collider>();
+            Vector3 playerOrigin = player.transform.position + Vector3.up * player.raycastYOffset;
+            Vector3 closest = enemyCollider.ClosestPoint(playerOrigin);
+            float distance = Vector3.Distance(playerOrigin, closest);
 
-            if (Time.time >= player.lastAttackTime)
+            if (distance <= player.GetAttackRange())
             {
-                Collider enemyCollider = player.targetEnemy.GetComponent<Collider>();
-                Vector3 playerOrigin = player.transform.position + Vector3.up * player.raycastYOffset;
-                Vector3 closest = enemyCollider.ClosestPoint(playerOrigin);
-                float distance = Vector3.Distance(playerOrigin, closest);
+                player.RotateTowardsTarget(player.targetEnemy.transform.position);
 
-                if (distance <= player.GetAttackRange())
+                if (Time.time >= player.lastAttackTime)
                 {
                     player.PerformAttack();
                     player.lastAttackTime = Time.time + player.GetAttackCooldown();
