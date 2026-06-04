@@ -32,6 +32,8 @@ public class PlayerMove : MonoBehaviour
     private Vector3 requestedDestination;
     private float nextPathRefreshTime;
 
+    public event System.Action<IReadOnlyList<Vector3>> PathUpdated;
+
     /// <summary>
     /// 이동에 필요한 구성 요소를 초기화합니다.
     /// </summary>
@@ -307,6 +309,7 @@ public class PlayerMove : MonoBehaviour
 
         currentPathIndex = Mathf.Min(1, currentPath.Count - 1);
         targetPosition = currentPath[currentPathIndex];
+        PathUpdated?.Invoke(currentPath);
         return true;
     }
 
@@ -574,6 +577,11 @@ public class PlayerMove : MonoBehaviour
     /// 이동 여부를 반환합니다.
     /// </summary>
     public bool IsMoving() => isMoving;
+
+    public IReadOnlyList<Vector3> GetCurrentPathSnapshot()
+    {
+        return currentPath;
+    }
     /// <summary>
     /// 애니메이션 컴포넌트를 반환합니다.
     /// </summary>
