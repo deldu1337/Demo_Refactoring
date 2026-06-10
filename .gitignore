@@ -77,4 +77,5 @@ crashlytics-build.properties
 
 # Asset ignore
 /[Aa]ssets/CustomAssets
+outputs/
 #/[Aa]ssets/Exports
