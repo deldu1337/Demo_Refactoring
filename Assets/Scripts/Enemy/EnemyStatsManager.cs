@@ -28,6 +28,15 @@ public class EnemyStatsManager : MonoBehaviour, IHealth
     /// </summary>
     private void LoadEnemyData()
     {
+        EnemyDatabaseAsset enemyDatabase = Resources.Load<EnemyDatabaseAsset>("DataAssets/EnemyDatabase");
+        if (enemyDatabase != null)
+        {
+            Data = enemyDatabase.FindById(enemyId);
+            if (Data == null) Debug.LogError($"enemyId '{enemyId}' data was not found in EnemyDatabase.asset!");
+            else CurrentHP = Data.hp;
+            return;
+        }
+
         TextAsset json = Resources.Load<TextAsset>("Datas/enemyData");
         if (json == null) { Debug.LogError("Resources/Datas/enemyData.json을 찾을 수 없습니다!"); return; }
 

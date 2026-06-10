@@ -51,13 +51,21 @@ public class SkillManager : MonoBehaviour
         SkillButton = GameObject.Find("QuickUI").transform.GetChild(0).GetComponent<Button>();
         SkillButton.onClick.AddListener(skillBook.Toggle);
 
-        var jsonFile = Resources.Load<TextAsset>("Datas/skillData");
-        if (!jsonFile)
+        var skillDatabase = Resources.Load<SkillDatabaseAsset>("DataAssets/SkillDatabase");
+        if (skillDatabase != null)
         {
-            Debug.LogError("[SkillManager] Resources/Datas/skillData.json 을 찾을 수 없습니다.");
-            return;
+            SkillFactory.LoadSkillsFromDatabase(skillDatabase);
         }
-        SkillFactory.LoadSkillsFromJson(jsonFile.text);
+        else
+        {
+            var jsonFile = Resources.Load<TextAsset>("Datas/skillData");
+            if (!jsonFile)
+            {
+                Debug.LogError("[SkillManager] SkillDatabase.asset and Resources/Datas/skillData.json were not found.");
+                return;
+            }
+            SkillFactory.LoadSkillsFromJson(jsonFile.text);
+        }
 
         if (skillBook)
         {
