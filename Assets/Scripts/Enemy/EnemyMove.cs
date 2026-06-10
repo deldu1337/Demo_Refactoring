@@ -1,31 +1,31 @@
 using UnityEngine;
 
-/// <summary>
-/// 적의 이동과 추적 로직을 담당하고 애니메이션을 전환합니다.
-/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animation))]
 [RequireComponent(typeof(EnemyStatsManager))]
 public class EnemyMove : MonoBehaviour
 {
-    [Header("이동 설정")]
-    [SerializeField] private float baseMoveSpeed = 3f;      // 기본 이동 속도입니다.
-    [SerializeField] private float baseRotationSpeed = 10f; // 기본 회전 속도입니다.
-    [SerializeField] private float detectRadius = 10f;      // 플레이어 탐지 범위입니다.
+    public const string IdleAnimation = "Stand (ID 0 variation 0)";
+    public const string RunAnimation = "Run (ID 5 variation 0)";
+    public const string AttackAnimation = "AttackUnarmed (ID 16 variation 0)";
+
+    [Header("Movement Settings")]
+    [SerializeField] private float baseMoveSpeed = 3f;
+    [SerializeField] private float baseRotationSpeed = 10f;
+    [SerializeField] private float detectRadius = 10f;
+    [SerializeField] private float attackStopDistance = 2f;
 
     public Transform TargetPlayer { get; private set; }
+    public Vector3 SpawnPosition => spawnPosition;
 
+    private StateMachine<EnemyMove> stateMachine;
     private TileMapGenerator mapGenerator;
     private Rigidbody rb;
     private Animation anim;
     private EnemyStatsManager stats;
     private Vector3 spawnPosition;
-
     private int playerLayerMask;
 
-    /// <summary>
-    /// 필수 컴포넌트를 초기화하고 기본 위치와 레이어 마스크를 설정합니다.
-    /// </summary>
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,59 +33,56 @@ public class EnemyMove : MonoBehaviour
 
         anim = GetComponent<Animation>();
         stats = GetComponent<EnemyStatsManager>();
+        stateMachine = new StateMachine<EnemyMove>(this);
 
-        if (!anim) Debug.LogError($"{name}: Animation 컴포넌트가 없습니다!");
-        if (!stats) Debug.LogError($"{name}: EnemyStatsManager가 없습니다!");
+        if (!anim) Debug.LogError($"{name}: Animation component not found.");
+        if (!stats) Debug.LogError($"{name}: EnemyStatsManager not found.");
 
         mapGenerator = FindAnyObjectByType<TileMapGenerator>();
-        if (!mapGenerator) Debug.LogWarning($"{name}: TileMapGenerator를 찾지 못했습니다. 기본 추적 범위를 사용합니다.");
+        if (!mapGenerator)
+            Debug.LogWarning($"{name}: TileMapGenerator not found. Enemy will use simple target detection.");
 
         spawnPosition = transform.position;
         playerLayerMask = 1 << LayerMask.NameToLayer("Player");
     }
 
-    /// <summary>
-    /// 플레이어 사망 이벤트를 구독합니다.
-    /// </summary>
+    private void Start()
+    {
+        ChangeState(new EnemyIdleState());
+    }
+
     private void OnEnable()
     {
         PlayerStatsManager.OnPlayerDied += HandlePlayerDied;
     }
 
-    /// <summary>
-    /// 플레이어 사망 이벤트 구독을 해제합니다.
-    /// </summary>
     private void OnDisable()
     {
         PlayerStatsManager.OnPlayerDied -= HandlePlayerDied;
     }
 
-    /// <summary>
-    /// 플레이어가 죽었을 때 추적 상태를 초기화합니다.
-    /// </summary>
     private void HandlePlayerDied()
     {
         TargetPlayer = null;
+        ChangeState(new EnemyIdleState());
     }
 
-    /// <summary>
-    /// 생성 위치를 외부에서 지정합니다.
-    /// </summary>
-    public void SetSpawnPosition(Vector3 position) => spawnPosition = position;
+    public void SetSpawnPosition(Vector3 position)
+    {
+        spawnPosition = position;
+    }
 
-    /// <summary>
-    /// 고정 업데이트마다 플레이어를 탐지하고 이동 동작을 수행합니다.
-    /// </summary>
     private void FixedUpdate()
     {
-        DetectPlayer();
-        MoveTowardsTarget();
+        stateMachine.FixedTick();
     }
 
-    /// <summary>
-    /// 주변에서 살아있는 플레이어를 탐지하고 가장 가까운 대상을 찾습니다.
-    /// </summary>
-    private void DetectPlayer()
+    public void ChangeState(IState<EnemyMove> newState)
+    {
+        stateMachine.ChangeState(newState);
+    }
+
+    public void DetectPlayer()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectRadius, playerLayerMask);
         Transform closest = null;
@@ -94,14 +91,12 @@ public class EnemyMove : MonoBehaviour
         foreach (var hit in hits)
         {
             var pStats = hit.GetComponent<PlayerStatsManager>();
-            if (pStats == null) continue;
-
-            if (pStats.CurrentHP <= 0f) continue;
+            if (pStats == null || pStats.CurrentHP <= 0f)
+                continue;
 
             Vector3 playerPos = hit.transform.position;
-
             if (mapGenerator && mapGenerator.GetPlayerRoom().Contains(
-                new Vector2Int(Mathf.FloorToInt(playerPos.x), Mathf.FloorToInt(playerPos.z))))
+                    new Vector2Int(Mathf.FloorToInt(playerPos.x), Mathf.FloorToInt(playerPos.z))))
                 continue;
 
             float dist = Vector3.Distance(transform.position, playerPos);
@@ -115,56 +110,162 @@ public class EnemyMove : MonoBehaviour
         TargetPlayer = closest;
     }
 
-    /// <summary>
-    /// 목표 위치를 향해 이동하고 상황에 맞는 애니메이션을 재생합니다.
-    /// </summary>
-    private void MoveTowardsTarget()
+    public bool HasLiveTarget()
     {
-        Vector3 destination = TargetPlayer ? TargetPlayer.position : spawnPosition;
-        Vector3 direction = (destination - rb.position);
+        if (!TargetPlayer)
+            return false;
+
+        var targetStats = TargetPlayer.GetComponent<PlayerStatsManager>();
+        return targetStats != null && targetStats.CurrentHP > 0f;
+    }
+
+    public bool IsTargetInAttackRange()
+    {
+        if (!HasLiveTarget())
+            return false;
+
+        return Vector3.Distance(transform.position, TargetPlayer.position) <= attackStopDistance;
+    }
+
+    public bool IsAtSpawn()
+    {
+        Vector3 delta = spawnPosition - rb.position;
+        delta.y = 0f;
+        return delta.magnitude <= 1f;
+    }
+
+    public void MoveToTargetOrSpawn()
+    {
+        Vector3 destination = HasLiveTarget() ? TargetPlayer.position : spawnPosition;
+        MoveTowards(destination);
+    }
+
+    public void MoveTowards(Vector3 destination)
+    {
+        Vector3 direction = destination - rb.position;
         direction.y = 0f;
 
         float distance = direction.magnitude;
+        if (distance <= 1f)
+        {
+            PlayAnimation(IdleAnimation);
+            return;
+        }
+
         float moveSpeed = baseMoveSpeed + stats.Data.dex;
         float rotationSpeed = baseRotationSpeed + stats.Data.dex * 0.5f;
+        Vector3 moveDir = direction.normalized;
 
-        if (distance > 1f)
-        {
-            Vector3 moveDir = direction.normalized;
-            rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, Quaternion.LookRotation(moveDir), rotationSpeed * Time.fixedDeltaTime));
 
-            Quaternion targetRot = Quaternion.LookRotation(moveDir);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
-
-            PlayAnimation("Run (ID 5 variation 0)");
-        }
-        else
-        {
-            PlayAnimation("Stand (ID 0 variation 0)");
-        }
+        PlayAnimation(RunAnimation);
     }
 
-    /// <summary>
-    /// 이동 상태에 따라 적절한 애니메이션을 재생합니다.
-    /// </summary>
-    private void PlayAnimation(string animName)
+    public void FaceTarget()
     {
-        if (!anim) return;
+        if (!HasLiveTarget())
+            return;
 
-        // 공격 동작 중에는 이동 애니메이션을 덮어쓰지 않습니다.
-        if (anim.IsPlaying("AttackUnarmed (ID 16 variation 0)"))
+        Vector3 direction = TargetPlayer.position - transform.position;
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude <= 0.001f)
+            return;
+
+        Quaternion targetRot = Quaternion.LookRotation(direction.normalized);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, baseRotationSpeed * Time.fixedDeltaTime));
+    }
+
+    public void PlayAnimation(string animName)
+    {
+        if (!anim)
+            return;
+
+        if (anim.IsPlaying(AttackAnimation))
             return;
 
         if (!anim.IsPlaying(animName))
             anim.CrossFade(animName, 0.2f);
     }
 
-    /// <summary>
-    /// 에디터에서 탐지 반경을 시각화합니다.
-    /// </summary>
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRadius);
     }
+}
+
+public sealed class EnemyIdleState : IState<EnemyMove>
+{
+    public void Enter(EnemyMove enemy)
+    {
+        enemy.PlayAnimation(EnemyMove.IdleAnimation);
+    }
+
+    public void Tick(EnemyMove enemy) { }
+
+    public void FixedTick(EnemyMove enemy)
+    {
+        enemy.DetectPlayer();
+
+        if (enemy.HasLiveTarget())
+            enemy.ChangeState(new EnemyMoveState());
+        else if (!enemy.IsAtSpawn())
+            enemy.ChangeState(new EnemyMoveState());
+    }
+
+    public void Exit(EnemyMove enemy) { }
+}
+
+public sealed class EnemyMoveState : IState<EnemyMove>
+{
+    public void Enter(EnemyMove enemy) { }
+    public void Tick(EnemyMove enemy) { }
+
+    public void FixedTick(EnemyMove enemy)
+    {
+        enemy.DetectPlayer();
+
+        if (enemy.IsTargetInAttackRange())
+        {
+            enemy.ChangeState(new EnemyAttackState());
+            return;
+        }
+
+        if (!enemy.HasLiveTarget() && enemy.IsAtSpawn())
+        {
+            enemy.ChangeState(new EnemyIdleState());
+            return;
+        }
+
+        enemy.MoveToTargetOrSpawn();
+    }
+
+    public void Exit(EnemyMove enemy) { }
+}
+
+public sealed class EnemyAttackState : IState<EnemyMove>
+{
+    public void Enter(EnemyMove enemy)
+    {
+        enemy.PlayAnimation(EnemyMove.IdleAnimation);
+    }
+
+    public void Tick(EnemyMove enemy) { }
+
+    public void FixedTick(EnemyMove enemy)
+    {
+        enemy.DetectPlayer();
+
+        if (!enemy.IsTargetInAttackRange())
+        {
+            enemy.ChangeState(new EnemyMoveState());
+            return;
+        }
+
+        enemy.FaceTarget();
+    }
+
+    public void Exit(EnemyMove enemy) { }
 }

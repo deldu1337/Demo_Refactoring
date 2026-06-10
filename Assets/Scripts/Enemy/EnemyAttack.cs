@@ -62,7 +62,7 @@ public class EnemyAttack : MonoBehaviour
             attackRoutine = null;
         }
 
-        if (anim && anim.IsPlaying("AttackUnarmed (ID 16 variation 0)"))
+        if (anim && anim.IsPlaying(EnemyMove.AttackAnimation))
             anim.Stop();
 
         isAttacking = false;
@@ -89,7 +89,7 @@ public class EnemyAttack : MonoBehaviour
             return;
         }
 
-        if (targetPlayer == null || targetPlayer.gameObject != enemyMove.TargetPlayer)
+        if (targetPlayer == null || targetPlayer.transform != enemyMove.TargetPlayer)
             targetPlayer = enemyMove.TargetPlayer.GetComponent<PlayerStatsManager>();
     }
 
@@ -124,7 +124,7 @@ public class EnemyAttack : MonoBehaviour
     {
         isAttacking = true;
 
-        string attackAnimName = "AttackUnarmed (ID 16 variation 0)";
+        string attackAnimName = EnemyMove.AttackAnimation;
         float speed = Mathf.Max(stats.Data.As, 0.1f);
 
         // 애니메이션을 재생하면서 속도와 반복 방식을 설정합니다.

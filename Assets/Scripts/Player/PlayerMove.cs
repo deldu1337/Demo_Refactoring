@@ -31,6 +31,7 @@ public class PlayerMove : MonoBehaviour
     private int currentPathIndex;
     private Vector3 requestedDestination;
     private float nextPathRefreshTime;
+    private PlayerAttacks attack;
 
     public event System.Action<IReadOnlyList<Vector3>> PathUpdated;
 
@@ -45,6 +46,7 @@ public class PlayerMove : MonoBehaviour
         animationComponent = GetComponent<Animation>();
         stats = PlayerStatsManager.Instance;
         mapGenerator = FindAnyObjectByType<TileMapGenerator>();
+        attack = GetComponent<PlayerAttacks>();
 
         if (animationComponent == null)
             Debug.LogError("Animation 컴포넌트를 찾지 못했습니다.");
@@ -86,8 +88,6 @@ public class PlayerMove : MonoBehaviour
         if (movementLocked) return;
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
-
-        var attack = GetComponent<PlayerAttacks>();
 
         // 1) 우클릭을 눌렀을 때 이동 또는 추적을 결정합니다.
         if (Input.GetMouseButtonDown(1))
@@ -193,7 +193,7 @@ public class PlayerMove : MonoBehaviour
         // 이동 중에는 달리기 애니메이션을 재생합니다.
         if (isMoving && animationComponent != null)
         {
-            if (!animationComponent.IsPlaying("Attack1H (ID 17 variation 0)") &&
+            if (!animationComponent.IsPlaying(PlayerAttacks.AttackAnimation) &&
                 !animationComponent.IsPlaying("Run (ID 5 variation 0)"))
             {
                 animationComponent.Play("Run (ID 5 variation 0)");
@@ -221,8 +221,11 @@ public class PlayerMove : MonoBehaviour
         {
             isMoving = false;
             ClearPath();
-            if (animationComponent != null && !animationComponent.IsPlaying("Attack1H (ID 17 variation 0)"))
-                animationComponent.Play("Stand (ID 0 variation 0)");
+            if (attack == null || !attack.isCastingSkill)
+                attack?.ChangeState(new IdleStates());
+            if (animationComponent != null && !animationComponent.IsPlaying(PlayerAttacks.AttackAnimation) &&
+                (attack == null || !attack.isCastingSkill))
+                animationComponent.Play(PlayerAttacks.IdleAnimation);
             return;
         }
         if (Physics.SphereCast(rb.position, movementCollisionRadius, direction, out _, moveDelta.magnitude + movementCollisionRadius, wallLayer))
@@ -251,8 +254,11 @@ public class PlayerMove : MonoBehaviour
             {
                 isMoving = false;
                 ClearPath();
-                if (animationComponent != null && !animationComponent.IsPlaying("Attack1H (ID 17 variation 0)"))
-                    animationComponent.Play("Stand (ID 0 variation 0)");
+                if (attack == null || !attack.isCastingSkill)
+                    attack?.ChangeState(new IdleStates());
+                if (animationComponent != null && !animationComponent.IsPlaying(PlayerAttacks.AttackAnimation) &&
+                    (attack == null || !attack.isCastingSkill))
+                    animationComponent.Play(PlayerAttacks.IdleAnimation);
             }
         }
     }
@@ -269,6 +275,7 @@ public class PlayerMove : MonoBehaviour
         if (TryBuildPath(destination))
         {
             isMoving = true;
+            attack?.ChangeState(new MovingStates());
             return;
         }
 
@@ -280,6 +287,7 @@ public class PlayerMove : MonoBehaviour
 
         targetPosition = destination;
         isMoving = true;
+        attack?.ChangeState(new MovingStates());
     }
 
     private bool TryBuildPath(Vector3 destination, bool allowSmoothing = true)
@@ -346,8 +354,25 @@ public class PlayerMove : MonoBehaviour
     {
         isMoving = false;
         ClearPath();
-        if (animationComponent != null && !animationComponent.IsPlaying("Attack1H (ID 17 variation 0)"))
-            animationComponent.Play("Stand (ID 0 variation 0)");
+        if (attack == null || !attack.isCastingSkill)
+            attack?.ChangeState(new IdleStates());
+        if (animationComponent != null && !animationComponent.IsPlaying(PlayerAttacks.AttackAnimation) &&
+            (attack == null || !attack.isCastingSkill))
+            animationComponent.Play(PlayerAttacks.IdleAnimation);
+    }
+
+    public void CancelMovementForCombat()
+    {
+        isMoving = false;
+        rmbMode = RMBMode.None;
+        chasedEnemy = null;
+        ClearPath();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 
     private Vector2Int WorldToCell(Vector3 position)
@@ -598,6 +623,8 @@ public class PlayerMove : MonoBehaviour
         {
             isMoving = false;
             ClearPath();
+            if (attack == null || !attack.isCastingSkill)
+                attack?.ChangeState(new IdleStates());
             if (rb != null)
             {
                 rb.linearVelocity = Vector3.zero;
