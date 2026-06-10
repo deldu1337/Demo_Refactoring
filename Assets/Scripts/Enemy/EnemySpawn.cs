@@ -76,6 +76,14 @@ public class EnemySpawn : MonoBehaviour
     private void EnsureDbLoaded()
     {
         if (db != null) return;
+
+        EnemyDatabaseAsset enemyDatabase = Resources.Load<EnemyDatabaseAsset>("DataAssets/EnemyDatabase");
+        if (enemyDatabase != null)
+        {
+            db = new EnemyDatabase { enemies = enemyDatabase.enemies ?? new EnemyData[0] };
+            return;
+        }
+
         TextAsset json = Resources.Load<TextAsset>("Datas/enemyData");
         if (json == null)
         {

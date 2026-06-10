@@ -52,6 +52,15 @@ public class DataManager : MonoBehaviour
     /// </summary>
     public void LoadDatas()
     {
+        ItemDatabaseAsset itemDatabase = Resources.Load<ItemDatabaseAsset>("DataAssets/ItemDatabase");
+        if (itemDatabase != null)
+        {
+            dicItemDatas = new Dictionary<int, ItemData>();
+            foreach (var data in itemDatabase.items)
+                dicItemDatas[data.id] = data;
+            return;
+        }
+
         TextAsset textAsset = Resources.Load<TextAsset>("Datas/itemData");
         if (textAsset == null) { Debug.LogError("Resources/Datas/itemData.json 파일을 찾지 못했습니다"); return; }
 
@@ -70,6 +79,13 @@ public class DataManager : MonoBehaviour
     {
         _ranges.Clear();
 
+        ItemDatabaseAsset itemDatabase = Resources.Load<ItemDatabaseAsset>("DataAssets/ItemDatabase");
+        if (itemDatabase != null)
+        {
+            LoadRangeEntries(itemDatabase.itemRanges);
+            return;
+        }
+
         var ta = Resources.Load<TextAsset>("Datas/itemRanges");
         if (ta == null)
         {
@@ -80,7 +96,14 @@ public class DataManager : MonoBehaviour
         var wrapper = JsonUtility.FromJson<ItemRangeArray>(ta.text);
         if (wrapper?.items == null) return;
 
-        foreach (var e in wrapper.items)
+        LoadRangeEntries(wrapper.items);
+    }
+
+    private void LoadRangeEntries(ItemRangeEntry[] entries)
+    {
+        if (entries == null) return;
+
+        foreach (var e in entries)
         {
             var map = new Dictionary<string, ItemStatRange>();
             if (e.hp != null) map["hp"] = e.hp;

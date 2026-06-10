@@ -1,0 +1,562 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ItemDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDatabaseAsset
+  items:
+  - id: 1
+    name: "\uB179\uC2A8 \uB3C4\uB07C"
+    uniqueName: RustyAxe
+    level: 1
+    tier: Normal
+    hp: 0
+    mp: 0
+    atk: 2
+    def: 0
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: weapon
+  - id: 2
+    name: "\uD0B9\uC2AC\uB77C\uC784 \uD074\uB85C"
+    uniqueName: SlimeKingClaw
+    level: 5
+    tier: Legendary
+    hp: 0
+    mp: 0
+    atk: 20
+    def: 0
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: weapon
+  - id: 3
+    name: "\uC77C\uBC18 \uD5EC\uBA67"
+    uniqueName: CommonHelmet
+    level: 3
+    tier: Normal
+    hp: 5
+    mp: 0
+    atk: 0
+    def: 1
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: head
+  - id: 4
+    name: "\uBFD4\uB69C\uAED1"
+    uniqueName: HornHead
+    level: 8
+    tier: Rare
+    hp: 15
+    mp: 0
+    atk: 0
+    def: 2
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: head
+  - id: 5
+    name: "\uCCA0\uBC29\uD328"
+    uniqueName: IronShield
+    level: 5
+    tier: Unique
+    hp: 0
+    mp: 0
+    atk: 0
+    def: 5
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: shield
+  - id: 6
+    name: "(\uC67C)\uAC00\uC8FD\uC5B4\uAE68\uBCF4\uD638\uB300"
+    uniqueName: (L)Shoulder
+    level: 7
+    tier: Magic
+    hp: 3
+    mp: 0
+    atk: 0
+    def: 1
+    dex: 1
+    As: 0
+    cc: 0
+    cd: 0
+    type: lshoulder
+  - id: 7
+    name: "(\uC624)\uAC00\uC8FD\uC5B4\uAE68\uBCF4\uD638\uB300"
+    uniqueName: (R)Shoulder
+    level: 7
+    tier: Magic
+    hp: 3
+    mp: 0
+    atk: 0
+    def: 1
+    dex: 1
+    As: 0
+    cc: 0
+    cd: 0
+    type: rshoulder
+  - id: 8
+    name: "\uD790\uB9C1 \uD3EC\uC158"
+    uniqueName: HPPotion
+    level: 1
+    tier: Normal
+    hp: 50
+    mp: 0
+    atk: 0
+    def: 0
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: potion
+  - id: 9
+    name: "\uB9C8\uB098 \uD3EC\uC158"
+    uniqueName: MPPotion
+    level: 1
+    tier: Normal
+    hp: 0
+    mp: 20
+    atk: 0
+    def: 0
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: potion
+  - id: 10
+    name: "\uB371\uC2A4 \uC82C"
+    uniqueName: dexGem
+    level: 1
+    tier: Legendary
+    hp: 0
+    mp: 0
+    atk: 0
+    def: 0
+    dex: 1
+    As: 0
+    cc: 0
+    cd: 0
+    type: gem
+  - id: 11
+    name: "\uACF5\uC18D \uC82C"
+    uniqueName: AsGem
+    level: 1
+    tier: Legendary
+    hp: 0
+    mp: 0
+    atk: 0
+    def: 0
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: gem
+  - id: 12
+    name: "\uCE58\uD655 \uC82C"
+    uniqueName: ccGem
+    level: 1
+    tier: Legendary
+    hp: 0
+    mp: 0
+    atk: 0
+    def: 0
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: gem
+  - id: 13
+    name: "\uCE58\uB380 \uC82C"
+    uniqueName: cdGem
+    level: 1
+    tier: Legendary
+    hp: 0
+    mp: 0
+    atk: 0
+    def: 0
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: gem
+  - id: 14
+    name: "\uD575 \uB9DD\uCE58"
+    uniqueName: HackHammer
+    level: 10
+    tier: Legendary
+    hp: 0
+    mp: 0
+    atk: 0
+    def: 0
+    dex: 0
+    As: 0
+    cc: 0
+    cd: 0
+    type: weapon
+  itemRanges:
+  - id: 1
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 1
+      max: 2
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 2
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 10
+      max: 15
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 3
+    hp:
+      min: 3
+      max: 5
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0.5
+      max: 1
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 4
+    hp:
+      min: 10
+      max: 15
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 1.5
+      max: 2
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 5
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 3
+      max: 5
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 6
+    hp:
+      min: 2
+      max: 4
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0.5
+      max: 1
+    dex:
+      min: 0.5
+      max: 1
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 7
+    hp:
+      min: 2
+      max: 4
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0.5
+      max: 1
+    dex:
+      min: 0.5
+      max: 1
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 8
+    hp:
+      min: 50
+      max: 50
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 9
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 20
+      max: 20
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 10
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 1.5
+      max: 2
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 11
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0.2
+      max: 0.5
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0
+  - id: 12
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0.1
+      max: 0.4
+    cd:
+      min: 0
+      max: 0
+  - id: 13
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 0
+      max: 0
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 2
+      max: 3
+  - id: 14
+    hp:
+      min: 0
+      max: 0
+    mp:
+      min: 0
+      max: 0
+    atk:
+      min: 35
+      max: 40
+    def:
+      min: 0
+      max: 0
+    dex:
+      min: 0
+      max: 0
+    As:
+      min: 0
+      max: 0
+    cc:
+      min: 0
+      max: 0
+    cd:
+      min: 0
+      max: 0

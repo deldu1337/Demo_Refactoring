@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e1b5f6cbf24792bd287cbb6b526f95, type: 3}
+  m_Name: SkillDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::SkillDatabaseAsset
+  warrior:
+  - id: slash
+    name: "\uC77C\uACA9"
+    cooldown: 2
+    damage: 4
+    mpCost: 5
+    range: 4.5
+    impactDelay: 0.5
+    type: ActiveSkill
+    animation: Attack2H (ID 18 variation 1)
+  - id: smash
+    name: "\uBD84\uC1C4"
+    cooldown: 7
+    damage: 1
+    mpCost: 10
+    range: 5
+    impactDelay: 0.6
+    type: ProjectileSkill
+    animation: Attack2HL (ID 19 variation 1)
+  - id: charge
+    name: "\uB3CC\uC9C4"
+    cooldown: 5
+    damage: 2
+    mpCost: 15
+    range: 20
+    impactDelay: 0.15
+    type: ChargeSkill
+    animation: AttackOffPierce (ID 88 variation 0)
+  mage: []
+  rogue: []
